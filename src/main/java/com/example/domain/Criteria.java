@@ -1,60 +1,89 @@
 package com.example.domain;
 
 public class Criteria {
-   private int page;
-   private int perPageNum;
-   private String searchType;
-   private String keyword;
+	   private int page;
+	   private int perPageNum;
+	   private String searchType;
+	   private String ageType;
+	   private String genderType;
+	   private String catType;
+	   private String keyword;
 
-   public Criteria() {
-      this(1, 10);
-   }
+	   public Criteria() {
+	      this(1, 10);
+	   }
 
-   public Criteria(int page, int perPageNum) {
-      this.page = page;
-      this.perPageNum = perPageNum;
-   }
+	   public Criteria(int page, int perPageNum) {
+	      this.page = page;
+	      this.perPageNum = perPageNum;
+	   }
 
-   // 1페이지인 경우 pageStart는 0
-   public int getPageStart() {
-      return (this.page - 1) * perPageNum;
-   }
+	   // 1페이지인 경우 pageStart는 0
+	   public int getPageStart() {
+	      return (this.page - 1) * perPageNum;
+	   }
 
-   public int getPage() {
-      return page;
-   }
+	   public int getPage() {
+	      return page;
+	   }
 
-   public void setPage(int page) {
-      this.page = page;
-   }
+	   public void setPage(int page) {
+	      this.page = page;
+	   }
 
-   public int getPerPageNum() {
-      return perPageNum;
-   }
+	   public int getPerPageNum() {
+	      return perPageNum;
+	   }
 
-   public void setPerPageNum(int perPageNum) {
-      this.perPageNum = perPageNum;
-   }
+	   public void setPerPageNum(int perPageNum) {
+	      this.perPageNum = perPageNum;
+	   }
 
-   public String getSearchType() {
-      return searchType;
-   }
+	   
+	   public String getCatType() {
+		return catType;
+	}
 
-   public void setSearchType(String searchType) {
-      this.searchType = searchType;
-   }
+	public void setCatType(String catType) {
+		this.catType = catType;
+	}
 
-   public String getKeyword() {
-      return keyword;
-   }
+	public String getGenderType() {
+		return genderType;
+	   }
 
-   public void setKeyword(String keyword) {
-      this.keyword = keyword;
-   }
+		public void setGenderType(String genderType) {
+			this.genderType = genderType;
+		}
 
-   @Override
-   public String toString() {
-      return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", searchType=" + searchType + ", keyword="
-            + keyword + "]";
-   }
-}
+	public String getAgeType() {
+		return ageType;
+	   }
+
+		public void setAgeType(String ageType) {
+			this.ageType = ageType;
+		}
+		
+		public String getSearchType() {
+		     return searchType;
+	   }
+
+	   public void setSearchType(String searchType) {
+	      this.searchType = searchType;
+	   }
+
+	   public String getKeyword() {
+	      return keyword;
+	   }
+
+	   public void setKeyword(String keyword) {
+	      this.keyword = keyword;
+	   }
+
+	@Override
+	public String toString() {
+		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", searchType=" + searchType + ", ageType="
+				+ ageType + ", genderType=" + genderType + ", catType=" + catType + ", keyword=" + keyword + "]";
+	}
+
+	}
