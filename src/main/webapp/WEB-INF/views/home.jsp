@@ -11,11 +11,11 @@
 <body>
 	<div id="page">
 		<div id="header">
-			<h1>프로젝트</h1>
+			<h1><a href="/">프로젝트</a></h1>
 		</div>
 		<div id="center">
 			<div id="menu">
-				<h4><a href="#">공동구매</a></h4>
+				<h4><a href="/purchase/list">공동구매</a></h4>
 				<h4><a href="#">공동생활</a></h4>
 				<h4><a href="/slist">지원정책</a></h4>
 				<h4><a href="#">커뮤니티</a></h4>
@@ -26,8 +26,9 @@
 				</c:if>  
 				<!-- 로그인 한 상태 -->
 				 <c:if test="${ user != null }">
-                 <span>회원 : ${user.u_name}</span>
-         </c:if>		
+				 <h4 style="float:right"><a href="/member/logout">로그아웃</a></h4>
+                 <h4 style="float:right">회원 : ${user.u_name}</h4>               
+         		</c:if>		
 			</div>
 			<div id="content">
 				<jsp:include page="${pageName}"/>

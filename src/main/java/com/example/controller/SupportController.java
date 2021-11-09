@@ -46,7 +46,7 @@ public class SupportController {
 	@RequestMapping(value="/supdate",method=RequestMethod.POST)
 	public String supdate(SupportVO vo,MultipartHttpServletRequest multi)throws Exception{
 		MultipartFile file=multi.getFile("file");
-		//ÀÌ¹ÌÁö°¡ ¹Ù²ï°æ¿ì
+		//ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ï¿½
 				if(!file.isEmpty()){
 					new File(path+"/"+vo.getS_image()).delete();
 					String image=System.currentTimeMillis()+".jpg";
@@ -84,7 +84,7 @@ public class SupportController {
 	
 	@RequestMapping(value="/insert",method=RequestMethod.POST)
 	public String insertPost(SupportVO vo,MultipartHttpServletRequest multi) throws Exception{
-		//´ëÇ¥ÀÌ¹ÌÁö ¾÷·Îµå
+		//ï¿½ï¿½Ç¥ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½
 		MultipartFile file=multi.getFile("file");
 		String image=System.currentTimeMillis()+".jpg";
 		file.transferTo(new File(path+"/"+ image));
@@ -121,12 +121,10 @@ public class SupportController {
 		sdao.delete(id);
 	}
 	
-	// ÀÌ¹ÌÁöÆÄÀÏ ºê¶ó¿ìÀú¿¡ Ãâ·Â
 		@RequestMapping("/display")
 		@ResponseBody
 		public ResponseEntity<byte[]> display(String fileName) throws Exception {
 			ResponseEntity<byte[]> result = null;
-			// display fileNameÀÌ ÀÖ´Â °æ¿ì
 			if (!fileName.equals("")) {
 				File file = new File(path + File.separator + fileName);
 				HttpHeaders header = new HttpHeaders();
