@@ -1,5 +1,7 @@
 package com.example.controller.course;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -134,7 +136,12 @@ public class CourseController {
 	}
 	
 	@RequestMapping(value="/cou/insert", method = RequestMethod.POST)
-	public String insertPost(CourseVO vo)throws Exception{
+	public String insertPost(CourseVO vo, String start, String end)throws Exception{
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date_start = sdf.parse(start);
+		vo.setDate_start(date_start);
+		Date date_end = sdf.parse(end);
+		vo.setDate_end(date_end);
 		dao.insert(vo);
 		return "redirect:/cou/list";
 	}
@@ -166,15 +173,10 @@ public class CourseController {
 		return map;
 	}
 	
-	
 	@RequestMapping("/cou/list")
 	public String list(Model model) {
 		model.addAttribute("pageName", "course/clist.jsp");
 		return "home";
 	}
-	
-
-	
-	
 
 }
