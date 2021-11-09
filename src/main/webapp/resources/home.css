@@ -1,0 +1,79 @@
+@CHARSET "UTF-8";
+
+#content {text-align: center; padding: 10px;}
+
+#header { text-align: center;}
+
+#footer {
+	border-top: 1px solid lightgray;
+	text-align: right;
+	color: gray;
+}
+#menu {
+	overflow: hidden;
+	border-bottom: 1px dotted gray;
+	padding-left: 10px;
+}
+#menu h4 {float: left; margin-right: 20px;}
+#menu h4 a{color:#DBB4B4}
+#menu h4 a:HOVER{color:#5872A5;}
+h1 { text-align: center; color:gray;}
+
+#page{
+	width:860px;
+	margin: 0 auto;
+}
+
+#condition{
+	margin: 10px auto;
+	width: 840px;
+	text-align: left;
+}
+
+#condition a{ color: gray;}
+#condition a:hover{ color: #5872A5;}
+
+table {border-collapse:collapse; margin: 0 auto;}
+td{border-bottom: solid 1px #7F8BA5; padding: 5px; text-align:center;}
+.title{background:#A3AFC9; color: white;}
+
+.row:hover{
+	background: lightgray;
+	color: white;
+	cursor: pointer;
+}
+
+.pagination {
+	display: inline-block;
+	margin: 10px 0;
+	padding-left: 50px;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {
+   background-color: #ddd;
+}
+a {
+	text-decoration: none;
+}
+
+input[type=submit], input[type=reset], input[type=button], button{
+   background: #DBB4B4;
+   border:1px solid lightgray;
+   color: white;
+   border-radius: 5px;
+   padding: 5px 20px;
+   margin-left:20px;
+   cursor: pointer;
+}

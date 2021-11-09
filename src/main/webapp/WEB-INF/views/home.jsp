@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-	<title>학사관리</title>
+	<title>일맥상통</title>
 	<link rel="stylesheet" href="/resources/home.css"/>
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script> 
@@ -16,10 +16,19 @@
 		<div id="center">
 			<div id="menu">
 				<h4><a href="#">공동구매</a></h4>
-				<h4><a href="#">공동생활</a></h4>
+				<h4><a href="/cou/list">공동생활</a></h4>
 				<h4><a href="#">지원정책</a></h4>
 				<h4><a href="#">커뮤니티</a></h4>
-				<h4 style="float:right"><a href="/login">로그인</a></h4>				
+				<!-- 로그인을 하지 않은 상태 -->             
+               <c:if test = "${user == null }">
+				<h4 style="float:right"><a href="/member/login">로그인</a></h4>				
+				<h4 style="float:right"><a href="/member/insert">회원가입</a></h4>		
+				</c:if>  
+				<!-- 로그인 한 상태 -->
+				 <c:if test="${ user != null }">
+				 <h4 style="float:right"><a href="/member/logout">로그아웃</a></h4>
+                 <h4 style="float:right">회원 : ${user.u_name}</h4>               
+         		</c:if>
 			</div>
 			<div id="content">
 				<jsp:include page="${pageName}"/>
