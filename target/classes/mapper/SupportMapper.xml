@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.SupportMapper">
+	<select id="list" resultType="com.example.domain.SupportVO">
+		select * from tbl_support
+		where title like concat('%',#{keyword},'%')
+		
+		<!-- 지역별 -->
+		<if test ="searchType=='all'">
+		</if>
+		<if test ="searchType=='seoul'">
+			and s_local='서울시'
+		</if>
+		<if test ="searchType=='incheon'">
+			and s_local='인천시'
+		</if>
+		<if test ="searchType=='gyeonggi'">
+			and s_local='경기도'
+		</if>
+		
+		<!-- 연령별 -->
+		<if test="ageType=='allAge'">
+		</if>
+		<if test="ageType=='age1'">
+			and s_age='age1'
+		</if>
+		<if test="ageType=='age2'">
+			and s_age='age2'
+		</if>
+		<if test="ageType=='age3'">
+			and s_age='age3'
+		</if>
+		<if test="ageType=='age4'">
+			and s_age='age4'
+		</if>
+
+		<!-- 성별 -->		
+		<if test='genderType=="allGender"'>
+		</if>
+		<if test='genderType=="m"'>
+			and s_gender='m'
+		</if>
+		<if test='genderType=="w"'>
+			and s_gender='w'
+		</if>
+		
+		<!-- 카테고리별 -->
+		<if test="catType=='allCate'">
+		</if>
+		<if test="catType=='ca1'">
+			and s_category='안전'
+		</if>
+		<if test="catType=='ca2'">
+			and s_category='주거'
+		</if>
+		<if test="catType=='ca3'">
+			and s_category='경제/일자리'
+		</if>
+		<if test="catType=='ca4'">
+			and s_category='외로움'
+		</if>
+		<if test="catType=='ca5'">
+			and s_category='질병'
+		</if>
+		<if test="catType=='ca6'">
+			and s_category='기타'
+		</if>
+	
+		order by id desc
+		limit #{pageStart},#{perPageNum};
+	</select>
+	
+	<insert id="insert">
+		insert into tbl_support(s_local,s_age,s_gender,s_category,title,s_content,s_image)
+		values(#{s_local},#{s_age},#{s_gender},#{s_category},#{title},#{s_content},#{s_image})
+	</insert>
+	
+	<select id="maxCode" resultType="int">
+		select max(id) from tbl_support 
+	</select>
+	
+	<select id="totalCount" resultType="int">
+		select count(*) from tbl_support
+		
+		where title like concat('%',#{keyword},'%')
+		
+		<!-- 지역별 -->
+		<if test ="searchType=='all'">
+		</if>
+		<if test ="searchType=='seoul'">
+			and s_local='서울시'
+		</if>
+		<if test ="searchType=='incheon'">
+			and s_local='인천시'
+		</if>
+		<if test ="searchType=='gyeonggi'">
+			and s_local='경기도'
+		</if>
+		
+		<!-- 연령별 -->
+		<if test="ageType=='allAge'">
+		</if>
+		<if test="ageType=='age1'">
+			and s_age='age1'
+		</if>
+		<if test="ageType=='age2'">
+			and s_age='age2'
+		</if>
+		<if test="ageType=='age3'">
+			and s_age='age3'
+		</if>
+		<if test="ageType=='age4'">
+			and s_age='age4'
+		</if>
+
+		<!-- 성별 -->		
+		<if test='genderType=="allGender"'>
+		</if>
+		<if test='genderType=="m"'>
+			and s_gender='m'
+		</if>
+		<if test='genderType=="w"'>
+			and s_gender='w'
+		</if>
+		
+		<!-- 카테고리별 -->
+		<if test="catType=='allCate'">
+		</if>
+		<if test="catType=='ca1'">
+			and s_category='안전'
+		</if>
+		<if test="catType=='ca2'">
+			and s_category='주거'
+		</if>
+		<if test="catType=='ca3'">
+			and s_category='경제/일자리'
+		</if>
+		<if test="catType=='ca4'">
+			and s_category='외로움'
+		</if>
+		<if test="catType=='ca5'">
+			and s_category='질병'
+		</if>
+		<if test="catType=='ca6'">
+			and s_category='기타'
+		</if>
+	</select>
+	
+	<update id="viewcnt">
+		update tbl_support set s_view=s_view+1
+		where id=#{id}
+	</update>
+	
+	<select id="read" resultType="com.example.domain.SupportVO">
+		select * from tbl_support
+		where id=#{id}
+	</select>
+	
+	<delete id="delete">
+		delete from tbl_support
+		where id=#{id}
+	</delete>	
+	
+	<update id="update">
+		update tbl_support set title=#{title}, s_gender=#{s_gender},s_local=#{s_local},s_age=#{s_age},s_category=#{s_category},
+		s_content=#{s_content},s_image=#{s_image}
+		where id=#{id}
+	</update>
+</mapper>
