@@ -124,5 +124,15 @@ public class CourseDAOImpl implements CourseDAO {
 		return session.selectOne(namespace+".totalCount",cri);
 	}
 
+	@Override
+	public void delete_query(int c_query_id) {
+		session.delete(namespace + ".delete_query", c_query_id);
+	}
+
+	@Override
+	public void delete_course(int id) {
+		session.update(namespace + ".delete_course", id);
+	}
+
 
 }

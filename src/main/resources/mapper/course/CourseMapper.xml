@@ -5,7 +5,6 @@
 	 <select id="list" resultType="com.example.domain.course.CourseVO">
  		select * from tbl_course
  		where title like concat('%',#{keyword},'%')
- 		
  		<!-- 카테고리별 -->
 		<if test ="catType=='allCate'">
 		</if>
@@ -93,6 +92,7 @@
 		<if test="ageType=='age4'">
 			<![CDATA[ and c_age_max >=60 ]]>
 		</if>
+		and c_state = 0
  		order by id desc
  		limit #{pageStart},#{perPageNum}
  	</select>
@@ -101,6 +101,9 @@
 		select * from tbl_course
 		where id=#{id}
 	</select>
+	<update id="delete_course">
+		update tbl_course set c_state = 1 where id = #{id}
+	</update>
 	<!-- 스터디/취미 해당 카테고리 출력 -->
 	<select id="list_category" resultType="com.example.domain.course.CategoryVO">
 		select * from tbl_category
@@ -177,7 +180,95 @@
 	
 	<select id="totalCount" resultType="int">
 		select count(*) from tbl_course
-		
+		where title like concat('%',#{keyword},'%')
+ 		<!-- 카테고리별 -->
+		<if test ="catType=='allCate'">
+		</if>
+		<if test ="catType=='ca1'">
+			and tbl_code like 'CS%'
+		</if>
+		<if test ="catType=='ca2'">
+			and tbl_code like 'CC%'
+		</if>
+		<if test ="catType=='ca3'">
+			and tbl_code like 'CG%'
+		</if>
+		 <if test="catType=='sub1'">
+         	and tbl_code='CSL'
+	      </if>
+	      <if test="catType=='sub2'">
+	         and tbl_code='CSJ'
+	      </if>
+	      <if test="catType=='sub3'">
+	         and tbl_code='CSI'
+	      </if>
+	      <if test="catType=='sub4'">
+	        and tbl_code='CSR'
+	      </if>
+	      <if test="catType=='sub5'">
+	        and tbl_code='CCH'
+	      </if>
+	      <if test="catType=='sub6'">
+	         and tbl_code='CCC'
+	      </if>
+	      <if test="catType=='sub7'">
+	         and tbl_code='CCE'
+	      </if>
+	      <if test="catType=='sub8'">
+	         and tbl_code='CCR'
+	      </if>
+	      <if test="catType=='sub9'">
+	         and tbl_code='CGA'
+	      </if>
+	      <if test="catType=='sub10'">
+	         and tbl_code='CGF'
+	      </if>
+	      <if test="catType=='sub11'">
+	         and tbl_code='CGT'
+	      </if>
+	      <if test="catType=='sub12'">
+	         and tbl_code='CGR'
+	      </if>
+
+		<!-- 지역별 -->
+	      <if test ="searchType=='all'">
+	      </if>
+	      <if test ="searchType=='seoul'">
+	         and c_local='서울'
+	      </if>
+	      <if test ="searchType=='incheon'">
+	         and c_local='인천'
+	      </if>
+	      <if test ="searchType=='gyeonggi'">
+	         and c_local='경기'
+	      </if>
+	      
+		<!-- 성별    -->
+	     <if test='genderType=="allGender"'>
+	     </if>
+	     <if test='genderType=="m"'>
+	        and c_gender in ('혼성', '남성')
+	     </if>
+	     <if test='genderType=="w"'>
+	        and c_gender in ('혼성', '여성')
+	     </if>
+	     
+	    <!-- 연령별 -->
+		<if test="ageType=='allAge'">
+		</if>
+		<if test="ageType=='age1'">
+			<![CDATA[ and c_age_min <=20 ]]>
+		</if>
+		<if test="ageType=='age2'">
+			<![CDATA[ and (c_age_min <= 30 or c_age_max >20 ) ]]>
+		</if>
+		<if test="ageType=='age3'">
+			<![CDATA[ and (c_age_min <= 50 and c_age_max >40 ) ]]>
+		</if>
+		<if test="ageType=='age4'">
+			<![CDATA[ and c_age_max >=60 ]]>
+		</if>
+		and c_state = 0
 	</select>
 	
 </mapper>

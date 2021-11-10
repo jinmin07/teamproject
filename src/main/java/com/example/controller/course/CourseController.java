@@ -111,11 +111,18 @@ public class CourseController {
 		model.addAttribute("pageName", "course/queryInsert.jsp");
 		return "home";
 	}
+	
 	@RequestMapping(value="/query_insert", method=RequestMethod.POST)
 	public String course_query_insert(CQueryVO vo){
 		dao.insert_query(vo);
 		String url = "redirect:/cou/read?id=" +vo.getC_id();
 		return url;
+	}
+	
+	@RequestMapping(value="/delete_query", method=RequestMethod.POST)
+	@ResponseBody
+	public void delete_query(int c_query_id){
+		dao.delete_query(c_query_id);
 	}
 	
 	@RequestMapping("/cnt_reply")
@@ -176,6 +183,12 @@ public class CourseController {
 	public String list(Model model) {
 		model.addAttribute("pageName", "course/clist.jsp");
 		return "home";
+	}
+	
+	@RequestMapping(value="/delete_course", method=RequestMethod.POST)
+	@ResponseBody
+	public void delete_course(int c_id){
+		dao.delete_course(c_id);
 	}
 
 }

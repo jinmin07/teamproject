@@ -64,6 +64,9 @@
 				<c:if test="${chk_member==1}">
 					<button id="btn_member_delete" style="width: 150px;">취소하기</button>
 				</c:if>
+				<c:if test="${vo.c_writer==user.u_id}">
+					<button id="btn_course_delete" style="width: 150px;">삭제하기</button>
+				</c:if>
 			</div>
 		</div>
 	</div>
@@ -97,7 +100,7 @@
 					<span width=150 class="cnt_reply">{{c_reply_state}}</span>
 				</div>
 				<div class="content">
-					<div>Q. {{c_query_content}} <a href="{{c_query_id}}" style="display:{{printDel c_query_writer}}">x</a></div>
+					<div>Q. {{c_query_content}} <a class="query_del" href="{{c_query_id}}"></a></div>
 					<div class="reply"></div>
 				</div>
 			</div>
@@ -110,27 +113,44 @@
 			}
 		});
 	</script>
-	<script>
-		Handlebars.registerHelper("printDel", function(c_query_writer){
-			var login_id = "${user.u_id}";
-			if(c_query_writer != login_id){
-				return "none";
-			}
-		});
-	</script>
 </body>
 <script>
 	var id = "${vo.id}";
 	var writer = "${vo.c_writer}";
 	var login_id = "${user.u_id}";
 	getList();
-	
+
+	// 게시글 삭제
+	$("#btn_course_delete").on("click", function(){
+		if(!confirm("게시글을 삭제하시겠습니까?")) return;
+		$.ajax({
+			type:"post",
+			url: "/delete_course",
+			data: {"c_id": id},
+			success : function(){
+				alert("삭제가 완료되었습니다.");
+				location.href="/cou/list";
+			}
+		});
+		
+	});
 
 	// 문의글 삭제 관련 버튼
 	$("#query").on("click", ".list .content a", function(e){
 		e.preventDefault();
 		var query_id = $(this).attr("href");
-		alert(query_id);
+		if(!confirm("문의글을 삭제하시겠습니까?")) return;
+		
+		$.ajax({
+			type:"post",
+			url: "/delete_query",
+			data: {"c_query_id": query_id},
+			success : function(){
+				alert("삭제가 완료되었습니다.");
+				getList();
+			}
+		});
+		
 	});
 	
 	// 문의글 세부내용 출력
@@ -141,6 +161,7 @@
 		
 		var open = $(this).find(".open").val();
 		var content = $(this).parent().find(".content");
+		var query_del = $(this).parent().find(".content .query_del");
 		var reply = $(this).parent().find(".reply");
 		var query_id = $(this).find(".c_query_id").html();
 		var query_writer = $(this).find(".c_query_writer").html();
@@ -157,6 +178,9 @@
 							var str = "<textarea class='c_reply_content' rows='5' cols='100'></textarea>"
 							str += "<button class='btnReply'>등록</button>"
 							reply.html(str);
+						}
+						if(login_id == query_writer){
+							query_del.html("X");
 						}
 					}else{
 						var str = "A. " + data.c_reply_content;

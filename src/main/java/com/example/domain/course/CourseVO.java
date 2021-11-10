@@ -25,9 +25,16 @@ public class CourseVO extends CategoryVO {
 	private String c_time;
 	private String c_fee;
 	private String c_content;
+	private int c_state;
 	private int c_view;
 	private int c_cnt_feed;
 	
+	public int getC_state() {
+		return c_state;
+	}
+	public void setC_state(int c_state) {
+		this.c_state = c_state;
+	}
 	public int getId() {
 		return id;
 	}
@@ -149,7 +156,7 @@ public class CourseVO extends CategoryVO {
 				+ ", c_local=" + c_local + ", c_place=" + c_place + ", c_gender=" + c_gender + ", c_age_min="
 				+ c_age_min + ", c_age_max=" + c_age_max + ", c_date=" + c_date + ", c_cnt_member=" + c_cnt_member
 				+ ", c_tot_member=" + c_tot_member + ", date_start=" + date_start + ", date_end=" + date_end
-				+ ", c_time=" + c_time + ", c_fee=" + c_fee + ", c_content=" + c_content + ", c_view=" + c_view
-				+ ", c_cnt_feed=" + c_cnt_feed + "]";
+				+ ", c_time=" + c_time + ", c_fee=" + c_fee + ", c_content=" + c_content + ", c_state=" + c_state
+				+ ", c_view=" + c_view + ", c_cnt_feed=" + c_cnt_feed + "]";
 	}
 }
