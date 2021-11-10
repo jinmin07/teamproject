@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+#bell {
+	display: inline-block;
+	position: absolute;
+	background-image: url('/resources/bell.png');
+	background-repeat: no-repeat;
+	background-size: 100%;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	margin-left: 20px;
+}
+
+#count {
+	display: inline-block;
+	position: relative;
+	top: 3px;
+	left: 15px;
+	z-index: 3;
+	width: 15px;
+	height: 15px;
+	background: blue;
+	border-radius: 15px;
+	text-align: center;
+	font-size: 10px;
+	color: white;
+}
