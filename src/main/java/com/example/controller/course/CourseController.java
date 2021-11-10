@@ -36,6 +36,8 @@ public class CourseController {
 	public String course_read(HttpServletRequest request, Model model, int id) {
 		CourseVO cvo = dao.list_course(id);
 		CategoryVO category = dao.list_category(cvo.getTbl_code());
+		//조회수 증가
+		dao.add_view_cnt(id);
 		//course 테이블 list
 		model.addAttribute("vo", cvo);
 		//해당 course category
@@ -156,9 +158,6 @@ public class CourseController {
 	
 	@RequestMapping("/cou/insert")
 	public String insert(Model model){
-		int maxCode=dao.maxCode();
-		int id = maxCode +1;
-		model.addAttribute("id", id);
 		model.addAttribute("pageName", "course/cinsert.jsp");
 		return "home";
 	}
