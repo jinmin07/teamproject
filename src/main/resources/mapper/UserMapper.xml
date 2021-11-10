@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.UserMapper">
-<select id="userLogin" resultType="com.example.domain.UserVO">
+	<select id="list" resultType="com.example.domain.UserVO"> 
+		select * from tbl_user;
+	</select>
+	
+	<insert id="insert">
+		insert into tbl_user(u_id,u_pass,u_age,u_name,u_addr1,u_addr2,u_addr3,u_gender,u_email,u_phone)
+		values(#{u_id},#{u_pass},#{u_age},#{u_name},#{u_addr1},#{u_addr2},#{u_addr3},#{u_gender},#{u_email},#{u_phone})
+	</insert>
+	
+	<select id="idCheck" resultType="int">
+  		select count(*) from tbl_user where u_id = #{u_id}  	
+  	</select>
+  	
+  	<select id="userLogin" resultType="com.example.domain.UserVO">
   		select * from tbl_user where u_id = #{u_id} and u_pass=#{u_pass}
- </select>
+  	</select>
 </mapper>
