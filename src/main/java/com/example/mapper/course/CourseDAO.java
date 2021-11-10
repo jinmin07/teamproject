@@ -12,6 +12,7 @@ import com.example.domain.course.CategoryVO;
 public interface CourseDAO {
 	public List<CourseVO> list();
 	public CourseVO list_course(int id);
+	public void delete_course(int id);
 	public CategoryVO list_category(String tbl_code);
 	public List<HashMap<String, Object>> list_member(int c_id);
 	public int chk_member(int c_id, String c_member);
@@ -20,6 +21,7 @@ public interface CourseDAO {
 	public int cnt_query(int c_id);
 	public List<CQueryVO> list_query(int c_id);
 	public void insert_query(CQueryVO vo);
+	public void delete_query(int c_query_id);
 	public CReplyVO list_reply(int c_query_id);
 	public void insert_reply(CReplyVO vo);
 	public void update_cnt_course(int id, int value);
