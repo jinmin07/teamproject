@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.course.CourseMapper">
+	<!-- 조회수 증가 -->
+	<update id="add_view_cnt">
+		update tbl_course set c_view = c_view + 1
+		where id = #{id}
+	</update>
 	<!-- 스터디/취미 리스트 출력 -->
 	 <select id="list" resultType="com.example.domain.course.CourseVO">
  		select * from tbl_course
@@ -170,13 +175,9 @@
 		update tbl_course_query set c_reply_state ="답변완료" where c_query_id = #{c_query_id}
 	</update>
 	<insert id="insert">
-		insert into tbl_course(id, c_writer, title, tbl_code, c_local, c_place, c_tot_member, date_start, date_end, c_time, c_fee, c_age_min, c_age_max, c_gender, c_content)
-		values(#{id},#{c_writer}, #{title}, #{tbl_code},#{c_local},#{c_place},#{c_tot_member},#{date_start},#{date_end},#{c_time},#{c_fee},#{c_age_min},#{c_age_max},#{c_gender},#{c_content})
+		insert into tbl_course(c_writer, title, tbl_code, c_local, c_place, c_tot_member, date_start, date_end, c_time, c_fee, c_age_min, c_age_max, c_gender, c_content)
+		values(#{c_writer}, #{title}, #{tbl_code},#{c_local},#{c_place},#{c_tot_member},#{date_start},#{date_end},#{c_time},#{c_fee},#{c_age_min},#{c_age_max},#{c_gender},#{c_content})
 	</insert>
-	
-	<select id="maxCode" resultType="int">
-		select max(id) from tbl_course 
-	</select>
 	
 	<select id="totalCount" resultType="int">
 		select count(*) from tbl_course

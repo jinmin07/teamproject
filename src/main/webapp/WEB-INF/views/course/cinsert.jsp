@@ -3,8 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <style>
-
-
 input[type=text], select, #c_content {
 	width: 580px;
 	padding: 12px 20px;
@@ -24,7 +22,6 @@ input[type=submit], input[type=reset] {
 	cursor: pointer;
 }
 
-
 .row {
 	width: 600px;
 	border-radius: 5px;
@@ -32,11 +29,9 @@ input[type=submit], input[type=reset] {
 	padding: 20px;
 }
 </style>
-
 <form name="frm">
 	<div class="row">
-		<input type="text" name="id" value="${id}">
-		<input type="text" name="c_writer" value="${user.u_id}">
+		<input type="hidden" name="c_writer" value="${user.u_id}">
 		<h3>모임명</h3>
 		<input type="text" name="title">
 		<div id="tbl_code">
@@ -97,7 +92,7 @@ input[type=submit], input[type=reset] {
 				<option  value="39">39</option>
 				<option  value="49">49</option>
 				<option  value="59">59</option>
-				<option  value="69">69/option>
+				<option  value="69">69</option>
 				<option  value="79">79</option>
 				<option  value="89">89</option>
 				<option  value="99">99</option>
@@ -122,103 +117,65 @@ input[type=submit], input[type=reset] {
 
 <script>
 
-$(frm).on("submit", function(e){
-	e.preventDefault();
-	var id = $(frm.id).val();
-	var c_writer = $(frm.c_writer).val();
-	var title = $(frm.title).val();
-	var tbl_code = $('input:checkbox[id="tbl_code"]:checked').val();
-	var c_local = $("select[name=c_local]").val();
-	var c_place = $(frm.c_place).val();
-	var c_tot_member = $(frm.c_tot_member).val();
-	var date_start = $(frm.date_start).val();
-	var date_end = $(frm.date_end).val();
-	var c_time = $(frm.c_time).val();
-	var c_fee = $(frm.c_fee).val();
-	var c_age_min = $("select[name=c_age_min]").val();
-	var c_age_max = $("select[name=c_age_max]").val();
-	var c_gender = $("select[name=c_gender]").val();
-	var c_content = $(frm.c_content).val();
-	
-	//if(title== "" || tbl_code=="" || c_local=="" || c_place=="" || c_tot_member=="" ||
-		//	date_start == "" || date_end == "" || c_time == "" || c_fee == "" ||
-	   		// c_age_min == "" || c_age_max == "" || c_gender == "" || c_content == ""){
+	$(frm).on("submit", function(e){
+		e.preventDefault();
+		var c_writer = $(frm.c_writer).val();
+		var title = $(frm.title).val();
+		var tbl_code = $('input:checkbox[id="tbl_code"]:checked').val();
+		var c_local = $("select[name=c_local]").val();
+		var c_place = $(frm.c_place).val();
+		var c_tot_member = $(frm.c_tot_member).val();
+		var date_start = $(frm.date_start).val();
+		var date_end = $(frm.date_end).val();
+		var c_time = $(frm.c_time).val();
+		var c_fee = $(frm.c_fee).val();
+		var c_age_min = $("select[name=c_age_min]").val();
+		var c_age_max = $("select[name=c_age_max]").val();
+		var c_gender = $("select[name=c_gender]").val();
+		var c_content = $(frm.c_content).val();	
 		
-		//alert(id);
-		//alert(c_writer);
-		//alert(title);
-		//alert(tbl_code);
-		//alert(c_local);
-		//alert(c_place);
-		//alert(c_tot_member);
-		//alert(date_start);
-		//alert(date_end);
-		//alert(c_time);
-		//alert(c_fee);
-		//alert(c_age_min);
-		//alert(c_age_max);
-		//alert(c_gender);
-		//alert(c_content);
-	
-		if(title== "" ){
-		  alert("title");
-		}if(tbl_code==""){
-		  alert("tbl_code");
-		}if(c_local==""){
-		  alert("c_local");
-		}if(c_place==""){
-			alert("c_place");
-		}if(c_tot_member==""){
-			alert("c_tot_member");
-		}if(date_start == ""){
-			alert("date_start");
-		}if(date_end == ""){
-			alert("date_end");
-		}if(c_time == ""){
-			alert("c_time");
-		}if(c_fee == ""){
-			alert("c_fee");
-		}if(c_age_min == ""){
-			alert("c_age_min");
-		}if(c_age_max == ""){
-			alert("c_age_max");
-		}if(c_gender == ""){
-			alert("c_gender")
-		}if(c_content == ""){
-			alert("c_content");  	
-		return;
-	}
-	
-	if(!confirm("취미/스터디를 등록하실래요?")) return;
-    frm.action="/cou/insert";
-    frm.method="post";
-    frm.submit();
-    alert("등록 성공!!!");
-    
-    /* $.ajax({
-   	 type: "post",
-   	 url: "/cou/insert",
-   	 data: {"id": id, "c_writer":c_writer,"title":title,"tbl_code":tbl_code,"c_local":c_local,"c_place":c_place,
-   		 "c_tot_member":c_tot_member,"date_start":date_start, "date_end":date_end,"c_time":c_time, "c_fee":c_fee,
-   		 "c_age_min":c_age_min, "c_age_max":c_age_max,"c_gender":c_gender, "c_content":c_content},
-   	 success: function(data){
-   		alert("등록 성공!!!");
-   		location.href="/cou/list";
-   	 },
-   	 error:function(){  
-   		 alert("신규등록 error");s
-   	 }
-   	  
-    });
-     */
-    
-});
+			if(title== "" ){
+			  alert("title");
+			}if(tbl_code==""){
+			  alert("tbl_code");
+			}if(c_local==""){
+			  alert("c_local");
+			}if(c_place==""){
+				alert("c_place");
+			}if(c_tot_member==""){
+				alert("c_tot_member");
+			}if(date_start == ""){
+				alert("date_start");
+			}if(date_end == ""){
+				alert("date_end");
+			}if(c_time == ""){
+				alert("c_time");
+			}if(c_fee == ""){
+				alert("c_fee");
+			}if(c_age_min == ""){
+				alert("c_age_min");
+			}if(c_age_max == ""){
+				alert("c_age_max");
+			}if(c_gender == ""){
+				alert("c_gender")
+			}if(c_content == ""){
+				alert("c_content");  	
+			return;
+		}
+		
+		if(!confirm("취미/스터디를 등록하실래요?")) return;
+	    frm.action="/cou/insert";
+	    frm.method="post";
+	    frm.submit();
+	    alert("등록 성공!!!");
+	    
+	});
 
-		//세부 카테고리 1개만 checked
-		$('input[type="checkbox"][name="tbl_code"]').click(function(){
-	  		if($(this).prop('checked')){
-	     		$('input[type="checkbox"][name="tbl_code"]').prop('checked',false);
-	 			$(this).prop('checked',true);
-	    }
-	   });
+	//세부 카테고리 1개만 checked
+	$('input[type="checkbox"][name="tbl_code"]').click(function(){
+  		if($(this).prop('checked')){
+     		$('input[type="checkbox"][name="tbl_code"]').prop('checked',false);
+ 			$(this).prop('checked',true);
+    }
+   });
 </script>
