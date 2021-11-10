@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.ProductMapper">
+	<select id="list" resultType="com.example.domain.ProductVO">
+		select * from tbl_purchase
+		where p_category = #{p_category}
+		order by id desc
+	</select>
+	<insert id="insert">
+		insert into tbl_purchase(id, title, date_start, date_end, p_writer, p_image, p_local, p_link, p_price, p_salePrice, p_category,
+		p_tot_member)
+		values(#{id},#{title},#{date_start},#{date_end},#{p_writer},#{p_image},#{p_local},#{p_link},#{p_price},#{p_salePrice},#{p_category},
+		#{p_tot_member})
+	</insert>
+	<select id="maxId" resultType="string">
+		select max(id) from tbl_purchase
+	</select>
+	<select id="read" resultType="com.example.domain.ProductVO">
+		select * from tbl_purchase
+		where id=#{id}
+	</select>
+	<select id="chk_member" resultType="int">
+		select count(*) from tbl_purchase_member
+		where p_id=#{p_id} and p_member = #{p_member}
+	</select>
+	<select id="list_member" resultType="hashmap">
+		select m.*,u_name,u_gender,u_score from tbl_purchase_member m,tbl_user
+		where p_member = u_id and p_id = #{p_id}
+	</select>
+	<insert id="insert_member">
+		insert into tbl_purchase_member(p_id, p_member)
+		values(#{p_id}, #{p_member})
+	</insert>
+	<delete id="delete_member">
+		delete from tbl_purchase_member
+		where p_id=#{p_id} and p_member = #{p_member}
+	</delete>
+		
+	<select id="totCount" resultType="int">
+		select count(*) from tbl_purchase
+	</select>
+	<update id="update">
+		update tbl_purchase set title=#{title}, p_price=#{p_price}, p_image=#{p_image}, p_category=#{p_category}
+		where id=#{id}
+	</update>
+	
+	<update id="p_cnt_member_increment">
+		update tbl_purchase set p_cnt_member = p_cnt_member+1 where id = #{id}
+	</update>
+	
+	<update id="p_cnt_member_decrement">
+		update tbl_purchase set p_cnt_member = p_cnt_member-1 where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from tbl_purchase where id = #{id}
+	</delete>
+	
+	<select id="list_query" resultType="com.example.domain.PQueryVO">
+		select * from tbl_purchase_query
+		where p_id = #{p_id}
+		order by p_query_id desc
+	</select>
+	
+	<select id="cnt_query" resultType="int">
+		select count(*) from tbl_purchase_query
+		where p_id = #{p_id}
+	</select>
+	
+	<insert id="insert_query">
+		insert into tbl_purchase_query(p_id,p_query_writer,p_query_content,p_openable)
+		values(#{p_id},#{p_query_writer},#{p_query_content},#{p_openable})
+	</insert>
+	
+	<select id="list_reply" resultType="com.example.domain.PReplyVO">
+		select * from tbl_purchase_reply
+		where p_query_id = #{p_query_id}
+	</select>
+	
+	<update id="update_replystate_query_purchase">
+		update tbl_purchase_query set p_reply_state = "답변완료" where p_query_id = #{p_query_id}
+	</update>
+</mapper>

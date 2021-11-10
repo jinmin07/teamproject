@@ -15,7 +15,7 @@
 		</div>
 		<div id="center">
 			<div id="menu">
-				<h4><a href="#">공동구매</a></h4>
+				<h4><a href="/purchase/list">공동구매</a></h4>
 				<h4><a href="/cou/list">공동생활</a></h4>
 				<h4><a href="/slist">지원정책</a></h4>
 				<h4><a href="#">커뮤니티</a></h4>
