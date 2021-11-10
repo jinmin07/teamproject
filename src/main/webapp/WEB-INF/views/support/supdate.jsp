@@ -94,7 +94,7 @@ input[type=text] {
 		var title=$(frm.title).val();
 		var content=$(frm.s_content).val();
 		var image=$(frm.oldimage).val();
-		if (title == "" || content == "") {
+		if (title == "" || content == "" ) {
 			alert("제목과 내용을 입력하세요!");
 			return;
 		}

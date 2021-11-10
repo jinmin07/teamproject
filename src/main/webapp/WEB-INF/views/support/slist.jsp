@@ -155,6 +155,7 @@
 		line-height: 32px;
 		margin:5px 0px;
 		font-weight:600;
+		text-align: left;
 	}
 	
 	.box4 .list .title{

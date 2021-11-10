@@ -11,7 +11,7 @@
 <body>
 	<div id="page">
 		<div id="header">
-			<h1>프로젝트</h1>
+			<a href="/"><h1>프로젝트</h1></a>
 		</div>
 		<div id="center">
 			<div id="menu">
