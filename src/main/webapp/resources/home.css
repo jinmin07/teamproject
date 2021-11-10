@@ -2,7 +2,14 @@
 
 #content {text-align: center; padding: 10px;}
 
-#header { text-align: center;}
+#header {  	padding: 10px 60px;
+		    height: 80px;
+		    max-width: 1256px;
+		    display: flex;
+		    height: 50px;
+		    box-sizing: border-box;
+		    padding: 0 8px;
+		    margin: 0 auto;}
 
 #footer {
 	border-top: 1px solid lightgray;
@@ -35,7 +42,6 @@ h1 { text-align: center; color:gray;}
 
 table {border-collapse:collapse; margin: 0 auto;}
 td{border-bottom: solid 1px #7F8BA5; padding: 5px; text-align:center;}
-.title{background:#A3AFC9; color: white;}
 
 .row:hover{
 	background: lightgray;

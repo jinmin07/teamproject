@@ -33,7 +33,7 @@
 		<beans:property name="maxUploadSize" value="10485760" />
 	</beans:bean>
 	<beans:bean id="uploadPath" class="java.lang.String">
-		<beans:constructor-arg value="c:/zzz/upload" />
+		<beans:constructor-arg value="C:\newteam\teamproject\src\main\webapp\resources\supportimg" />
 	</beans:bean>
 
 	<beans:bean id="echoHandler" class="com.example.controller.ChatHandler" />
