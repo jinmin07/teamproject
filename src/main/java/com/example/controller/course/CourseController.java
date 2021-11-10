@@ -165,7 +165,6 @@ public class CourseController {
 		map.put("cri",cri);
 		map.put("list", dao.list(cri));
 		
-		System.out.println(cri.toString());
 		PageMaker pm=new PageMaker();
 		pm.setCri(cri);
 		pm.setTotalCount(dao.totalCount(cri));
