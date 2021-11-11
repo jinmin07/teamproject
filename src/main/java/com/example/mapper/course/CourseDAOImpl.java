@@ -133,4 +133,10 @@ public class CourseDAOImpl implements CourseDAO {
 	public void add_view_cnt(int id) {
 		session.update(namespace +".add_view_cnt", id);
 	}
+	
+	@Override
+	public void update_course(CourseVO vo) {
+		session.update(namespace + ".update", vo);
+		
+	}
 }

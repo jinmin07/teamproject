@@ -144,7 +144,9 @@ public class CourseController {
 		service.course_insert_reply(vo);
 	}
 	
+	//course insert
 	@RequestMapping(value="/cou/insert", method = RequestMethod.POST)
+	@ResponseBody
 	public String insertPost(CourseVO vo, String start, String end)throws Exception{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date_start = sdf.parse(start);
@@ -155,14 +157,14 @@ public class CourseController {
 		return "redirect:/cou/list";
 	}
 
-	
+	//course insert 페이지
 	@RequestMapping("/cou/insert")
 	public String insert(Model model){
 		model.addAttribute("pageName", "course/cinsert.jsp");
 		return "home";
 	}
 
-	
+	//course list 정보
 	@RequestMapping("/cou/list.json")
 	@ResponseBody
 	public HashMap<String, Object> listJson(Criteria cri){
@@ -178,6 +180,8 @@ public class CourseController {
 		return map;
 	}
 	
+	
+	// course list 페이지
 	@RequestMapping("/cou/list")
 	public String list(Model model) {
 		model.addAttribute("pageName", "course/clist.jsp");
@@ -188,6 +192,35 @@ public class CourseController {
 	@ResponseBody
 	public void delete_course(int c_id){
 		dao.delete_course(c_id);
+	}
+
+	
+	// course 수정페이지
+	@RequestMapping("/cou/update")
+	public String update_course( int id, Model model,Date date_start, Date date_end){
+		CourseVO vo = dao.list_course(id);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		String start = format.format(vo.getDate_start());
+        String end = format.format(vo.getDate_end());
+      
+		model.addAttribute("start", start);
+		model.addAttribute("end", end);
+		model.addAttribute("vo",dao.list_course(id));
+		model.addAttribute("pageName", "course/cupdate.jsp");
+		return "home";
+	}
+	
+	// course 수정
+	@RequestMapping(value="/cou/update", method=RequestMethod.POST)
+	@ResponseBody
+	public String update_coursePost(CourseVO vo, String start, String end)throws Exception{
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date_start = sdf.parse(start);
+		vo.setDate_start(date_start);
+		Date date_end = sdf.parse(end);
+		vo.setDate_end(date_end);
+		dao.update_course(vo);
+		return "redirect:/cou/list";
 	}
 
 }
