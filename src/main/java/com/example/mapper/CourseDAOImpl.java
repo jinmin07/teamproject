@@ -131,17 +131,14 @@ public class CourseDAOImpl implements CourseDAO {
 	public void add_view_cnt(int id) {
 		session.update(namespace +".add_view_cnt", id);
 	}
-<<<<<<< HEAD:src/main/java/com/example/mapper/course/CourseDAOImpl.java
-	
+
 	@Override
 	public void update_course(CourseVO vo) {
 		session.update(namespace + ".update", vo);
-		
-=======
+	}
 
 	@Override
 	public void query_state(int c_id) {
 		session.update(namespace + ".query_state", c_id);
->>>>>>> 2ef972a0f0d2a8bad06abe84781f80d677b61745:src/main/java/com/example/mapper/CourseDAOImpl.java
 	}
 }

@@ -35,7 +35,6 @@
 	<beans:bean id="uploadPath" class="java.lang.String">
 		<beans:constructor-arg value="C:\newteam\teamproject\src\main\webapp\resources\supportimg" />
 	</beans:bean>
-
 	<beans:bean id="echoHandler" class="com.example.controller.ChatHandler" />
 	<beans:bean id="noticeHandler" class="com.example.controller.NoticeHandler" />
 	<websocket:handlers>
@@ -43,6 +42,7 @@
 		<websocket:mapping handler="noticeHandler" path="/sock_notice" />
 		<websocket:sockjs />
 	</websocket:handlers>
+	
 <!-- 	<beans:bean id="LoginInterceptor" class="com.example.interceptor.LoginInterceptor"></beans:bean>
    <beans:bean id="AuthInterceptor" class="com.example.interceptor.AuthInterceptor"></beans:bean>
    <interceptors>
