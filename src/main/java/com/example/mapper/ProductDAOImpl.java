@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.example.domain.Criteria;
 import com.example.domain.PQueryVO;
 import com.example.domain.PReplyVO;
 import com.example.domain.ProductVO;
@@ -19,8 +20,8 @@ public class ProductDAOImpl  implements ProductDAO{
 	String namespace="com.example.mapper.ProductMapper";
 	
 	@Override
-	public List<ProductVO> list() {
-		return session.selectList(namespace + ".list");
+	public List<ProductVO> list(Criteria cri) {
+		return session.selectList(namespace + ".list",cri);
 	}
 	
 	@Override
@@ -34,7 +35,7 @@ public class ProductDAOImpl  implements ProductDAO{
 	}
 	
 	@Override
-	public ProductVO read(String id) {
+	public ProductVO read(int id) {
 		return session.selectOne(namespace + ".read",id);
 	}
 	
@@ -79,14 +80,9 @@ public class ProductDAOImpl  implements ProductDAO{
 		
 	}
 
-	@Override
-	public void p_cnt_member_increment(int id) {
-		session.update(namespace + ".p_cnt_member_increment",id);
-		
-	}
 
 	@Override
-	public void delete(String id) {
+	public void delete(int id) {
 		session.delete(namespace + ".delete",id);
 		
 	}
@@ -119,9 +115,23 @@ public class ProductDAOImpl  implements ProductDAO{
 	}
 
 	@Override
-	public void p_cnt_member_decrement(int id) {
-		session.update(namespace + ".p_cnt_member_decrement", id);
+	public void insert_reply(PReplyVO vo) {
+		session.insert(namespace + ".insert_reply", vo);
+		
 	}
 
+	@Override
+	public void update_cnt_purchase(int id, int value) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("value", value);
+		session.update(namespace + ".update_cnt_purchase", map);
+		
+	}
 
+	@Override
+	public void delete_query(int p_query_id) {
+		session.delete(namespace + ".delete_query",p_query_id);
+		
+	}
 }

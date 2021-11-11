@@ -30,7 +30,6 @@ public interface CourseDAO {
 	
 	public List<CourseVO> list(Criteria cri);
 	public void insert(CourseVO vo);
-	public int maxCode();
 	public int totalCount(Criteria cri);
 
 }

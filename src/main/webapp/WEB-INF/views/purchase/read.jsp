@@ -2,86 +2,104 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
 <style>
-	form {
-		width: 960px;
-	}
-	input[type=text]{
-		width: 100%;
-		margin-bottom: 20px;
-		outline:none;
-		border:none;
-		border-bottom: 1px solid gray;
-		font-size:20px;
-	}
-	#images img {
-		width: 160px;
-		border-radius: 10px;
-	}
-	#images .box {
-		width:170px;
-		heigh:200px;
-		float:left;
-		margin-left:20px;
-	}
+	.head:hover {cursor: pointer; background: lightgray;}
+		#query .content {display: none;}
+		.container {
+		  width: 400px;
+		  background-color: #ddd;
+		}
+		
+		.skills {
+		  text-align: right;
+		  padding-top: 10px;
+		  padding-bottom: 10px;
+		  color: white;
+		}
+		.html {background-color: #04AA6D;}
+		#btn_member_end {background: lightgray;}
 </style>
 <h1>[상품조회]</h1>
 
 <hr/>
-<form name="frm" enctype="multipart/form-data" >
 <div style="overflow:hidden">
-		<img id="image" src="/display?fileName=${vo.p_image}" width=350/>
+		
 </div>
-		<div>
-			<h3>${vo.title}</h3>
-			<h3>모집지역:</h3>
-			<h3>세부거래위치:${vo.p_local}</h3>
-			<input type="hidden" name="p_local" value="${vo.p_local}"/>
-			<h3>링크: ${vo.p_link}</h3>
-			<h3>모임날짜: ${vo.date_start} - ${vo.date_end }</h3>
-			<h3>모집인원: ${vo.p_cnt_member} / ${vo.p_tot_member}</h3>
-			<h3>가격: ${vo.p_salePrice}</h3>	
-		<div id="map" style="width:100%;height:350px;"></div>
-		<c:if test="${user.u_id == vo.p_writer && user.u_id != null}">
-		<div>
-			<input type="submit" value="상품수정"/>
-			<input type="button"  value="글삭제" id="btnDelete"/>
-		</div>
-		</c:if>
-		<c:if test="${user.u_id != vo.p_writer || user.u_id == null}">
-			<div></div>
-		</c:if>
-	</div>
-	
-	<div style ="overflow: hidden;">
-				<c:if test="${user.u_id == vo.p_writer && user.u_id != null}">
-					<div id="chk_user" style="float: left; width: 330px; text-align: left; margin-right: 20px;">
-						${vo.p_writer}<span><a href="#" style="float: right;">신청멤버 확인</a></span>
+	<div id="purchase_content">
+	<form name="frm" enctype="multipart/form-data">
+		<div style="text-align: left; margin-bottom: 10px;"> 공동생할 > ${vo.p_category} </div>
+		<div style="overflow : hidden;">
+			<div style="float: left; margin-right: 20px;">
+				<img id="image" src="/display?fileName=${vo.p_image}" width=350/>
+			</div>
+			<div style="float: left; width: 450px; text-align: left;">
+				<img style="float: right;" src="../resources/course/upload.png" width=20>
+				<h3>${vo.id}</h3>
+				<h3>${vo.title}</h3>
+				<h5>모임장소 : ${vo.p_local}</h5>
+				<h5>모임날짜: ${vo.date_start} - ${vo.date_end }</h5>
+				<h5>모집인원 : ${vo.p_cnt_member} / ${vo.p_tot_member}</h5>
+				<div>
+					<div class="container">
+		  				<div class="skills html" style="width: calc(${vo.p_cnt_member}/${vo.p_tot_member} * 400px) ">${vo.p_cnt_member}명 </div>
 					</div>
-				</c:if>
-				<div id="reg_user" style="float: left; width: 400px;">
-					<button style="width: 390px;" id="btn_register">신청하기</button>
 				</div>
-	</div>	
-	
-	
+				<h5>신청인원 : ${vo.p_cnt_member}</h5>
+			</div>
+		</div>
+		<div style ="overflow: hidden;">
+			<div id="chk_user" style="float: left; width: 330px; text-align: left; margin-right: 20px;">
+				${vo.p_writer}
+				<c:if test="${vo.p_writer==user.u_id}">
+					<span><a href="#" style="float: right;">신청멤버 확인</a></span>
+				</c:if>
+			</div>
+			<div id="reg_user" style="float: left; width: 400px;">
+				<c:if test="${vo.p_cnt_member != vo.p_tot_member}">
+					<button id="btn_member_insert" style="width: 150px;">신청하기</button>
+				</c:if>
+				<c:if test="${vo.p_cnt_member == vo.p_tot_member}">
+					<button id="btn_member_end" style="width: 150px;" disabled="disabled">신청하기</button>
+				</c:if>
+				<c:if test="${chk_member==1}">
+					<button id="btn_member_delete" style="width: 150px;">취소하기</button>
+				</c:if>
+				<c:if test="${vo.p_writer==user.u_id}">
+					<button id="btn_purchase_delete" style="width: 150px;">삭제하기</button>
+				</c:if>
+			</div>
+		</div>
+		</form>
+	</div>
+	<hr/>
+	<div style="text-align: left;">
+		<h2>세부사항</h2>
+		<h5>카테고리 : ${vo.p_category}</h5>
+		<h5>링크 : ${vo.p_link}</h5>
+		<h5>가격 : ${vo.p_salePrice}</h5>
+		<h5>모임장소 : ${vo.p_local}</h5>
+		<div id="map" style="width:100%;height:350px;"></div>
+	</div>
+	<hr/>
 	<div style="text-align: left; width: 800px;">
 		<h2>문의사항 ${cnt_query}개</h2>
-		<span><a href="/purchase/reply_insert?id=${vo.id}" style="float: right;">문의하기</a></span>
+		<span><a href="/purchase/query_insert?id=${vo.id}" style="float: right;">문의하기</a></span>
 		<div id="query" style="clear: both;"></div>
 	</div>
 	<script id="temp" type="text/x-handlebars-template">
 		{{#each .}}
 			<div class="list">
-				<span width=80 class="p_query_id">{{p_query_id}}</span>
-				<span width=150 class="p_query_writer">{{p_query_writer}}</span>
-				<span width=400>{{p_query_date}}</span>
-				<span width=150>
-					<img src="../resources/lock.png" width=20 style="display:{{printOpen p_openable}}"/>
-				</span>
-				<input type="hidden" class="open" value="{{p_openable}}"/>
-				<span width=150 class="cnt_reply">{{p_reply_state}}</span>
+				<div class="head">
+					<span width=80 class="p_query_id">{{p_query_id}}</span>
+					<span width=150 class="p_query_writer">{{p_query_writer}}</span>
+					<span width=400>{{p_query_date}}</span>
+					<span width=150>
+						<img src="../resources/course/lock.png" width=20 style="display:{{printOpen p_openable}}"/>
+					</span>
+					<input type="hidden" class="open" value="{{p_openable}}"/>
+					<span width=150 class="cnt_reply">{{p_reply_state}}</span>
+				</div>
 				<div class="content">
-					<div>Q. {{p_query_content}}</div>
+					<div>Q. {{p_query_content}} <a class="query_del" href="{{p_query_id}}"></a></div>
 					<div class="reply"></div>
 				</div>
 			</div>
@@ -94,7 +112,17 @@
 			}
 		});
 	</script>
-</form>
+	
+	<c:if test="${user.u_id == vo.p_writer && user.u_id != null}">
+		<div>
+			<input type="submit" value="상품수정"/>
+			<input type="button"  value="글삭제" id="btnDelete"/>
+		</div>
+		</c:if>
+	<c:if test="${user.u_id != vo.p_writer || user.u_id == null}">
+		<div></div>
+	</c:if>
+
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cedbcd9eb728fa4063a08e6951fa6f47&libraries=services"></script>
 
 <script>
@@ -105,7 +133,7 @@ var login_id = "${user.u_id}";
 var p_local = "${vo.p_local}";
 getList();
 
- //첨부파일 삭제
+  //첨부파일 삭제
 $("#images").on("click", ".box a",function(e){
 	e.preventDefault();
 	if(!confirm("첨부 파일을 삭제하실래요?")) return;
@@ -120,7 +148,7 @@ $("#images").on("click", ".box a",function(e){
 			box.remove();
 		}
 	});
-});
+}); 
  
  
 
@@ -128,7 +156,7 @@ $(frm).on("submit", function(e){
 	e.preventDefault();
 	var p_image=$(frm.p_image).val();
 	var title=$(frm.title).val();
-	var p_price=$(frm.p_price).val();
+	var p_price=$(frm.p_salePrice).val();
 	var p_category=$(frm.p_category).val();
 	
 	if(title=="" || p_price=="" || p_category==""){
@@ -143,21 +171,19 @@ $(frm).on("submit", function(e){
     frm.action="/purchse/update";
     frm.method="post";
     frm.submit();
-});
+}); 
 
-$("#image").on("click", function(){
+ $("#image").on("click", function(){
 	$(frm.file).click();
 });
 
 $(frm.file).on("change", function(e){
 	var file=$(this)[0].files[0];
 	$("#image").attr("src", URL.createObjectURL(file));
-});
+}); 
 
-$("#btnDelete").on("click",function(){
-	
+$("#btnDelete").on("click",function(){	
 	if(!confirm(id + "번의 게시물을 삭제하시겠습니까")) return;
-	
 	$.ajax({
 		type : "post",
 		url : "/purchase/delete",
@@ -169,6 +195,26 @@ $("#btnDelete").on("click",function(){
 	});
 });
 
+// 문의글 삭제 관련 버튼
+$("#query").on("click", ".list .content a", function(e){
+	e.preventDefault();
+	var query_id = $(this).attr("href");
+	if(!confirm("문의글을 삭제하시겠습니까?")) return;
+	
+	$.ajax({
+		type:"post",
+		url: "purchase/delete_query",
+		data: {"p_query_id": query_id},
+		success : function(){
+			alert("삭제가 완료되었습니다.");
+			getList();
+		}
+	});
+	
+});
+
+
+
  
  $("#chk_user").on("click", "span a", function(e){
 		e.preventDefault();
@@ -176,8 +222,24 @@ $("#btnDelete").on("click",function(){
 		window.open(url,"", "width=400, height=400, top=200, left=900, location=no");
 });
  
- $("#btn_register").on("click", function(){
-		if(p_writer == id ){
+	// 신청 취소하기 버튼
+	$("#reg_user").on("click","#btn_member_delete", function(){
+		if(!confirm("신청 취소하시겠습니까?")) return;
+		
+		$.ajax({
+			type:"post",
+			url: "/purchase/delete_member",
+			data: {"p_id": id, "p_member" : login_id},
+			success : function(){
+				alert("신청이 취소되었습니다.");
+				getLocation();
+			}
+		});
+	});
+	
+ 
+ $("#reg_user").on("click","#btn_member_insert", function(){
+		if(p_writer == login_id ){
 			alert("작성하신 컨텐츠로 신청이 불가능합니다.");
 			return;
 		}
@@ -190,10 +252,9 @@ $("#btnDelete").on("click",function(){
 			success : function(result){
 				if(result==0){
 					alert("신청이 완료되었습니다.");
-					location.href = "/purchase/list";
+					getLocation();
 				}else{
 					alert("이미 신청하신 컨텐츠입니다.");
-					location.href = "/purchase/list";
 				}
 			}
 		});
@@ -214,14 +275,15 @@ $("#btnDelete").on("click",function(){
 		});
 	}
  
- $("#query").on("click", ".list", function(){
+ $("#query").on("click", ".list .head", function(){
 		$("#query .list .content").each(function(){
 			$(this).hide();
 		});
 		
 		var open = $(this).find(".open").val();
-		var content = $(this).find(".content");
-		var reply = $(this).find(".reply");
+		var content = $(this).parent().find(".content");
+		var query_del = $(this).parent().find(".content .query_del");
+		var reply = $(this).parent().find(".reply");
 		var query_id = $(this).find(".p_query_id").html();
 		var query_writer = $(this).find(".p_query_writer").html();
 		if(open == "f" && query_writer != login_id && p_writer !=login_id ){
@@ -233,10 +295,16 @@ $("#btnDelete").on("click",function(){
 				data: {"p_query_id" : query_id},
 				success: function(data){
 					if(data == null || data ==""){
+						if(p_writer == login_id){
+							var str = "<textarea class='p_reply_content' rows='5' cols='100'></textarea>"
+							str += "<button class='btnReply'>등록</button>"
+							reply.html(str);
+						}
+						if(login_id == query_writer){
+							query_del.html("X");
+						}
 					}else{
-						var str = "<div class='reply'>";
-						str += "A. " + data.p_reply_content;
-						str += "</div>";
+						var str = "A. " + data.p_reply_content;
 						reply.html(str);
 					}
 					content.show();
@@ -244,6 +312,30 @@ $("#btnDelete").on("click",function(){
 			});
 		}
 	});
+ 
+	//문의 답글 등록
+	$("#query").on("click", ".list .content button", function(){
+		var query_id = $(this).parent().parent().parent().find(".p_query_id").html();
+		var reply_content = $(this).parent().find(".p_reply_content").val();
+		
+		if(!confirm("답글을 등록하시겠습니까?")) return;
+		
+		$.ajax({
+			type: "post",
+			url: "/purchase/reply_insert",
+			data: {"p_query_id":query_id, "p_reply_content" : reply_content, "p_reply_writer": p_writer},
+			success: function(){
+				alert("답글 등록이 완료되었습니다.");
+				getList();
+			}
+		});
+	});
+	
+	// 새로고침 기능
+	function getLocation(){
+		var url = "/purchase/read?id=" + id;
+		location.href=url;
+	}
 
  
  

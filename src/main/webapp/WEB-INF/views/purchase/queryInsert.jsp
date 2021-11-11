@@ -29,7 +29,7 @@
 		
 		if(!confirm("문의글을 등록하시겠습니까?")) return;
 		
-		frm.action = "/purchase/reply_insert";
+		frm.action = "/purchase/query_insert";
 		frm.method = "post";
 		frm.submit();
 	});

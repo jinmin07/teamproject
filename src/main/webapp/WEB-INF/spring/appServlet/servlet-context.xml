@@ -43,4 +43,20 @@
 		<websocket:mapping handler="noticeHandler" path="/sock_notice" />
 		<websocket:sockjs />
 	</websocket:handlers>
+	<beans:bean id="LoginInterceptor" class="com.example.interceptor.LoginInterceptor"></beans:bean>
+   <beans:bean id="AuthInterceptor" class="com.example.interceptor.AuthInterceptor"></beans:bean>
+   <interceptors>
+      <interceptor>
+         <mapping path="/purchase/list"/>
+         <mapping path="/cou/list"/>
+         <mapping path="/slist"/>
+         <mapping path="/board/list"/>
+         <beans:ref bean="LoginInterceptor"/>
+      </interceptor>
+      
+      <interceptor>
+         <mapping path="/member/login"/>
+         <beans:ref bean="AuthInterceptor"/>
+      </interceptor>
+   </interceptors>
 </beans:beans>

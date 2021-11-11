@@ -32,7 +32,7 @@ public class UserController {
 	UserDAO udao;
 
 	@Autowired
-	JavaMailSender mailSender;
+	private JavaMailSender mailSender;
 
 	@RequestMapping("/list")
 	public String list(Model model) {
@@ -111,7 +111,8 @@ public class UserController {
 		HttpSession session = request.getSession();
 
 		UserVO lvo = udao.userLogin(user);
-
+		
+		
 		if (lvo == null) { // 일치하지 않는 아이디, 비밀번호 입력 경우
 
 			int result = 0;
@@ -120,12 +121,25 @@ public class UserController {
 			return "redirect:/member/login";
 
 		}
-
+		System.out.println(lvo.getU_id());
 		session.setAttribute("user", lvo); // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
+		
 		logger.info("로그인 성공");
-		session.setMaxInactiveInterval(10000000);
+		Object dest = request.getSession().getAttribute("dest");
 
-		return "redirect:/";
+		//이전 요청이 없으면 시작페이지로 이동 
+
+		if(dest==null) {
+
+			return "redirect:/";
+
+			//이전 요청이 있으면 그 페이지로 이동 
+
+		}else {
+			System.out.println(dest.toString());
+			return "redirect:"+dest.toString();
+
+		}
 
 	}
 	
@@ -161,6 +175,7 @@ public class UserController {
 				+ "해당 인증번호를 인증번호 확인란에 기입해주세요";
 
 		try {
+
 			MimeMessage message = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
 			helper.setFrom(setFrom);
@@ -176,5 +191,9 @@ public class UserController {
 		String num = Integer.toString(checkNum);
 
 		return num;
+
 	}
+
+	
+
 }
