@@ -98,10 +98,6 @@
 		opacity:1;
 	}
 	
-	body{
-		width:100%;
-		margin: 0 auto;
-	}
 		
 	
 	.pagination {
@@ -324,7 +320,7 @@
 <body>
 	<h1>[지원정책]</h1>
 	<c:if test="${user.u_id eq 'user21'}">
-		<a href="sinsert">등록</a>
+		<a href="insert">등록</a>
 	</c:if>
 	<div class="listoption">
 		<div class="box box3" >
@@ -456,12 +452,12 @@
 	
 		{{#each list}}
 			<li>
-					<a href="/sread?id={{id}}">
+					<a href="read?id={{id}}">
 				<div class="img_box">
 					<div class="top">{{s_local}}</div>
 					<div class="center">{{title}}</div>
 					<div class="bottom">{{s_date}}</div>
-					<img src="/display?fileName={{s_image}}" width=200 onerror="this.src='http://placehold.it/240x215'"/>
+					<img src="display?fileName={{s_image}}" width=200 onerror="this.src='http://placehold.it/240x215'"/>
 				</div>
 				</a>
 			</li>
@@ -502,7 +498,7 @@
 			
 			$.ajax({
 				type : "get",
-				url : "support/list.json",
+				url : "list.json",
 				dataType : "json",
 				data : {"page" : page,"keyword":keyword,"searchType":searchType,"ageType":ageType,"genderType":genderType,"catType":catType},
 				success : function(data) {

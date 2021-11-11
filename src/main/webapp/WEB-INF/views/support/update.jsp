@@ -19,7 +19,7 @@ input[type=text] {
 <form name="frm" enctype="multipart/form-data" style="overflow: hidden; margin:0 auto;">
 	<div style="float: left;">
 		<input type="hidden" name="oldimage" value="${vo.s_image}"/>
-		<img id="image" src="/display?fileName=${vo.s_image}" width=300 height="300"  onerror="this.src='http://placehold.it/300x300'"/>
+		<img id="image" src="display?fileName=${vo.s_image}" width=300 height="300"  onerror="this.src='http://placehold.it/300x300'"/>
 	</div>
 	<div style="float: left; margin-left: 50px; width: 550px; margin-bottom:20px;">
 		<input type="text" name="id" value="${vo.id}" hidden /><br />
@@ -103,7 +103,7 @@ input[type=text] {
 			return
 		alert("수정완료!");
 		frm.data={"oldimage":image};
-		frm.action = "/supdate";
+		frm.action = "update";
 		frm.method = "post";
 		frm.submit();
 	});

@@ -1,4 +1,4 @@
-package com.example.controller.course;
+package com.example.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.domain.course.CourseVO;
+import com.example.mapper.CourseDAO;
+import com.example.service.CourseService;
 import com.example.domain.Criteria;
 import com.example.domain.PageMaker;
 import com.example.domain.UserVO;
 import com.example.domain.course.CQueryVO;
 import com.example.domain.course.CReplyVO;
 import com.example.domain.course.CategoryVO;
-import com.example.mapper.course.CourseDAO;
-import com.example.service.course.CourseService;
 
 @Controller
 public class CourseController {
@@ -191,7 +191,7 @@ public class CourseController {
 	@RequestMapping(value="/delete_course", method=RequestMethod.POST)
 	@ResponseBody
 	public void delete_course(int c_id){
-		dao.delete_course(c_id);
+		service.course_delete(c_id);
 	}
 
 	

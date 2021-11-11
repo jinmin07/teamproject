@@ -266,12 +266,12 @@
 		var c_gender = "${vo.c_gender}";
 		var u_gender = "${user.u_gender}"
 		
-		if(c_gender =="여성" && u_gender=="m"){
+		if(c_gender =="여성" && u_gender=="남성"){
 			alert("모집성별에 해당되지 않습니다.");
 			return;
 		}
 		
-		if(c_gender =="남성" && u_gender =="f"){
+		if(c_gender =="남성" && u_gender =="여성"){
 			alert("모집성별에 해당되지 않습니다.");
 			return;
 		}
