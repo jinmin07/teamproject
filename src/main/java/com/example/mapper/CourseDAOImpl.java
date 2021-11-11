@@ -1,4 +1,4 @@
-package com.example.mapper.course;
+package com.example.mapper;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +18,7 @@ public class CourseDAOImpl implements CourseDAO {
 	@Autowired
 	SqlSession session;
 	
-	String namespace="com.example.mapper.course.CourseMapper";
+	String namespace="com.example.mapper.CourseMapper";
 	
 	@Override
 	public CategoryVO list_category(String tbl_code) {
@@ -102,7 +102,6 @@ public class CourseDAOImpl implements CourseDAO {
 		session.insert(namespace + ".insert_reply", vo);
 	}
 	
-	
 	@Override
 	public List<CourseVO> list(Criteria cri) {
 		return session.selectList(namespace + ".list", cri);
@@ -111,7 +110,6 @@ public class CourseDAOImpl implements CourseDAO {
 	@Override
 	public void insert(CourseVO vo) {
 		session.insert(namespace + ".insert", vo);
-		
 	}
 
 	@Override
@@ -132,5 +130,10 @@ public class CourseDAOImpl implements CourseDAO {
 	@Override
 	public void add_view_cnt(int id) {
 		session.update(namespace +".add_view_cnt", id);
+	}
+
+	@Override
+	public void query_state(int c_id) {
+		session.update(namespace + ".query_state", c_id);
 	}
 }

@@ -77,14 +77,11 @@ public class ProductDAOImpl  implements ProductDAO{
 		map.put("p_id", p_id);
 		map.put("p_member", p_member);
 		session.delete(namespace + ".delete_member",map);
-		
 	}
-
-
+	
 	@Override
 	public void delete(int id) {
 		session.delete(namespace + ".delete",id);
-		
 	}
 
 	@Override
@@ -133,5 +130,10 @@ public class ProductDAOImpl  implements ProductDAO{
 	public void delete_query(int p_query_id) {
 		session.delete(namespace + ".delete_query",p_query_id);
 		
+	}
+
+	@Override
+	public void query_state(int p_id) {
+		session.update(namespace + ".query_state", p_id);
 	}
 }

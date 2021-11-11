@@ -100,7 +100,7 @@
 		</div>
 		
 		<div class="content_box">
-			<img src="/display?fileName=${vo.s_image}"  width=660 onerror="this.style.display='none'"/>
+			<img src="display?fileName=${vo.s_image}"  width=660 onerror="this.style.display='none'"/>
 			
 			<p>${vo.s_content}</p>
 		</div>
@@ -108,7 +108,7 @@
 	
 	<div class="button_box">	
 			<c:if test="${user.u_id eq 'user21'}">
-				<button type="button"  onClick="location.href='supdate?id=${vo.id}'"  class="btn_gray"  title="수정"  >수정</button>
+				<button type="button"  onClick="location.href='/support/update?id=${vo.id}'"  class="btn_gray"  title="수정"  >수정</button>
 				<button type="button" class="btn_gray" id="delete" title="삭제"  >삭제</button>
 			</c:if>
 			<c:if test="${user!=null}">
@@ -128,11 +128,11 @@
 		if(!confirm("정책을 삭제하실래요?"))return;
 		$.ajax({
 			type:"post",
-			url:"/delete",
+			url:"delete",
 			data:{"id":id,"S_image":image},
 			success:function(){
 				alert("삭제 성공!");
-				location.href="/slist";
+				location.href="list";
 			}
 		})
 	})

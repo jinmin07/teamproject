@@ -6,8 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.domain.PReplyVO;
 import com.example.domain.course.CReplyVO;
+import com.example.mapper.CourseDAO;
 import com.example.mapper.ProductDAO;
-import com.example.mapper.course.CourseDAO;
 
 @Service
 public class PurchaseServiceImpl implements PurchaseService {
@@ -33,6 +33,16 @@ public class PurchaseServiceImpl implements PurchaseService {
 	public void purchase_member_del(int p_id, String p_member) {
 		dao.delete_member(p_id, p_member);
 		dao.update_cnt_purchase(p_id, -1);
+	}
+
+	@Transactional
+	@Override
+	public void purchase_delete(int id) {
+		int cnt_query = dao.cnt_query(id);
+		if(cnt_query != 0){
+			dao.query_state(id);
+		}
+		dao.delete(id);
 	}
 	
 }

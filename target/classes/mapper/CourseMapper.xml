@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.mapper.course.CourseMapper">
+<mapper namespace="com.example.mapper.CourseMapper">
+	<!-- course 삭제시 해당 문의글 삭제 -->
+	<update id="query_state">
+		update tbl_course_query set c_state = 1
+		where c_id = #{c_id}
+	</update>
 	<!-- 조회수 증가 -->
 	<update id="add_view_cnt">
 		update tbl_course set c_view = c_view + 1
