@@ -32,5 +32,6 @@ public interface CourseDAO {
 	public List<CourseVO> list(Criteria cri);
 	public void insert(CourseVO vo);
 	public int totalCount(Criteria cri);
+	public void update_course(CourseVO vo);
 
 }

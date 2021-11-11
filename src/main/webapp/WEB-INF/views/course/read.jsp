@@ -67,6 +67,9 @@
 				<c:if test="${vo.c_writer==user.u_id}">
 					<button id="btn_course_delete" style="width: 150px;">삭제하기</button>
 				</c:if>
+				<c:if test="${vo.c_writer==user.u_id}">
+					<button id="btn_course_update" style="width: 150px;">수정하기</button>
+				</c:if>
 			</div>
 		</div>
 	</div>
@@ -286,6 +289,12 @@
 				}
 			}
 		});
+	});
+	
+	//수정 페이지로 이동
+	$("#btn_course_update").on("click", function(){
+		if(!confirm("글을 수정하시겠습니까?")) return;
+		location.href="/cou/update?id=${vo.id}";
 	});
 </script>
 </html>
