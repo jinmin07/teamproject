@@ -29,6 +29,7 @@ import com.example.mapper.SupportDAO;
 import com.example.service.SupportService;
 
 @Controller
+@RequestMapping("/support")
 public class SupportController {
 	@Resource(name="uploadPath")
 	private String path;
@@ -39,14 +40,16 @@ public class SupportController {
 	@Autowired
 	SupportService service;
 	
-	@RequestMapping("/supdate")
+	
+	
+	@RequestMapping("/update")
 	public String supdate(int id,Model model){
 		model.addAttribute("vo",service.read(id));
-		model.addAttribute("pageName","support/supdate.jsp");
+		model.addAttribute("pageName","support/update.jsp");
 		return "home";
 	}
 	
-	@RequestMapping(value="/supdate",method=RequestMethod.POST)
+	@RequestMapping(value="/update",method=RequestMethod.POST)
 	public String supdate(SupportVO vo,MultipartHttpServletRequest multi,String oldimage)throws Exception{
 		MultipartFile file = multi.getFile("file");
 		if (!file.isEmpty()) { 
@@ -57,37 +60,37 @@ public class SupportController {
 			file.transferTo(new File(path + "/" + image));
 			vo.setS_image(image);
 			sdao.update(vo);
-			return "redirect:/slist";
+			return "redirect:list";
 		}else{
 			vo.setS_image(oldimage);
 			sdao.update(vo);
-			return "redirect:/slist";
+			return "redirect:list";
 		}
 	}	
 	
 	
-	@RequestMapping("/sread")
+	@RequestMapping("/read")
 	public String sread(int id,Model model){
 		model.addAttribute("vo",service.read(id));
-		model.addAttribute("pageName","support/sread.jsp");
+		model.addAttribute("pageName","support/read.jsp");
 		return "home";
 	}
 	
 	
-	@RequestMapping("/slist")
+	@RequestMapping("/list")
 	public String list(Model model){
-		model.addAttribute("pageName", "support/slist.jsp");
+		model.addAttribute("pageName", "support/list.jsp");
 		return "home";
 	}
 	
 	
 	
-	@RequestMapping("/sinsert")
+	@RequestMapping("/insert")
 	public String insert(Model model){
 		int maxCode=sdao.maxCode();
 		int id=maxCode+1;
 		model.addAttribute("id",id);
-		model.addAttribute("pageName","support/sinsert.jsp");
+		model.addAttribute("pageName","support/insert.jsp");
 		return "home";
 	}
 	
@@ -101,15 +104,11 @@ public class SupportController {
 		vo.setS_image(image);
 		
 		sdao.insert(vo);
-		return "redirect:/slist";
+		return "redirect:list";
 	}
 	
-	@RequestMapping("/list")
-	public String getList(){
-		return "support/slist";
-	}
 
-	@RequestMapping("support/list.json")
+	@RequestMapping("/list.json")
 	@ResponseBody
 	public HashMap<String,Object> listJSON(Criteria cri){
 		HashMap<String,Object> map=new HashMap<>();
@@ -138,7 +137,7 @@ public class SupportController {
 		 file.delete();
 	 }
 	 sdao.delete(id);
-	 return "redirect:slist";
+	 return "redirect:list";
 	}
 	
 	// 이미지파일 브라우저에 출력

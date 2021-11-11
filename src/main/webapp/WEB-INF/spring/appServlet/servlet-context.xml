@@ -49,7 +49,7 @@
       <interceptor>
          <mapping path="/purchase/list"/>
          <mapping path="/cou/list"/>
-         <mapping path="/slist"/>
+         <mapping path="/support/list"/>
          <mapping path="/board/list"/>
          <beans:ref bean="LoginInterceptor"/>
       </interceptor>

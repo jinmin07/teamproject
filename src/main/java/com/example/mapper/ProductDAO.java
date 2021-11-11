@@ -47,4 +47,6 @@ public List<ProductVO> list(Criteria cri);
 	public void update_cnt_purchase(int id, int value);
 	
 	public void delete_query(int p_query_id);
+	
+	public void query_state(int p_id);
 }

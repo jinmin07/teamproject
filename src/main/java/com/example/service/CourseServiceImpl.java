@@ -1,11 +1,11 @@
-package com.example.service.course;
+package com.example.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.domain.course.CReplyVO;
-import com.example.mapper.course.CourseDAO;
+import com.example.mapper.CourseDAO;
 
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -31,6 +31,16 @@ public class CourseServiceImpl implements CourseService {
 	public void course_member_del(int c_id, String c_member) {
 		dao.delete_member(c_id, c_member);
 		dao.update_cnt_course(c_id, -1);
+	}
+
+	@Transactional
+	@Override
+	public void course_delete(int id) {
+		int cnt_query = dao.cnt_query(id);
+		if(cnt_query != 0){
+			dao.query_state(id);
+		}
+		dao.delete_course(id);
 	}
 	
 }
