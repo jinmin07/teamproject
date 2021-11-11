@@ -115,11 +115,6 @@ public class CourseDAOImpl implements CourseDAO {
 	}
 
 	@Override
-	public int maxCode() {
-		return session.selectOne(namespace+".maxCode");
-	}
-
-	@Override
 	public int totalCount(Criteria cri) {
 		return session.selectOne(namespace+".totalCount",cri);
 	}
@@ -138,6 +133,4 @@ public class CourseDAOImpl implements CourseDAO {
 	public void add_view_cnt(int id) {
 		session.update(namespace +".add_view_cnt", id);
 	}
-
-
 }

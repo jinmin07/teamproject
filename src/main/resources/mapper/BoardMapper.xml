@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.BoardMapper">
+	<update id="updateb_view">
+		update tbl_board set b_view = b_view + 1
+		where id = #{id}
+	</update>
+	<select id="list" resultType="com.example.domain.BoardVO">
+		select * from tbl_board
+		<if test = "searchType == 'title'">
+			where title like concat('%', #{keyword}, '%')
+		</if>
+		<if test = "searchType == 'b_content'">
+			where b_content like concat('%', #{keyword}, '%')
+		</if>
+		<if test = "searchType == 'b_writer'">
+			where b_writer like concat('%', #{keyword}, '%')
+		</if>
+		order by id desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+	<select id="totalCount" resultType="int">
+		select count(*) from tbl_board
+		<if test = "searchType == 'title'">
+			where title like concat('%', #{keyword}, '%')
+		</if>
+		<if test = "searchType == 'b_content'">
+			where b_content like concat('%', #{keyword}, '%')
+		</if>
+		<if test = "searchType == 'b_writer'">
+			where b_writer like concat('%', #{keyword}, '%')
+		</if>
+	</select>
+</mapper>

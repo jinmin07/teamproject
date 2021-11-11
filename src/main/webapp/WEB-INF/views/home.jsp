@@ -11,14 +11,14 @@
 <body>
 	<div id="page">
 		<div id="header">
-			<a href="/"><h1>프로젝트</h1></a>
+			<h1><a href="/">프로젝트</a></h1>
 		</div>
 		<div id="center">
 			<div id="menu">
 				<h4><a href="/purchase/list">공동구매</a></h4>
 				<h4><a href="/cou/list">공동생활</a></h4>
 				<h4><a href="/slist">지원정책</a></h4>
-				<h4><a href="#">커뮤니티</a></h4>
+				<h4><a href="/board/list">커뮤니티</a></h4>
 				<!-- 로그인을 하지 않은 상태 -->             
                <c:if test = "${user == null }">
 				<h4 style="float:right"><a href="/member/login">로그인</a></h4>				

@@ -27,12 +27,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.example.domain.Criteria;
 import com.example.domain.PQueryVO;
 import com.example.domain.PReplyVO;
+import com.example.domain.PageMaker;
 import com.example.domain.ProductVO;
 import com.example.domain.UserVO;
+import com.example.domain.course.CReplyVO;
+import com.example.domain.course.CategoryVO;
+import com.example.domain.course.CourseVO;
 import com.example.mapper.ProductDAO;
 import com.example.mapper.UserDAO;
+import com.example.service.PurchaseService;
 
 @Controller
 @RequestMapping("/purchase")
@@ -42,26 +48,36 @@ public class PurchaseController {
 	
 	@Autowired
 	ProductDAO pdao;
-	// íŒŒì¼ ì €ì¥ ë£¨íŠ¸ ì§€ì •
+	// ÆÄÀÏ ÀúÀå ·çÆ® ÁöÁ¤
 	@Resource(name = "uploadPath")
 	private String path;
 	
 	@Autowired
 	UserDAO udao;
+	
+	@Autowired
+	PurchaseService service;
 
-	//ìƒí’ˆì¶œë ¥
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	//»óÇ°Ãâ·Â
+	@RequestMapping(value = "/list")
 	public String List(Model model) {
 		model.addAttribute("pageName", "purchase/list.jsp");
-		logger.info("ëª©ë¡ì´ ì¶œë ¥ë©ë‹ˆë‹¤");
+		logger.info("¸ñ·ÏÀÌ Ãâ·ÂµË´Ï´Ù");
 		return "home";
 	}
 	
-	//ìƒí’ˆì •ë³´ => JSON 
+	//»óÇ°Á¤º¸ => JSON 
 	@RequestMapping("/list.json")
 	@ResponseBody
-	public List<ProductVO> listJson() {
-		return pdao.list();
+	public HashMap<String,Object> listJson(Criteria cri) {
+		HashMap<String,Object> map=new HashMap<>();
+		cri.setPerPageNum(9);
+		map.put("list", pdao.list(cri));
+		map.put("cri",cri);
+		PageMaker pm=new PageMaker();
+		pm.setCri(cri);
+		map.put("pm", pm);
+		return map;
 	}
 	
 	@RequestMapping("/list_query.json")
@@ -95,13 +111,19 @@ public class PurchaseController {
 
 	// read page
 	@RequestMapping("/read")
-	public String read(UserVO user,Model model, String id,HttpServletRequest request) throws Exception {
-		logger.info("readí˜ì´ì§€ë¡œ ì§„ì…í•©ë‹ˆë‹¤");
-		UserVO uvo = udao.userLogin(user);
-		model.addAttribute("user", uvo);
-		model.addAttribute("vo", pdao.read(id));
-		model.addAttribute("pageName", "purchase/read.jsp");
+	public String read(Model model, int id,HttpServletRequest request) throws Exception {
+		logger.info("readÆäÀÌÁö·Î ÁøÀÔÇÕ´Ï´Ù");
 		
+		model.addAttribute("vo", pdao.read(id));
+		model.addAttribute("cnt_query",pdao.cnt_query(id));
+
+		
+		HttpSession session = request.getSession();
+		UserVO uvo = (UserVO) session.getAttribute("user");
+		model.addAttribute("user", uvo);
+		model.addAttribute("chk_member", pdao.chk_member(id, uvo.getU_id()));
+		
+		model.addAttribute("pageName", "purchase/read.jsp");
 		return "home";
 	}
 
@@ -116,7 +138,7 @@ public class PurchaseController {
 	
 	@RequestMapping(value = "/delete",method = RequestMethod.POST)
 	@ResponseBody
-	public void delete(String id) {
+	public void delete(int id) {
 		pdao.delete(id);
 	}
 
@@ -129,13 +151,13 @@ public class PurchaseController {
 		
 		HttpSession session = request.getSession();
 		
-		MultipartFile file = multi.getFile("file"); // ì—…ë¡œë“œí•œ íŒŒì¼ ì§€ì •
-		// íŒŒì¼ ì´ë¦„ ìœ ë‹ˆí¬í•˜ê²Œ
+		MultipartFile file = multi.getFile("file"); // ¾÷·ÎµåÇÑ ÆÄÀÏ ÁöÁ¤
+		// ÆÄÀÏ ÀÌ¸§ À¯´ÏÅ©ÇÏ°Ô
 		String p_image = System.currentTimeMillis() + "_" + file.getOriginalFilename();
 		vo.setP_image(p_image);
-		// ëŒ€í‘œ íŒŒì¼ ì—…ë¡œë“œ í•˜ê¸°
+		// ´ëÇ¥ ÆÄÀÏ ¾÷·Îµå ÇÏ±â
 		file.transferTo(new File(path + "/" + p_image));
-		// ë°ì´í„° ì…ë ¥
+		// µ¥ÀÌÅÍ ÀÔ·Â
 		
 		pdao.insert(vo);
 		session.setAttribute("user", lvo);
@@ -144,12 +166,12 @@ public class PurchaseController {
 		return "redirect:/";
 	}
 
-	// ì´ë¯¸ì§€íŒŒì¼ ë¸Œë¼ìš°ì €ì— ì¶œë ¥
+	// ÀÌ¹ÌÁöÆÄÀÏ ºê¶ó¿ìÀú¿¡ Ãâ·Â
 	@RequestMapping("/display")
 	@ResponseBody
 	public ResponseEntity<byte[]> display(String fileName) throws Exception {
 		ResponseEntity<byte[]> result = null;
-		// display fileNameì´ ìˆëŠ” ê²½ìš°
+		// display fileNameÀÌ ÀÖ´Â °æ¿ì
 		if (!fileName.equals("")) {
 			File file = new File(path + File.separator + fileName);
 			HttpHeaders header = new HttpHeaders();
@@ -166,24 +188,24 @@ public class PurchaseController {
 	}
 	
 	
-	@RequestMapping(value="/insert_member",method=RequestMethod.POST)
+	@RequestMapping(value="/insert_member", method= {RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
-	public int insert_member(int p_id,String p_member) throws Exception{
+	public int insert_member(int p_id, String p_member) throws Exception{
 		int result = pdao.chk_member(p_id, p_member);
-		if(result == 0) {
-			pdao.insert_member(p_id, p_member);	
-			pdao.p_cnt_member_increment(p_id);
+		if(result==0){
+			System.out.println(p_id);
+			service.purchase_member_add(p_id, p_member);
 		}
 		return result;
 	}
 	
 	
 	
+	
 	@RequestMapping(value="/delete_member",method=RequestMethod.POST)
 	@ResponseBody
 	public void delete_member(int p_id,String p_member) {
-		pdao.delete_member(p_id, p_member);
-		pdao.p_cnt_member_decrement(p_id);
+		service.purchase_member_del(p_id, p_member);
 	}
 	
 	
@@ -194,19 +216,12 @@ public class PurchaseController {
 	}
 	
 	@RequestMapping("/reply_insert")
-	public String purchase_reply(String id,Model model) {
+	public String purchase_reply(int id,Model model) {
 		ProductVO vo = pdao.read(id);
 		model.addAttribute("vo", vo);
 		model.addAttribute("pageName", "purchase/queryInsert.jsp");
 		
 		return "home";
-	}
-	
-	@RequestMapping(value="/reply_insert", method = RequestMethod.POST)
-	public String purchase_reply_insert(PQueryVO vo) {
-		pdao.insert_query(vo);
-		String url = "redirect:/read?id=" + vo.getP_id();
-		return url;
 	}
 	
 	@RequestMapping("/cnt_reply")
@@ -220,8 +235,25 @@ public class PurchaseController {
 		return result;
 	}
 	
+	@RequestMapping("/query_insert")
+	public String purchase_query(int id, Model model){
+		ProductVO pvo = pdao.read(id);
+		model.addAttribute("vo", pvo);
+		model.addAttribute("pageName", "purchase/queryInsert.jsp");
+		return "home";
+	}
+	
+	@RequestMapping(value="/delete_query", method=RequestMethod.POST)
+	@ResponseBody
+	public void delete_query(int p_query_id){
+		pdao.delete_query(p_query_id);
+		
+	}
 	
 	
-	
-
+	@RequestMapping(value="/reply_insert", method=RequestMethod.POST)
+	@ResponseBody
+	public void purchase_reply_insert(PReplyVO vo){
+		service.purchase_insert_reply(vo);
+	}
 }

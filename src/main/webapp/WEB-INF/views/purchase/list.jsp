@@ -27,16 +27,18 @@ img{
 </style>
 <h1>[상품 목록]</h1>
 <a href="/purchase/insert">등록하기</a>
-<select id = "p_category">
+<select id = "searchType">
+	<option value="all">전체</option>
 	<option value="p_food">음식</option>
-	<option value="p_sport">스포츠용품</option>
+	<option value="p_sports">스포츠용품</option>
 	<option value="p_beauty">뷰티용품</option>
 	<option value="p_fashion">패션</option>
-	<option value="p_electronic">가전제품</option>
+	<option value="p_digital">가전제품</option>
 </select>
+<button id="searchBtn">조회</button>
 <div id="products"></div>
 <script id="temp" type="text/x-handlebars-template">
-	{{#each .}}
+	{{#each list}}
 	<div class="box">
 		<img src="/display?fileName={{p_image}}" width=200 height=100
 		onClick="location.href='read?id={{id}}'"/>
@@ -51,13 +53,18 @@ img{
 <script>
 	getList();
 	
+	$("#searchBtn").on("click",function(){
+		page=1;
+		getList();
+	});
+	
 	function getList(){
-		var p_category = $("#p_category").val();
+		var searchType = $("#searchType").val();
 		$.ajax({
 			type:"get",
 			url:"/purchase/list.json",
 			dataType:"json",
-			data:{"p_category":p_category},
+			data:{"searchType":searchType},
 			success:function(data){
 				var temp = Handlebars.compile($("#temp").html());
 				$("#products").html(temp(data));

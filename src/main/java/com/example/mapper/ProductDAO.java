@@ -3,19 +3,20 @@ package com.example.mapper;
 import java.util.HashMap;
 import java.util.List;
 
+import com.example.domain.Criteria;
 import com.example.domain.PQueryVO;
 import com.example.domain.PReplyVO;
 import com.example.domain.ProductVO;
 
 public interface ProductDAO {
 	
-	public List<ProductVO> list();
+public List<ProductVO> list(Criteria cri);
 	
 	public void insert(ProductVO vo);
 	
 	public String maxId();
 	
-	public ProductVO read(String id);	
+	public ProductVO read(int id);	
 	
 	public int totCount();
 	
@@ -29,11 +30,7 @@ public interface ProductDAO {
 	
 	public void delete_member(int p_id,String p_member);
 	
-	public void p_cnt_member_increment(int id);
-	
-	public void p_cnt_member_decrement(int id);
-	
-	public void delete(String id);
+	public void delete(int id);
 	
 	public List<PQueryVO> list_query(int p_id);
 	
@@ -43,5 +40,11 @@ public interface ProductDAO {
 	
 	public PReplyVO list_reply(int p_query_id);
 	
-	public void update_replystate_query(int c_query_id);
+	public void update_replystate_query(int p_query_id);
+	
+	public void insert_reply(PReplyVO vo);
+	
+	public void update_cnt_purchase(int id, int value);
+	
+	public void delete_query(int p_query_id);
 }
