@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-#content { padding: 10px;border-top: 1px	solid #ededed; border-bottom: 1px	solid #ededed;}
+#content { padding: 10px;}
 
 #header {  	padding: 10px 60px;
 		    height: 80px;
@@ -12,9 +12,10 @@
 		    margin: 0 auto;}
 
 #footer {
+	border-top:1px solid #ededed;
 	margin:0 auto;
-	width:960px;
-	padding: 30px 40px 40px;
+	width:1440px;
+	padding: 30px 0px;
 	text-align: left;
 	color: gray;
 }
@@ -56,26 +57,27 @@ td{border-bottom: solid 1px #7F8BA5; padding: 5px; text-align:center;}
 }
 
 .pagination {
+	text-align: center;
+	margin-top: 10px;
 	display: inline-block;
-	margin: 10px 0;
-	padding-left: 50px;
 }
 
 .pagination a {
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
 }
 
 .pagination a.active {
-  background-color: #4CAF50;
-  color: white;
+	background-color: #1E90FF;
+	color: white;
 }
 
-.pagination a:hover:not(.active) {
-   background-color: #ddd;
+.pagination a:hover:not (.active ) {
+	background-color: #ddd;
 }
+
 a {
 	text-decoration: none;
 }
@@ -86,7 +88,7 @@ input , textarea, select{
 }
 
 input[type=submit], input[type=reset], input[type=button], button{
-   background: #DBB4B4;
+   background: #e3c1c1;
    border:1px solid lightgray;
    color: white;
    border-radius: 5px;
@@ -99,6 +101,8 @@ header{
 	box-sizing: border-box;
     position: relative;
     display: block;
+    border-bottom:1px solid #ededed;
+    
 }
 
 li{
@@ -241,5 +245,7 @@ li{
 .topnav a:hover{
 	text-decoration: underline;
 }
-
+.navigation-primary__menu__item:hover{
+	color:#35c5f0;
 }
+ 

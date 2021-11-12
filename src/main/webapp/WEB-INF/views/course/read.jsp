@@ -8,6 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>스터디/취미</title>
 	<style>
+		#content{width:960px; margin:0 auto;}
 		.head:hover {cursor: pointer; background: lightgray;}
 		#query .content {display: none;}
 		.container {

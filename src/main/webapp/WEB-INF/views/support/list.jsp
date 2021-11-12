@@ -100,32 +100,11 @@
 	
 		
 	
-	.pagination {
-		  text-align: center;
-		  margin-top:10px;
-		  display: inline-block;
-		}
-		
-	.pagination a {
-		color: black;
-		float: left;
-		padding: 8px 16px;
-		text-decoration: none;
-		}
-		
-	.pagination a.active {
-	    background-color: #1E90FF;
-		color: white;
-		}
-		
-	.pagination a:hover:not(.active) {
-		background-color: #ddd;
-		}
 		
 	.listoption{
 		margin:0 auto;
 		width:1200px;
-		margin-bottom: 70px;
+		margin-bottom: 30px;
 	    border-top: 1px solid #e5e5e5;
 	    border-bottom: 1px solid #e5e5e5;
 	    overflow: hidden;
@@ -310,6 +289,17 @@
 	    font-size: 16px;
 	}
 	
+	.view button{
+		font-size:16px;
+		margin:0px;
+		padding: 5px 15px;
+		font-family:"맑은고딕";
+		font-weight: 600;
+	}
+	.view button:hover{
+		background: 	#dbb4b4;
+	}
+	
 	
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -319,9 +309,6 @@
 </head>
 <body>
 	<h1>[지원정책]</h1>
-	<c:if test="${user.u_id eq 'user21'}">
-		<a href="insert">등록</a>
-	</c:if>
 	<div class="listoption">
 		<div class="box box3" >
 			<dl class="list">
@@ -430,7 +417,7 @@
 				
 				<li class="search">
 					<div class="insearch">
-						<input type="text" class="txt" id="searchtxt" name="searchtxt"/>
+						<input type="text" class="txt" id="searchtxt" name="searchtxt" placeholder="제목 검색"/>
 					</div>
 					<button type="button" id="searchbtn" style="">조회</button>
 					
@@ -440,11 +427,21 @@
 			</ul>
 		</div>
 	</div>
+	
 	<div class="view">
-	<div>
-		<h3 id="total"  style="text-align:left; margin-left:10px; padding-bottom:10px; border-bottom: 1px dotted gray;" ></h3>
-	</div>
-	<div id="tbl"></div>
+		<div style="text-align: left; margin-left: 10px; padding-bottom: 10px;  border-bottom: 1px dotted gray;">
+			<div style="display: inline-block;">
+				<h4 id="total" style="margin-bottom:5px;"></h4>
+			</div>
+			<div style="display: inline-block; float: right; margin-top:20px; margin-right:15px;">
+				<c:if test="${user.u_id eq 'user21'}">
+					<button onClick="location.href='insert'" >등록</button>
+				</c:if> 
+			</div>
+		</div>
+
+
+		<div id="tbl"></div>
 	</div>
 	<script id="temp" type="text/x-handlebars-template">
 		<div class="gallerylist">
