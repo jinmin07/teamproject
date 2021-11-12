@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.domain.course.CourseVO;
 import com.example.mapper.CourseDAO;
+import com.example.mapper.MypageDAO;
 import com.example.service.CourseService;
 import com.example.domain.Criteria;
+import com.example.domain.MyfeedVO;
 import com.example.domain.PageMaker;
 import com.example.domain.UserVO;
 import com.example.domain.course.CQueryVO;
@@ -28,6 +30,9 @@ import com.example.domain.course.CategoryVO;
 public class CourseController {
 	@Autowired
 	CourseDAO dao;
+	
+	@Autowired
+	MypageDAO mdao;
 	
 	@Autowired
 	CourseService service;
@@ -214,13 +219,21 @@ public class CourseController {
 	@RequestMapping(value="/cou/update", method=RequestMethod.POST)
 	@ResponseBody
 	public String update_coursePost(CourseVO vo, String start, String end)throws Exception{
+		System.out.println(vo.toString());
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date_start = sdf.parse(start);
 		vo.setDate_start(date_start);
 		Date date_end = sdf.parse(end);
 		vo.setDate_end(date_end);
-		dao.update_course(vo);
+		//dao.update_course(vo);
 		return "redirect:/cou/list";
+	}
+	
+	// myfeed insert
+	@RequestMapping(value="/course/feed_insert", method=RequestMethod.POST)
+	@ResponseBody
+	public void myfeed_insert(MyfeedVO vo){
+		service.course_insert_feed(vo);
 	}
 
 }

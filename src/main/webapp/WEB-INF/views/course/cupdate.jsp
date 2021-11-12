@@ -140,29 +140,9 @@ input[type=submit], input[type=reset] {
 		var c_gender = $("select[name=c_gender]").val();
 		var c_content = $(frm.c_content).val();
 		
-		
-		
-		
 
 		if (!confirm("취미/스터디를 수정하실래요?")) return;
 		
-				alert(id);
-				alert(c_writer);
-				alert(title);
-				alert(tbl_code);
-				alert(c_local);
-				alert(c_place);
-				alert(c_tot_member);
-				alert(date_start);
-				alert(date_end);
-				alert(c_time);
-				alert(c_fee);
-				alert(c_age_min);
-				alert(c_age_max);
-				alert(c_gender);
-				alert(c_content);
-						
-			
 		frm.action = "/cou/update";
 		frm.method = "post";
 		frm.submit();
