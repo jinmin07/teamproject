@@ -20,4 +20,6 @@ public interface BoardDAO {
 	public void deleteAttach(int id);
 	public void attachcount(int id);
 	public void newattachcount();
+	public String maxCode();
+
 }

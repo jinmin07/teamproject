@@ -4,9 +4,22 @@
 	<select id="myfeedlist" resultType="com.example.domain.MyfeedVO">
 		select * from tbl_feed
 		where user_id = #{user_id}
+		order by f_id desc
 	</select>
 	<insert id="myfeed_insert">
 		insert into tbl_feed(user_id, tbl_code, primary_id) 
 		values(#{user_id}, #{tbl_code}, #{primary_id})
 	</insert>
+	<select id="myfeed_ref_list" resultType="com.example.domain.MyfeedRefVO">
+		<if test='tbl_code=="P"'>
+			select id, tbl_code, p_writer writer, title, p_date regdate, p_image image, p_content content
+			from tbl_purchase
+			where id= #{id}
+		</if>
+		<if test='tbl_code=="C"'>
+			select id, tbl_code, c_writer writer, title, c_date regdate, c_content content
+			from tbl_course
+			where id= #{id}
+		</if>
+	</select>
 </mapper>

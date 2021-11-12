@@ -85,4 +85,9 @@ public class BoardDAOImpl implements BoardDAO {
 	public void updateb_view(int id) {
 		session.update(namespace + ".updateb_view", id);
 	}
+
+	@Override
+	public String maxCode() {
+		return session.selectOne(namespace + ".maxCode");
+	}
 }

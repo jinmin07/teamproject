@@ -136,4 +136,9 @@ public class ProductDAOImpl  implements ProductDAO{
 	public void query_state(int p_id) {
 		session.update(namespace + ".query_state", p_id);
 	}
+
+	@Override
+	public void add_feed_cnt(int id) {
+		session.update(namespace + ".add_feed_cnt", id);
+	}
 }

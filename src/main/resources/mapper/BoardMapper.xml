@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.BoardMapper">
+	<select id="maxCode" resultType="String">
+		select max(id) from tbl_board
+	</select>
 	<update id="updateb_view">
 		update tbl_board set b_view = b_view + 1
 		where id = #{id}
@@ -31,4 +34,20 @@
 			where b_writer like concat('%', #{keyword}, '%')
 		</if>
 	</select>
+	<insert id="insert">
+		insert into tbl_board(b_category, title, b_writer, b_content, b_image)
+		values(#{b_category}, #{title}, #{b_writer}, #{b_content}, #{b_image})
+	</insert>
+	<update id="update">
+		update tbl_board set b_category = #{b_category}, title = #{title}, b_content = #{b_content}, b_image = #{b_image}
+		where id = #{id}
+	</update>
+	<select id="read" resultType="com.example.domain.BoardVO">
+		select * from tbl_board
+		where id = #{id}
+	</select>
+	<delete id="delete">
+		delete from tbl_board
+		where id = #{id}
+	</delete>
 </mapper>

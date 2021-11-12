@@ -1,5 +1,6 @@
 package com.example.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -18,15 +19,21 @@ public class BoardVO {
 	private String b_content;
 	private int b_view;
 	private int b_cnt_reply;
-	private String b_image;
 	private int b_rec;
 	
 	//파일 업로드에 필요한 변수
-	private String[] files;
+	private String b_image;
+	private ArrayList<String> b_images;
 	private int attachcount;
 	
 	
 	
+	public ArrayList<String> getB_images() {
+		return b_images;
+	}
+	public void setB_images(ArrayList<String> b_images) {
+		this.b_images = b_images;
+	}
 	public Date getUpdatedate() {
 		return updatedate;
 	}
@@ -105,19 +112,12 @@ public class BoardVO {
 	public void setB_rec(int b_rec) {
 		this.b_rec = b_rec;
 	}
-	public String[] getFiles() {
-		return files;
-	}
-	public void setFiles(String[] files) {
-		this.files = files;
-	}
-	
 	@Override
 	public String toString() {
 		return "BoardVO [id=" + id + ", tbl_code=" + tbl_code + ", b_category=" + b_category + ", title=" + title
 				+ ", b_date=" + b_date + ", updatedate=" + updatedate + ", b_writer=" + b_writer + ", b_content="
-				+ b_content + ", b_view=" + b_view + ", b_cnt_reply=" + b_cnt_reply + ", b_image=" + b_image
-				+ ", b_rec=" + b_rec + ", files=" + Arrays.toString(files) + ", attachcount=" + attachcount + "]";
+				+ b_content + ", b_view=" + b_view + ", b_cnt_reply=" + b_cnt_reply + ", b_rec=" + b_rec + ", b_image="
+				+ b_image + ", b_images=" + b_images + ", attachcount=" + attachcount + "]";
 	}
 }
 

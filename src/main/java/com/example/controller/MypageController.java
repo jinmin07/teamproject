@@ -1,6 +1,9 @@
 package com.example.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.domain.MyfeedRefVO;
 import com.example.domain.MyfeedVO;
-import com.example.domain.PQueryVO;
 import com.example.mapper.MypageDAO;
 
 @Controller
@@ -40,7 +43,18 @@ public class MypageController {
 	
 	@RequestMapping("/feedlist.json")
 	@ResponseBody
-	public List<MyfeedVO> myfeedlist(String user_id){
-		return mdao.myfeedlist(user_id);
+	public List<MyfeedRefVO> myfeedlist(String user_id) throws Exception {
+		List<MyfeedVO> feeds = mdao.myfeedlist(user_id);
+		List<MyfeedRefVO> refFeeds = new ArrayList<MyfeedRefVO>();
+		for(MyfeedVO vo: feeds){
+			String tbl_code = vo.getTbl_code();
+			String code = vo.getTbl_code().substring(0,1);
+			System.out.println(tbl_code +"/" + vo.getPrimary_id());
+			if(code.equals("C")){
+				tbl_code = "C";
+			}
+			refFeeds.add(mdao.myfeed_ref_list(tbl_code, vo.getPrimary_id()));
+		}
+		return refFeeds;
 	}
 }

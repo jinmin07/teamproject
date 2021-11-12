@@ -4,15 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.domain.MyfeedVO;
 import com.example.domain.PReplyVO;
 import com.example.domain.course.CReplyVO;
 import com.example.mapper.CourseDAO;
+import com.example.mapper.MypageDAO;
 import com.example.mapper.ProductDAO;
 
 @Service
 public class PurchaseServiceImpl implements PurchaseService {
 	@Autowired
 	ProductDAO dao;
+	
+	@Autowired
+	MypageDAO mdao;
 	
 	@Transactional
 	@Override
@@ -43,6 +48,14 @@ public class PurchaseServiceImpl implements PurchaseService {
 			dao.query_state(id);
 		}
 		dao.delete(id);
+	}
+
+	@Transactional
+	@Override
+	public void purchase_insert_feed(MyfeedVO vo) {
+		mdao.myfeed_insert(vo);
+		dao.add_feed_cnt(vo.getPrimary_id());
+		
 	}
 	
 }

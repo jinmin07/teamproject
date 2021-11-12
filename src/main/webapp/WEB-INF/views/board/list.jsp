@@ -26,7 +26,7 @@
 	{{#each list}}
 	<tr class = "row" onClick="location.href='/board/read?id={{id}}'">
 		<td width=100>{{id}}</td>
-      	<td width=300>{{title}}</td>
+      	<td width=300>{{b_category}} {{title}}</td>
       	<td width=100>{{b_writer}}</td>
 		<td width=200>{{b_date}}</td>
 		<td width=100>{{b_view}}</td>
@@ -34,9 +34,7 @@
 	{{/each}}
 </script>
 
-<div style="text-align: center; margin-bottom:10px; ">
-	<div id="pagination" class="pagination"></div>
-</div>
+<div id="pagination" class="pagination"></div>
 <script src="/resources/pagination.js"></script>
 
 <script>

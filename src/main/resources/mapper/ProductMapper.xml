@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.ProductMapper">
-		<!-- course 삭제시 해당 문의글 삭제 -->
+	<!-- 피드수 증가 -->
+	<update id="add_feed_cnt">
+		update tbl_purchase set p_cnt_feed = p_cnt_feed + 1
+		where id = #{id}
+	</update>
+	<!-- purchase 삭제시 해당 문의글 삭제 -->
 	<update id="query_state">
 		update tbl_purchase_query set p_state = 1
 		where p_id = #{p_id}
