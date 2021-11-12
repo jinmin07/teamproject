@@ -34,7 +34,9 @@
 	{{/each}}
 </script>
 
-<div id="pagination" class="pagination"></div>
+<div style="text-align: center; margin-bottom:10px; ">
+	<div id="pagination" class="pagination"></div>
+</div>
 <script src="/resources/pagination.js"></script>
 
 <script>

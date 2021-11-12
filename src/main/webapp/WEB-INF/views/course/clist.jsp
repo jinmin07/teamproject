@@ -1,229 +1,265 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <style>
-	#course{
-		width:960px;
-		margin:0  auto;
-		display:inline-block;
-	}
-	
-	.box_list{
-		width: 200px;
-		height: 300px;
-		float: left;
-		margin-left: 20px;
-		padding: 5px;
-		margin-bottom: 30px;
-		box-shadow: 5px 5px 5px gray;
-		border-radius: 10px;	
-	}
-	
-	.box_list img{
-		cursor: pointer;
-		width: 170px;
-		height: 120px;
-	}
-	
-	.pagination {
-		  text-align: center;
-		  margin-top:10px;
-		  display: inline-block;
-		}
-		
-	.pagination a {
-		color: black;
-		float: left;
-		padding: 8px 16px;
-		text-decoration: none;
-		}
-		
-	.pagination a.active {
-	    background-color: #1E90FF;
-		color: white;
-		}
-		
-	.pagination a:hover:not(.active) {
-		background-color: #ddd;
-		}
-		
-	.listoption{
-		margin:0 auto;
-		width:1200px;
-		margin-bottom: 70px;
-	    border-top: 1px solid #e5e5e5;
-	    border-bottom: 1px solid #e5e5e5;
-	    overflow: hidden;
-	}
-	
-	.box3{
-		height:320px;
-		width: 440px;
-    	border-bottom: 1px solid #e5e5e5;
-    	justify-content: flex-end;
-   	 	background-color: #F0FFFF;
-   	 	float:left;
-	}
-	
-	.list{
-		font-size: 14px;
-	}
-	
-	.box3 .list .title ,.box4 .list .title{
-		line-height: 32px;
-		margin:5px 0px;
-		font-weight:600;
-	}
-	
-	.box4 .list .title{
-		margin: 5px 0;
-	    width: auto;
-	    line-height: 28px;
-	}
-	
-	.box3 .list .checkbox1, .box4 .list .checkbox2, .box4 .gender .checkbox3 ,.box4 .local .checkbox4{
-		margin-left:10px;
-		position: relative;
-	    display: flex;
-	    display: -webkit-flex;
-	    flex-wrap: wrap;
-	    -webkit-flex-wrap: wrap;
-	    align-items: center;
-	}
-	
-	p{
-		margin:5px;
-		display:block
-	}
-	
-	 	input[type=radio] {
-	    border: 0;
-	    clip: rect(0 0 0 0);
-	    height: 1px;
-	    margin: -1px;
-	    overflow: hidden;
-	    padding: 0;
-	    position: absolute;
-	    width: 0;
-	}
-	
-	.checkbox1 input+label {
-		position: relative;
-		display: block;
-		cursor: pointer;
-		font-size: 15px;
-		width:72px;
-		line-height: 30px;
-		text-align: center;
-    	border: 1px solid #333;
-	}
-	
-	.checkbox2 label, .checkbox3 label ,.checkbox4 label{
-		cursor: pointer;
-	    padding: 5px 8px;
-	    width: 56px;
-	    line-height: 26px;
-	    text-align: center;
-	    border: 1px solid #bdbdbd;
-	    color:#bdbdbd;
-	}
-	
-	.checkbox1 input:checked +label{
-		color: #fff; 
-	    font-weight: 600;
-	    background-color: #6b6ce2;
-	    border-color: #6b6ce2;
-	}
-	
-	.checkbox2 input:checked +label, .checkbox3 input:checked +label,.checkbox4 input:checked +label{
-		color:white;
-		border: 1px solid black;
-		font-weight: 600;
-		background-color: black;
-	}
-	
-	
-	.box4{
-		height:320px;
-		width:62%;
-		background-color: #f7f8fa;
-		display:-webkit-flex;
-	}
-	
-	.box4 .list 	{
-		width:750px;
-   	 
-	}
-	
-	.box .box4 .list li{
-		display: flex;
-		display: -webkit-flex;
-	}
-	
-	
-	.box4 .list .age{
-		padding-bottom:10px;
-		width:470px;
-		border-bottom: 1px solid #dbdbdb;
-		border-right: 1px solid #dbdbdb;
-		display: block;
-	}
-	
-	.box4 .list .gender{
-		padding-bottom:10px;
-		padding-left:15px;
-		width:200px;
-		border-bottom: 1px solid #dbdbdb;
-	}
-	
-	
-	.box .list{
-		margin:5px 0px;
-		padding: 5px 5px 5px 10px;
-	    display: flex;
-	    display: -webkit-flex;
-	    flex-wrap: wrap;
-	    -webkit-flex-wrap: wrap;
-	}
-	
-	.local{
-		padding:10px 0; 
-		width:100%;
-	}
-	
-	.search{
-		width: 100%;
-	    flex-wrap: wrap;
-	    -webkit-flex-wrap: wrap;
-	}
-	
-	.search .insearch{
-		display:inline-block;
-		width: calc(100% - 125px);
-	    height: 42px;
-	}
-	
-	.insearch input{
-		padding: 0 10px;
-    	background-color: transparent;
-	}
-	
-	.txt{
-		width:100%;height: 100%; display: block; border: 1px solid #999;
-	}
-	
-	.search button{
-		margin-left: 10px;
-	    width: 95px;
-	    height: 42px;
-	    color: #fff;
-	    font-weight: 600;
-	    background-color: #6b347c;
-	    cursor: pointer;
-	    padding: 0;
-	    border:0;
-	    font-size: 16px;
-	}
-			
+#content {
+	text-align: center;
+}
+
+#course {
+	width: 960px;
+	margin: 0 auto;
+	display: inline-block;
+}
+
+.box_list {
+	width: 200px;
+	height: 300px;
+	float: left;
+	margin-left: 20px;
+	padding: 5px;
+	margin-bottom: 30px;
+	box-shadow: 5px 5px 5px gray;
+	border-radius: 10px;
+}
+
+.box_list img {
+	cursor: pointer;
+	width: 170px;
+	height: 120px;
+}
+
+.pagination {
+	text-align: center;
+	margin-top: 10px;
+	display: inline-block;
+}
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+}
+
+.pagination a.active {
+	background-color: #1E90FF;
+	color: white;
+}
+
+.pagination
+ 
+a
+:hover
+:not
+ 
+(
+.active
+ 
+)
+{
+background-color
+:
+ 
+#ddd
+;
+
+
+}
+.listoption {
+	margin: 0 auto;
+	width: 1200px;
+	margin-bottom: 70px;
+	border-top: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
+	overflow: hidden;
+}
+
+.box3 {
+	height: 320px;
+	width: 440px;
+	border-bottom: 1px solid #e5e5e5;
+	justify-content: flex-end;
+	background-color: #F0FFFF;
+	float: left;
+}
+
+.list {
+	font-size: 14px;
+}
+
+.box3 .list .title, .box4 .list .title {
+	line-height: 32px;
+	margin: 5px 0px;
+	font-weight: 600;
+}
+
+.box4 .list .title {
+	margin: 5px 0;
+	width: auto;
+	line-height: 28px;
+}
+
+.box3 .list .checkbox1, .box4 .list .checkbox2, .box4 .gender .checkbox3,
+	.box4 .local .checkbox4 {
+	margin-left: 10px;
+	position: relative;
+	display: flex;
+	display: -webkit-flex;
+	flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
+	align-items: center;
+}
+
+p {
+	margin: 5px;
+	display: block
+}
+
+input[type=radio] {
+	border: 0;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 0;
+}
+
+.checkbox1 input+label {
+	position: relative;
+	display: block;
+	cursor: pointer;
+	font-size: 15px;
+	width: 72px;
+	line-height: 30px;
+	text-align: center;
+	border: 1px solid #333;
+}
+
+.checkbox2 label, .checkbox3 label, .checkbox4 label {
+	cursor: pointer;
+	padding: 5px 8px;
+	width: 56px;
+	line-height: 26px;
+	text-align: center;
+	border: 1px solid #bdbdbd;
+	color: #bdbdbd;
+}
+
+.checkbox1 input:checked+label {
+	color: #fff;
+	font-weight: 600;
+	background-color: #6b6ce2;
+	border-color: #6b6ce2;
+}
+
+.checkbox2 input:checked+label, .checkbox3 input:checked+label,
+	.checkbox4 input:checked+label {
+	color: white;
+	border: 1px solid black;
+	font-weight: 600;
+	background-color: black;
+}
+
+.box4 {
+	height: 320px;
+	width: 62%;
+	background-color: #f7f8fa;
+	display: -webkit-flex;
+}
+
+.box4 .list {
+	width: 750px;
+}
+
+.box .box4 .list li {
+	display: flex;
+	display: -webkit-flex;
+}
+
+.box4 .list .age {
+	padding-bottom: 10px;
+	width: 470px;
+	border-bottom: 1px solid #dbdbdb;
+	border-right: 1px solid #dbdbdb;
+	display: block;
+}
+
+.box4 .list .gender {
+	padding-bottom: 10px;
+	padding-left: 15px;
+	width: 200px;
+	border-bottom: 1px solid #dbdbdb;
+}
+
+.box .list {
+	margin: 5px 0px;
+	padding: 5px 5px 5px 10px;
+	display: flex;
+	display: -webkit-flex;
+	flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
+}
+
+.local {
+	padding: 10px 0;
+	width: 100%;
+}
+
+.search {
+	width: 100%;
+	flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
+}
+
+.search .insearch {
+	display: inline-block;
+	width: calc(100% - 125px);
+	height: 42px;
+}
+
+.insearch input {
+	padding: 0 10px;
+	background-color: transparent;
+}
+
+.txt {
+	width: 100%;
+	height: 100%;
+	display: block;
+	border: 1px solid #999;
+}
+
+.search button {
+	margin-left: 10px;
+	width: 95px;
+	height: 42px;
+	color: #fff;
+	font-weight: 600;
+	background-color: #6b347c;
+	cursor: pointer;
+	padding: 0;
+	border: 0;
+	font-size: 16px;
+}
+
+.view {
+	width: 1024px;
+	margin: 0 auto;
+}
+
+.view button {
+	font-size: 16px;
+	margin: 0px;
+	padding: 5px 15px;
+	font-family: "맑은고딕";
+	font-weight: 600;
+}
+
+.view button:hover {
+	background: #dbb4b4;
+}
 </style>
 
 <h3>[스터디/취미 목록]</h3>
@@ -381,10 +417,18 @@
 		</div>
 	</div>
 
-검색 글:<span id=total style=""></span>
-<a href="/cou/insert">글등록</a>
 
-<div id="course"></div>
+<div class="view">
+	<div style="text-align: left; margin-left: 10px; padding-bottom: 10px; border-bottom: 1px dotted gray;">
+		<div style="display: inline-block;">
+			검색 글: <span id="total" style="margin-bottom: 5px;"></span>
+		</div>
+		<div style="display: inline-block; float: right; margin-top: -8px; margin-right: 15px;">
+			<button onClick="location.href='/cou/insert'">등록</button>
+		</div>
+	</div>
+	<div id="course"></div>
+</div>
 <script id="temp" type="text/x-handlebars-template">	
 	{{#each list}}
 	<div class="box_list">

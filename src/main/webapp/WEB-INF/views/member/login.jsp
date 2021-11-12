@@ -46,5 +46,12 @@
          $("#login_form").submit();
  	});
  	
+ 	//엔터키 클릭시 로그인
+ 	$(".pw_iput").on("keypress",function(e){
+		if(e.keyCode==13){
+			 $("#login_form").attr("action", "/member/login");
+	         $("#login_form").submit();
+		}
+ 	}); 	
 </script>
 </html>
