@@ -47,6 +47,7 @@ img{
 			원가:{{p_price}} => 할인된 가격:{{p_salePrice}}
 		</div>
 		<div class="p_category">{{p_category}}</div>
+		<div class="p_cnt_feed"> 내피드 : {{p_cnt_feed}}</div>
 	</div>
 	{{/each}}
 </script>

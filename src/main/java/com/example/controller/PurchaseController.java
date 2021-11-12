@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.example.domain.Criteria;
+import com.example.domain.MyfeedVO;
 import com.example.domain.PQueryVO;
 import com.example.domain.PReplyVO;
 import com.example.domain.PageMaker;
@@ -250,10 +251,16 @@ public class PurchaseController {
 		
 	}
 	
-	
 	@RequestMapping(value="/reply_insert", method=RequestMethod.POST)
 	@ResponseBody
 	public void purchase_reply_insert(PReplyVO vo){
 		service.purchase_insert_reply(vo);
+	}
+	
+	// myfeed insert
+	@RequestMapping(value="/feed_insert", method=RequestMethod.POST)
+	@ResponseBody
+	public void myfeed_insert(MyfeedVO vo){
+		service.purchase_insert_feed(vo);
 	}
 }

@@ -132,7 +132,7 @@
 			data:{"id":id,"S_image":image},
 			success:function(){
 				alert("삭제 성공!");
-				location.href="list";
+				location.href="/support/list";
 			}
 		})
 	})

@@ -19,8 +19,16 @@ public class ProductVO {
 	private String date_end; // 모집마감일
 	private int p_cnt_member; // 모집된 인원
 	private int p_tot_member; // 총 모집인원
-	private int p_view; // 조회수
 	private int p_cnt_feed; // 피드수
+	private String p_content; // 세부사항
+
+	public String getP_content() {
+		return p_content;
+	}
+
+	public void setP_content(String p_content) {
+		this.p_content = p_content;
+	}
 
 	public int getId() {
 		return id;
@@ -134,14 +142,6 @@ public class ProductVO {
 		this.p_tot_member = p_tot_member;
 	}
 
-	public int getP_view() {
-		return p_view;
-	}
-
-	public void setP_view(int p_view) {
-		this.p_view = p_view;
-	}
-
 	public int getP_cnt_feed() {
 		return p_cnt_feed;
 	}
@@ -156,7 +156,6 @@ public class ProductVO {
 				+ ", p_local=" + p_local + ", p_link=" + p_link + ", p_price=" + p_price + ", p_salePrice="
 				+ p_salePrice + ", p_image=" + p_image + ", p_category=" + p_category + ", date_start=" + date_start
 				+ ", date_end=" + date_end + ", p_cnt_member=" + p_cnt_member + ", p_tot_member=" + p_tot_member
-				+ ", p_view=" + p_view + ", p_cnt_feed=" + p_cnt_feed + "]";
+				+ ", p_cnt_feed=" + p_cnt_feed + ", p_content=" + p_content + "]";
 	}
-
 }

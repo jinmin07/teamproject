@@ -32,9 +32,6 @@ public class CourseController {
 	CourseDAO dao;
 	
 	@Autowired
-	MypageDAO mdao;
-	
-	@Autowired
 	CourseService service;
 	
 	@RequestMapping(value = "/cou/read")
