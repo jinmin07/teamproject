@@ -27,6 +27,7 @@ public interface CourseDAO {
 	public void update_cnt_course(int id, int value);
 	public void update_replystate_query(int c_query_id);
 	public void add_view_cnt(int id);
+	public void add_feed_cnt(int id);
 	public void query_state(int c_id);
 	
 	public List<CourseVO> list(Criteria cri);

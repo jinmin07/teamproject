@@ -33,7 +33,9 @@
 				<img src="../resources/course/${vo.tbl_code}.jpg" width=350>
 			</div>
 			<div style="float: left; width: 450px; text-align: left;">
-				<img style="float: right;" src="../resources/course/upload.png" width=20>
+				<c:if test="${vo.c_writer!=user.u_id}">
+					<img id="myfeed_insert" style="float: right;" src="../resources/course/upload.png" width=20>
+				</c:if>
 				<h3>${vo.title}</h3>
 				<h5>모임장소 : ${vo.c_place}</h5>
 				<h5>모임일정 : <f:formatDate value="${vo.date_start}" pattern="yy-MM-dd"/> - <f:formatDate value="${vo.date_end}" pattern="yy-MM-dd"/></h5>
@@ -123,6 +125,21 @@
 	var login_id = "${user.u_id}";
 	getList();
 
+	// 마이피드로 옮기기
+	$("#myfeed_insert").on("click", function(){
+		var tbl_code = "${vo.tbl_code}";
+		if(!confirm("내 피드로 옮기시겠습니까?")) return;
+		$.ajax({
+			type: "post",
+			url: "/course/feed_insert",
+			data: {"user_id": login_id, "tbl_code": tbl_code, "primary_id": id},
+			success: function(){
+				alert("내 피드로 옮겨졌습니다.");
+			}
+			
+		});
+	});
+	
 	// 게시글 삭제
 	$("#btn_course_delete").on("click", function(){
 		if(!confirm("게시글을 삭제하시겠습니까?")) return;
@@ -143,7 +160,6 @@
 		e.preventDefault();
 		var query_id = $(this).attr("href");
 		if(!confirm("문의글을 삭제하시겠습니까?")) return;
-		
 		$.ajax({
 			type:"post",
 			url: "/delete_query",

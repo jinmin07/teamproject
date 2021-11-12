@@ -4,13 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.domain.MyfeedVO;
 import com.example.domain.course.CReplyVO;
 import com.example.mapper.CourseDAO;
+import com.example.mapper.MypageDAO;
 
 @Service
 public class CourseServiceImpl implements CourseService {
 	@Autowired
 	CourseDAO dao;
+	
+	@Autowired
+	MypageDAO mdao;
 	
 	@Transactional
 	@Override
@@ -41,6 +46,13 @@ public class CourseServiceImpl implements CourseService {
 			dao.query_state(id);
 		}
 		dao.delete_course(id);
+	}
+
+	@Transactional
+	@Override
+	public void course_insert_feed(MyfeedVO vo) {
+		mdao.myfeed_insert(vo);
+		dao.add_feed_cnt(vo.getPrimary_id());
 	}
 	
 }

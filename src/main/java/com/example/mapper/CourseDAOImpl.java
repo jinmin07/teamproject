@@ -141,4 +141,9 @@ public class CourseDAOImpl implements CourseDAO {
 	public void query_state(int c_id) {
 		session.update(namespace + ".query_state", c_id);
 	}
+
+	@Override
+	public void add_feed_cnt(int id) {
+		session.update(namespace + ".add_feed_cnt", id);
+	}
 }
