@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	서브페이지부분
+
 </body>
 </html>

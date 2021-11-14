@@ -9,6 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import com.example.domain.MyfeedRefVO;
 import com.example.domain.MyfeedVO;
+import com.example.domain.PQueryVO;
+import com.example.domain.UserVO;
+import com.example.domain.course.CQueryVO;
 
 @Repository
 public class MypageDAOImpl implements MypageDAO {
@@ -34,5 +37,24 @@ public class MypageDAOImpl implements MypageDAO {
 		map.put("id", id);
 		return session.selectOne(namespace + ".myfeed_ref_list", map);
 	}
+	
+	@Override
+	public List<PQueryVO> my_query_list_purchase(String p_query_writer) {
+		return session.selectList(namespace + ".my_query_list_purchase", p_query_writer);
+	}
 
+	@Override
+	public List<CQueryVO> my_query_list_course(String c_query_writer) {
+		return session.selectList(namespace + ".my_query_list_course",c_query_writer);
+	}
+
+	@Override
+	public UserVO my_profile(String u_id) {
+		return session.selectOne(namespace + ".my_profile",u_id);
+	}
+
+	@Override
+	public void my_profile_update(UserVO vo) {
+		session.update(namespace + ".my_profile_update",vo);
+	}
 }

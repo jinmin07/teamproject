@@ -7,6 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-	서브페이지부분
+	<form name="frm">
+		<input type = "text" value = "${vo.u_id}"/>
+		<input/>
+		<input/>
+		<input/>
+		<input/>
+		<input/>
+		<input/>
+		<input/>		
+	</form>
+	
 </body>
 </html>

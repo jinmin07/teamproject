@@ -22,4 +22,21 @@
 			where id= #{id}
 		</if>
 	</select>
+		<select id="my_query_list_purchase" resultType="com.example.domain.PQueryVO">
+		select * from tbl_purchase_query
+		where p_query_writer = #{p_query_writer}
+	</select>
+	<select id="my_query_list_course" resultType="com.example.domain.course.CQueryVO">
+		select * from tbl_course_query
+		where c_query_writer = #{c_query_writer}
+	</select>
+	<select id="my_profile" resultType="com.example.domain.UserVO">
+		select * from tbl_user
+		where u_id = #{u_id}
+	</select>
+	<update id="my_profile_update">
+		update tbl_user set u_pass = #{u_pass}, u_name = #{u_name}, u_addr1 = #{u_addr1}, u_addr2 = #{u_addr2}, u_addr3 = #{u_addr3}
+			 u_email = #{u_email} , u_phone = #{u_phone}
+		where u_id = #{u_id}
+	</update>
 </mapper>
