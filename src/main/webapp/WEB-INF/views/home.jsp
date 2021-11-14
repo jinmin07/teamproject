@@ -65,7 +65,7 @@
 							<path d="M22 22l-5-5"></path>
 							<circle cx="11" cy="11" r="8"></circle></svg>
 						</div>
-						<a href="/member/login" style="color:inherit;width:27px;margin-left:20px;">
+						<a href="/mypage/subpage" style="color:inherit;width:27px;margin-left:20px;">
 							<i class="far fa-user" style=" margin-top:16px;font-size: 35px;"></i>
 						</a>
 						<a href="/#" style="color:inherit; width:27px;margin-left:30px;">

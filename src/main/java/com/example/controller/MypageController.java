@@ -16,13 +16,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.domain.MyfeedRefVO;
 import com.example.domain.MyfeedVO;
+import com.example.domain.PQueryVO;
+import com.example.domain.UserVO;
+import com.example.domain.course.CQueryVO;
 import com.example.mapper.MypageDAO;
+import com.example.mapper.UserDAO;
 
 @Controller
 @RequestMapping("/mypage")
 public class MypageController {
 	@Autowired
 	MypageDAO mdao;
+	
+	@Autowired
+	UserDAO udao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
 	
@@ -33,7 +40,7 @@ public class MypageController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/my_attend",method = RequestMethod.GET)
+	@RequestMapping(value = "/my_feed",method = RequestMethod.GET)
 	public String myAttend(Model model) {
 		model.addAttribute("pageName", "subpage.jsp" );
 		model.addAttribute("subpageName", "mypage/my_feed.jsp");
@@ -49,12 +56,66 @@ public class MypageController {
 		for(MyfeedVO vo: feeds){
 			String tbl_code = vo.getTbl_code();
 			String code = vo.getTbl_code().substring(0,1);
-			System.out.println(tbl_code +"/" + vo.getPrimary_id());
 			if(code.equals("C")){
 				tbl_code = "C";
 			}
 			refFeeds.add(mdao.myfeed_ref_list(tbl_code, vo.getPrimary_id()));
 		}
 		return refFeeds;
+	}
+	
+	@RequestMapping(value = "/my_query",method = RequestMethod.GET)
+	public String myQuery(Model model) {
+		model.addAttribute("pageName", "subpage.jsp" );
+		model.addAttribute("subpageName", "mypage/my_query.jsp");
+		logger.info("내가 문의한 글이 출력됩니다");
+		return "home";
+	}
+	
+	@RequestMapping(value ="/my_query/purchase",method = RequestMethod.GET)
+	public String myQueryPurchase(Model model) {
+		model.addAttribute("pageName", "subpage.jsp");
+		model.addAttribute("subpageName", "mypage/my_query.jsp");
+		model.addAttribute("url", "/my_query/purchase");
+		logger.info("공동구매 문의글 출력");
+		return "home";
+	}
+	
+	@RequestMapping(value ="/my_query/course",method = RequestMethod.GET)
+	public String myQueryCourse(Model model) {
+		model.addAttribute("pageName", "subpage.jsp");
+		model.addAttribute("subpageName", "mypage/my_query.jsp");	
+		model.addAttribute("url", "/my_query/course");
+		logger.info("스터디 및 취미 문의글 출력");
+		return "home";
+	}
+	
+	@RequestMapping(value = "/my_profile",method = RequestMethod.GET)
+	public String myProfile(Model model,String u_id) {
+		model.addAttribute("pageName", "subpage.jsp");
+		model.addAttribute("subpageName", "mypage/my_profile.jsp");
+		model.addAttribute("vo", mdao.my_profile(u_id));
+		logger.info("나의 설정으로 진입합니다");
+		return "home";
+	}
+	
+	@RequestMapping("/my_profile.json")
+	@ResponseBody
+	public UserVO my_profile_JSON(String u_id){
+		return mdao.my_profile(u_id);
+	}
+	
+	@RequestMapping("/list_purchase.json")
+	@ResponseBody
+	public List<PQueryVO> my_attend_list_purchase_JSON(String p_query_writer) throws Exception
+	{
+		return mdao.my_query_list_purchase(p_query_writer);
+	}
+	
+	@RequestMapping("/list_course.json")
+	@ResponseBody
+	public List<CQueryVO> my_attend_list_course_JSON(String c_query_writer) throws Exception
+	{
+		return mdao.my_query_list_course(c_query_writer);
 	}
 }

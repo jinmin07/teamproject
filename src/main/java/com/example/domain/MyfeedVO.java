@@ -2,11 +2,14 @@ package com.example.domain;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class MyfeedVO {
 	private int f_id;
 	private String user_id;
 	private String tbl_code;
 	private int primary_id;
+	@JsonFormat(pattern = "yy-MM-dd", timezone = "Asia/Seoul")
 	private Date f_date;
 	
 	public int getF_id() {
