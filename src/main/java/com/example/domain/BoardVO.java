@@ -19,10 +19,17 @@ public class BoardVO {
 	private String b_content;
 	private int b_view;
 	private int b_cnt_reply;
+	private int b_cnt_feed;
 	private int b_rec;
 	
 	//파일 업로드에 필요한 변수
 	private String b_image;
+	public int getB_cnt_feed() {
+		return b_cnt_feed;
+	}
+	public void setB_cnt_feed(int b_cnt_feed) {
+		this.b_cnt_feed = b_cnt_feed;
+	}
 	private ArrayList<String> b_images;
 	private int attachcount;
 	
@@ -112,12 +119,14 @@ public class BoardVO {
 	public void setB_rec(int b_rec) {
 		this.b_rec = b_rec;
 	}
+	
 	@Override
 	public String toString() {
 		return "BoardVO [id=" + id + ", tbl_code=" + tbl_code + ", b_category=" + b_category + ", title=" + title
 				+ ", b_date=" + b_date + ", updatedate=" + updatedate + ", b_writer=" + b_writer + ", b_content="
-				+ b_content + ", b_view=" + b_view + ", b_cnt_reply=" + b_cnt_reply + ", b_rec=" + b_rec + ", b_image="
-				+ b_image + ", b_images=" + b_images + ", attachcount=" + attachcount + "]";
+				+ b_content + ", b_view=" + b_view + ", b_cnt_reply=" + b_cnt_reply + ", b_cnt_feed=" + b_cnt_feed
+				+ ", b_rec=" + b_rec + ", b_image=" + b_image + ", b_images=" + b_images + ", attachcount="
+				+ attachcount + "]";
 	}
 }
 

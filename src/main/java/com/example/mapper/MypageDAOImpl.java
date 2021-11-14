@@ -7,11 +7,14 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.example.domain.BoardVO;
 import com.example.domain.MyfeedRefVO;
 import com.example.domain.MyfeedVO;
 import com.example.domain.PQueryVO;
+import com.example.domain.ProductVO;
 import com.example.domain.UserVO;
 import com.example.domain.course.CQueryVO;
+import com.example.domain.course.CourseVO;
 
 @Repository
 public class MypageDAOImpl implements MypageDAO {
@@ -56,5 +59,20 @@ public class MypageDAOImpl implements MypageDAO {
 	@Override
 	public void my_profile_update(UserVO vo) {
 		session.update(namespace + ".my_profile_update",vo);
+	}
+
+	@Override
+	public List<ProductVO> my_writing_list_purchase(String p_writer) {
+		return session.selectList(namespace + ".my_writing_list_purchase", p_writer);
+	}
+
+	@Override
+	public List<CourseVO> my_writing_list_course(String c_writer) {
+		return session.selectList(namespace + ".my_writing_list_course", c_writer);
+	}
+
+	@Override
+	public List<BoardVO> my_writing_list_board(String b_writer) {
+		return session.selectList(namespace + ".my_writing_list_board", b_writer);
 	}
 }
