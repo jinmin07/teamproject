@@ -3,6 +3,8 @@ package com.example.domain;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class ProductVO {
 
 	private int id; // 공동구매 번호
@@ -21,6 +23,16 @@ public class ProductVO {
 	private int p_tot_member; // 총 모집인원
 	private int p_cnt_feed; // 피드수
 	private String p_content; // 세부사항
+	@JsonFormat(pattern="yyyy-MM-dd",timezone="Asia/Seoul")
+	private Date p_date; //작성일
+
+	public Date getP_date() {
+		return p_date;
+	}
+
+	public void setP_date(Date p_date) {
+		this.p_date = p_date;
+	}
 
 	public String getP_content() {
 		return p_content;
@@ -156,6 +168,6 @@ public class ProductVO {
 				+ ", p_local=" + p_local + ", p_link=" + p_link + ", p_price=" + p_price + ", p_salePrice="
 				+ p_salePrice + ", p_image=" + p_image + ", p_category=" + p_category + ", date_start=" + date_start
 				+ ", date_end=" + date_end + ", p_cnt_member=" + p_cnt_member + ", p_tot_member=" + p_tot_member
-				+ ", p_cnt_feed=" + p_cnt_feed + ", p_content=" + p_content + "]";
+				+ ", p_cnt_feed=" + p_cnt_feed + ", p_content=" + p_content + ", p_date=" + p_date + "]";
 	}
 }

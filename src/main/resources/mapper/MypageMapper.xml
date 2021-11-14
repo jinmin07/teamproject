@@ -22,13 +22,29 @@
 			where id= #{id}
 		</if>
 	</select>
-		<select id="my_query_list_purchase" resultType="com.example.domain.PQueryVO">
+	<select id="my_writing_list_purchase" resultType="com.example.domain.ProductVO">
+		select * from tbl_purchase
+		where p_writer = #{p_writer} and p_state = 0
+		order by id desc
+	</select>
+	<select id="my_writing_list_course" resultType="com.example.domain.course.CourseVO">
+		select c.*, category, subcategory 
+		from tbl_course c, tbl_category s
+		where c.tbl_code = s.tbl_code and c_writer = #{c_writer} and c_state = 0
+		order by id desc
+	</select>
+	<select id="my_writing_list_board" resultType="com.example.domain.BoardVO">
+		select * from tbl_board
+		where b_writer = #{b_writer}
+		order by id desc
+	</select>
+	<select id="my_query_list_purchase" resultType="com.example.domain.PQueryVO">
 		select * from tbl_purchase_query
-		where p_query_writer = #{p_query_writer}
+		where p_query_writer = #{p_query_writer} and p_state = 0
 	</select>
 	<select id="my_query_list_course" resultType="com.example.domain.course.CQueryVO">
 		select * from tbl_course_query
-		where c_query_writer = #{c_query_writer}
+		where c_query_writer = #{c_query_writer} and c_state = 0
 	</select>
 	<select id="my_profile" resultType="com.example.domain.UserVO">
 		select * from tbl_user

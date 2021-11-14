@@ -23,7 +23,8 @@
       }
       .content{
          float:left;
-         width : 600px;
+         width : 900px;
+         margin-left: 50px;
       }
    </style>
 </head>
@@ -34,15 +35,20 @@
          <div class = "child">
             <h3><a href="/mypage/my_feed">내 피드</a></h3>
          </div>
-         <div class = "child">
-            <h3><a href="/mypage/my_writing">내가 쓴 글보기</a></h3>
+         <div class = "child" id="hover_writing">
+            <h3>내가 쓴 글보기</h3>
+            <div id="writing" style="display:none;">
+            	<h3><a href="/mypage/my_writing/purchase">공동구매</a></h3>
+            	<h3><a href="/mypage/my_writing/course">공동생활</a></h3>
+            	<h3><a href="/mypage/my_writing/board">커뮤니티</a></h3>
+            </div>
          </div>
          <div class = "child">
             <h3><a href="/mypage/my_attend">내가 참여한 글 보기</a></h3>
          </div>
-         <div class = "child">
-            <h3><a href="/mypage/my_query">내가 문의한 글 보기</a></h3>
-            <div>
+         <div class = "child" id="hover_query">
+            <h3>내가 문의한 글 보기</h3>
+            <div id="query" style="display:none;">
             	<h3><a href="/mypage/my_query/purchase">공동구매</a></h3>
             	<h3><a href="/mypage/my_query/course">공동생활</a></h3>
             </div>
@@ -56,4 +62,17 @@
       </div>
    </div>
 </body>
+<script>
+	$("#hover_writing").hover(function(){
+		$("#writing").show();
+	},function(){
+		$("#writing").hide();
+	});
+	
+	$("#hover_query").hover(function(){
+		$("#query").show();
+	},function(){
+		$("#query").hide();
+	});
+</script>
 </html>

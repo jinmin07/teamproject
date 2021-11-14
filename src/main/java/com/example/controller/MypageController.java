@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.domain.BoardVO;
 import com.example.domain.MyfeedRefVO;
 import com.example.domain.MyfeedVO;
 import com.example.domain.PQueryVO;
+import com.example.domain.ProductVO;
 import com.example.domain.UserVO;
 import com.example.domain.course.CQueryVO;
+import com.example.domain.course.CourseVO;
 import com.example.mapper.MypageDAO;
 import com.example.mapper.UserDAO;
 
@@ -90,6 +93,33 @@ public class MypageController {
 		return "home";
 	}
 	
+	@RequestMapping(value ="/my_writing/purchase",method = RequestMethod.GET)
+	public String myWritingPurchase(Model model) {
+		model.addAttribute("pageName", "subpage.jsp");
+		model.addAttribute("subpageName", "mypage/my_writing.jsp");
+		model.addAttribute("url", "/my_writing/purchase");
+		logger.info("공동구매 리스트 출력");
+		return "home";
+	}
+	
+	@RequestMapping(value ="/my_writing/course",method = RequestMethod.GET)
+	public String myWritingCourse(Model model) {
+		model.addAttribute("pageName", "subpage.jsp");
+		model.addAttribute("subpageName", "mypage/my_writing.jsp");	
+		model.addAttribute("url", "/my_writing/course");
+		logger.info("스터디 및 취미 리스트 출력");
+		return "home";
+	}
+	
+	@RequestMapping(value ="/my_writing/board",method = RequestMethod.GET)
+	public String myWritingBoard(Model model) {
+		model.addAttribute("pageName", "subpage.jsp");
+		model.addAttribute("subpageName", "mypage/my_writing.jsp");	
+		model.addAttribute("url", "/my_writing/board");
+		logger.info("커뮤니티 출력");
+		return "home";
+	}
+	
 	@RequestMapping(value = "/my_profile",method = RequestMethod.GET)
 	public String myProfile(Model model,String u_id) {
 		model.addAttribute("pageName", "subpage.jsp");
@@ -118,4 +148,25 @@ public class MypageController {
 	{
 		return mdao.my_query_list_course(c_query_writer);
 	}
+	
+	@RequestMapping("/list_writing_purchase.json")
+	@ResponseBody
+	public List<ProductVO> my_writing_list_purchase_JSON(String p_writer) throws Exception
+	{
+		return mdao.my_writing_list_purchase(p_writer);
+	}
+	
+	@RequestMapping("/list_writing_course.json")
+	@ResponseBody
+	public List<CourseVO> my_writing_list_course_JSON(String c_writer) throws Exception
+	{
+		return mdao.my_writing_list_course(c_writer);
+	}
+	@RequestMapping("/list_writing_board.json")
+	@ResponseBody
+	public List<BoardVO> my_writing_list_board_JSON(String b_writer) throws Exception
+	{
+		return mdao.my_writing_list_board(b_writer);
+	}
+	
 }
