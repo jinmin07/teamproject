@@ -66,12 +66,6 @@ public class CourseController {
 		return dao.list_category(tbl_code);
 	}
 	
-	@RequestMapping("/list_member.json")
-	@ResponseBody
-	public List<HashMap<String, Object>> list_member(int c_id){
-		return dao.list_member(c_id);
-	}
-	
 	@RequestMapping("/list_query.json")
 	@ResponseBody
 	public List<CQueryVO> list_query(int c_id){

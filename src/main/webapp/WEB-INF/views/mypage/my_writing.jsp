@@ -6,17 +6,22 @@
 	<tr class="title">
 		<td width="100">No.</td>
 		<td width="450">제목</td>
-		<td width="100">모집멤버</td>
+		<td width="150">모집멤버</td>
 		<td width="200">작성일</td>
 		<td width="100">피드수</td>
+		<td width="150">멤버평가</td>
+		<td width="130">채팅</td>
+
 	</tr>
 	{{#each .}}
-	<tr class = "row" onClick="location.href='/purchase/read?id={{id}}'">
-		<td width=100 class="p_id">{{id}}</td>
-      	<td width=450 class="title">{{title}}</td>
-      	<td width=100 class="p_member">{{p_cnt_member}}/{{p_tot_member}}</td>
-		<td width=200 class="p_date">{{p_date}}</td>
-		<td width=100 class="p_cnt_feed">{{p_cnt_feed}}</td>
+	<tr class = "row" tbl_code="{{tbl_code}}">
+		<td class="id">{{id}}</td>
+      	<td class="title">{{title}}</td>
+      	<td class="p_member">{{p_cnt_member}}/{{p_tot_member}}</td>
+		<td class="p_date">{{p_date}}</td>
+		<td class="p_cnt_feed">{{p_cnt_feed}}</td>
+		<td class="p_member_eval"><button>멤버평가</button></td>
+		<td class="p_member_chat"><button>채팅</button></td>
 	</tr>
 	{{/each}}
 	</script>
@@ -29,16 +34,20 @@
 		<td width="200">작성일</td>
 		<td width="100">조회수</td>
 		<td width="100">피드수</td>
+		<td width="150">멤버평가</td>
+		<td width="150">채팅</td>
 	</tr>
 	{{#each .}}
-	<tr class = "row" onClick="location.href='/cou/read?id={{id}}'">
-		<td class="c_id">{{id}}</td>
+	<tr class = "row" tbl_code="{{tbl_code}}">
+		<td class="id">{{id}}</td>
       	<td class="c_category">{{category}} > {{subcategory}}</td>
       	<td class="title">{{title}}</td>
       	<td class="c_member">{{c_cnt_member}}/{{c_tot_member}}</td>
 		<td class="c_date">{{c_date}}</td>
 		<td class="c_cnt_feed">{{c_cnt_feed}}</td>
 		<td class="c_view">{{c_view}}</td>
+		<td class="p_member_eval"><button>멤버평가</button></td>
+		<td class="p_member_chat"><button>채팅</button></td>
 	</tr>
 	{{/each}}
 	</script>
@@ -53,12 +62,12 @@
 	</tr>
 	{{#each .}}
 	<tr class = "row" onClick="location.href='/board/read?id={{id}}'">
-		<td width=100 class="b_id">{{id}}</td>
-      	<td width=300 class="title">{{title}}</td>
-      	<td width=100 class="b_date">{{b_date}}</td>
-		<td width=200 class="b_cnt_reply">{{b_cnt_reply}}</td>
-		<td width=100 class="b_rec">{{b_rec}}</td>
-		<td width=100 class="b_cnt_feed">{{b_cnt_feed}}</td>
+		<td class="id">{{id}}</td>
+      	<td class="title">{{title}}</td>
+      	<td class="b_date">{{b_date}}</td>
+		<td class="b_cnt_reply">{{b_cnt_reply}}</td>
+		<td class="b_rec">{{b_rec}}</td>
+		<td class="b_cnt_feed">{{b_cnt_feed}}</td>
 	</tr>
 	{{/each}}
 	</script>
@@ -74,6 +83,13 @@
 	if(url == "/my_writing/board"){
 		getListBoard();
 	}
+	
+	$("#tbl").on("click", ".p_member_eval button", function(){
+		var id = $(this).parent().parent().find(".id").html();
+		var tbl_code = $(this).parent().parent().attr("tbl_code");
+		var url = "/mypage/members?tbl_code="+tbl_code+"&id=" + id;
+		window.open(url,"", "width=400, height=400, top=200, left=900, location=no");
+	});
 	
 	function getListPurchase() {
 		var p_writer = "${user.u_id}";

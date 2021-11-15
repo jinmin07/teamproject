@@ -75,4 +75,15 @@ public class MypageDAOImpl implements MypageDAO {
 	public List<BoardVO> my_writing_list_board(String b_writer) {
 		return session.selectList(namespace + ".my_writing_list_board", b_writer);
 	}
+
+	@Override
+	public List<HashMap<String, Object>> list_member(int id, String tbl_code) {
+		HashMap<String, Object> map = new HashMap<>();
+		if(tbl_code.substring(0,1).equals("C")){
+			tbl_code = "C";
+		}
+		map.put("tbl_code", tbl_code);
+		map.put("id", id);
+		return session.selectList(namespace + ".list_member", map);
+	}
 }

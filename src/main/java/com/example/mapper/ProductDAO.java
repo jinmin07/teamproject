@@ -23,8 +23,6 @@ public interface ProductDAO {
 	
 	public void update(ProductVO vo);
 	
-	public List<HashMap<String,Object>> list_member(int p_id);
-	
 	public int chk_member(int p_id,String p_member);
 	
 	public void insert_member(int p_id,String p_member);
