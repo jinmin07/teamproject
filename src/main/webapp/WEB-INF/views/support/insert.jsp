@@ -14,18 +14,6 @@ input[type=text] {
 	font-size: 20px;
 }
 
-input[type=submit],input[type=reset]{
-	font-size:16px;
-	margin:0px;
-	padding: 5px 15px;
-	font-family:"맑은고딕";
-	font-weight: 600;
-}
-
-input[type=submit]:hover,input[type=reset]:hover{
-	background: #dbb4b4;
-}
-
 </style>
 <h1>[정책등록]</h1>
 <form name="frm" enctype="multipart/form-data" style="overflow: hidden; margin:0 auto;">
@@ -87,7 +75,7 @@ input[type=submit]:hover,input[type=reset]:hover{
 		
 	</div>
 	<div style="text-align:center; margin-right:70px;">
-			<input type="submit" value="정책등록"  style="margin-right:20px;"/> 
+			<input type="submit" value="정책등록" /> 
 			<input type="reset" value="등록취소" />
 	</div>
 </form>

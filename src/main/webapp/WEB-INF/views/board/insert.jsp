@@ -10,28 +10,18 @@
 	<style>
 		input[type=text] { width : 100%; margin : 10px; }
 		textarea { width : 100%; margin : 10px; }
-		form { width : 500px; padding : 20px; margin:0 auto;}
-		input[type=submit],input[type=reset]{
-			font-size:16px;
-			margin:0px;
-			padding: 5px 15px;
-			font-family:"맑은고딕";
-			font-weight: 600;
-		}
-		input[type=submit]:hover,input[type=reset]:hover{
-			background: #dbb4b4;
-		}
+		form { width : 500px; padding : 20px; }
 	</style>
 </head>
 <body>
 	<h1>[글쓰기]</h1>
 	<div>
 		<form name = "frm" method = "post" enctype="multipart/form-data" style="overflow : hidden">
-			<div style = "float : left; margin-left:75px;">
+			<div style = "float : left;">
 				<img id="b_image" src = "http://placehold.it/350x300" width=350/>
 			</div>
 			<input type = "text" name = "b_writer" value="${user.u_id}" readonly/>
-			<select name = "b_category" style="margin-left:10px;">
+			<select name = "b_category">
 				<option>[전체]</option>
 				<option>[정보제공]</option>
 				<option>[맛집추천]</option>
@@ -41,10 +31,8 @@
 			<textarea rows="5" cols="50" name="b_content" placeholder = "내용을 입력하세요"></textarea>
 			<input type = "file" name = "file" style="display : none;"/><br/>
 			<hr/>
-			<div style="text-align: center;">
 				<input type="submit" value="등록"/>
 				<input type="reset" value="취소"/>
-			</div>
 			<hr/>
 		</form>
 	</div>

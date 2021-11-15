@@ -7,7 +7,7 @@
 	.board_detail {
 	    display: block;
 	    position: relative;
-	    width: 980px;
+	    width: 840px;
 	    overflow: hidden;
 	    margin:0 auto;
 	    margin-top:30px;
@@ -114,7 +114,7 @@
 			<c:if test="${user!=null}">
 				<button type="button" class="btn_gray"  title="내 피드"  >내 피드</button>
 			</c:if>
-			<button type="button" onClick="location.href='list'" class="btn_gray" title="목록">목록</button>
+			<button type="button" onClick="location.href='/slist'" class="btn_gray" title="목록">목록</button>
 		
 		
 			
