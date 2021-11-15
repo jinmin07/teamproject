@@ -34,29 +34,29 @@ input[type=submit], input[type=reset] {
 
 <form name="frm">
 	<div class="row">
-		<input type="text" name="id" value="${vo.id}"/> 
-		<input type="text" name="c_writer" value="${user.u_id}">
+		<input type="hidden" name="id" value="${vo.id}"/> 
+		<input type="hidden" name="c_writer" value="${user.u_id}">
 		<h3>모임명</h3>
 		<input type="text" name="title" value="${vo.title}">
 		<div id="tbl_code">
 			<h3>모집 분야</h3>
 			<h4>스터디</h4>
-			<input type="checkbox" id="tbl_code" name="tbl_code" value="CSL" >어학&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="checkbox" id="tbl_code" name="tbl_code" value="CSJ">취업
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="checkbox" id="tbl_code"
-				name="tbl_code" value="CSI">재테크&nbsp;&nbsp; <input
-				type="checkbox" id="tbl_code" name="tbl_code" value="CSR">기타<br />
+			<input type="radio" id="tbl_code" name="tbl_code" value="CSL">어학&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" id="tbl_code" name="tbl_code" value="CSJ">취업&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			<input type="radio" id="tbl_code" name="tbl_code" value="CSI">재테크&nbsp;&nbsp; 
+			<input type="radio" id="tbl_code" name="tbl_code" value="CSR">기타<br/>
 			<h4>클래스</h4>
-			<input type="checkbox" id="tbl_code" name="tbl_code" value="CCH">공예&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="checkbox" id="tbl_code" name="tbl_code" value="CCC" checked>쿠킹&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="checkbox" id="tbl_code" name="tbl_code" value="CCE">운동&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="checkbox" id="tbl_code" name="tbl_code" value="CCR">기타<br />
+			<input type="radio" id="tbl_code" name="tbl_code" value="CCH">공예&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" id="tbl_code" name="tbl_code" value="CCC">쿠킹&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" id="tbl_code" name="tbl_code" value="CCE">운동&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" id="tbl_code" name="tbl_code" value="CCR">기타<br />
 			<h4>소모임</h4>
-			<input type="checkbox" id="tbl_code" name="tbl_code" value="CGA">공연예술&nbsp;
-			<input type="checkbox" id="tbl_code" name="tbl_code" value="CGF">맛집탐방&nbsp;
-			<input type="checkbox" id="tbl_code" name="tbl_code" value="CGT">여행&nbsp;
-			<input type="checkbox" id="tbl_code" name="tbl_code" value="CGR">기타
+			<input type="radio" id="tbl_code" name="tbl_code" value="CGA">공연예술&nbsp;
+			<input type="radio" id="tbl_code" name="tbl_code" value="CGF">맛집탐방&nbsp;
+			<input type="radio" id="tbl_code" name="tbl_code" value="CGT">여행&nbsp;
+			<input type="radio" id="tbl_code" name="tbl_code" value="CGR">기타
 		</div>
+		
 		<h3>모집 지역</h3>
 		<select name="c_local">
 			<option value="전국">전국</option>
@@ -121,13 +121,31 @@ input[type=submit], input[type=reset] {
 
 
 <script>
+
+	//DB값 불러와서 radio 버튼 checked
+	window.onload = function(){
+		document.querySelector("#tbl_code input[value='${vo.tbl_code}']").setAttribute('checked', true);
+	}
+
+	//DB값 불러와서 지역 selected
+	$("#c_local").val('${vo.c_local}').prop('selected', true);
+
+	//DB값 불러와서 연령 selected
+	$("#c_age_min").val('${vo.c_age_min}').prop('selected', true);
+	$("#c_age_max").val('${vo.c_age_max}').prop('selected', true);
+
+
+	//DB값 불러와서 성별 selected
+	$("#c_gender").val('${vo.c_gender}').prop('selected', true);
+
+
 	//course 수정하기
 	$(frm).on("submit", function(e) {
 		e.preventDefault();
 		var id = $(frm.id).val();
 		var c_writer = $(frm.c_writer).val();
 		var title = $(frm.title).val();
-		var tbl_code = $('input:checkbox[id="tbl_code"]:checked').val();
+		var tbl_code = $('input:radio[id="tbl_code"]:checked').val();
 		var c_local = $("select[name=c_local]").val();
 		var c_place = $(frm.c_place).val();
 		var c_tot_member = $(frm.c_tot_member).val();
@@ -143,22 +161,14 @@ input[type=submit], input[type=reset] {
 
 		if (!confirm("취미/스터디를 수정하실래요?")) return;
 		
-		frm.action = "/cou/update";
+		frm.action = "/course/update";
 		frm.method = "post";
 		frm.submit();
 		alert("수정 성공하였습니다.");
-		location.href = "/cou/list";
+		
 
 	});
 
 	
-	//세부 카테고리 1개만 checked 되도록 설정
-	$('input[type="checkbox"][name="tbl_code"]').click(
-			function() {
-				if ($(this).prop('checked')) {
-					$('input[type="checkbox"][name="tbl_code"]').prop(
-							'checked', false);
-					$(this).prop('checked', true);
-				}
-			});
+
 </script>

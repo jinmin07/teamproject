@@ -232,7 +232,7 @@
 	
 	// 새로고침 기능
 	function getLocation(){
-		var url = "/cou/read?id=" + id;
+		var url = "/course/read?id=" + id;
 		location.href=url;
 	}
 	
@@ -303,6 +303,7 @@
 					getLocation();
 				}else{
 					alert("이미 신청하신 컨텐츠입니다.");
+					
 				}
 			}
 		});
@@ -311,7 +312,7 @@
 	//수정 페이지로 이동
 	$("#btn_course_update").on("click", function(){
 		if(!confirm("글을 수정하시겠습니까?")) return;
-		location.href="/cou/update?id=${vo.id}";
+		location.href="/course/update?id=${vo.id}";
 	});
 </script>
 </html>

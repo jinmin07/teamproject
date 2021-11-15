@@ -34,7 +34,7 @@ public class CourseController {
 	@Autowired
 	CourseService service;
 	
-	@RequestMapping(value = "/cou/read")
+	@RequestMapping(value = "/course/read")
 	public String course_read(HttpServletRequest request, Model model, int id) {
 		CourseVO cvo = dao.list_course(id);
 		CategoryVO category = dao.list_category(cvo.getTbl_code());
@@ -113,7 +113,7 @@ public class CourseController {
 	@RequestMapping(value="/query_insert", method=RequestMethod.POST)
 	public String course_query_insert(CQueryVO vo){
 		dao.insert_query(vo);
-		String url = "redirect:/cou/read?id=" +vo.getC_id();
+		String url = "redirect:/course/read?id=" +vo.getC_id();
 		return url;
 	}
 	
@@ -141,7 +141,7 @@ public class CourseController {
 	}
 	
 	//course insert
-	@RequestMapping(value="/cou/insert", method = RequestMethod.POST)
+	@RequestMapping(value="/course/insert", method = RequestMethod.POST)
 	@ResponseBody
 	public String insertPost(CourseVO vo, String start, String end)throws Exception{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -150,22 +150,22 @@ public class CourseController {
 		Date date_end = sdf.parse(end);
 		vo.setDate_end(date_end);
 		dao.insert(vo);
-		return "redirect:/cou/list";
+		return "redirect:/course/list";
 	}
 
 	//course insert 페이지
-	@RequestMapping("/cou/insert")
+	@RequestMapping("/course/insert")
 	public String insert(Model model){
 		model.addAttribute("pageName", "course/cinsert.jsp");
 		return "home";
 	}
 
 	//course list 정보
-	@RequestMapping("/cou/list.json")
+	@RequestMapping("/course/list.json")
 	@ResponseBody
 	public HashMap<String, Object> listJson(Criteria cri){
 		HashMap<String, Object> map = new HashMap<>();
-		cri.setPerPageNum(12);
+		cri.setPerPageNum(9);
 		map.put("cri",cri);
 		map.put("list", dao.list(cri));
 		
@@ -178,7 +178,7 @@ public class CourseController {
 	
 	
 	// course list 페이지
-	@RequestMapping("/cou/list")
+	@RequestMapping("/course/list")
 	public String list(Model model) {
 		model.addAttribute("pageName", "course/clist.jsp");
 		return "home";
@@ -192,7 +192,7 @@ public class CourseController {
 
 	
 	// course 수정페이지
-	@RequestMapping("/cou/update")
+	@RequestMapping("/course/update")
 	public String update_course( int id, Model model,Date date_start, Date date_end){
 		CourseVO vo = dao.list_course(id);
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -207,7 +207,7 @@ public class CourseController {
 	}
 	
 	// course 수정
-	@RequestMapping(value="/cou/update", method=RequestMethod.POST)
+	@RequestMapping(value="/course/update", method=RequestMethod.POST)
 	@ResponseBody
 	public String update_coursePost(CourseVO vo, String start, String end)throws Exception{
 		System.out.println(vo.toString());
@@ -216,8 +216,8 @@ public class CourseController {
 		vo.setDate_start(date_start);
 		Date date_end = sdf.parse(end);
 		vo.setDate_end(date_end);
-		//dao.update_course(vo);
-		return "redirect:/cou/list";
+		dao.update_course(vo);
+		return "redirect:/course/list";
 	}
 	
 	// myfeed insert
