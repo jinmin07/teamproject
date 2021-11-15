@@ -37,20 +37,20 @@ input[type=submit], input[type=reset] {
 		<div id="tbl_code">
 		<h3>모집 분야</h3>
 			<h4>스터디</h4>
-			<input type="checkbox" id="tbl_code" name="tbl_code" value="CSL">어학&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="checkbox" id="tbl_code" name="tbl_code" value="CSJ">취업 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="checkbox" id="tbl_code" name="tbl_code" value="CSI">재테크&nbsp;&nbsp;
-			<input type="checkbox" id="tbl_code" name="tbl_code" value="CSR">기타<br/>
+			<input type="radio" id="tbl_code" name="tbl_code" value="CSL">어학&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" id="tbl_code" name="tbl_code" value="CSJ">취업 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" id="tbl_code" name="tbl_code" value="CSI">재테크&nbsp;&nbsp;
+			<input type="radio" id="tbl_code" name="tbl_code" value="CSR">기타<br/>
 			<h4>클래스</h4>
-			<input type="checkbox" id="tbl_code" name="tbl_code" value="CCH">공예&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="checkbox" id="tbl_code" name="tbl_code" value="CCC">쿠킹&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="checkbox" id="tbl_code" name="tbl_code" value="CCE">운동&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="checkbox" id="tbl_code" name="tbl_code" value="CCR">기타<br/>
+			<input type="radio" id="tbl_code" name="tbl_code" value="CCH">공예&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" id="tbl_code" name="tbl_code" value="CCC">쿠킹&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" id="tbl_code" name="tbl_code" value="CCE">운동&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" id="tbl_code" name="tbl_code" value="CCR">기타<br/>
 			<h4>소모임</h4>
-			<input type="checkbox" id="tbl_code" name="tbl_code" value="CGA">공연예술&nbsp;
-			<input type="checkbox" id="tbl_code" name="tbl_code" value="CGF">맛집탐방&nbsp;
-			<input type="checkbox" id="tbl_code" name="tbl_code" value="CGT">여행&nbsp;
-			<input type="checkbox" id="tbl_code" name="tbl_code" value="CGR">기타
+			<input type="radio" id="tbl_code" name="tbl_code" value="CGA">공연예술&nbsp;
+			<input type="radio" id="tbl_code" name="tbl_code" value="CGF">맛집탐방&nbsp;
+			<input type="radio" id="tbl_code" name="tbl_code" value="CGT">여행&nbsp;
+			<input type="radio" id="tbl_code" name="tbl_code" value="CGR">기타
 		</div>	
 		<h3>모집 지역</h3>
 		<select name="c_local" >
@@ -121,7 +121,7 @@ input[type=submit], input[type=reset] {
 		e.preventDefault();
 		var c_writer = $(frm.c_writer).val();
 		var title = $(frm.title).val();
-		var tbl_code = $('input:checkbox[id="tbl_code"]:checked').val();
+		var tbl_code = $('input:radio[id="tbl_code"]:checked').val();
 		var c_local = $("select[name=c_local]").val();
 		var c_place = $(frm.c_place).val();
 		var c_tot_member = $(frm.c_tot_member).val();
@@ -164,18 +164,12 @@ input[type=submit], input[type=reset] {
 		}
 		
 		if(!confirm("취미/스터디를 등록하실래요?")) return;
-	    frm.action="/cou/insert";
+	    frm.action="/course/insert";
 	    frm.method="post";
 	    frm.submit();
 	    alert("등록 성공!!!");
 	    
 	});
 
-	//세부 카테고리 1개만 checked
-	$('input[type="checkbox"][name="tbl_code"]').click(function(){
-  		if($(this).prop('checked')){
-     		$('input[type="checkbox"][name="tbl_code"]').prop('checked',false);
- 			$(this).prop('checked',true);
-    }
-   });
+	
 </script>
