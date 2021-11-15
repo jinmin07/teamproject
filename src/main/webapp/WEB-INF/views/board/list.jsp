@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 	<style>
 	#condition button{
 		font-size:16px;
@@ -16,6 +17,221 @@
 
 <h1>[글목록]</h1>
 
+<style>
+	.listoption{
+		margin:0 auto;
+		width:1200px;
+		margin-bottom: 70px;
+	    border-top: 1px solid #e5e5e5;
+	    border-bottom: 1px solid #e5e5e5;
+	    overflow: hidden;
+	}
+	
+	.box3{
+		height:100px;
+		width: 600px;
+    	border-bottom: 1px solid #e5e5e5;
+    	justify-content: flex-end;
+   	 	background-color: #F0FFFF;
+   	 	float:left;
+	}
+	
+	.list{
+		font-size: 14px;
+	}
+	
+	.box3 .list .title{
+		line-height: 32px;
+		margin:5px 0px;
+		font-weight:600;
+	}
+	
+	
+	.box3 .list .checkbox1{
+		margin-left:10px;
+		position: relative;
+	    display: flex;
+	    display: -webkit-flex;
+	    flex-wrap: wrap;
+	    -webkit-flex-wrap: wrap;
+	    align-items: center;
+	}
+	
+	p{
+		margin:5px;
+		display:block
+	}
+	
+	 input[type=radio] {
+	    border: 0;
+	    clip: rect(0 0 0 0);
+	    height: 1px;
+	    margin: -1px;
+	    overflow: hidden;
+	    padding: 0;
+	    position: absolute;
+	    width: 0;
+	}
+	
+	.checkbox1 input+label {
+		position: relative;
+		display: block;
+		cursor: pointer;
+		font-size: 15px;
+		width:72px;
+		line-height: 30px;
+		text-align: center;
+    	border: 1px solid #333;
+	}
+	
+	.checkbox2 label{
+		cursor: pointer;
+	    padding: 5px 8px;
+	    width: 56px;
+	    line-height: 26px;
+	    text-align: center;
+	    border: 1px solid #bdbdbd;
+	    color:#bdbdbd;
+	}
+	
+	.checkbox1 input:checked +label{
+		color: #fff; 
+	    font-weight: 600;
+	    background-color: #6b6ce2;
+	    border-color: #6b6ce2;
+	}
+	
+	.checkbox2 input:checked +label{
+		color:white;
+		border: 1px solid black;
+		font-weight: 600;
+		background-color: black;
+	}
+	
+	
+	.box4{
+		height:100px;
+		width:50%;
+		background-color: #f7f8fa;
+		display:-webkit-flex;
+	}
+	
+	.box4 .list 	{
+		width:750px;
+   	 
+	}
+	
+	.box .box4 .list li{
+		display: flex;
+		display: -webkit-flex;
+	}
+	
+		
+	
+	.box .list{
+		margin:5px 0px;
+		padding: 5px 5px 5px 10px;
+	    display: flex;
+	    display: -webkit-flex;
+	    flex-wrap: wrap;
+	    -webkit-flex-wrap: wrap;
+	}
+		
+	.search{
+		width: 100%;
+	    flex-wrap: wrap;
+	    -webkit-flex-wrap: wrap;
+	    padding-top:15px;
+	}
+	
+	.search .insearch{
+		display:inline-block;
+		width: calc(100% - 125px);
+	    height: 42px;
+	}
+	
+	.insearch input{
+		padding: 0 10px;
+    	background-color: transparent;
+	}
+	
+	.txt{
+		width:100%; height:100%; display: block; border: 1px solid #999;
+		
+	}
+	
+	.search button{
+		margin-left: 10px;
+	    width: 95px;
+	    height: 42px;
+	    color: #fff;
+	    font-weight: 600;
+	    background-color: #6b347c;
+	    cursor: pointer;
+	    padding: 0;
+	    border:0;
+	    font-size: 16px;
+	}
+
+</style>
+
+<h1>[글목록]</h1>
+
+<!-- 리스트 검색 박스 시작 -->
+	<div class="listoption">
+		<div class="box box3" >
+			<dl class="list">
+				<dt><h3 class="title">카테고리별</h3></dt>
+				<dd>
+					<div class="checkbox1" id="searchType" >
+							<p>
+								<input type="radio" id="allCate"  name="cate" value="[전체]" checked />
+								<label for="allCate">전체</label>
+							</p>
+							<p>
+								<input type="radio" id="cate1" name="cate" value="[맛집추천]" />
+								<label for="cate1">맛집추천</label>
+							</p>
+							<p>
+								<input type="radio" id="cate2" name="cate" value="[후기]" />
+								<label for="cate2">후기</label>
+							</p>
+							
+							<p>
+								<input type="radio" id="cate3" name="cate" value="[정보제공]" />
+								<label for="cate3">정보제공</label>
+							</p>
+							<p>
+								<input type="radio" id="cate4" name="cate" value="[문의사항]" />
+								<label for="cate4">문의사항</label>
+							</p>
+							<p>
+								<input type="radio" id="cate5" name="cate" value="[공지사항]"/>
+								<label for="cate5">공지사항</label>
+							</p>
+						
+					</div>
+				</dd>
+			</dl>
+		</div>
+		
+		<div class="box box4">
+			<ul class="list">
+				<li class="search">
+					<div class="insearch" id="searchType">
+						<input type="text" class="txt" id="searchtxt" name="searchtxt" placeholder="검색"/>
+					</div>
+					<button type="button" id="searchbtn" style="">조회</button>				
+				</li>
+			</ul>
+		</div>
+	</div>
+
+<!-- 리스트 검색 박스  끝-->
+
+
+
+<a href="/board/insert" style="float:right">글쓰기</a>
 <div id="condition">
 	<select id="searchType">
 		<option value="title">제목</option>

@@ -12,20 +12,22 @@
 }
 
 .box_list {
-	width: 200px;
-	height: 300px;
+	width: 270px;
+	height: 320px;
 	float: left;
-	margin-left: 20px;
+	margin-left: 32px;
 	padding: 5px;
 	margin-bottom: 30px;
 	box-shadow: 5px 5px 5px gray;
-	border-radius: 10px;
+	border:0.5px solid gray;
+	
 }
 
 .box_list img {
 	cursor: pointer;
-	width: 170px;
-	height: 120px;
+	width: 250px;
+	height: 150px;
+	padding-top:5px;
 }
 
 .pagination {
@@ -46,25 +48,11 @@
 	color: white;
 }
 
-.pagination
- 
-a
-:hover
-:not
- 
-(
-.active
- 
-)
-{
-background-color
-:
- 
-#ddd
-;
-
-
+.pagination a :hover :not(.active){
+background-color:#ddd;
 }
+
+
 .listoption {
 	margin: 0 auto;
 	width: 1200px;
@@ -419,16 +407,17 @@ input[type=radio] {
 
 
 <div class="view">
-	<div style="text-align: left; margin-left: 10px; padding-bottom: 10px; border-bottom: 1px dotted gray;">
+	<div style="text-align: left; margin-left: 10px; padding-bottom: 7px; border-bottom: 1px dotted gray; margin-bottom:15px;">
 		<div style="display: inline-block;">
-			검색 글: <span id="total" style="margin-bottom: 5px;"></span>
+			<h4 id="total" style="margin-bottom: 5px;"></h4>
 		</div>
 		<div style="display: inline-block; float: right; margin-top: -8px; margin-right: 15px;">
-			<button onClick="location.href='/cou/insert'">등록</button>
+			<button onClick="location.href='/course/insert'">등록</button>
 		</div>
 	</div>
-	<div id="course"></div>
+	
 </div>
+<div id="course"></div>
 <script id="temp" type="text/x-handlebars-template">	
 	{{#each list}}
 	<div class="box_list">
@@ -450,8 +439,12 @@ input[type=radio] {
 	{{/each }}
 </script>
 
-<div id="pagination" class="pagination"></div>
+<!-- 페이징 -->
+<div style="text-align: center; margin-bottom:10px;">
+	<div id="pagination" class="pagination"></div>
+</div>
 <script src="/resources/pagination.js"></script>
+
 
 <script>
 
@@ -482,14 +475,14 @@ input[type=radio] {
 		
 		$.ajax({
 			type: "get",
-			url: "/cou/list.json",
+			url: "/course/list.json",
 			dataType: "json",
 			data : {"page" : page,"keyword":keyword,"catType":catType,"ageType":ageType,"genderType":genderType,"searchType":searchType},
 			success: function(data){
 				var temp=Handlebars.compile($("#temp").html());
 				$("#course").html(temp(data));
 				$("#pagination").html(getPagination(data));
-				$("#total").html(data.pm.totalCount);
+				$("#total").html(data.pm.totalCount +"개의 게시글이 있습니다.");
 			}
 		});
 	}
