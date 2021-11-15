@@ -9,49 +9,65 @@
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+	
+	<style>
+	form{width:500px; margin:0 auto; border-top:1px solid gray; padding-top:5px; padding-left:20px;}
+	button, input[type=submit],input[type=reset]{
+	font-size:16px;
+		margin:0px;
+		padding: 5px 10px;
+		font-family:"맑은고딕";
+		font-weight: 600;
+	}
+	button:hover,input[type=submit]:hover,input[type=reset]:hover  {
+		background: 	#dbb4b4;
+		}
+</style>
 </head>
 <body>
+	<span style="margin-left:460px;margin-bottom:5px; font-size: 20px; font-weight: 600;">회원가입</span>
 	<form name="frm">
-		아이디:<input type="text" name="id" class="id_input">
-		<button class="id_check">아이디 중복 확인</button><br/>
-		비밀번호:<input type="password" name="pass" /><br/>
-		이름: <input type="text" name="name" /><br/>
-		나이: <input type="text" name="age" /><br/> 
-		<div class="address_wrap">
-			<div class="address_name">주소</div>
-			<div class="address_input_1_wrap">
-				<div class="address_input_1_box">
-					<input class="address_input_1" name="addr1"/>
-					<div class="address_button" onclick="execution_daum_address()">
-						<button>주소찾기</button>
+	아이디 <input type="text" name="id" class="id_input" style="margin-left:62px;">
+		<button type="button" class="id_check" style="margin-left:5px;">아이디 중복 확인</button><br/>
+		비밀번호<input type="password" name="pass" style="margin-left:51px;margin-top:10px;"/><br/>
+		이름 <input type="text" name="name" style="margin-top:10px; margin-left:77px;"/><br/>
+		나이 <input type="text" name="age" style="margin-top:10px; margin-left:77px;" /><br/> 
+		<div class="address_wrap" style="margin-top:10px;">
+			<div class="address_name" >주소</div>
+			<div class="address_input_1_wrap" style="margin-left:114px;" >
+				<div class="address_input_1_box" >
+					<input class="address_input_1" name="addr1" style="width:70px;"/>
+					<div class="address_button" onclick="execution_daum_address()" style="display: inline-block; margin-left: 116px;">
+						<button type="button" >주소찾기</button>
 					</div>
 				</div>	
 			</div>
-			<div class="address_input_2_wrap">
+		<div class="address_input_2_wrap" style="margin-left:114px; margin-bottom:4px;">
 				<div class="address_input_2_box">
 					<input class="address_input_2" name="addr2"/>
 				</div>
 			</div>
-			<div class="address_input_3_wrap">
+			<div class="address_input_3_wrap" style="margin-left:114px;">
 				<div class="address_input_3_box">
 					<input class="address_input_3" name="addr3"/>
 				</div>
 			</div>
 		</div>
-		성별: <input type="text" name="gender" /><br/>
-		이메일: <input type="text" name="email" class="mail_input"/><br/>
-		<div class="mail_check_input_box" id="mail_check_input_box_false">
-			<input type="text"  name="mail_check_input" class="mail_check_input"/>
-		</div>
-		<div class="mail_check_button">
+		성별   <input type="text" name="gender"  style="margin-top:10px; margin-left:76px;"/><br/>
+		이메일  <input type="text" name="email" class="mail_input" style="margin-top:10px; margin-left:61px;"/>
+		<div class="mail_check_button" style="display: inline-block;  margin-left:5px;">
+			<button type="button" >인증번호발송</button>
+		</div><br/>
+		<div class="mail_check_input_box" id="mail_check_input_box_false" style="display: inline-block; margin-top:15px; margin-left:115px;" >
 			<button>인증번호발송</button>
 		</div>
-		<div class="mail_check_button_warn">
-			<button>인증번호확인</button>
+		<div class="mail_check_button_warn"  style="display: inline-block; margin-left:5px;" >
+			<button type="button">인증번호확인</button>
 		</div>
+		<br/>
 		<span id="mail_check_input_box_warn">인증</span><br/>
-		핸드폰번호: <input type="text" name="phone" /><br/>
-		<div>
+		핸드폰번호 <input type="text" name="phone" style="margin-top:10px; margin-left:30px;" /><br/>
+		<div style="margin-top:20px; text-align: center;">
 			<input type="submit" value="회원가입">
 			<input type="reset" value="등록취소">
 		</div>

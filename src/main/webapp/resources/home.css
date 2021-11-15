@@ -200,18 +200,20 @@ li{
 }
 
 .navigation-search__input__text {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 8px 9px 10px 39px;
-    font-family: inherit;
-    font-size: 15px;
-    line-height: 20px;
-    background-color: #fff;
-    color: #424242;
-    border: 1px solid #dbdbdb;
-    border-radius: 4px;
-    transition: background-color .1s;
+       display: block !important;
+    width: 300px !important;
+    height:40px !important;
+    margin:0px !important;
+    box-sizing: border-box !important;
+    padding: 8px 9px 10px 39px !important;
+    font-family: inherit !important;
+    font-size: 15px !important;
+    line-height: 20px !important;
+    background-color: #fff !important;
+    color: #424242 !important;
+    border: 1px solid #dbdbdb !important;
+    border-radius: 4px !important;
+    transition: background-color .1s !important;
 }
 
 
