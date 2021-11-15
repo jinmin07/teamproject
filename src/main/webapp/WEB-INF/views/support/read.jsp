@@ -7,7 +7,7 @@
 	.board_detail {
 	    display: block;
 	    position: relative;
-	    width: 840px;
+	    width: 980px;
 	    overflow: hidden;
 	    margin:0 auto;
 	    margin-top:30px;
