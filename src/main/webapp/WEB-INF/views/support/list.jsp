@@ -297,7 +297,7 @@
 		font-weight: 600;
 	}
 	.view button:hover{
-		background: 	#dbb4b4;
+		background: #dbb4b4;
 	}
 	
 	

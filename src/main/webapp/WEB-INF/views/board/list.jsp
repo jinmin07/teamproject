@@ -1,9 +1,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<style>
+	#condition button{
+		font-size:16px;
+		margin:0px;
+		padding: 5px 15px;
+		font-family:"맑은고딕";
+		font-weight: 600;
+	}
+	#condition button:hover{
+		background: #dbb4b4;
+	}
+</style>	
+	
 <h1>[글목록]</h1>
 
-<a href="/board/insert" style="float:right">글쓰기</a>
 <div id="condition">
 	<select id="searchType">
 		<option value="title">제목</option>
@@ -12,6 +24,7 @@
 	</select> 
 	<input type="text" id="keyword" placeholder="검색어" /> 
 	검색수 : <span id="totalCount"></span>
+	<button onClick="location.href='/board/insert'" style="float:right">글쓰기</button>
 </div>
 
 <table id="tbl"></table>
@@ -34,7 +47,9 @@
 	{{/each}}
 </script>
 
-<div id="pagination" class="pagination"></div>
+<div style="text-align: center; margin-bottom:10px;">
+	<div id="pagination" class="pagination" ></div>
+</div>
 <script src="/resources/pagination.js"></script>
 
 <script>
