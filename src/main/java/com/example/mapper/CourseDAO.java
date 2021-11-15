@@ -14,7 +14,6 @@ public interface CourseDAO {
 	public CourseVO list_course(int id);
 	public void delete_course(int id);
 	public CategoryVO list_category(String tbl_code);
-	public List<HashMap<String, Object>> list_member(int c_id);
 	public int chk_member(int c_id, String c_member);
 	public void insert_member(int c_id, String c_member);
 	public void delete_member(int c_id, String c_member);

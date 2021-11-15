@@ -28,7 +28,7 @@
 	</tr>
 	{{#each .}}
 		<tr class="row">
-			<td class="p_member">{{p_member}}</td>
+			<td class="p_member">{{member}}</td>
 			<td class="u_name">{{u_name}}</td>
 			<td class="u_gender">{{u_gender}}</td>
 			<td class="u_score">{{u_score}}</td>
@@ -71,9 +71,9 @@
 	function getList(){
 		$.ajax({
 			type:"get",
-			url: "/purchase/list_member.json",
+			url: "/mypage/list_member.json",
 			dataType:"json",
-			data: {"p_id": p_id},
+			data: {"id": p_id, "tbl_code": "P"},
 			success : function(data){
 				var temp = Handlebars.compile($('#temp').html());
 				$('#tbl').html(temp(data));

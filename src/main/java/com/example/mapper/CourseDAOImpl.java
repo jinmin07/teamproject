@@ -26,11 +26,6 @@ public class CourseDAOImpl implements CourseDAO {
 	}
 
 	@Override
-	public List<HashMap<String, Object>> list_member(int c_id) {
-		return session.selectList(namespace + ".list_member", c_id);
-	}
-
-	@Override
 	public List<CQueryVO> list_query(int c_id) {
 		return session.selectList(namespace + ".list_query", c_id);
 	}

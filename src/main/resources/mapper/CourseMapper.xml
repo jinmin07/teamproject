@@ -124,11 +124,6 @@
 		select * from tbl_category
 		where tbl_code = #{tbl_code}
 	</select>
-	<!-- 신청명단 출력 -->
-	<select id="list_member" resultType="hashmap">
-		select m.*, u_name, u_gender, u_score from tbl_course_member m, tbl_user
-		where c_member = u_id and c_id = #{c_id} 
-	</select>
 	<!-- 회원 스터디/취미 신청여부 확인 -->
 	<select id="chk_member" resultType="int">
 		select count(*) from tbl_course_member

@@ -34,6 +34,7 @@ import com.example.domain.PReplyVO;
 import com.example.domain.PageMaker;
 import com.example.domain.ProductVO;
 import com.example.domain.UserVO;
+import com.example.domain.course.CQueryVO;
 import com.example.domain.course.CReplyVO;
 import com.example.domain.course.CategoryVO;
 import com.example.domain.course.CourseVO;
@@ -182,13 +183,6 @@ public class PurchaseController {
 		return result;
 	}
 	
-	@RequestMapping("/list_member.json")
-	@ResponseBody
-	public List<HashMap<String,Object>> list_memeber(int p_id){
-		return pdao.list_member(p_id);
-	}
-	
-	
 	@RequestMapping(value="/insert_member", method= {RequestMethod.POST,RequestMethod.GET})
 	@ResponseBody
 	public int insert_member(int p_id, String p_member) throws Exception{
@@ -242,6 +236,13 @@ public class PurchaseController {
 		model.addAttribute("vo", pvo);
 		model.addAttribute("pageName", "purchase/queryInsert.jsp");
 		return "home";
+	}
+	
+	@RequestMapping(value="/query_insert", method=RequestMethod.POST)
+	public String purchase_query_insert(PQueryVO vo){
+		pdao.insert_query(vo);
+		String url = "redirect:/purchase/read?id=" +vo.getP_id();
+		return url;
 	}
 	
 	@RequestMapping(value="/delete_query", method=RequestMethod.POST)

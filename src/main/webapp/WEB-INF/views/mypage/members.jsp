@@ -13,10 +13,10 @@
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>신청명단</title>
+	<title>신청멤버</title>
 </head>
 <body>
-	<h3>신청명단</h3>
+	<h3>신청멤버</h3>
 	<table id="tbl"></table>
 	<script id="temp" type="text/x-handlebars-template">
 	<tr class="title">
@@ -24,15 +24,15 @@
 		<td width=100>이름</td>
 		<td width=100>성별</td>
 		<td width=100>호감지수</td>
-		<td width=100>신청거절</td>
+		<td width=100>수정</td>
 	</tr>
 	{{#each .}}
 		<tr class="row">
-			<td class="c_member">{{member}}</td>
+			<td class="member">{{member}}</td>
 			<td class="u_name">{{u_name}}</td>
 			<td class="u_gender">{{u_gender}}</td>
 			<td class="u_score">{{u_score}}</td>
-			<td><button class="btn_member_out">거절</button></td>
+			<td><button class="btn_member_out">평가</button></td>
 		</tr>
 	{{/each}}
 	</script>
@@ -42,7 +42,8 @@
 </body>
 
 <script>
-	var c_id="${id}";
+	var tbl_code="${tbl_code}";
+	var id= "${id}";
 	getList();
 	
 	$("#tbl").on("click", ".btn_member_out", function(){
@@ -71,7 +72,7 @@
 			type:"get",
 			url: "/mypage/list_member.json",
 			dataType:"json",
-			data: {"id": c_id, "tbl_code": "C"},
+			data: {"id": id, "tbl_code": tbl_code},
 			success : function(data){
 				var temp = Handlebars.compile($('#temp').html());
 				$('#tbl').html(temp(data));

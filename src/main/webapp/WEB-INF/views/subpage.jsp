@@ -23,7 +23,7 @@
       }
       .content{
          float:left;
-         width : 900px;
+         width : 950px;
          margin-left: 50px;
       }
    </style>
@@ -43,8 +43,12 @@
             	<h3><a href="/mypage/my_writing/board">커뮤니티</a></h3>
             </div>
          </div>
-         <div class = "child">
+         <div class = "child" id="hover_attend">
             <h3><a href="/mypage/my_attend">내가 참여한 글 보기</a></h3>
+            <div id="attend" style="display:none;">
+            	<h3><a href="/mypage/my_attend/purchase">공동구매</a></h3>
+            	<h3><a href="/mypage/my_attend/course">공동생활</a></h3>
+            </div>
          </div>
          <div class = "child" id="hover_query">
             <h3>내가 문의한 글 보기</h3>
@@ -73,6 +77,12 @@
 		$("#query").show();
 	},function(){
 		$("#query").hide();
+	});
+	
+	$("#hover_attend").hover(function(){
+		$("#attend").show();
+	},function(){
+		$("#attend").hide();
 	});
 </script>
 </html>

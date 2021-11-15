@@ -50,11 +50,6 @@ public class ProductDAOImpl  implements ProductDAO{
 	}
 
 	@Override
-	public List<HashMap<String, Object>> list_member(int p_id) {
-		return session.selectList(namespace + ".list_member",p_id);
-	}
-
-	@Override
 	public int chk_member(int p_id, String p_member) {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("p_id", p_id);
@@ -141,4 +136,5 @@ public class ProductDAOImpl  implements ProductDAO{
 	public void add_feed_cnt(int id) {
 		session.update(namespace + ".add_feed_cnt", id);
 	}
+
 }

@@ -39,11 +39,6 @@
 		tbl_purchase_member
 		where p_id=#{p_id} and p_member = #{p_member}
 	</select>
-	<select id="list_member" resultType="hashmap">
-		select
-		m.*,u_name,u_gender,u_score from tbl_purchase_member m,tbl_user
-		where p_member = u_id and p_id = #{p_id}
-	</select>
 	<insert id="insert_member">
 		insert into tbl_purchase_member(p_id, p_member)
 		values(#{p_id}, #{p_member})

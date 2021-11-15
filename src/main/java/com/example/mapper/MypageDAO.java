@@ -1,5 +1,6 @@
 package com.example.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.example.domain.BoardVO;
@@ -17,6 +18,7 @@ public interface MypageDAO {
 	public List<ProductVO> my_writing_list_purchase(String p_writer);
 	public List<CourseVO> my_writing_list_course(String c_writer);
 	public List<BoardVO> my_writing_list_board(String b_writer);
+	public List<HashMap<String, Object>> list_member(int id, String tbl_code);
 	public UserVO my_profile(String u_id);
 	public void my_profile_update(UserVO vo);
 	public List<MyfeedVO> myfeedlist(String user_id);

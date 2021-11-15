@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.plaf.synth.SynthSeparatorUI;
@@ -119,6 +120,20 @@ public class MypageController {
 		logger.info("커뮤니티 출력");
 		return "home";
 	}
+	
+	@RequestMapping("/members")
+	public String course_member(int id, String tbl_code, Model model){
+		model.addAttribute("id", id);
+		model.addAttribute("tbl_code", tbl_code);
+		return "/mypage/members";
+	}
+	
+	@RequestMapping("/list_member.json")
+	@ResponseBody
+	public List<HashMap<String, Object>> list_member(int id, String tbl_code){
+		return mdao.list_member(id, tbl_code);
+	}
+	
 	
 	@RequestMapping(value = "/my_profile",method = RequestMethod.GET)
 	public String myProfile(Model model,String u_id) {
