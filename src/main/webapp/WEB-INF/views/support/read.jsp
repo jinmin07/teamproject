@@ -114,7 +114,7 @@
 			<c:if test="${user!=null}">
 				<button type="button" class="btn_gray"  title="내 피드"  >내 피드</button>
 			</c:if>
-			<button type="button" onClick="location.href='/slist'" class="btn_gray" title="목록">목록</button>
+			<button type="button" onClick="location.href='/support/list'" class="btn_gray" title="목록">목록</button>
 		
 		
 			

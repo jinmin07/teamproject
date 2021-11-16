@@ -11,65 +11,162 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 	
 	<style>
-	form{width:500px; margin:0 auto; border-top:1px solid gray; padding-top:5px; padding-left:20px;}
-	button, input[type=submit],input[type=reset]{
-	font-size:16px;
-		margin:0px;
-		padding: 5px 10px;
-		font-family:"맑은고딕";
-		font-weight: 600;
-	}
-	button:hover,input[type=submit]:hover,input[type=reset]:hover  {
-		background: 	#dbb4b4;
-		}
+form {
+	width: 600px;
+	margin: 0 auto;
+	border-top: 1px solid gray;
+	padding-top: 5px;
+	padding-left: 100px;
+}
+
+button, input[type=submit] {
+	font-size: 16px;
+	margin: 0px;
+	padding: 5px 10px;
+	font-family: "맑은고딕";
+	font-weight: 600;
+}
+
+button:hover, input[type=submit]:hover {
+	background: #dbb4b4;
+}
+
+input:focus {outline:none;}
+
+.join_title {
+	margin: 19px 0 8px;
+	font-size: 14px;
+	font-weight: 700;
+}
+
+
+.ps_box, .ps_box_disable, .address_input_1_box, .address_input_2_box,.address_input_3_box, .mail_check_input_box{
+	display: block;
+	position: relative;
+	width: 460px;
+	height: 51px;
+	border: solid 1px #dadada;
+	padding: 10px 110px 10px 14px;
+	background: #fff;
+	box-sizing: border-box;
+	vertical-align: top;
+}
+
+.id_input, .address_input_1,.mail_input,.mail_check_input{
+	display: block;
+	position: relative;
+	height: 29px;
+	line-height: 29px;
+	border: none;
+	background: #fff;
+	font-size: 15px;
+	box-sizing: border-box;
+	z-index: 10;
+	width: 327px;
+}
+
+.id_check,.address_button,.mail_check_button,.mail_check_button_warn{
+	float: right;
+	margin-right: 140px;
+	height: 50px;
+	display: inline;
+}
+
+.pw_input, .name_input, .age_input, .address_input_2,.address_input_3,.gender_input,.phone_input{
+	display: block;
+	position: relative;
+	width: 435px;
+	height: 29px;
+	line-height: 29px;
+	border: none;
+	background: #fff;
+	font-size: 15px;
+	box-sizing: border-box;
+	z-index: 10;
+}
+
+
+
 </style>
 </head>
 <body>
-	<span style="margin-left:460px;margin-bottom:5px; font-size: 20px; font-weight: 600;">회원가입</span>
+	<span style="margin-left:360px;margin-bottom:5px; font-size: 20px; font-weight: 600;font-size:40px;">회원가입</span>
 	<form name="frm">
-	아이디 <input type="text" name="id" class="id_input" style="margin-left:62px;">
-		<button type="button" class="id_check" style="margin-left:5px;">아이디 중복 확인</button><br/>
-		비밀번호<input type="password" name="pass" style="margin-left:51px;margin-top:10px;"/><br/>
-		이름 <input type="text" name="name" style="margin-top:10px; margin-left:77px;"/><br/>
-		나이 <input type="text" name="age" style="margin-top:10px; margin-left:77px;" /><br/> 
-		<div class="address_wrap" style="margin-top:10px;">
-			<div class="address_name" >주소</div>
-			<div class="address_input_1_wrap" style="margin-left:114px;" >
-				<div class="address_input_1_box" >
-					<input class="address_input_1" name="addr1" style="width:70px;"/>
-					<div class="address_button" onclick="execution_daum_address()" style="display: inline-block; margin-left: 116px;">
-						<button type="button" >주소찾기</button>
-					</div>
+		<h3 class="join_title" >아이디</h3> 
+		<div>
+			<span class="ps_box box_right_space" style="display: inline-block; width:357px;" >
+				<input type="text" name="id" class="id_input" maxlength="20" >
+			</span>
+			<button type="button" class="id_check" >중복확인</button>		
+		</div>
+		
+		<h3 class="join_title" style="margin-top:20px;">비밀번호</h3> 
+		<span class="ps_box box_right_space" >
+			<input type="password" name="pass" class="pw_input"  maxlength="20"/>
+		</span>
+		
+		<h3 class="join_title" style="margin-top:20px;">이름</h3> 
+		<span class="ps_box box_right_space" >
+			<input type="text" name="name" class="name_input" maxlength="40"/>
+		</span>
+		
+		<h3 class="join_title" style="margin-top:20px;">나이</h3> 
+		<span class="ps_box box_right_space" >
+			<input type="text" name="age" class="age_input" maxlength="3" />
+		</span> 
+		
+		<h3 class="join_title" style="margin-top:20px;">주소</h3> 
+		<div class="address_wrap" >
+			<div class="address_input_1_wrap" >
+				<div class="address_input_1_box" style=" width:357px; display:inline-block;">
+					<input class="address_input_1" name="addr1" placeholder="우편번호" />
 				</div>	
+				<button type="button" class ="address_button" onclick="execution_daum_address()">주소찾기</button>
 			</div>
-		<div class="address_input_2_wrap" style="margin-left:114px; margin-bottom:4px;">
+		<div class="address_input_2_wrap" style="margin-top:20px;" >
 				<div class="address_input_2_box">
-					<input class="address_input_2" name="addr2"/>
+					<input class="address_input_2" name="addr2" placeholder="주소"/>
 				</div>
 			</div>
-			<div class="address_input_3_wrap" style="margin-left:114px;">
+			<div class="address_input_3_wrap" style="margin-top:20px;">
 				<div class="address_input_3_box">
-					<input class="address_input_3" name="addr3"/>
+					<input class="address_input_3" name="addr3" placeholder="상세주소"/>
 				</div>
 			</div>
 		</div>
-		성별   <input type="text" name="gender"  style="margin-top:10px; margin-left:76px;"/><br/>
-		이메일  <input type="text" name="email" class="mail_input" style="margin-top:10px; margin-left:61px;"/>
-		<div class="mail_check_button" style="display: inline-block;  margin-left:5px;">
-			<button type="button" >인증번호발송</button>
-		</div><br/>
-		<div class="mail_check_input_box" id="mail_check_input_box_false" style="display: inline-block; margin-top:15px; margin-left:115px;" >
-			<button>인증번호발송</button>
+		
+		<h3 class="join_title" style="margin-top:20px;">성별</h3> 
+		<span class="ps_box box_right_space" >
+			<input type="text" name="gender"  class="gender_input" maxlength="3"/>
+		</span>
+		
+		<h3 class="join_title" style="margin-top:20px;">이메일</h3> 
+		<div>
+			<span class="ps_box box_right_space" style="display: inline-block; width:357px;" >
+				<input type="text" name="email" class="mail_input" maxlength="100" placeholder="이메일"/>
+			</span>
+			<button  class="mail_check_button">번호발송</button>
 		</div>
-		<div class="mail_check_button_warn"  style="display: inline-block; margin-left:5px;" >
-			<button type="button">인증번호확인</button>
+		
+		
+		
+		<div style="margin-top:20px;">
+			<span class="mail_check_input_box" id="mail_check_input_box_false" style="display: inline-block; width:357px;">
+				<input type="text"  name="mail_check_input" class="mail_check_input" placeholder="인증번호"/>
+			</span>
+			<button class="mail_check_button_warn">번호확인</button>
 		</div>
-		<br/>
-		<span id="mail_check_input_box_warn">인증</span><br/>
-		핸드폰번호 <input type="text" name="phone" style="margin-top:10px; margin-left:30px;" /><br/>
-		<div style="margin-top:20px; text-align: center;">
-			<input type="submit" value="회원가입">
-			<input type="reset" value="등록취소">
+		
+		<!-- <span id="mail_check_input_box_warn">인증</span><br/>-->
+		
+		<h3 class="join_title" style="margin-top:20px;">핸드폰번호</h3> 
+		<span class="ps_box box_right_space" >
+			<input type="text" name="phone" class="phone_input" />
+		</span>
+		
+		
+		<div style="margin-top:20px; ">
+			<input type="submit" value="회원가입" style="width:460px; height:52px;">
 		</div>
 	</form>
 </body>
@@ -142,6 +239,7 @@
 	            boxWrap.attr("id", "mail_check_input_box_true");
 	            code = data;
 	            alert("인증번호가 발송되었습니다.");
+	            $(".mail_check_input").focus();
 	            
 	        }
 	                
@@ -227,9 +325,12 @@
 				if(result == 'fail'){
 					console.log(result);
 					alert("아이디가 이미 존재합니다");	
+					$(".id_input").val("");
+					$(".id_input").focus();
 				} else {
 					console.log(result);
-					alert("사용가능한 아이디 입니다.");		
+					alert("사용가능한 아이디 입니다.");	
+					$(".pw_input").focus();
 				}
 			}
 		}); // ajax 종료	
