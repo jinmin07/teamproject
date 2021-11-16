@@ -11,15 +11,18 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <link rel="stylesheet" href="/resources/login.css">
 </head>
-<body>
+<body style="padding-top:180px; width:800px; margin:0 auto;">
 
+
+	<a class="navigation-logo"  href="/">	<h1>일맥상통</h1></a>
+	<div class="statusbox"></div>
 	<div class="wrapper">
 		<form id="login_form" method="post">
 			<div class="logo_wrap">
-				<span>Login</span>
+				<h2>로그인</h2>
 			</div>
 			<div class="login_wrap">
-				<div class="id_wrap">
+				<div class="id_wrap" >
 					<div class="id_input_box">
 						<input class="id_input" name="u_id">
 					</div>

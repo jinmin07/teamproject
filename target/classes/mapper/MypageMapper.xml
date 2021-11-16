@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.MypageMapper">
+		<!-- 신청명단 출력 -->
+	<select id="list_member" resultType="hashmap">
+		<if test='tbl_code=="P"'>
+			select p_id id, p_member member, u_name, u_gender, u_score from tbl_purchase_member m, tbl_user
+			where p_member = u_id and p_id = #{id}
+		</if>
+		<if test='tbl_code=="C"'>
+			select c_id id, c_member member, u_name, u_gender, u_score from tbl_course_member m, tbl_user
+			where c_member = u_id and c_id = #{id}
+		</if> 
+	</select>
+	<select id="myfeedlist" resultType="com.example.domain.MyfeedVO">
+		select * from tbl_feed
+		where user_id = #{user_id}
+		order by f_id desc
+	</select>
+	<insert id="myfeed_insert">
+		insert into tbl_feed(user_id, tbl_code, primary_id) 
+		values(#{user_id}, #{tbl_code}, #{primary_id})
+	</insert>
+	<select id="myfeed_ref_list" resultType="com.example.domain.MyfeedRefVO">
+		<if test='tbl_code=="P"'>
+			select id, tbl_code, p_writer writer, title, p_date regdate, p_image image, p_content content
+			from tbl_purchase
+			where id= #{id}
+		</if>
+		<if test='tbl_code=="C"'>
+			select id, tbl_code, c_writer writer, title, c_date regdate, c_content content
+			from tbl_course
+			where id= #{id}
+		</if>
+	</select>
+	<select id="my_writing_list_purchase" resultType="com.example.domain.ProductVO">
+		select * from tbl_purchase
+		where p_writer = #{p_writer} and p_state = 0
+		order by id desc
+	</select>
+	<select id="my_writing_list_course" resultType="com.example.domain.course.CourseVO">
+		select c.*, category, subcategory 
+		from tbl_course c, tbl_category s
+		where c.tbl_code = s.tbl_code and c_writer = #{c_writer} and c_state = 0
+		order by id desc
+	</select>
+	<select id="my_writing_list_board" resultType="com.example.domain.BoardVO">
+		select * from tbl_board
+		where b_writer = #{b_writer}
+		order by id desc
+	</select>
+	<select id="my_query_list_purchase" resultType="com.example.domain.PQueryVO">
+		select * from tbl_purchase_query
+		where p_query_writer = #{p_query_writer} and p_state = 0
+	</select>
+	<select id="my_query_list_course" resultType="com.example.domain.course.CQueryVO">
+		select * from tbl_course_query
+		where c_query_writer = #{c_query_writer} and c_state = 0
+	</select>
+	<select id="my_profile" resultType="com.example.domain.UserVO">
+		select * from tbl_user
+		where u_id = #{u_id}
+	</select>
+	<update id="my_profile_update">
+		update tbl_user set u_pass = #{u_pass}, u_name = #{u_name}, u_addr1 = #{u_addr1}, u_addr2 = #{u_addr2}, u_addr3 = #{u_addr3}
+			 u_email = #{u_email} , u_phone = #{u_phone}
+		where u_id = #{u_id}
+	</update>
+</mapper>

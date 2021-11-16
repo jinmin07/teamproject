@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" >
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script> 
+	
 </head>
 <body>
 	<div id="page">
@@ -16,7 +17,7 @@
 	<!-- 맨위 상단 -->
 		<div class="topnav" style="  overflow: hidden; color: #999999; margin-right:130px;">
 				<div class="active">
-					<a href="/#" style=>공지사항</a>
+					<a href="/#" >공지사항</a>
 				</div>
 				<div class="active">
 					<a href="/#">자주 묻는 질문</a>
@@ -52,7 +53,7 @@
 						<a class="navigation-logo" href="/"><h1>일맥상통</h1></a>
 					</div>
 					<nav class="navigation-primary__menu">
-						<a class="navigation-primary__menu__item" href="/purchase/list">공동구매</a> 
+						<a class="navigation-primary__menu__item" href="/purchase/list" >공동구매</a> 
 						<a class="navigation-primary__menu__item" href="/course/list">공동생활</a>
 						<a class="navigation-primary__menu__item" href="/support/list">지원정책</a>
 						<a class="navigation-primary__menu__item" href="/board/list	">커뮤니티</a>
@@ -109,6 +110,5 @@
 		<div id="footer">
 			<h3>Copyright ICIA All Rights Reserved.</h3>
 		</div>
-	
 </body>
 </html>
