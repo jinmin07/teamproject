@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" >
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script> 
-	
+
 </head>
 <body>
 	<div id="page">
@@ -108,7 +108,24 @@
 			</div>
 		</div>
 		<div id="footer">
-			<h3>Copyright ICIA All Rights Reserved.</h3>
+			<div class="footer_infor">
+				<ul>
+	    			<li>
+	    				
+	    			    <b>고객센터: </b>1234-1234 (평일 09:30~18:30/점심 12:00~13:00) <b>| FAX: </b>1234-567-8910 <b>| Email: </b>help@sangtong.com
+	    			</li>
+	    			<li>
+	    				<b>상호명: </b>(주)일맥상통  <b>대표: </b>진민아  <b>| 주소:</b> 인천광역시 미추홀구 매소홀로 488번길 6-32 5층(학익동)
+	    			</li>
+	    			<li>
+	    				<b>사업자등록번호: </b>123-45-56789 <b>| 통신판매업신고번호: </b>제2021-인천학익-02354호
+	    			</li>
+	    			<li>
+	    				<h3 style="color: #424242;">Copyright ⓒ 일맥상통 Corp. All Right Reserved.</h3>
+	    			</li>
+    			</ul>
+    		</div>
+    		
 		</div>
 </body>
 </html>
