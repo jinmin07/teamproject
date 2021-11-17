@@ -33,7 +33,7 @@
 		<beans:property name="maxUploadSize" value="10485760" />
 	</beans:bean>
 	<beans:bean id="uploadPath" class="java.lang.String">
-		<beans:constructor-arg value="C:\teamproject\" />
+		<beans:constructor-arg value="C:\Data\spring\jinmin_1\src\main\webapp\resources\" />
 	</beans:bean>
 	<beans:bean id="echoHandler" class="com.example.controller.ChatHandler" />
 	<beans:bean id="noticeHandler" class="com.example.controller.NoticeHandler" />
