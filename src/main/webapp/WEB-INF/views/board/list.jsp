@@ -14,9 +14,6 @@
 		background: #dbb4b4;
 	}
 </style>	
-
-<h1>[글목록]</h1>
-
 <style>
 	.listoption{
 		margin:0 auto;
@@ -229,9 +226,6 @@
 
 <!-- 리스트 검색 박스  끝-->
 
-
-
-<a href="/board/insert" style="float:right">글쓰기</a>
 <div id="condition">
 	<select id="searchType">
 		<option value="title">제목</option>
@@ -255,7 +249,7 @@
 	{{#each list}}
 	<tr class = "row" onClick="location.href='/board/read?id={{id}}'">
 		<td width=100>{{id}}</td>
-      	<td width=300>{{b_category}} {{title}}</td>
+      	<td width=300>[ {{b_category}} ] {{title}}</td>
       	<td width=100>{{b_writer}}</td>
 		<td width=200>{{b_date}}</td>
 		<td width=100>{{b_view}}</td>

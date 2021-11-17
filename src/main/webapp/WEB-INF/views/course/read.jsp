@@ -134,8 +134,13 @@
 			type: "post",
 			url: "/course/feed_insert",
 			data: {"user_id": login_id, "tbl_code": tbl_code, "primary_id": id},
-			success: function(){
-				alert("내 피드로 옮겨졌습니다.");
+			success: function(data){
+				if(data == 0 ){
+					alert("내 피드로 옮겨졌습니다.");
+				}else{
+					alert("이미 내 피드에 있는 글입니다.");
+				}
+				
 			}
 			
 		});

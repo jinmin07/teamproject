@@ -21,16 +21,21 @@ public class AttachDAOImpl implements AttachDAO{
 	}
 
 	@Override
-	public void insert(int id, String b_image) {
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("id", id);
-		map.put("b_image", b_image);
-		session.insert(namespace + ".insert", map);
+	public void insert(String b_image) {
+		session.insert(namespace + ".insert", b_image);
 	}
 
 	@Override
 	public void delete(String b_image) {
 		session.delete(namespace + ".delete", b_image);
+	}
+
+	@Override
+	public void insert_old(int id, String b_image) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("b_image", b_image);
+		session.insert(namespace + ".insert_old", map);
 	}
 	
 }
