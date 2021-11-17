@@ -3,6 +3,10 @@
 	margin: 0;
 	padding: 0;
 }
+li {
+    list-style: none;
+}	
+input:focus {outline:none;}
 
 /* 화면 전체 렙 */
 .wrapper {
@@ -20,7 +24,7 @@
 /* 페이지 로고 */
 .logo_wrap {
 	height: 32px;
-    padding: 13px 0 0 10px;
+    padding: 13px 0 20px 10px;
     margin-bottom:10px;
 	border-bottom: 1px solid #ebebeb;
 }
@@ -32,54 +36,65 @@
 
 /* 로그인 area */
 .id_input_box {
-	border: 1px solid black;
-	height: 31px;
-	padding: 10px 14px;
 	display: block;
-	width: 80%;
-	margin: auto;
+	position: relative;
+	width: 450px;
+	height: 51px;
+	border: solid 1px #dadada;
+	padding: 10px 14px 10px 14px;
+	background: #fff;
+	box-sizing: border-box;
+	vertical-align: top;
+	margin:auto;
 }
 
 .id_input {
 	width: 100%;
 	height: 100%;
 	border: none;
-	font-size: 28px;
+	font-size: 20px;
 }
 
 .pw_wrap {
-	margin-top: 40px;
+	margin-top: 20px;
+	margin-bottom:20px;
 }
 
 .pw_input_box {
-	border: 1px solid black;
-	height: 31px;
-	padding: 10px 14px;
 	display: block;
-	width: 80%;
-	margin: auto;
+	position: relative;
+	width: 450px;
+	height: 51px;
+	border: solid 1px #dadada;
+	padding: 10px 14px 10px 14px;
+	background: #fff;
+	box-sizing: border-box;
+	vertical-align: top;
+	margin:auto;
 }
 
 .pw_iput {
 	width: 100%;
 	height: 100%;
 	border: none;
-	font-size: 28px;
+	font-size: 20px;
 }
 
 .login_button_wrap {
-	margin-top: 40px;
+	margin-top: 20px;
 	text-align: center;
 }
 
 .login_button {
-	width: 84%;
-	height: 80px;
+	border:none;
 	background-color: #6AAFE6;
-	font-size: 40px;
-	font-weight: 900;
-	color: white;
-	margin: auto;
+	width: 450px;
+    height: 50px;
+    line-height: 50px;
+    margin: 0 auto;
+    text-align: center;
+    color: #fff;
+    font-size: 15px;
 	cursor: pointer;
 }
 
@@ -88,7 +103,7 @@
 	clear: both;
 }
 .login_warn{
-    margin-top: 30px;
+    margin-top: 20px;
     text-align: center;
     color : red;
 }
@@ -114,4 +129,61 @@ h1{
     background: #2986df;
     border: 1px solid #0e6ad3;
     text-align: center;
+}
+
+.login_infor {
+    width: 450px;
+    margin: 0 auto;
+    overflow: hidden;
+    height: 50px;
+}
+
+.new_login_wrap {
+    float: left;
+    overflow: hidden;
+    line-height: 48px;
+}
+
+.new_login_wrap>input{
+	width: 13px;
+    height: 13px;
+    vertical-align: middle;
+}
+
+.new_login_wrap>label{
+	font-size: 13px;
+    color: #616161
+}
+
+.login_infor_ul{
+	float: right;
+    overflow: hidden;
+}
+
+.login_infor_ul li {
+    float: left;
+}
+
+.login_infor_ul li a {
+    display: inline-block;
+    line-height: 50px;
+    color: #616161;
+    font-size: 13px;
+}
+
+.login_infor_ul li:first-child::after {
+    content: ' | ';
+    font-size: 13px;
+    color: #616161;
+}
+
+.login_infor_ul li:nth-child(2)::after {
+    content: ' |　';
+    font-size: 13px;
+    color: #616161;
+}
+
+::placeholder{
+	color:gray;
+	font-size: 15px;
 }
