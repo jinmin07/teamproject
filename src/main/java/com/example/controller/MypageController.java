@@ -44,30 +44,6 @@ public class MypageController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/my_feed",method = RequestMethod.GET)
-	public String myAttend(Model model) {
-		model.addAttribute("pageName", "subpage.jsp" );
-		model.addAttribute("subpageName", "mypage/my_feed.jsp");
-		logger.info("내 피드 글을 출력됩니다");
-		return "home";
-	}
-	
-	@RequestMapping("/feedlist.json")
-	@ResponseBody
-	public List<MyfeedRefVO> myfeedlist(String user_id) throws Exception {
-		List<MyfeedVO> feeds = mdao.myfeedlist(user_id);
-		List<MyfeedRefVO> refFeeds = new ArrayList<MyfeedRefVO>();
-		for(MyfeedVO vo: feeds){
-			String tbl_code = vo.getTbl_code();
-			String code = vo.getTbl_code().substring(0,1);
-			if(code.equals("C")){
-				tbl_code = "C";
-			}
-			refFeeds.add(mdao.myfeed_ref_list(tbl_code, vo.getPrimary_id()));
-		}
-		return refFeeds;
-	}
-	
 	@RequestMapping(value = "/my_query",method = RequestMethod.GET)
 	public String myQuery(Model model) {
 		model.addAttribute("pageName", "subpage.jsp" );

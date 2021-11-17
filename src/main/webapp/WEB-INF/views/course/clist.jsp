@@ -415,7 +415,6 @@ input[type=radio] {
 			<button onClick="location.href='/course/insert'">등록</button>
 		</div>
 	</div>
-	
 </div>
 <div id="course"></div>
 <script id="temp" type="text/x-handlebars-template">	
@@ -447,10 +446,8 @@ input[type=radio] {
 
 
 <script>
-
 	var page = 1;
 	getList();
-
 
 //엔터키 클릭시 검색
 	$("#searchtxt").on("keypress",function(e){
@@ -464,7 +461,6 @@ input[type=radio] {
 		page=1;
 		getList();
 	});
-
 
 	function getList(){
 		var keyword=$("#searchtxt").val();
