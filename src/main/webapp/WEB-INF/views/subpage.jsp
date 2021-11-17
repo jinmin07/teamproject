@@ -33,7 +33,7 @@
       <h1>마이페이지</h1>
       <div class="parent">
          <div class = "child">
-            <h3><a href="/mypage/my_feed">내 피드</a></h3>
+            <h3><a href="/mypage/my_profile">내 프로필</a></h3>
          </div>
          <div class = "child" id="hover_writing">
             <h3>내가 쓴 글보기</h3>
@@ -58,7 +58,7 @@
             </div>
          </div>
          <div class = "child">
-            <h3><a href="/mypage/my_profile">내 프로필 보기</a></h3>
+            <h3><a href="/mypage/asking">문의하기</a></h3>
          </div>
       </div>
       <div class="content">

@@ -10,28 +10,22 @@
 	</update>
 	<select id="list" resultType="com.example.domain.BoardVO">
 		select * from tbl_board
-		<if test = "searchType == 'title'">
-			where title like concat('%', #{keyword}, '%')
-		</if>
-		<if test = "searchType == 'b_content'">
-			where b_content like concat('%', #{keyword}, '%')
-		</if>
-		<if test = "searchType == 'b_writer'">
-			where b_writer like concat('%', #{keyword}, '%')
+		where (title like concat('%', #{keyword}, '%') 
+		or b_content like concat('%', #{keyword}, '%') 
+		or b_writer like concat('%', #{keyword}, '%'))
+		<if test="searchType != '전체'">
+			and b_category = #{searchType}
 		</if>
 		order by id desc
 		limit #{pageStart}, #{perPageNum}
 	</select>
 	<select id="totalCount" resultType="int">
 		select count(*) from tbl_board
-		<if test = "searchType == 'title'">
-			where title like concat('%', #{keyword}, '%')
-		</if>
-		<if test = "searchType == 'b_content'">
-			where b_content like concat('%', #{keyword}, '%')
-		</if>
-		<if test = "searchType == 'b_writer'">
-			where b_writer like concat('%', #{keyword}, '%')
+		where (title like concat('%', #{keyword}, '%') 
+		or b_content like concat('%', #{keyword}, '%') 
+		or b_writer like concat('%', #{keyword}, '%'))
+		<if test="searchType != '전체'">
+			and b_category = #{searchType}
 		</if>
 	</select>
 	<insert id="insert">

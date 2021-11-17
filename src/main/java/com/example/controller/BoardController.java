@@ -73,7 +73,6 @@ public class BoardController {
 		int id = Integer.parseInt(maxCode) + 1;
 		model.addAttribute("id", id);
 		model.addAttribute("pageName", "board/insert.jsp");
-		System.out.println(vo.toString());
 		return "home";
 	}
 	

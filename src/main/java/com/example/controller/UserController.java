@@ -193,7 +193,4 @@ public class UserController {
 		return num;
 
 	}
-
-	
-
 }

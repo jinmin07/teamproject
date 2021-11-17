@@ -81,7 +81,7 @@ input[type=submit]:hover,input[type=reset]:hover{
 		</div>
 		
 	
-		<textarea name="s_content" rows="6" cols="73" placeholder="내용"></textarea><br/>
+		<textarea name="s_content" rows="6" cols="73" placeholder="내용" style="resize: none;"></textarea><br/>
 		<input type="file" name="file" style="display: none;" /><br />
 		
 	</div>

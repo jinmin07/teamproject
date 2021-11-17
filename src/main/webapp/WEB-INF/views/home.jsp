@@ -69,7 +69,7 @@
 						<a href="/mypage/subpage" style="color:inherit;width:27px;margin-left:20px;">
 							<i class="far fa-user" style=" margin-top:16px;font-size: 35px;"></i>
 						</a>
-						<a href="/#" style="color:inherit; width:27px;margin-left:30px;">
+						<a href="/myfeed" style="color:inherit; width:27px;margin-left:30px;">
 							<i class="far fa-clipboard" style="margin-top:16px;font-size: 35px;"></i>
 						</a>
 						<a href="/#" style="color:inherit; width:27px; margin-left:30px;">

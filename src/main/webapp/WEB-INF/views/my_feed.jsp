@@ -40,7 +40,7 @@
 		var user_id = "${user.u_id}";
 		$.ajax({
 			type : "get",
-			url : "/mypage//feedlist.json",
+			url : "/myfeed/feedlist.json",
 			data : {"user_id" : user_id},
 			dataType : "json",
 			success : function(data) {
