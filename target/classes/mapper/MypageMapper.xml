@@ -17,6 +17,12 @@
 		where user_id = #{user_id}
 		order by f_id desc
 	</select>
+	<select id="chk_feed" resultType="int">
+		select count(*) from tbl_feed
+		where user_id = #{user_id} 
+		and primary_id = #{primary_id} 
+		and tbl_code = #{tbl_code}
+	</select>
 	<insert id="myfeed_insert">
 		insert into tbl_feed(user_id, tbl_code, primary_id) 
 		values(#{user_id}, #{tbl_code}, #{primary_id})

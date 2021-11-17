@@ -32,6 +32,9 @@ public class CourseController {
 	CourseDAO dao;
 	
 	@Autowired
+	MypageDAO mdao;
+	
+	@Autowired
 	CourseService service;
 	
 	@RequestMapping(value = "/course/read")
@@ -223,8 +226,11 @@ public class CourseController {
 	// myfeed insert
 	@RequestMapping(value="/course/feed_insert", method=RequestMethod.POST)
 	@ResponseBody
-	public void myfeed_insert(MyfeedVO vo){
-		service.course_insert_feed(vo);
+	public int myfeed_insert(MyfeedVO vo){
+		int result = mdao.chk_feed(vo);
+		if(result == 0){
+			service.course_insert_feed(vo);
+		}
+		return result;
 	}
-
 }

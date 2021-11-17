@@ -86,4 +86,9 @@ public class MypageDAOImpl implements MypageDAO {
 		map.put("id", id);
 		return session.selectList(namespace + ".list_member", map);
 	}
+
+	@Override
+	public int chk_feed(MyfeedVO vo) {
+		return session.selectOne(namespace+".chk_feed", vo);
+	}
 }

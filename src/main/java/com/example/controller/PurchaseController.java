@@ -38,6 +38,7 @@ import com.example.domain.course.CQueryVO;
 import com.example.domain.course.CReplyVO;
 import com.example.domain.course.CategoryVO;
 import com.example.domain.course.CourseVO;
+import com.example.mapper.MypageDAO;
 import com.example.mapper.ProductDAO;
 import com.example.mapper.UserDAO;
 import com.example.service.PurchaseService;
@@ -53,6 +54,9 @@ public class PurchaseController {
 	// 파일 저장 루트 지정
 	@Resource(name = "uploadPath")
 	private String path;
+	
+	@Autowired
+	MypageDAO mdao;
 	
 	@Autowired
 	UserDAO udao;
@@ -131,9 +135,6 @@ public class PurchaseController {
 
 	@RequestMapping(value = "/insert")
 	public String insert(Model model) {
-		String maxId = pdao.maxId();
-		String id = String.valueOf(Integer.parseInt(maxId) + 1);
-		model.addAttribute("id", id);
 		model.addAttribute("pageName", "purchase/insert.jsp");
 		return "home";
 	}
@@ -261,7 +262,11 @@ public class PurchaseController {
 	// myfeed insert
 	@RequestMapping(value="/feed_insert", method=RequestMethod.POST)
 	@ResponseBody
-	public void myfeed_insert(MyfeedVO vo){
-		service.purchase_insert_feed(vo);
+	public int myfeed_insert(MyfeedVO vo){
+		int result = mdao.chk_feed(vo);
+		if(result == 0){
+			service.purchase_insert_feed(vo);
+		}
+		return result;
 	}
 }

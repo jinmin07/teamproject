@@ -7,6 +7,10 @@
 	</select>
 	<insert id="insert">
 		insert into tbl_attach(id, fullname)
+		values(last_insert_id(), #{b_image})
+	</insert>
+		<insert id="insert_old">
+		insert into tbl_attach(id, fullname)
 		values(#{id}, #{b_image})
 	</insert>
 	<delete id="delete">

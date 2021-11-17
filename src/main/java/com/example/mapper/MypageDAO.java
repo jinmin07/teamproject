@@ -22,6 +22,7 @@ public interface MypageDAO {
 	public UserVO my_profile(String u_id);
 	public void my_profile_update(UserVO vo);
 	public List<MyfeedVO> myfeedlist(String user_id);
+	public int chk_feed(MyfeedVO vo);
 	public void myfeed_insert(MyfeedVO vo);
 	public MyfeedRefVO myfeed_ref_list(String tbl_code, int id);
 }
