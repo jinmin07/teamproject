@@ -50,7 +50,7 @@
 	<c:if test="${vo.b_writer != user.u_id}">
 		<div style="margin: 10px;">
 			<input type="button" value="추천" id="btnLike"/>
-			<input type="button" value="피드" id="btnFeed"/>
+			<input type="button" value="피드" id="myfeed_insert"/>
 		</div>
 	</c:if>
 	<div id="b_reply">
@@ -87,6 +87,24 @@
 	var u_id = "${user.u_id}";
 	getList();
 	
+	//마이피드로 옮기기
+	$("#myfeed_insert").on("click", function(){
+		var tbl_code = "${vo.tbl_code}";
+		if(!confirm("내 피드로 옮기시겠습니까?")) return;
+		$.ajax({
+			type: "post",
+			url: "/board/feed_insert",
+			data: {"user_id": u_id, "tbl_code": tbl_code, "primary_id": id},
+			success: function(data){
+				if(data == 0 ){
+					alert("내 피드로 옮겨졌습니다.");
+				}else{
+					alert("이미 내 피드에 있는 글입니다.");
+				}
+				
+			}
+		});
+	});
 	
 	function getList(){
 		$.ajax({
@@ -147,6 +165,17 @@
 	
 	$("#btnDelete").on("click", function() {
 		if(!confirm(id + "을(를) 삭제하실래요?")) return;
+		var b_image = "${vo.b_image}"
+		
+		$.ajax({
+			type: "post",
+			url :"/board/delete",
+			data : {"id" : id, "b_image" : b_image},
+			success : function(){
+				alert("삭제가 완료되었습니다.");
+				location.href="/board/list";
+			}
+		});
 	});
 
 </script>

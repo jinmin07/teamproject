@@ -29,7 +29,7 @@
 		<div style="text-align: left; margin-bottom: 10px;"> 공동생할 > ${vo.p_category} </div>
 		<div style="overflow : hidden;">
 			<div style="float: left; margin-right: 20px;">
-				<img id="image" src="/display?fileName=${vo.p_image}" width=350/>
+				<img id="image" src="display?fileName=${vo.p_image}" width=350/>
 			</div>
 			<div style="float: left; width: 450px; text-align: left;">
 				<c:if test="${vo.p_writer!=user.u_id}">

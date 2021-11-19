@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -185,6 +186,19 @@
 	.view button:hover {
 		background: #dbb4b4;
 	}
+	.board_middle { text-align: left;}
+	.board_bottom {text-align: right; color: gray; padding-right: 10px; font-size: 14px;}
+	.board_top {font-size: 14px; color: gray;}
+	.board_info {font-size: 13px; color: gray;}
+	.board_title {font-size: 17px; margin-bottom: 10px; padding-left: 10px; font-weight: 550;}
+	.board_writer{margin-bottom: 10px;}
+	.row {padding: 10px;}
+	.red {color: red; }
+	.b_category {
+		border: 1px solid #35c5f0;
+		width: 60px;
+		padding: 5px 10px;
+	}
 </style>
 
 <h1>[글목록]</h1>
@@ -243,24 +257,35 @@
 </div>
 <table id="tbl"></table>
 <script id="temp" type="text/x-handlebars-template">
-	<tr class="title">
-		<td width="100">No.</td>
-		<td width="300">제목</td>
-		<td width="100">작성자</td>
-		<td width="200">작성일</td>
-		<td width="100">조회수</td>
-	</tr>
 	{{#each list}}
-	<tr class = "row" onClick="location.href='/board/read?id={{id}}'">
-		<td width=100>{{id}}</td>
-      	<td width=300>[ {{b_category}} ] {{title}}</td>
-      	<td width=100>{{b_writer}}</td>
-		<td width=200>{{b_date}}</td>
-		<td width=100>{{b_view}}</td>
+	<tr class = "row" onClick="location.href='/board/read?id={{id}}'" height=100>
+		<td width =130 class="board_top" >
+			<div class="b_category" style="{{printColor b_category}}">{{b_category}}</div>
+		</td>
+		<td width=600 class="board_middle">
+			<div class="board_title">{{title}} <span class="red board_title">({{b_cnt_reply}})</span></div>
+			<div class="board_info">
+				조회수 : <span class="red board_info">{{b_view}}</span> | 
+				추천수 : <span class="red board_info">{{b_rec}}</span> | 
+				피드수 : <span class="red board_info">{{b_cnt_feed}}</span>
+			</div>
+		</td>
+      	<td width = 150 class="board_bottom">
+			<div class="board_writer">{{b_writer}}</div>
+			<div>{{b_date}}</div>
+		</td>
 	</tr>
 	{{/each}}
 </script>
-
+<script>
+	Handlebars.registerHelper("printColor", function(b_category){
+		if(b_category == "공지"){
+			return "background: #35c5f0 ;color : white;";
+		}else{
+			return "background: white ;color :#35c5f0;";
+		}
+	});
+</script>
 
 <div style="text-align: center; margin-bottom:10px;">
 	<div id="pagination" class="pagination" ></div>

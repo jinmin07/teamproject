@@ -13,6 +13,8 @@ public interface BoardDAO {
 	public BoardVO read(int id);
 	public int totalCount(Criteria cri);
 	public void updateb_view(int id);
+	public void deleteReply(int b_id);
+	public void add_feed_cnt(int id);
 	
 	public void addAttach(String fullName);
 	public List<String> getAttach(int id);
