@@ -25,7 +25,7 @@
 	}
 	
 	.box3{
-		height:100px;
+		height:101px;
 		width: 600px;
     	border-bottom: 1px solid #e5e5e5;
     	justify-content: flex-end;
@@ -311,3 +311,4 @@
 		getList();
 	});
 </script>
+

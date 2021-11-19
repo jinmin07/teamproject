@@ -112,11 +112,11 @@
 	
 		
 	.box3{
-		height:241px;
+		height:242px;
 		width: 450px;
     	border-bottom: 1px solid #e5e5e5;
     	justify-content: flex-end;
-   	 	background-color: 		#F0FFFF;
+   	 	background-color: #F0FFFF;
    	 	float:left;
 	}
 	
@@ -204,8 +204,9 @@
 	
 	
 	.box4{
-		height:241px;
+		height:242px;
 		width:62%;
+		border-bottom: 1px solid #e5e5e5;
 		background-color:  #f7f8fa;
 		display:-webkit-flex;
 	}
@@ -282,22 +283,29 @@
 	    height: 42px;
 	    color: #fff;
 	    font-weight: 600;
-	    background-color: #6b347c;
+	    background-color: #35c5f0;;
 	    cursor: pointer;
 	    padding: 0;
-	    border:0;
 	    font-size: 16px;
 	}
 	
+	.search button:hover{
+		border-color: #09addb;
+    	background-color: #09addb;
+	}
+	
 	.view button{
+		width:80px;
 		font-size:16px;
 		margin:0px;
 		padding: 5px 15px;
 		font-family:"맑은고딕";
 		font-weight: 600;
+		color: #fff;
+    	background-color: #35c5f0;
 	}
 	.view button:hover{
-		background: #dbb4b4;
+		background-color: #09addb;
 	}
 	
 	

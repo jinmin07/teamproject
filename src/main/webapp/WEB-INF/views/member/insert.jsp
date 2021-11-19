@@ -19,7 +19,20 @@ form {
 	padding-left: 100px;
 }
 
-button, input[type=submit] {
+button {
+	background-color: #fff;
+    border-color: #35c5f0;
+    color: #35c5f0;
+	font-size: 16px;
+	margin: 0px;
+	padding: 5px 10px;
+	font-family: "맑은고딕";
+	font-weight: 600;
+}
+ input[type=submit] {
+	background-color: #35c5f0;
+    border-color: #35c5f0;
+    color: #fff;
 	font-size: 16px;
 	margin: 0px;
 	padding: 5px 10px;
@@ -27,8 +40,13 @@ button, input[type=submit] {
 	font-weight: 600;
 }
 
-button:hover, input[type=submit]:hover {
-	background: #dbb4b4;
+button:hover{
+	background-color: #effbff;
+}
+
+input[type=submit]:hover{
+	border-color: #09addb;
+    background-color: #09addb;
 }
 
 input:focus {outline:none;}

@@ -56,7 +56,7 @@ background-color:#ddd;
 .listoption {
 	margin: 0 auto;
 	width: 1200px;
-	margin-bottom: 70px;
+	margin-bottom: 20px;
 	border-top: 1px solid #e5e5e5;
 	border-bottom: 1px solid #e5e5e5;
 	overflow: hidden;
@@ -238,15 +238,18 @@ input[type=radio] {
 }
 
 .view button {
-	font-size: 16px;
-	margin: 0px;
+	width:80px;
+	font-size:16px;
+	margin:0px;
 	padding: 5px 15px;
-	font-family: "맑은고딕";
+	font-family:"맑은고딕";
 	font-weight: 600;
+	color: #fff;
+    background-color: #35c5f0;
 }
 
-.view button:hover {
-	background: #dbb4b4;
+.view button:hover{
+		background-color: #09addb;
 }
 </style>
 
@@ -411,7 +414,7 @@ input[type=radio] {
 		<div style="display: inline-block;">
 			<h4 id="total" style="margin-bottom: 5px;"></h4>
 		</div>
-		<div style="display: inline-block; float: right; margin-top: -8px; margin-right: 15px;">
+		<div style="display: inline-block; float: right; margin-top: 15px; margin-right: 15px;">
 			<button onClick="location.href='/course/insert'">등록</button>
 		</div>
 	</div>

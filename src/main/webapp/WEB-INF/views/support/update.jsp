@@ -14,15 +14,29 @@ input[type=text] {
 	font-size: 20px;
 }
 
-input[type=submit],input[type=reset]{
+input[type=submit]{
+	background-color: #35c5f0;
+    border-color: #35c5f0;
+    color: #fff;
 	font-size:16px;
 	margin:0px;
 	padding: 5px 15px;
 	font-family:"맑은고딕";
 	font-weight: 600;
 }
-input[type=submit]:hover,input[type=reset]:hover{
-	background: #dbb4b4;
+input[type=reset]{
+	background-color: #fff;
+    border-color: #35c5f0;
+    color: #35c5f0;
+	font-size:16px;
+	margin:0px;
+	padding: 5px 15px;
+	font-family:"맑은고딕";
+	font-weight: 600;
+}
+input[type=submit]:hover{
+	border-color: #09addb;
+    background-color: #09addb;
 }
 
 </style>
@@ -82,12 +96,12 @@ input[type=submit]:hover,input[type=reset]:hover{
 		</div>
 		
 	
-		<textarea name="s_content" rows="6" cols="73" placeholder="내용">${vo.s_content}</textarea><br/>
+		<textarea name="s_content" rows="6" cols="73" placeholder="내용" style="resize: none;">${vo.s_content}</textarea><br/>
 		<input type="file" name="file" style="display: none;" /><br />
 		
 	</div>
-	<div style="text-align:center; margin-right:70px; margin-bottom:30px;   ">
-			<input type="submit" value="수정"   style="margin-right:20px;"/> 
+	<div style="text-align:center;  margin-bottom:30px;   ">
+			<input type="submit" value="정책수정"   style="margin-right:20px;"/> 
 			<input type="reset" value="수정취소" />
 	</div>
 </form>

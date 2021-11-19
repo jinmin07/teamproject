@@ -10,7 +10,7 @@ input:focus {outline:none;}
 
 /* 화면 전체 렙 */
 .wrapper {
-	padding-top:21px;
+	padding-top:10px;
 	width: 550px;
 	margin: 0 auto;
 }
@@ -39,7 +39,7 @@ input:focus {outline:none;}
 	display: block;
 	position: relative;
 	width: 450px;
-	height: 51px;
+	height: 49px;
 	border: solid 1px #dadada;
 	padding: 10px 14px 10px 14px;
 	background: #fff;
@@ -64,7 +64,7 @@ input:focus {outline:none;}
 	display: block;
 	position: relative;
 	width: 450px;
-	height: 51px;
+	height: 49px;
 	border: solid 1px #dadada;
 	padding: 10px 14px 10px 14px;
 	background: #fff;
@@ -86,16 +86,23 @@ input:focus {outline:none;}
 }
 
 .login_button {
+	border-radius:5px;
 	border:none;
-	background-color: #6AAFE6;
+	background-color: #35c5f0;
 	width: 450px;
     height: 50px;
     line-height: 50px;
     margin: 0 auto;
     text-align: center;
     color: #fff;
-    font-size: 15px;
+    font-size: 17px;
+    font-weight:600;
 	cursor: pointer;
+}
+
+.login_button:hover{
+	border-color: #09addb;
+    background-color: #09addb;
 }
 
 /* float 속성 해제 */
@@ -124,7 +131,6 @@ h1{
 
 
 .statusbox {
-    margin-top: 10px;
     height: 1px;
     background: #2986df;
     border: 1px solid #0e6ad3;

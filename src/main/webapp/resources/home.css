@@ -136,6 +136,7 @@ li{
 	margin-left:100px;
 	width:1200px;
 	margin:0 auto;
+	margin-bottom:5px;
     transition: top .1s;
     background-color: #fff;
     z-index: 502;
@@ -164,7 +165,7 @@ li{
 
 .navigation-primary__left {
     position: static;
-    margin-right: 35px;
+    margin-right: 15px;
     transform: none;
 }
 
@@ -180,6 +181,7 @@ li{
     -webkit-box-flex: 0;
     flex: 0 0 auto;
 }
+
 
 .navigation-primary__menu__item {
     position: relative;
@@ -264,7 +266,7 @@ li{
 	text-align: center;
 	padding: 0px 12px;
 	text-decoration: none;
-	font-size: 12px;
+	font-size: 13px;
 	color: "#999999";
 }
 
@@ -274,4 +276,5 @@ li{
 .navigation-primary__menu__item:hover{
 	color:#35c5f0;
 }
+
 
