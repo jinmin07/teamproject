@@ -14,9 +14,6 @@
 		background: #dbb4b4;
 	}
 </style>	
-
-<h1>[글목록]</h1>
-
 <style>
 	.listoption{
 		margin:0 auto;
@@ -28,7 +25,7 @@
 	}
 	
 	.box3{
-		height:100px;
+		height:101px;
 		width: 600px;
     	border-bottom: 1px solid #e5e5e5;
     	justify-content: flex-end;
@@ -172,7 +169,22 @@
 	    border:0;
 	    font-size: 16px;
 	}
-
+	.view {
+		width: 1024px;
+		margin: 0 auto;
+	}
+	
+	.view button {
+		font-size: 16px;
+		margin: 0px;
+		padding: 5px 15px;
+		font-family: "맑은고딕";
+		font-weight: 600;
+	}
+	
+	.view button:hover {
+		background: #dbb4b4;
+	}
 </style>
 
 <h1>[글목록]</h1>
@@ -185,31 +197,22 @@
 				<dd>
 					<div class="checkbox1" id="searchType" >
 							<p>
-								<input type="radio" id="allCate"  name="cate" value="[전체]" checked />
+								<input type="radio" id="allCate"  name="cate" value="전체" checked />
 								<label for="allCate">전체</label>
 							</p>
 							<p>
-								<input type="radio" id="cate1" name="cate" value="[맛집추천]" />
+								<input type="radio" id="cate1" name="cate" value="맛집추천" />
 								<label for="cate1">맛집추천</label>
 							</p>
 							<p>
-								<input type="radio" id="cate2" name="cate" value="[후기]" />
+								<input type="radio" id="cate2" name="cate" value="후기" />
 								<label for="cate2">후기</label>
 							</p>
 							
 							<p>
-								<input type="radio" id="cate3" name="cate" value="[정보제공]" />
+								<input type="radio" id="cate3" name="cate" value="정보제공" />
 								<label for="cate3">정보제공</label>
 							</p>
-							<p>
-								<input type="radio" id="cate4" name="cate" value="[문의사항]" />
-								<label for="cate4">문의사항</label>
-							</p>
-							<p>
-								<input type="radio" id="cate5" name="cate" value="[공지사항]"/>
-								<label for="cate5">공지사항</label>
-							</p>
-						
 					</div>
 				</dd>
 			</dl>
@@ -218,8 +221,8 @@
 		<div class="box box4">
 			<ul class="list">
 				<li class="search">
-					<div class="insearch" id="searchType">
-						<input type="text" class="txt" id="searchtxt" name="searchtxt" placeholder="검색"/>
+					<div class="insearch">
+						<input type="text" class="txt" id="keyword" name="searchtxt" placeholder="검색"/>
 					</div>
 					<button type="button" id="searchbtn" style="">조회</button>				
 				</li>
@@ -228,21 +231,16 @@
 	</div>
 
 <!-- 리스트 검색 박스  끝-->
-
-
-
-<a href="/board/insert" style="float:right">글쓰기</a>
-<div id="condition">
-	<select id="searchType">
-		<option value="title">제목</option>
-		<option value="b_content">내용</option>
-		<option value="b_writer">작성자</option>
-	</select> 
-	<input type="text" id="keyword" placeholder="검색어" /> 
-	검색수 : <span id="totalCount"></span>
-	<button onClick="location.href='/board/insert'" style="float:right">글쓰기</button>
+<div class="view">
+	<div style="text-align: left; margin-left: 10px; padding-bottom: 7px; border-bottom: 1px dotted gray; margin-bottom:15px;">
+		<div style="display: inline-block;">
+			<h4 id="total" style="margin-bottom: 5px;"></h4>
+		</div>
+		<div style="display: inline-block; float: right; margin-top: -8px; margin-right: 15px;">
+			<button onClick="location.href='/board/insert'">등록</button>
+		</div>
+	</div>
 </div>
-
 <table id="tbl"></table>
 <script id="temp" type="text/x-handlebars-template">
 	<tr class="title">
@@ -255,7 +253,7 @@
 	{{#each list}}
 	<tr class = "row" onClick="location.href='/board/read?id={{id}}'">
 		<td width=100>{{id}}</td>
-      	<td width=300>{{b_category}} {{title}}</td>
+      	<td width=300>[ {{b_category}} ] {{title}}</td>
       	<td width=100>{{b_writer}}</td>
 		<td width=200>{{b_date}}</td>
 		<td width=100>{{b_view}}</td>
@@ -270,6 +268,11 @@
 <script src="/resources/pagination.js"></script>
 
 <script>
+	$("#searchType").on("change", function(){
+		page = 1;
+		getList();
+	});
+	
 	var page = 1;
 	getList();
 
@@ -282,8 +285,9 @@
 
 	function getList() {
 		var keyword = $("#keyword").val();
-		var searchType = $("#searchType").val();
-
+		var searchType = $(".checkbox1 input[type=radio]:checked").val();
+		
+		
 		$.ajax({
 			type : "get",
 			url : "/board/list.json",
@@ -296,9 +300,7 @@
 			success : function(data) {
 				var temp = Handlebars.compile($("#temp").html());
 				$("#tbl").html(temp(data));
-				
-				$("#totalCount").html(data.pm.totalCount);
-				
+				$("#total").html(data.pm.totalCount +"개의 게시글이 있습니다.");
 				$("#pagination").html(getPagination(data));
 			}
 		});
@@ -309,3 +311,4 @@
 		getList();
 	});
 </script>
+

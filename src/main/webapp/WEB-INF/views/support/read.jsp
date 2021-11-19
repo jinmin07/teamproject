@@ -33,7 +33,7 @@
 
 .board_detail .info_box {
     position: relative;
-    padding: 20px 30px;
+    padding: 10px 30px;
     color: #909090;
     font-size: 14px;
 }
@@ -59,8 +59,8 @@
 
 .button_box{
 	padding :0px 20px;
-	margin-right:150px;
-	margin-top: 50px;
+	margin-right:200px;
+	margin-top: 20px;
 	margin-bottom: 80px;
     display: -webkit-flex;
     align-items: center;
@@ -68,20 +68,39 @@
 }
 
 .btn_gray{
-	width:220px;
-	height:70px;
-	font-size: 18px;
+	width:100px;
+	height:50px;
+	font-size: 17px;
 	font-weight: 600;
-	color: #fff;
-	background-color: #696969;
+	background:#fff;	
+	border:2px solid #35c5f0;
+	color: #35c5f0;
 	cursor: pointer;
-	border: 0 none;
 	margin-left: 15px;
 }
 
-.btn_gray:hover{
-	background-color:#4d4d4d;
+.btn_list{
+	width:100px;
+	height:50px;
+	font-size: 17px;
+	font-weight: 600;
+	color: #fff;
+	background-color: #35c5f0;
+	cursor: pointer;
+	border:  none;
+	margin-left: 15px;
 }
+
+.btn_list:hover{
+	border-color: #09addb;
+    background-color: #09addb;
+}
+
+
+}
+
+
+
 </style>
 
 <div id="read"></div>
@@ -114,7 +133,7 @@
 			<c:if test="${user!=null}">
 				<button type="button" class="btn_gray"  title="내 피드"  >내 피드</button>
 			</c:if>
-			<button type="button" onClick="location.href='/support/list'" class="btn_gray" title="목록">목록</button>
+			<button type="button" onClick="location.href='/support/list'"  class="btn_list" title="목록">목록</button>
 		
 		
 			

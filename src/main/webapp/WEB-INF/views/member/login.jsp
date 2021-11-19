@@ -5,16 +5,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>로그인</title>
+<link rel="icon" type="image/png" sizes="128x128" href="/resources/favicon.png"/>
 <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <link rel="stylesheet" href="/resources/login.css">
 </head>
-<body style="padding-top:180px; width:800px; margin:0 auto;">
+<body style="padding-top:120px; width:800px; margin:0 auto;">
 
 
-	<a class="navigation-logo"  href="/"><h1>일맥상통</h1></a>
+	<a class="navigation-logo"  href="/"><img src="/resources/logo.png" width=154 /></a>
 	<div class="statusbox"></div>
 	<div class="wrapper">
 		<form id="login_form" method="post">
