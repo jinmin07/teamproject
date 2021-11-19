@@ -25,9 +25,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.example.domain.BoardVO;
 import com.example.domain.Criteria;
+import com.example.domain.MyfeedVO;
 import com.example.domain.PageMaker;
 import com.example.mapper.AttachDAO;
 import com.example.mapper.BoardDAO;
+import com.example.mapper.MypageDAO;
 import com.example.service.BoardService;
 
 @Controller
@@ -42,6 +44,9 @@ public class BoardController {
 
 	@Autowired
 	AttachDAO adao;
+	
+	@Autowired
+	MypageDAO mdao;
 
 	@Autowired
 	BoardService service;
@@ -119,11 +124,19 @@ public class BoardController {
 		return "home";
 	}
 
+	// 게시글 삭제
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public String deletePost(int id) {
-		System.out.println(id);
+	@ResponseBody
+	public void deletePost(int id, String b_image) throws Exception {
+		List<String> attList = adao.list(id);
+		if(attList != null){
+			for(String image:attList){
+				new File(path + "boardimg/" + image).delete();
+				adao.delete(image);
+			}
+		}
+		new File(path + "boardimg/" + b_image).delete();
 		service.delete(id);
-		return "redirect:/board/list";
 	}
 	
 	// 첨부파일 추가
@@ -146,12 +159,12 @@ public class BoardController {
 	}
 	
 	// 첨부파일 삭제
-		@RequestMapping(value = "/attDelete", method = RequestMethod.POST)
-		@ResponseBody
-		public void attDelete(String b_image) throws Exception {
-			new File(path + "boardimg/" + b_image).delete();
-			adao.delete(b_image);
-		}
+	@RequestMapping(value = "/attDelete", method = RequestMethod.POST)
+	@ResponseBody
+	public void attDelete(String b_image) throws Exception {
+		new File(path + "boardimg/" + b_image).delete();
+		adao.delete(b_image);
+	}
 		
 	// 이미지파일 브라우저에 출력
 	@RequestMapping("/display")
@@ -164,6 +177,18 @@ public class BoardController {
 			HttpHeaders header = new HttpHeaders();
 			header.add("Content-Type", Files.probeContentType(file.toPath()));
 			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+		}
+		return result;
+	}
+	
+	// myfeed insert
+	@RequestMapping(value="/feed_insert", method=RequestMethod.POST)
+	@ResponseBody
+	public int myfeed_insert(MyfeedVO vo){
+		System.out.println(vo.toString());
+		int result = mdao.chk_feed(vo);
+		if(result == 0){
+			service.board_insert_feed(vo);
 		}
 		return result;
 	}

@@ -14,4 +14,5 @@ public interface SupportDAO {
 	public SupportVO read(int id);
 	public void delete(int id);
 	public void update(SupportVO vo);
+	public void add_feed_cnt(int id);
 }

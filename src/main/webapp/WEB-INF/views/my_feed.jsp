@@ -11,7 +11,7 @@
 			<h5>{{printCategory tbl_code}}</h5>
 			<h5>{{regdate}}</h5>
 			<div class="image">
-				<img src="http://placehold.it/140/140" width=140 style="display:{{printImg image}}"/>
+				<img src="{{printSrc tbl_code}}/display?fileName={{image}}" width=140 style="display:{{printImg image}}"/>
 			</div>
 			<div class="content">{{content}}</div>
 		</div>
@@ -22,8 +22,12 @@
 	Handlebars.registerHelper("printCategory", function(tbl_code){
 		if(tbl_code == "P"){
 			return "공동구매";
+		}else if(tbl_code == "B"){
+			return "커뮤니티";
 		}else if(tbl_code.indexOf("C")!=-1){
 			return "공동생활";
+		}else{
+			return "지원정책";
 		}
 	});
 </script>
@@ -31,6 +35,17 @@
 	Handlebars.registerHelper("printImg", function(image){
 		if(image == null){
 			return "none";
+		}
+	});
+</script>
+<script>
+	Handlebars.registerHelper("printSrc", function(tbl_code){
+		if(tbl_code == "P"){
+			return "/purchase";
+		}else if(tbl_code == "B"){
+			return "/board";
+		}else if(tbl_code == "S"){
+			return "/support";
 		}
 	});
 </script>

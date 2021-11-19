@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.slf4j.Logger;
@@ -25,6 +27,7 @@ import com.example.domain.course.CQueryVO;
 import com.example.domain.course.CourseVO;
 import com.example.mapper.MypageDAO;
 import com.example.mapper.UserDAO;
+import com.example.service.MypageService;
 
 @Controller
 @RequestMapping("/mypage")
@@ -34,6 +37,9 @@ public class MypageController {
 	
 	@Autowired
 	UserDAO udao;
+	
+	@Autowired
+	MypageService mservice;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
 	
@@ -110,14 +116,96 @@ public class MypageController {
 		return mdao.list_member(id, tbl_code);
 	}
 	
+	@RequestMapping(value = "/my_attend",method = RequestMethod.GET)
+	public String myAttend(Model model) {
+		model.addAttribute("pageName", "subpage.jsp");
+		model.addAttribute("subpageName", "mypage/my_attend.jsp");
+		logger.info("내가 참여한글");
+		return "home";
+	}
+	
+	@RequestMapping(value = "/my_attend/purchase",method = RequestMethod.GET)
+	public String myAttendPurchase(Model model) {
+		model.addAttribute("pageName", "subpage.jsp");
+		model.addAttribute("subpageName", "mypage/my_attend.jsp");
+		model.addAttribute("url", "/my_attend/purchase");
+		logger.info("내가 참여한 공동구매");
+		
+		return "home";
+	}
+	
+	@RequestMapping(value = "/my_attend/course",method = RequestMethod.GET)
+	public String myAttendCourse(Model model) {
+		model.addAttribute("pageName", "subpage.jsp");
+		model.addAttribute("subpageName", "mypage/my_attend.jsp");
+		model.addAttribute("url", "/my_attend/course");
+		logger.info("내가 참여한 공동생활");
+		
+		return "home";
+	}
 	
 	@RequestMapping(value = "/my_profile",method = RequestMethod.GET)
-	public String myProfile(Model model,String u_id) {
+	public String myProfile(Model model,String u_id,HttpServletRequest request) throws Exception{
 		model.addAttribute("pageName", "subpage.jsp");
 		model.addAttribute("subpageName", "mypage/my_profile.jsp");
-		model.addAttribute("vo", mdao.my_profile(u_id));
+		
+		HttpSession session = request.getSession();
+		UserVO uvo = (UserVO) session.getAttribute("user");
+		model.addAttribute("user", uvo);
 		logger.info("나의 설정으로 진입합니다");
 		return "home";
+	}
+	
+	@RequestMapping("/goPasswordChange")
+	public String goPasswordChange(Model model,HttpServletRequest request) {
+		logger.info("");
+		model.addAttribute("pageName", "subpage.jsp");
+		model.addAttribute("subpageName", "mypage/passwordChange.jsp");
+		
+		HttpSession session = request.getSession();
+		UserVO uvo = (UserVO) session.getAttribute("user");
+		model.addAttribute("user", uvo);
+		
+		return "home";
+		
+	}
+	@RequestMapping(value = "/passwordChange",method = RequestMethod.GET)
+	public String passwordChangeGet() {
+		
+		return "mypage/passwordChange";
+	}
+	
+	@RequestMapping(value = "/passwordChange",method = RequestMethod.POST)
+	public String passwordChangePost(Model model,HttpServletRequest request,UserVO vo) throws Exception {
+		logger.info("비밀번호 변경");
+		HttpSession session = request.getSession();
+		
+		System.out.println(vo.getU_id());
+		System.out.println(vo.getU_pass());
+		
+		mservice.passwordChange(vo);
+		session.invalidate();
+		
+		return "redirect:/";
+		
+	}
+	
+	@RequestMapping(value = "/my_profile_update",method = RequestMethod.GET)
+	public String my_profile_updateGet() {
+		logger.info("내 정보 변경화면");
+		return "mypage/my_profile";
+	}
+	
+	@RequestMapping(value = "/my_profile_update",method = RequestMethod.POST)
+	public String my_profile_updatePost(Model model,HttpServletRequest request,UserVO vo) throws Exception {
+		logger.info("내 정보 변경 POST");
+		HttpSession session = request.getSession();
+		
+		mservice.my_profile_update(vo);
+		session.invalidate();
+		
+		return "redirect:/";
+		
 	}
 	
 	@RequestMapping("/my_profile.json")
@@ -128,16 +216,30 @@ public class MypageController {
 	
 	@RequestMapping("/list_purchase.json")
 	@ResponseBody
-	public List<PQueryVO> my_attend_list_purchase_JSON(String p_query_writer) throws Exception
+	public List<PQueryVO> my_query_list_purchase_JSON(String p_query_writer) throws Exception
 	{
 		return mdao.my_query_list_purchase(p_query_writer);
 	}
 	
 	@RequestMapping("/list_course.json")
 	@ResponseBody
-	public List<CQueryVO> my_attend_list_course_JSON(String c_query_writer) throws Exception
+	public List<CQueryVO> my_query_list_course_JSON(String c_query_writer) throws Exception
 	{
 		return mdao.my_query_list_course(c_query_writer);
+	}
+	
+	@RequestMapping("/attend_purchase.json")
+	@ResponseBody
+	public List<ProductVO> my_attend_list_puschase_JSON(String p_writer) throws Exception
+	{
+		return mdao.my_attend_purchase(p_writer);
+	}
+	
+	@RequestMapping("/attend_course.json")
+	@ResponseBody
+	public List<CourseVO> my_attend_list_course_JSON(String c_writer) throws Exception
+	{
+		return mdao.my_attend_course(c_writer);
 	}
 	
 	@RequestMapping("/list_writing_purchase.json")

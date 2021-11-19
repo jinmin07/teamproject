@@ -90,4 +90,14 @@ public class BoardDAOImpl implements BoardDAO {
 	public String maxCode() {
 		return session.selectOne(namespace + ".maxCode");
 	}
+
+	@Override
+	public void deleteReply(int b_id) {
+		session.delete(namespace + ".delete_reply", b_id);
+	}
+	
+	@Override
+	public void add_feed_cnt(int id) {
+		session.update(namespace + ".add_feed_cnt", id);
+	}
 }

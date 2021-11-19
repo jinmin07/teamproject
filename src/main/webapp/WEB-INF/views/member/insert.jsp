@@ -51,7 +51,6 @@ input[type=submit]:hover{
 
 input:focus {outline:none;}
 
-
 .join_title {
 	margin: 19px 0 8px;
 	font-size: 14px;
@@ -70,7 +69,6 @@ input:focus {outline:none;}
 	box-sizing: border-box;
 	vertical-align: top;
 }
-
 
 .id_input, .address_input_1,.mail_input,.mail_check_input{
 	display: block;
@@ -105,15 +103,12 @@ input:focus {outline:none;}
 	z-index: 10;
 }
 
-#content{
-	margin-top:30px;
-}
 
 
 </style>
 </head>
 <body>
-	<span style="margin-left:360px;margin-bottom:5px; font-size: 25px; font-weight: 600;">회원가입</span>
+	<span style="margin-left:360px;margin-bottom:5px; font-size: 20px; font-weight: 600;font-size:40px;">회원가입</span>
 	<form name="frm">
 		<h3 class="join_title" >아이디</h3> 
 		<div>
@@ -188,7 +183,7 @@ input:focus {outline:none;}
 		</span>
 		
 		
-		<div style="margin-top:20px; margin-bottom:20px; ">
+		<div style="margin-top:20px; ">
 			<input type="submit" value="회원가입" style="width:460px; height:52px;">
 		</div>
 	</form>

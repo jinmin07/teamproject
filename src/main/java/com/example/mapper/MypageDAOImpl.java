@@ -91,4 +91,20 @@ public class MypageDAOImpl implements MypageDAO {
 	public int chk_feed(MyfeedVO vo) {
 		return session.selectOne(namespace+".chk_feed", vo);
 	}
+
+	@Override
+	public void passwordChange(UserVO vo) {
+		session.update(namespace + ".passwordChange",vo);
+		
+	}
+
+	@Override
+	public List<ProductVO> my_attend_purchase(String p_writer) {
+		return session.selectList(namespace + ".my_attend_purchase",p_writer);
+	}
+
+	@Override
+	public List<CourseVO> my_attend_course(String c_writer) {
+		return session.selectList(namespace + ".my_attend_course",c_writer);
+	}
 }

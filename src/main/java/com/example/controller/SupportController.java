@@ -23,8 +23,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.example.domain.Criteria;
+import com.example.domain.MyfeedVO;
 import com.example.domain.PageMaker;
 import com.example.domain.SupportVO;
+import com.example.mapper.MypageDAO;
 import com.example.mapper.SupportDAO;
 import com.example.service.SupportService;
 
@@ -33,6 +35,9 @@ import com.example.service.SupportService;
 public class SupportController {
 	@Resource(name="uploadPath")
 	private String path;
+	
+	@Autowired
+	MypageDAO mdao;
 	
 	@Autowired
 	SupportDAO sdao;
@@ -142,18 +147,29 @@ public class SupportController {
 	}
 	
 	// 이미지파일 브라우저에 출력
-		@RequestMapping("/display")
-		@ResponseBody
-		public ResponseEntity<byte[]> display(String fileName) throws Exception {
-			ResponseEntity<byte[]> result = null;
-			// display fileName이 있는 경우
-			if (!fileName.equals("")) {
-				File file = new File(path+"supportimg/" + File.separator + fileName);
+	@RequestMapping("/display")
+	@ResponseBody
+	public ResponseEntity<byte[]> display(String fileName) throws Exception {
+		ResponseEntity<byte[]> result = null;
+		// display fileName이 있는 경우
+		if (!fileName.equals("")) {
+			File file = new File(path+"supportimg/" + File.separator + fileName);
 
-				HttpHeaders header = new HttpHeaders();
-				header.add("Content-Type", Files.probeContentType(file.toPath()));
-				result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
-			}
-			return result;
+			HttpHeaders header = new HttpHeaders();
+			header.add("Content-Type", Files.probeContentType(file.toPath()));
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
 		}
+		return result;
+	}
+	
+	// myfeed insert
+	@RequestMapping(value="/feed_insert", method=RequestMethod.POST)
+	@ResponseBody
+	public int myfeed_insert(MyfeedVO vo){
+		int result = mdao.chk_feed(vo);
+		if(result == 0){
+			service.support_insert_feed(vo);
+		}
+		return result;
+	}
 }

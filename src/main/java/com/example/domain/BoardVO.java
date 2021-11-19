@@ -11,9 +11,9 @@ public class BoardVO {
 	private String tbl_code;
 	private String b_category;
 	private String title;
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
+	@JsonFormat(pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date b_date;
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
+	@JsonFormat(pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private Date updatedate;
 	private String b_writer;
 	private String b_content;

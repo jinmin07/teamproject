@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.SupportMapper">
+	<!-- 피드수 증가 -->
+	<update id="add_feed_cnt">
+		update tbl_support set s_cnt_feed = s_cnt_feed + 1
+		where id = #{id}
+	</update>
 	<select id="list" resultType="com.example.domain.SupportVO">
 		select * from tbl_support
 		where title like concat('%',#{keyword},'%')
