@@ -49,11 +49,11 @@
 				</div>
 				<ul class="login_infor_ul">
 					<li>
-						<a href="/#">아이디 찾기</a>
+						<a href="/member/findId">아이디 찾기</a>
 					</li>
 					<li>
 						&nbsp;
-						<a href="/#">비밀번호 찾기</a>
+						<a href="/member/findPw">비밀번호 찾기</a>
 					</li>
 					<li>
 						<a href="/member/insert">회원가입</a>
