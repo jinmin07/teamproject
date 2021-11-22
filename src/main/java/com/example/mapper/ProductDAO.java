@@ -9,7 +9,7 @@ import com.example.domain.PReplyVO;
 import com.example.domain.ProductVO;
 
 public interface ProductDAO {
-	public void add_feed_cnt(int id);	
+public void add_feed_cnt(int id);	
 	
 	public List<ProductVO> list(Criteria cri);
 	
@@ -19,7 +19,7 @@ public interface ProductDAO {
 	
 	public ProductVO read(int id);	
 	
-	public int totCount();
+	public int totCount(Criteria cri);
 	
 	public void update(ProductVO vo);
 	
@@ -30,6 +30,8 @@ public interface ProductDAO {
 	public void delete_member(int p_id,String p_member);
 	
 	public void delete(int id);
+	
+	public ProductVO list_purchase(int id);
 	
 	public List<PQueryVO> list_query(int p_id);
 	

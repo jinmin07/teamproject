@@ -95,15 +95,12 @@
 	border-color: #09addb;
     background-color: #09addb;
 }
-
+.content_box {text-align: center;}
 
 }
-
-
-
 </style>
 
-<div id="read"></div>
+<div id="read">
 
 	<div class="board_detail">
 		<div class="title_box">
@@ -126,20 +123,40 @@
 	</div>	
 	
 	<div class="button_box">	
-			<c:if test="${user.u_id eq 'user21'}">
-				<button type="button"  onClick="location.href='/support/update?id=${vo.id}'"  class="btn_gray"  title="수정"  >수정</button>
-				<button type="button" class="btn_gray" id="delete" title="삭제"  >삭제</button>
-			</c:if>
-			<c:if test="${user!=null}">
-				<button type="button" class="btn_gray"  title="내 피드"  >내 피드</button>
-			</c:if>
-			<button type="button" onClick="location.href='/support/list'"  class="btn_list" title="목록">목록</button>
-		
-		
-			
-			
+		<c:if test="${user.u_id eq 'admin'}">
+			<button type="button"  onClick="location.href='/support/update?id=${vo.id}'"  class="btn_gray"  title="수정"  >수정</button>
+			<button type="button" class="btn_gray" id="delete" title="삭제"  >삭제</button>
+		</c:if>
+		<c:if test="${user!=null and user.u_id != 'admin' }">
+			<button type="button" id ="myfeed_insert" class="btn_gray"  title="내 피드"  >내 피드</button>
+		</c:if>
+		<button type="button" onClick="location.href='/support/list'"  class="btn_list" title="목록">목록</button>
 	</div>
+</div>	
 <script>
+	var id = "${vo.id}";
+	var login_id = "${user.u_id}";
+	
+	//마이피드로 옮기기
+	$("#myfeed_insert").on("click", function(){
+		var tbl_code = "${vo.tbl_code}";
+		if(!confirm("내 피드로 옮기시겠습니까?")) return;
+		$.ajax({
+			type: "post",
+			url: "/support/feed_insert",
+			data: {"user_id": login_id, "tbl_code": tbl_code, "primary_id": id},
+			success: function(data){
+				if(data == 0 ){
+					alert("내 피드로 옮겨졌습니다.");
+				}else{
+					alert("이미 내 피드에 있는 글입니다.");
+				}
+				
+			}
+		});
+	});
+
+
 	$(".button_box").on("click","#delete",function(e){
 		e.preventDefault();;
 		var id="${vo.id}";

@@ -19,7 +19,6 @@ public class UserDAOImpl implements UserDAO{
 
 	@Override
 	public List<UserVO> list() {
-		// TODO Auto-generated method stub
 		return session.selectList(namespace + ".list");
 	}
 
@@ -37,6 +36,21 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public UserVO userLogin(UserVO user) {
 		return session.selectOne(namespace+".userLogin",user);
+	}
+
+	@Override
+	public UserVO findId(UserVO vo) throws Exception {
+		return session.selectOne(namespace + ".findId",vo);
+	}
+
+	@Override
+	public UserVO findPw(UserVO vo) throws Exception {
+		return session.selectOne(namespace + ".findPw",vo);
+	}
+
+	@Override
+	public UserVO pick_up_u_pass(UserVO vo) throws Exception {
+		return session.selectOne(namespace + ".pick_up_u_pass",vo);
 	}
 
 }

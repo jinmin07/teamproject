@@ -14,13 +14,13 @@ import com.example.domain.ProductVO;
 
 @Repository
 public class ProductDAOImpl  implements ProductDAO{
-	
 	@Autowired
 	SqlSession session;
 	String namespace="com.example.mapper.ProductMapper";
 	
 	@Override
 	public List<ProductVO> list(Criteria cri) {
+		
 		return session.selectList(namespace + ".list",cri);
 	}
 	
@@ -40,8 +40,8 @@ public class ProductDAOImpl  implements ProductDAO{
 	}
 	
 	@Override
-	public int totCount() {
-		return session.selectOne(namespace + ".totCount");
+	public int totCount(Criteria cri) {
+		return session.selectOne(namespace + ".totCount",cri);
 	}
 	
 	@Override
@@ -92,7 +92,6 @@ public class ProductDAOImpl  implements ProductDAO{
 	@Override
 	public void insert_query(PQueryVO vo) {
 		session.insert(namespace + ".insert_query" , vo);
-		
 	}
 
 	@Override
@@ -103,13 +102,11 @@ public class ProductDAOImpl  implements ProductDAO{
 	@Override
 	public void update_replystate_query(int c_query_id) {
 		session.update(namespace + ".update_replystate_query" , c_query_id);
-		
 	}
 
 	@Override
 	public void insert_reply(PReplyVO vo) {
 		session.insert(namespace + ".insert_reply", vo);
-		
 	}
 
 	@Override
@@ -118,7 +115,6 @@ public class ProductDAOImpl  implements ProductDAO{
 		map.put("id", id);
 		map.put("value", value);
 		session.update(namespace + ".update_cnt_purchase", map);
-		
 	}
 
 	@Override
@@ -137,4 +133,8 @@ public class ProductDAOImpl  implements ProductDAO{
 		session.update(namespace + ".add_feed_cnt", id);
 	}
 
+	@Override
+	public ProductVO list_purchase(int id) {
+		return session.selectOne(namespace + ".list_purchase",id);
+	}
 }

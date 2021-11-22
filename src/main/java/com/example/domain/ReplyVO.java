@@ -8,7 +8,7 @@ public class ReplyVO {
 	private int b_reply_id;
 	private int b_id;
 	private String b_reply_writer;
-	@JsonFormat(pattern="yyyy≥‚MMø˘dd¿œ HH:mm:ss", timezone="Asia/Seoul")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date b_reply_date;
 	private String b_reply_content;
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")

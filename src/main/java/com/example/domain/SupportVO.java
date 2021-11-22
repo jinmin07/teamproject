@@ -13,7 +13,7 @@ public class SupportVO {
 	@JsonFormat(pattern="yyyy-MM-dd",timezone="Asia/Seoul")
 	private Date s_date;
 	private String s_image;
-	private String table_code;
+	private String tbl_code;
 	private int s_view;
 	private int s_cnt_feed;
 	public int getId() {
@@ -70,11 +70,11 @@ public class SupportVO {
 	public void setS_image(String s_image) {
 		this.s_image = s_image;
 	}
-	public String getTable_code() {
-		return table_code;
+	public String getTbl_code() {
+		return tbl_code;
 	}
-	public void setTable_code(String table_code) {
-		this.table_code = table_code;
+	public void setTbl_code(String tbl_code) {
+		this.tbl_code = tbl_code;
 	}
 	public int getS_view() {
 		return s_view;
@@ -82,19 +82,18 @@ public class SupportVO {
 	public void setS_view(int s_view) {
 		this.s_view = s_view;
 	}
-	
-	
 	public int getS_cnt_feed() {
 		return s_cnt_feed;
 	}
 	public void setS_cnt_feed(int s_cnt_feed) {
 		this.s_cnt_feed = s_cnt_feed;
 	}
-	
 	@Override
 	public String toString() {
-		return "SupporVO [id=" + id + ", s_local=" + s_local + ", s_age=" + s_age + ", s_gender=" + s_gender
+		return "SupportVO [id=" + id + ", s_local=" + s_local + ", s_age=" + s_age + ", s_gender=" + s_gender
 				+ ", s_category=" + s_category + ", title=" + title + ", s_content=" + s_content + ", s_date=" + s_date
-				+ ", s_image=" + s_image + ", table_code=" + table_code + ", s_view=" + s_view + "]";
+				+ ", s_image=" + s_image + ", tbl_code=" + tbl_code + ", s_view=" + s_view + ", s_cnt_feed="
+				+ s_cnt_feed + "]";
 	}
+	
 }

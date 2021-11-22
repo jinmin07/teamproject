@@ -58,7 +58,7 @@ input[type=submit], input[type=reset] {
 		</div>
 		
 		<h3>모집 지역</h3>
-		<select name="c_local">
+		<select id= "c_local" name="c_local">
 			<option value="전국">전국</option>
 			<option value="서울">서울</option>
 			<option value="인천">인천</option>
@@ -78,7 +78,7 @@ input[type=submit], input[type=reset] {
 		<h3>모임 회비</h3>
 		<input type="text" name="c_fee" value="${vo.c_fee}">
 		<h3>모집 연령</h3>
-		<select name="c_age_min">
+		<select id="c_age_min" name="c_age_min">
 			<option value="10">10</option>
 			<option value="20">20</option>
 			<option value="30">30</option>
@@ -89,7 +89,7 @@ input[type=submit], input[type=reset] {
 			<option value="80">80</option>
 			<option value="90">90</option>
 			<option value="100">100</option>
-		</select> &nbsp; ~ &nbsp; <select name="c_age_max">
+		</select> &nbsp; ~ &nbsp; <select id="c_age_max" name="c_age_max">
 			<option value="19">19</option>
 			<option value="29">29</option>
 			<option value="39">39</option>
@@ -103,7 +103,7 @@ input[type=submit], input[type=reset] {
 		</select>
 
 		<h3>모집 성별</h3>
-		<select name="c_gender">
+		<select id="c_gender" name="c_gender">
 			<option value="혼성">혼성</option>
 			<option value="남성">남성</option>
 			<option value="여성">여성</option>

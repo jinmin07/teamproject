@@ -55,4 +55,8 @@ public class SupportDAOImpl implements SupportDAO{
 	public void update(SupportVO vo) {
 		session.update(namespace+".update",vo);
 	}
+	@Override
+	public void add_feed_cnt(int id) {
+		session.update(namespace + ".add_feed_cnt", id);
+	}
 }

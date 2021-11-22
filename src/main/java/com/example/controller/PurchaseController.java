@@ -38,6 +38,7 @@ import com.example.domain.course.CQueryVO;
 import com.example.domain.course.CReplyVO;
 import com.example.domain.course.CategoryVO;
 import com.example.domain.course.CourseVO;
+import com.example.mapper.MypageDAO;
 import com.example.mapper.ProductDAO;
 import com.example.mapper.UserDAO;
 import com.example.service.PurchaseService;
@@ -53,6 +54,9 @@ public class PurchaseController {
 	// 파일 저장 루트 지정
 	@Resource(name = "uploadPath")
 	private String path;
+	
+	@Autowired
+	MypageDAO mdao;
 	
 	@Autowired
 	UserDAO udao;
@@ -71,13 +75,14 @@ public class PurchaseController {
 	//상품정보 => JSON 
 	@RequestMapping("/list.json")
 	@ResponseBody
-	public HashMap<String,Object> listJson(Criteria cri) {
+	public HashMap<String,Object> listJson(Criteria cri) {	
 		HashMap<String,Object> map=new HashMap<>();
 		cri.setPerPageNum(9);
 		map.put("list", pdao.list(cri));
 		map.put("cri",cri);
 		PageMaker pm=new PageMaker();
 		pm.setCri(cri);
+		pm.setTotalCount(pdao.totCount(cri));
 		map.put("pm", pm);
 		return map;
 	}
@@ -95,21 +100,30 @@ public class PurchaseController {
 	}
 
 
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(ProductVO vo, MultipartHttpServletRequest multi) throws IllegalStateException, IOException {
-		MultipartFile file = multi.getFile("file");
+	@RequestMapping(value="/update",method = RequestMethod.GET)
+	public String updateGET(int id,Model model) {
+		ProductVO vo = pdao.list_purchase(id);
 
-		if (!file.isEmpty()) {
-			new File(path + "/" + vo.getP_image()).delete();
+		model.addAttribute("vo", vo);
+		model.addAttribute("pageName", "purchase/update.jsp");
+		
+		return "home";
+	}
+
+
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String updatePOST(ProductVO vo, MultipartHttpServletRequest multi) throws Exception {
+		MultipartFile file = multi.getFile("file");
+		if(!file.isEmpty()){
+			new File(path + "purchaseimg/" + vo.getP_image()).delete();
 			String image = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-			file.transferTo(new File(path + "/" + image));
+			file.transferTo(new File(path + "purchaseimg/" + image));
 			vo.setP_image(image);
 		}
-
 		pdao.update(vo);
-
-		return "redirect:/";
+		return "redirect:/purchase/list";
 	}
+
 
 	// read page
 	@RequestMapping("/read")
@@ -131,9 +145,6 @@ public class PurchaseController {
 
 	@RequestMapping(value = "/insert")
 	public String insert(Model model) {
-		String maxId = pdao.maxId();
-		String id = String.valueOf(Integer.parseInt(maxId) + 1);
-		model.addAttribute("id", id);
 		model.addAttribute("pageName", "purchase/insert.jsp");
 		return "home";
 	}
@@ -158,7 +169,7 @@ public class PurchaseController {
 		String p_image = System.currentTimeMillis() + "_" + file.getOriginalFilename();
 		vo.setP_image(p_image);
 		// 대표 파일 업로드 하기
-		file.transferTo(new File(path + "/" + p_image));
+		file.transferTo(new File(path + "purchaseimg/" + p_image));
 		// 데이터 입력
 		
 		pdao.insert(vo);
@@ -173,9 +184,9 @@ public class PurchaseController {
 	@ResponseBody
 	public ResponseEntity<byte[]> display(String fileName) throws Exception {
 		ResponseEntity<byte[]> result = null;
-		// display fileName이 있는 경우
 		if (!fileName.equals("")) {
-			File file = new File(path + File.separator + fileName);
+			File file = new File(path + "purchaseimg/" + File.separator + fileName);
+
 			HttpHeaders header = new HttpHeaders();
 			header.add("Content-Type", Files.probeContentType(file.toPath()));
 			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
@@ -193,9 +204,6 @@ public class PurchaseController {
 		}
 		return result;
 	}
-	
-	
-	
 	
 	@RequestMapping(value="/delete_member",method=RequestMethod.POST)
 	@ResponseBody
@@ -261,7 +269,11 @@ public class PurchaseController {
 	// myfeed insert
 	@RequestMapping(value="/feed_insert", method=RequestMethod.POST)
 	@ResponseBody
-	public void myfeed_insert(MyfeedVO vo){
-		service.purchase_insert_feed(vo);
+	public int myfeed_insert(MyfeedVO vo){
+		int result = mdao.chk_feed(vo);
+		if(result == 0){
+			service.purchase_insert_feed(vo);
+		}
+		return result;
 	}
 }

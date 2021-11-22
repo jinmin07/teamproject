@@ -13,21 +13,70 @@
 	</update>
 	<select id="list" resultType="com.example.domain.ProductVO">
 		select * from tbl_purchase
-		<if test="searchType == 'all'"></if>
-		<if test="searchType == 'p_food'"> where p_category = 'p_food' </if>
-		<if test="searchType == 'p_sports'"> where p_category = 'p_sports'</if>
-		<if test="searchType == 'p_beauty'"> where p_category = 'p_beauty'</if>
-		<if test="searchType == 'p_digital'"> where p_category = 'p_digital'</if>
-		<if test="searchType == 'p_fashion'"> where p_fashion = 'p_fashion'</if>
+		where title like concat('%',#{keyword},'%')
+		<!-- 카테고리별 -->
+		<if test="catType=='allCate'">
+		</if>
+		<if test="catType=='ca1'">
+			and p_category='p_food'
+		</if>
+		<if test="catType=='ca2'">
+			and p_category='p_sports'
+		</if>
+		<if test="catType=='ca3'">
+			and p_category='p_beauty'
+		</if>
+		<if test="catType=='ca4'">
+			and p_category='p_fashion'
+		</if>
+		<if test="catType=='ca5'">
+			and p_category='p_digital'
+		</if>
+		
+			<!-- 지역별 -->
+	      <if test ="searchType=='all'">
+	      </if>
+	      <if test ="searchType=='seoul'">
+	         and p_local='서울'
+	      </if>
+	      <if test ="searchType=='incheon'">
+	         and p_local='인천'
+	      </if>
+	      <if test ="searchType=='gyeonggi'">
+	         and p_local='경기도'
+	      </if>
+	      	      <if test ="searchType=='daejeon'">
+	         and p_local='대전'
+	      </if>
+	      <if test ="searchType=='gwangju'">
+	         and p_local='광주'
+	      </if>
+	      <if test ="searchType=='ulsan'">
+	         and p_local='울산'
+	      </if>
+	      <if test ="searchType=='busan'">
+	         and p_local='부산'
+	      </if>
+	      <if test ="searchType=='jeju'">
+	         and p_local='제주'
+	      </if>
+		and p_state = 0
 		order by id desc
+		limit #{pageStart},#{perPageNum};
+		
+	</select>
+	
+	<select id="list_purchase" resultType="com.example.domain.ProductVO">
+		select * from tbl_purchase
+		where id = #{id}
 	</select>
 	<insert id="insert">
 		insert into tbl_purchase(id, title, date_start,
 		date_end, p_writer, p_image, p_local, p_link, p_price, p_salePrice,
 		p_category,
-		p_tot_member)
+		p_tot_member,p_content)
 		values(#{id},#{title},#{date_start},#{date_end},#{p_writer},#{p_image},#{p_local},#{p_link},#{p_price},#{p_salePrice},#{p_category},
-		#{p_tot_member})
+		#{p_tot_member},#{p_content})
 	</insert>
 	<select id="read" resultType="com.example.domain.ProductVO">
 		select * from tbl_purchase
@@ -53,11 +102,11 @@
 		select count(*) from
 		tbl_purchase
 	</select>
+	
 	<update id="update">
-		update tbl_purchase set title=#{title},
-		p_price=#{p_price}, p_image=#{p_image}, p_category=#{p_category}
-		where
-		id=#{id}
+		update tbl_purchase set title=#{title},p_link = #{p_link},p_salePrice = #{p_salePrice},p_tot_member = #{p_tot_member},date_start = #{date_start},date_end = #{date_end},
+		p_price=#{p_price}, p_image=#{p_image}, p_category=#{p_category},p_local = #{p_local}
+		where id = #{id}
 	</update>
 
 	<delete id="delete">

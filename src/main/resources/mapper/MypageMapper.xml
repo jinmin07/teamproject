@@ -17,6 +17,12 @@
 		where user_id = #{user_id}
 		order by f_id desc
 	</select>
+	<select id="chk_feed" resultType="int">
+		select count(*) from tbl_feed
+		where user_id = #{user_id} 
+		and primary_id = #{primary_id} 
+		and tbl_code = #{tbl_code}
+	</select>
 	<insert id="myfeed_insert">
 		insert into tbl_feed(user_id, tbl_code, primary_id) 
 		values(#{user_id}, #{tbl_code}, #{primary_id})
@@ -30,6 +36,16 @@
 		<if test='tbl_code=="C"'>
 			select id, tbl_code, c_writer writer, title, c_date regdate, c_content content
 			from tbl_course
+			where id= #{id}
+		</if>
+		<if test='tbl_code=="B"'>
+			select id, tbl_code, b_writer writer, title, b_date regdate, b_image image, b_content content
+			from tbl_board
+			where id= #{id}
+		</if>
+		<if test='tbl_code=="S"'>
+			select id, tbl_code, title, s_date regdate, s_image image
+			from tbl_support
 			where id= #{id}
 		</if>
 	</select>
@@ -61,9 +77,20 @@
 		select * from tbl_user
 		where u_id = #{u_id}
 	</select>
+	<update id="passwordChange">
+		update tbl_user set u_pass = #{u_pass} where u_id = #{u_id} 
+	</update>
 	<update id="my_profile_update">
-		update tbl_user set u_pass = #{u_pass}, u_name = #{u_name}, u_addr1 = #{u_addr1}, u_addr2 = #{u_addr2}, u_addr3 = #{u_addr3}
+		update tbl_user set u_gender = #{u_gender}, u_name = #{u_name}, u_addr1 = #{u_addr1}, u_addr2 = #{u_addr2}, u_addr3 = #{u_addr3},
 			 u_email = #{u_email} , u_phone = #{u_phone}
 		where u_id = #{u_id}
 	</update>
+	<select id="my_attend_purchase" resultType="com.example.domain.ProductVO">
+		select p.p_writer,u.u_id,p.tbl_code,p.id,p.title,m.p_id from tbl_purchase as p,tbl_purchase_member as m,tbl_user as u
+		where p.id = m.p_id and p.p_writer = u.u_id and m.p_member = #{p_writer} and p.p_state = 0;
+	</select>
+	<select id="my_attend_course" resultType="com.example.domain.course.CourseVO">
+		select c.c_writer,u.u_id,c.tbl_code,c.id,c.title,m.c_id from tbl_course as c,tbl_course_member as m,tbl_user as u
+		where c.id = m.c_id and c.c_writer = u.u_id and m.c_member = #{c_writer} and c.c_state = 0;
+	</select>
 </mapper>

@@ -13,8 +13,6 @@
 </head>
 <body>
 	<div id="page">
-
-
 	<!-- 맨위 상단 -->
 		<div class="topnav" style="  overflow: hidden; color: #999999; margin-right:130px; ">
 				<div class="active">
