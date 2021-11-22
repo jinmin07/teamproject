@@ -34,32 +34,32 @@
             <c:if test = "${result == 0 }">
                 <div class = "login_warn">사용자 ID 또는 비밀번호를 잘못 입력하셨습니다.</div>
         </c:if>
-            <div class="login_button_wrap">
-               <input type="button" class="login_button" value="로그인">
-            </div>
-         </div>
-         <div class="login_infor">
-            <div class="new_login_wrap">
-               <input type="checkbox" id="chkLogin" name="chkLogin">
-               <label for="chkLogin">
-                  <span>자동 로그인</span>
-               </label>
-            </div>
-            <ul class="login_infor_ul">
-               <li>
-                  <a href="/member/findId">아이디 찾기</a>
-               </li>
-               <li>
-                  &nbsp;
-                  <a href="/member/findPw">비밀번호 찾기</a>
-               </li>
-               <li>
-                  <a href="/member/insert">회원가입</a>
-               </li>
-            </ul>
-         </div>
-      </form>
-   </div>
+				<div class="login_button_wrap">
+					<input type="button" class="login_button" value="로그인">
+				</div>
+			</div>
+			<div class="login_infor">
+				<div class="new_login_wrap">
+					<input type="checkbox" id="autologin" name="autologin">
+					<label for="autologin">
+						<span>아이디 저장하기</span>
+					</label>
+				</div>
+				<ul class="login_infor_ul">
+					<li>
+						<a href="/member/findId">아이디 찾기</a>
+					</li>
+					<li>
+						&nbsp;
+						<a href="/member/findPw">비밀번호 찾기</a>
+					</li>
+					<li>
+						<a href="/member/insert">회원가입</a>
+					</li>
+				</ul>
+			</div>
+		</form>
+	</div>
 </body>
 <script>
     $(".login_button").on("click",function(){

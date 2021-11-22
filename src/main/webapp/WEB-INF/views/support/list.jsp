@@ -442,7 +442,7 @@
 				<h4 id="total" style="margin-bottom:5px;"></h4>
 			</div>
 			<div style="display: inline-block; float: right; margin-top:20px; margin-right:15px;">
-				<c:if test="${user.u_id eq 'user21'}">
+				<c:if test="${user.u_id eq 'admin'}">
 					<button onClick="location.href='insert'" >등록</button>
 				</c:if> 
 			</div>
@@ -503,7 +503,7 @@
 			
 			$.ajax({
 				type : "get",
-				url : "list.json",
+				url : "/support/list.json",
 				dataType : "json",
 				data : {"page" : page,"keyword":keyword,"searchType":searchType,"ageType":ageType,"genderType":genderType,"catType":catType},
 				success : function(data) {
