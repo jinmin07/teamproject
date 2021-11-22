@@ -34,6 +34,19 @@ public class MypageDAOImpl implements MypageDAO {
 	}
 
 	@Override
+	public void myfeed_delete(MyfeedVO vo) {
+		session.delete(namespace + ".myfeed_delete", vo);
+	}
+	
+	@Override
+	public void myfeed_delete_all(String tbl_code, int primary_id) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("tbl_code", tbl_code);
+		map.put("primary_id", primary_id);
+		session.delete(namespace + ".myfeed_delete_all");
+	}
+	
+	@Override
 	public MyfeedRefVO myfeed_ref_list(String tbl_code, int id) {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("tbl_code", tbl_code);
@@ -107,4 +120,5 @@ public class MypageDAOImpl implements MypageDAO {
 	public List<CourseVO> my_attend_course(String c_writer) {
 		return session.selectList(namespace + ".my_attend_course",c_writer);
 	}
+
 }

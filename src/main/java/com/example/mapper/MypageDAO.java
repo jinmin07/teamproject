@@ -24,6 +24,8 @@ public interface MypageDAO {
 	public List<MyfeedVO> myfeedlist(String user_id);
 	public int chk_feed(MyfeedVO vo);
 	public void myfeed_insert(MyfeedVO vo);
+	public void myfeed_delete(MyfeedVO vo);
+	public void myfeed_delete_all(String tbl_code, int primary_id);
 	public MyfeedRefVO myfeed_ref_list(String tbl_code, int id);
 	public void passwordChange(UserVO vo);
 	public List<ProductVO> my_attend_purchase(String p_writer);

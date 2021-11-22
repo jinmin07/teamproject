@@ -3,7 +3,7 @@
 <mapper namespace="com.example.mapper.SupportMapper">
 	<!-- 피드수 증가 -->
 	<update id="add_feed_cnt">
-		update tbl_support set s_cnt_feed = s_cnt_feed + 1
+		update tbl_support set s_cnt_feed = s_cnt_feed + #{value}
 		where id = #{id}
 	</update>
 	<select id="list" resultType="com.example.domain.SupportVO">

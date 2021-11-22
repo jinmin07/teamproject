@@ -9,7 +9,7 @@ import com.example.domain.PReplyVO;
 import com.example.domain.ProductVO;
 
 public interface ProductDAO {
-public void add_feed_cnt(int id);	
+	public void add_feed_cnt(int id, int value);	
 	
 	public List<ProductVO> list(Criteria cri);
 	

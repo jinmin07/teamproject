@@ -1,19 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<style>
+
+</style>
+
 <h1>내 피드</h1>
 <div id="myfeed"></div>
 <script id="temp" type="text/x-handlebars-template">
 	{{#each .}}
 		<div class="box">
-			<h3>{{title}}</h3>
-			<h5>{{writer}}</h5>
-			<h5>{{printCategory tbl_code}}</h5>
-			<h5>{{regdate}}</h5>
-			<div class="image">
-				<img src="{{printSrc tbl_code}}/display?fileName={{image}}" width=140 style="display:{{printImg image}}"/>
+			<div classs="main"> 
+				<h3>{{title}}</h3>
+				<h5>{{writer}}</h5>
+				<h5 class="tbl_code">{{printCategory tbl_code}}</h5>
+				<h5>{{regdate}}</h5>
 			</div>
-			<div class="content">{{content}}</div>
+			<div class="content">
+				<div class="image">
+					<img src="{{printSrc tbl_code}}/display?fileName={{image}}" width=140 style="display:{{printImg image}}"/>
+				</div>
+				<p>{{content}}</p>
+				<a href="{{id}}" code= "{{tbl_code}}">삭제</a>
+			</div>
 		</div>
 		<hr/>
 	{{/each}}
@@ -50,9 +59,27 @@
 	});
 </script>
 <script>
+	var user_id = "${user.u_id}";
+	
+	$("#myfeed").on("click", ".box a", function(e){
+		e.preventDefault();
+		var tbl_code = $(this).attr("code");
+		var primary_id = $(this).attr("href");
+		if(!confirm("삭제하시겠습니까?")) return;
+		
+		$.ajax({
+			type : "post",
+			url : "/myfeed/delete",
+			data : {"user_id" : user_id, "tbl_code" : tbl_code, "primary_id" : primary_id},
+			success : function() {
+				alert("삭제가 완료되었습니다.");
+				location.href="/myfeed/list";
+			}
+		});
+	});
+
 	getList();
 	function getList() {
-		var user_id = "${user.u_id}";
 		$.ajax({
 			type : "get",
 			url : "/myfeed/feedlist.json",
@@ -64,4 +91,5 @@
 			}
 		});
 	}
+	
 </script>

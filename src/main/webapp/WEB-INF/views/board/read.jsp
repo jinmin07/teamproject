@@ -20,15 +20,42 @@
 		padding: 5px 10px;
 		text-align: center;
 	}
+	input[type=button]{
+		width:80px;
+		height:40px;
+		font-size: 15px;
+		font-weight: 600;
+		background:#fff;	
+		border:2px solid #35c5f0;
+		color: #35c5f0;
+		cursor: pointer;
+		margin-left: 15px;
+	}
+	#goList, button{
+		width:80px;
+		height:40px;
+		font-size: 15px;
+		font-weight: 600;
+		color: #fff;
+		background-color: #35c5f0;
+		cursor: pointer;
+		border:  none;
+		margin-left: 15px;
+	}
+	#goList:hover{
+	border-color: #09addb;
+    background-color: #09addb;
+	}
 	#board_content {text-align: center; margin-bottom: 30px;}
 	#b_content {font-size: 15px; width: 500; margin:20px auto; text-align: left;}
 	#b_reply{width: 900px; margin:0 auto; }
+	.box{width: 850px;}
 	#total{font-size: 15px; margin-bottom: 0px;}
 </style>
 <div id="board_content">
 	<div id="b_category">${vo.b_category}</div>
 	<h1 id="b_title">${vo.title}</h1>
-	<p id="b_subinfo">${vo.b_writer} | <f:formatDate value="${vo.b_date}" pattern="yyyy-MM-dd"/> | 조회수 : ${vo.b_view}</p>
+	<p id="b_subinfo">${vo.b_writer} | <f:formatDate value="${vo.b_date}" pattern="yyyy-MM-dd"/> | 조회수 : ${vo.b_view} | 추천수: ${vo.b_rec}</p>
 	<div>
 		<img id="b_image" src = "/board/display?fileName=${vo.b_image}" width=500/>
 		<input type = "file" name = "file" style="display : none;"/><br/>
@@ -41,18 +68,22 @@
 		</c:forEach>
 	</div>
 	<p id="b_content">${vo.b_content}</p>
-	<c:if test="${vo.b_writer == user.u_id}">
-		<div style="margin: 10px;">
+	<div class="button_box" style="margin: 10px;">
+		<c:if test="${vo.b_writer == user.u_id}">
 			<input type="button" value="수정" onClick="location.href='/board/update?id=${vo.id}'"/>
 			<input type="button" value="삭제" id="btnDelete"/>
-		</div>
-	</c:if>
-	<c:if test="${vo.b_writer != user.u_id}">
-		<div style="margin: 10px;">
-			<input type="button" value="추천" id="btnLike"/>
+		</c:if>
+		<c:if test="${vo.b_writer != user.u_id}">
+			<c:if test="${chk_rec == 0}">
+				<input type="button" value="추천" id="btnLike"/>
+			</c:if>
+			<c:if test="${chk_rec != 0}">
+				<input type="button" value="추천취소" id="btnLikeDel"/>
+			</c:if>
 			<input type="button" value="피드" id="myfeed_insert"/>
-		</div>
-	</c:if>
+		</c:if>
+		<input type="button" value="목록" id="goList"/>
+	</div>
 	<div id="b_reply">
 		<div id="insert" style="overflow: hidden;">
 			<h3 style="float: left;">한줄 의견을 나눠 보세요</h3>
@@ -67,7 +98,10 @@
 		{{#each list}}
 		<div class="box" style="text-align:left;border-bottom:1px dotted gray;">
 			<h5>{{b_reply_writer}} | {{b_reply_date}}</h5>
-			<p>{{b_reply_content}}<a href="{{b_reply_id}}" style="display:{{printDel b_reply_writer}}">X</a></p>
+			<p>
+				{{b_reply_content}}
+				<a href="{{b_reply_id}}" style="display:{{printDel b_reply_writer}}; color:gray; float:right; margin-right: 50px;">삭제</a>
+			</p>
 		</div>
 		{{/each}}
 		</script>
@@ -87,6 +121,32 @@
 	var u_id = "${user.u_id}";
 	getList();
 	
+	//좋아요 기능
+	$("#btnLike").on("click", function(){
+		$.ajax({
+			type: "post",
+			url: "/board/rec",
+			data: {"b_id": id, "user_id" : u_id},
+			success: function(){
+				var url = "/board/read?id=" + id;
+				location.href=url;
+			}
+		});
+	});
+	
+	//좋아요 기능
+	$("#btnLikeDel").on("click", function(){
+		$.ajax({
+			type: "post",
+			url: "/board/rec_del",
+			data: {"b_id": id, "user_id" : u_id},
+			success: function(){
+				var url = "/board/read?id=" + id;
+				location.href=url;
+			}
+		});
+	});
+	
 	//마이피드로 옮기기
 	$("#myfeed_insert").on("click", function(){
 		var tbl_code = "${vo.tbl_code}";
@@ -101,7 +161,6 @@
 				}else{
 					alert("이미 내 피드에 있는 글입니다.");
 				}
-				
 			}
 		});
 	});

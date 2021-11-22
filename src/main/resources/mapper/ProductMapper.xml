@@ -3,7 +3,7 @@
 <mapper namespace="com.example.mapper.ProductMapper">
 	<!-- 피드수 증가 -->
 	<update id="add_feed_cnt">
-		update tbl_purchase set p_cnt_feed = p_cnt_feed + 1
+		update tbl_purchase set p_cnt_feed = p_cnt_feed + #{value}
 		where id = #{id}
 	</update>
 	<!-- purchase 삭제시 해당 문의글 삭제 -->

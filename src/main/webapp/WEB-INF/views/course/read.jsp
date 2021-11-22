@@ -194,11 +194,12 @@
 	var id = "${vo.id}";
 	var writer = "${vo.c_writer}";
 	var login_id = "${user.u_id}";
+	var tbl_code = "${vo.tbl_code}";
+	var title = "${vo.title}";
 	getList();
 
 	// 마이피드로 옮기기
 	$("#myfeed_insert").on("click", function(){
-		var tbl_code = "${vo.tbl_code}";
 		if(!confirm("내 피드로 옮기시겠습니까?")) return;
 		$.ajax({
 			type: "post",
@@ -210,23 +211,33 @@
 				}else{
 					alert("이미 내 피드에 있는 글입니다.");
 				}
-				
 			}
-			
 		});
 	});
 	
 	// 게시글 삭제
 	$("#btn_course_delete").on("click", function(){
 		if(!confirm("게시글을 삭제하시겠습니까?")) return;
+		
+		var n_content = "모집 신청하신 공동생활 [" + title + "] 진행 건이 작성자의 요청에 의해 삭제되었습니다. 이용에 참고하시기 바랍니다."; 
+		sock_notice.send("admin");
 		$.ajax({
-			type:"post",
-			url: "/delete_course",
-			data: {"c_id": id},
-			success : function(){
-				alert("삭제가 완료되었습니다.");
-				location.href="/cou/list";
-			}
+		type:"post",
+		url: "/delete_course",
+		data: {"c_id": id, "tbl_code": tbl_code},
+		success : function(){
+			alert("삭제가 완료되었습니다.");
+			$.ajax({
+				type: "post",
+				url: "/notice/insert",
+				data: {"tbl_code": tbl_code, "tbl_id":id,"sender": "admin", "content": n_content, "n_state": 1},
+				success : function(){
+					alert("알림 전송이 완료되었습니다.");
+					getNoticeList();
+				}
+			});
+			location.href="/course/list";
+		}
 		});
 		
 	});
@@ -245,7 +256,6 @@
 				getLocation();
 			}
 		});
-		
 	});
 	
 	// 문의글 세부내용 출력
@@ -291,16 +301,25 @@
 	$("#query").on("click", ".list .content button", function(){
 		var query_id = $(this).parent().parent().parent().find(".c_query_id").html();
 		var reply_content = $(this).parent().find(".c_reply_content").val();
+		var query_writer = $(this).parent().parent().parent().find(".p_query_writer").html();
 		
 		if(!confirm("답글을 등록하시겠습니까?")) return;
-		
+		var n_content = "문의하신 공동생활 [" + title + "] 진행 건에 대한 답변이 등록되었습니다."; 
+		sock_notice.send("admin");
 		$.ajax({
 			type: "post",
 			url: "/cou_reply_insert",
 			data: {"c_query_id":query_id, "c_reply_content" : reply_content, "c_reply_writer": writer},
 			success: function(){
-				alert("답글 등록이 완료되었습니다.");
-				getList();
+				$.ajax({
+					type: "post",
+					url: "/notice/insert",
+					data: {"tbl_code": tbl_code, "tbl_id":id,"sender": "admin", "receiver": qeury_writer, "content": n_content},
+					success : function(){
+						alert("답글 등록이 완료되었습니다.");
+						getList();
+					}
+				});
 			}
 		});
 	});

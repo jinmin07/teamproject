@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.MypageMapper">
-		<!-- 신청명단 출력 -->
+	<!-- 신청명단 출력 -->
 	<select id="list_member" resultType="hashmap">
 		<if test='tbl_code=="P"'>
 			select p_id id, p_member member, u_name, u_gender, u_score from tbl_purchase_member m, tbl_user
@@ -27,6 +27,14 @@
 		insert into tbl_feed(user_id, tbl_code, primary_id) 
 		values(#{user_id}, #{tbl_code}, #{primary_id})
 	</insert>
+	<delete id="myfeed_delete">
+		delete from tbl_feed
+		where user_id = #{user_id} and tbl_code = #{tbl_code} and primary_id = #{primary_id}
+	</delete>
+		<delete id="myfeed_delete_all">
+		delete from tbl_feed
+		where tbl_code = #{tbl_code} and primary_id = #{primary_id}
+	</delete>
 	<select id="myfeed_ref_list" resultType="com.example.domain.MyfeedRefVO">
 		<if test='tbl_code=="P"'>
 			select id, tbl_code, p_writer writer, title, p_date regdate, p_image image, p_content content

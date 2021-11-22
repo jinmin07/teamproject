@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.BoardMapper">
-	<!-- 피드수 증가 -->
+	<!-- 좋아요 기능 -->
+	<insert id="insert_rec">
+		insert into tbl_board_rec(b_id, user_id)
+		values(#{b_id}, #{user_id})
+	</insert>
+	<!-- 좋아요 취소 -->
+	<delete id="delete_rec">
+		delete from tbl_board_rec
+		where b_id = #{b_id} and user_id = #{user_id}
+	</delete>
+	<!-- 좋아요 변동 -->
+	<update id="add_cnt_rec">
+		update tbl_board set b_rec = b_rec + #{value}
+		where id = #{id}
+	</update>
+	<!-- 좋아요 여부 -->
+	<select id="chk_rec" resultType="int">
+		select count(*) from tbl_board_rec
+		where b_id = #{b_id} and user_id = #{user_id}
+	</select>
+	<!-- 댓글수 변동 -->
+	<update id="add_cnt_reply">
+		update tbl_board set b_cnt_reply = b_cnt_reply + #{value}
+		where id = #{id}
+	</update>
+	<!-- 피드수 변동 -->
 	<update id="add_feed_cnt">
-		update tbl_board set b_cnt_feed = b_cnt_feed + 1
+		update tbl_board set b_cnt_feed = b_cnt_feed + #{value}
 		where id = #{id}
 	</update>
 	<select id="maxCode" resultType="String">

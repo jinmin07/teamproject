@@ -45,6 +45,7 @@ input[type=file] {
 			<option value="p_digital">가전</option>
 			<option value="p_beauty">미용</option>
 		</select><br/>
+		<input type="hidden" name="old_title" value="${vo.title}"/>
 		<input type="text" name="title" placeholder="상품명" value="${vo.title}"/> <br/>
 		<input type="text" name="p_link" placeholder="링크주소" value="${vo.p_link}"/> <br/>
 		<input type="text" name="p_price" placeholder="상품 가격" value="${vo.p_price}"/> <br/>
@@ -115,11 +116,13 @@ input[type=file] {
 		}
 		alert(id);
 		if (!confirm("수정하시겠습니까?")) return;
-
+		sock_notice.send("admin");
+		
 		frm.action = "/purchase/update";
 		frm.method = "post";
 		frm.submit();
-		alert("수정성공");
+		alert("수정 성공하였습니다.");
+		location.href="/purchase/read?id=" + id;
 	
 	});
 	
