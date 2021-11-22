@@ -61,7 +61,7 @@
     		display: inline-block;
     		width: 20px;
     		height: 15px;
-    		margin-right: 25px;
+    		margin-right: 15px;
 		}
 		.review_comment_head {
     		border-bottom: 1px solid #e1e1e1;
@@ -143,9 +143,7 @@
 		<div class="inner_review">
 			<div class="review_comment" id="position03">
 				<div class="review_comment_head">
-					<h3>
-						문의(<span id="comment_num">${cnt_query}</span>)
-					</h3>
+					<h3>문의(<span id="comment_num">${cnt_query}</span>)</h3>
 				</div>
 			<div class="review_comment_con">
 				<div id="cfrm">
