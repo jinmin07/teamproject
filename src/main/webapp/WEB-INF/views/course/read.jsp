@@ -24,18 +24,69 @@
 		}
 		.html {background-color: #04AA6D;}
 		#btn_member_end {background: lightgray;}
+		
+		#home::before {
+    		content: '';
+    		background: url(https://pickcrawl.com/web/images/sub/home_icon.png) center no-repeat;
+    		background-size: contain;
+    		width: 15px;
+    		height: 15px;
+    		display: inline-block;
+    		margin-right: 5px;
+    		vertical-align: middle;
+    		line-height: 13px;
+    		margin-top: -4px;
+		}
+				
+		<!-- 문의하기 CSS-->
+		.sub_inner_right {
+    		float: left;
+    		width: 100%;
+    		display: inline-block;
+    		box-sizing: border-box;
+    		margin-bottom: 20px;
+		}
+		.review_comment {
+    		border: 1px solid #e1e1e1;
+    		width: 420px;
+    		padding: 10px;
+    		margin-top: 20px;
+    		margin-left: 18px;
+		}
+		
+		.review_comment_head h3::before {
+    		content: '';
+    		background: url(https://pickcrawl.com/web/images/sub/review_icon.png)center no-repeat;
+    		background-size: contain;
+    		display: inline-block;
+    		width: 20px;
+    		height: 15px;
+    		margin-right: 15px;
+		}
+		.review_comment_head {
+    		border-bottom: 1px solid #e1e1e1;
+		}
+		.review_comment_head h3 {
+			text-align:left;
+    		font-size: 16px;
+    		color: #f43143;
+    		font-weight: 500;
+    	}
+
+		<!-- 문의하기 CSS 끝-->
+		
 	</style>
 </head>
 <body>	
 	<div id="course_content">
-		<div style="text-align: left; margin-bottom: 10px;"> 취미/스터디 > ${category.category} > ${category.subcategory} </div>
+		<div id="home" style="text-align: left; margin-bottom: 10px;"> 취미/스터디 > ${category.category} > ${category.subcategory} </div>
 		<div style="overflow : hidden;">
 			<div style="float: left; margin-right: 20px;">
-				<img src="../resources/course/${vo.tbl_code}.jpg" width=350>
+				<img src="../resources/course/${vo.tbl_code}.jpg" width=460 height= 300>
 			</div>
 			<div style="float: left; width: 450px; text-align: left;">
 				<c:if test="${vo.c_writer!=user.u_id}">
-					<img id="myfeed_insert" style="float: right;" src="../resources/course/upload.png" width=20>
+					<img id="myfeed_insert" style="float: right;" src="https://pickcrawl.com/web/images/common/list_heart.png" width=20>
 				</c:if>
 				<h3>${vo.title}</h3>
 				<h5>모임장소 : ${vo.c_place}</h5>
@@ -77,21 +128,40 @@
 		</div>
 	</div>
 	<hr/>
-	<div style="text-align: left;">
-		<h2>세부사항</h2>
-		<h5>모집분야 : ${category.category} - ${category.subcategory}</h5>
-		<h5>모집성별 : ${vo.c_gender}</h5>
-		<h5>모임지역  / 모임장소 : ${vo.c_local} / ${vo.c_place}</h5>
-		<h5>모임시간 : ${vo.c_time}</h5>
-		<h5>비용 : ${vo.c_fee}</h5>
-		<h5>세부내용<br/>${vo.c_content}</h5>
+	<div style ="overflow: hidden;">	
+		<div style="text-align: left; width: 470px; float: left;">
+			<h2>세부사항</h2>
+			<h5>▶모집분야 : ${category.category} - ${category.subcategory}</h5>
+			<h5>▶모집성별 : ${vo.c_gender}</h5>
+			<h5>▶모임지역  / 모임장소 : ${vo.c_local} / ${vo.c_place}</h5>
+			<h5>▶모임시간 : ${vo.c_time}</h5>
+			<h5>▶비용 : ${vo.c_fee}</h5>
+			<h5>▶세부내용<br/>${vo.c_content}</h5>
+		</div>
+	
+	<div class="sub_inner_right sub_inner_right02" style="float: left;">	
+		<div class="inner_review">
+			<div class="review_comment" id="position03">
+				<div class="review_comment_head">
+					<h3>문의(<span id="comment_num">${cnt_query}</span>)</h3>
+				</div>
+			<div class="review_comment_con">
+				<div id="cfrm">
+					<br/>						
+					<div class="msg ac fs17 view_con_login">
+						<a href="/query_insert?id=${vo.id}">
+						문의사항을 입력하시려면  여기를 클릭하세요.							
+						</a>
+					</div>
+					<br/>
+					<div id="query" style="clear: both;"></div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<hr/>
-	<div style="text-align: left; width: 800px;">
-		<h2>문의사항 ${cnt_query}개</h2>
-		<span><a href="/query_insert?id=${vo.id}" style="float: right;">문의하기</a></span>
-		<div id="query" style="clear: both;"></div>
-	</div>
+	</div>	
+</div>	
+	
 	<script id="temp" type="text/x-handlebars-template">
 		{{#each .}}
 			<div class="list">
@@ -281,6 +351,7 @@
 	$("#reg_user").on("click", "#btn_member_insert", function(){
 		if(writer == login_id){
 			alert("작성하신 컨텐츠로 신청이 불가능합니다.");
+			$("#btn_member_insert").hide();
 			return;
 		}
 		if(!confirm("신청하시겠습니까?")) return;
