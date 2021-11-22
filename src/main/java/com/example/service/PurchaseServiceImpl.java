@@ -47,6 +47,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 		if(cnt_query != 0){
 			dao.query_state(id);
 		}
+		mdao.myfeed_delete_all("P", id);
 		dao.delete(id);
 	}
 
@@ -54,7 +55,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 	@Override
 	public void purchase_insert_feed(MyfeedVO vo) {
 		mdao.myfeed_insert(vo);
-		dao.add_feed_cnt(vo.getPrimary_id());
+		dao.add_feed_cnt(vo.getPrimary_id(), 1);
 		
 	}
 	

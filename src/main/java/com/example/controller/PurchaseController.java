@@ -29,6 +29,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.example.domain.Criteria;
 import com.example.domain.MyfeedVO;
+import com.example.domain.NoticeVO;
 import com.example.domain.PQueryVO;
 import com.example.domain.PReplyVO;
 import com.example.domain.PageMaker;
@@ -39,6 +40,7 @@ import com.example.domain.course.CReplyVO;
 import com.example.domain.course.CategoryVO;
 import com.example.domain.course.CourseVO;
 import com.example.mapper.MypageDAO;
+import com.example.mapper.NoticeDAO;
 import com.example.mapper.ProductDAO;
 import com.example.mapper.UserDAO;
 import com.example.service.PurchaseService;
@@ -60,6 +62,9 @@ public class PurchaseController {
 	
 	@Autowired
 	UserDAO udao;
+	
+	@Autowired
+	NoticeDAO ndao;
 	
 	@Autowired
 	PurchaseService service;
@@ -112,7 +117,7 @@ public class PurchaseController {
 
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updatePOST(ProductVO vo, MultipartHttpServletRequest multi) throws Exception {
+	public void updatePOST(ProductVO vo, MultipartHttpServletRequest multi, String old_title) throws Exception {
 		MultipartFile file = multi.getFile("file");
 		if(!file.isEmpty()){
 			new File(path + "purchaseimg/" + vo.getP_image()).delete();
@@ -121,7 +126,19 @@ public class PurchaseController {
 			vo.setP_image(image);
 		}
 		pdao.update(vo);
-		return "redirect:/purchase/list";
+		
+		String content = "모집 신청하신 공동구매 [" + old_title + "] 진행 건이 작성자의 요청에 의해 수정되었습니다. 이용에 참고하시기 바랍니다.";
+		NoticeVO nvo = new NoticeVO();
+		List<HashMap<String, Object>> list = mdao.list_member(vo.getId(), vo.getTbl_code());
+			nvo.setTbl_code(vo.getTbl_code());
+			nvo.setTbl_id(vo.getId());
+			nvo.setSender("admin");
+			nvo.setContent(content);
+		for(int i = 0; i< list.size(); i++){
+			String member = (String)list.get(i).get("member");
+			nvo.setReceiver(member);
+			ndao.insert(nvo);
+		}
 	}
 
 
@@ -152,7 +169,7 @@ public class PurchaseController {
 	@RequestMapping(value = "/delete",method = RequestMethod.POST)
 	@ResponseBody
 	public void delete(int id) {
-		pdao.delete(id);
+		service.purchase_delete(id);
 	}
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
@@ -247,8 +264,17 @@ public class PurchaseController {
 	}
 	
 	@RequestMapping(value="/query_insert", method=RequestMethod.POST)
-	public String purchase_query_insert(PQueryVO vo){
+	public String purchase_query_insert(PQueryVO vo, String p_writer, String title){
+		NoticeVO nvo = new NoticeVO();
+		nvo.setTbl_code("P");
+		nvo.setTbl_id(vo.getP_id());
+		nvo.setSender("admin");
+		nvo.setContent("모집중인 공동구매 [" + title + "] 진행 건에 대한 문의글이 등록되었습니다.");
+		nvo.setReceiver(p_writer);
+		//System.out.println(nvo.toString());
 		pdao.insert_query(vo);
+		ndao.insert(nvo);
+		
 		String url = "redirect:/purchase/read?id=" +vo.getP_id();
 		return url;
 	}

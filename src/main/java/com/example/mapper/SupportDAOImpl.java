@@ -1,5 +1,6 @@
 package com.example.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -55,8 +56,12 @@ public class SupportDAOImpl implements SupportDAO{
 	public void update(SupportVO vo) {
 		session.update(namespace+".update",vo);
 	}
+	
 	@Override
-	public void add_feed_cnt(int id) {
-		session.update(namespace + ".add_feed_cnt", id);
+	public void add_feed_cnt(int id, int value) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("value", value);
+		session.update(namespace + ".add_feed_cnt", map);
 	}
 }

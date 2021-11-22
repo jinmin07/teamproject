@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.domain.UserVO;
+import com.example.mapper.NoticeDAO;
 import com.example.mapper.UserDAO;
 
 @Controller
@@ -30,6 +31,9 @@ public class UserController {
 
 	@Autowired
 	UserDAO udao;
+	
+	@Autowired
+	NoticeDAO ndao;
 
 	@Autowired
 	private JavaMailSender mailSender;
@@ -172,7 +176,8 @@ public class UserController {
 		}
 		System.out.println(lvo.getU_id());
 		session.setAttribute("user", lvo); // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
-		
+		session.setAttribute("count", ndao.noticeUnreadCount(lvo.getU_id()));
+
 		logger.info("로그인 성공");
 		Object dest = request.getSession().getAttribute("dest");
 

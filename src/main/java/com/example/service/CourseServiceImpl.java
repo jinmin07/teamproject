@@ -40,11 +40,12 @@ public class CourseServiceImpl implements CourseService {
 
 	@Transactional
 	@Override
-	public void course_delete(int id) {
+	public void course_delete(int id, String tbl_code) {
 		int cnt_query = dao.cnt_query(id);
 		if(cnt_query != 0){
 			dao.query_state(id);
 		}
+		mdao.myfeed_delete_all(tbl_code, id);
 		dao.delete_course(id);
 	}
 
@@ -52,7 +53,7 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	public void course_insert_feed(MyfeedVO vo) {
 		mdao.myfeed_insert(vo);
-		dao.add_feed_cnt(vo.getPrimary_id());
+		dao.add_feed_cnt(vo.getPrimary_id(), 1);
 	}
 	
 }
