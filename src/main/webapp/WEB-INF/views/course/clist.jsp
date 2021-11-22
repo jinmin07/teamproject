@@ -10,49 +10,26 @@
 	margin: 0 auto;
 	display: inline-block;
 }
-
-.box_list {
-	width: 270px;
-	height: 320px;
-	float: left;
-	margin-left: 32px;
-	padding: 5px;
-	margin-bottom: 30px;
-	box-shadow: 5px 5px 5px gray;
-	border:0.5px solid gray;
-	
+.view {
+	width: 1024px;
+	margin: 0 auto;
 }
-
-.box_list img {
-	cursor: pointer;
-	width: 250px;
-	height: 150px;
-	padding-top:5px;
+.view button {
+	width:80px;
+	font-size:16px;
+	margin:0px;
+	padding: 5px 15px;
+	font-family:"맑은고딕";
+	font-weight: 600;
+	color: #fff;
+    background-color: #35c5f0;
 }
-
-.pagination {
-	text-align: center;
-	margin-top: 10px;
-	display: inline-block;
-}
-
-.pagination a {
-	color: black;
-	float: left;
-	padding: 8px 16px;
-	text-decoration: none;
-}
-
-.pagination a.active {
-	background-color: #1E90FF;
-	color: white;
-}
-
-.pagination a :hover :not(.active){
-background-color:#ddd;
+.view button:hover{
+	background-color: #09addb;
 }
 
 
+<!-- 리스트 search CSS -->
 .listoption {
 	margin: 0 auto;
 	width: 1200px;
@@ -64,11 +41,12 @@ background-color:#ddd;
 
 .box3 {
 	height: 320px;
-	width: 440px;
+	width: 420px;
 	border-bottom: 1px solid #e5e5e5;
 	justify-content: flex-end;
 	background-color: #F0FFFF;
 	float: left;
+	margin-left:110px;
 }
 
 .list {
@@ -152,13 +130,13 @@ input[type=radio] {
 
 .box4 {
 	height: 320px;
-	width: 62%;
+	width: 53%;
 	background-color: #f7f8fa;
 	display: -webkit-flex;
 }
 
 .box4 .list {
-	width: 750px;
+	width: 720px;
 }
 
 .box .box4 .list li {
@@ -189,36 +167,30 @@ input[type=radio] {
 	flex-wrap: wrap;
 	-webkit-flex-wrap: wrap;
 }
-
 .local {
 	padding: 10px 0;
 	width: 100%;
 }
-
 .search {
 	width: 100%;
 	flex-wrap: wrap;
 	-webkit-flex-wrap: wrap;
 }
-
 .search .insearch {
 	display: inline-block;
 	width: calc(100% - 125px);
 	height: 42px;
 }
-
 .insearch input {
 	padding: 0 10px;
 	background-color: transparent;
 }
-
 .txt {
 	width: 100%;
 	height: 100%;
 	display: block;
 	border: 1px solid #999;
 }
-
 .search button {
 	margin-left: 10px;
 	width: 95px;
@@ -231,26 +203,184 @@ input[type=radio] {
 	border: 0;
 	font-size: 16px;
 }
+<!-- 리스트 search CSS 끝-->
 
-.view {
-	width: 1024px;
-	margin: 0 auto;
+
+<!--리스트 출력 CSS -->
+.box_list {
+	max-width: 1299px;
+    margin-top: 40px;
+}	
+.sub_cnt_slide_wrap {
+    width: 90%;
+    margin: 0 auto;
+}
+.sub_cnt_list {
+    width: 250px !important;
+    height: auto;
+    margin: 11px 10px 10px;
+    float: left;
+    box-shadow: 2px 2px 2px rgb(0 0 0 / 10%);
+    border-radius: 9px;
+    position: relative;
+}
+.sub_cnt_list:hover{
+	transform: scale(1.05);	
 }
 
-.view button {
-	width:80px;
-	font-size:16px;
-	margin:0px;
-	padding: 5px 15px;
-	font-family:"맑은고딕";
-	font-weight: 600;
-	color: #fff;
-    background-color: #35c5f0;
+.pick_con_img {
+    height: auto; 
+    overflow: hidden;
+    width: 100%;
+    position: relative;    
 }
 
-.view button:hover{
-		background-color: #09addb;
+.main_cnt_txtbox {
+	padding: 8px;
+    text-align: center;
+    color: #333;
+    background: #fff;
+    padding: 15px;
+    max-height: 157px;
+    box-sizing: border-box;
 }
+
+.main_cnt_txtbox > dl dt {
+    font-size: 14px;
+    font-weight: 700;
+    color: #333333;
+    word-break: break-all;
+    line-height: 17px;
+    height: 36px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid #ff2236;
+}
+
+div, span, a, strong, dl, dt, dd, ul, li {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+#infor, #infor2, #infor3 {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.infor {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+    text-align: right;
+    margin: 8px 0 0;
+    position: relative!important;
+}
+
+.main_cnt_txtbox > dl {
+    text-align: left;
+}
+a:hover, a:active, a:focus, a {
+    text-decoration: none;
+}
+
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+}
+
+.check_person::before {
+    content: '';
+    background: url(https://pickcrawl.com/web/images/main/people_icon.png)center no-repeat;
+    background-size: auto;
+    width: 15px;
+    height: 12px;
+    display: inline-block;
+    vertical-align: bottom;
+}
+.infor2 span:first-child::after {
+    content: '|';
+    color: #333;
+    margin: 0 8px;
+    font-size: 12px;
+}
+.txt03 {
+    margin: 0 0 8px 0;
+}
+.infor2 {
+    font-size: 12px;
+    color: #333;
+    font-weight: 300;
+    text-align: right;
+    margin: 8px 0 3px;
+    width: 100%;
+    display: inline-block;
+    height: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.infor3{
+	margin-top:5px;
+}
+.infor3::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    margin: 5px 0;
+    margin-right:2px;
+    background: #969696;
+    }	
+
+
+.heart_btn {
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+}
+
+.heart_btn > span.new-heart {
+    background: url(https://pickcrawl.com/web/images/common/list_heart.png) 50% 50% no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    vertical-align: baseline;
+    margin-left: 7px;
+    margin-top: 3px;
+}
+
+.infor3 strong {
+    float: right;
+    padding-right: 8px;
+    font-size: 13px;
+    color: #333;
+    font-weight: 300;
+}
+.thin {
+    font-family: 'Nanum Gothic', '돋움', Sans-serif;
+    font-weight: 350;
+}
+.red {
+    color: #ff2236;
+}
+
+<!-- 리스트 출력 CSS 끝 -->
+
+
+
 </style>
 
 <h3>[스터디/취미 목록]</h3>
@@ -410,7 +540,7 @@ input[type=radio] {
 
 
 <div class="view">
-	<div style="text-align: left; margin-left: 10px; padding-bottom: 7px; border-bottom: 1px dotted gray; margin-bottom:15px;">
+	<div style="text-align:left; margin-left:10px; padding-bottom:7px; border-bottom:1px dotted gray; margin-bottom:15px;">
 		<div style="display: inline-block;">
 			<h4 id="total" style="margin-bottom: 5px;"></h4>
 		</div>
@@ -419,26 +549,49 @@ input[type=radio] {
 		</div>
 	</div>
 </div>
+
 <div id="course"></div>
 <script id="temp" type="text/x-handlebars-template">	
-	{{#each list}}
-	<div class="box_list">
-		<img src="../resources/course/{{tbl_code}}.jpg" onClick="location.href='read?id={{id}}'">
-		<br/>
-		<br/>
-		<div class="title">{{title}}</div><br/>
-		모집기간:<br/>
-		<div class="date">{{date_start}}~{{date_end}}</div>
-		<div class="member">
-			<span class="cnt_member">모집인원:{{c_cnt_member}}</span>/
-			<span class="tot_member">{{c_tot_member}}명</span> 	
-		</div>
-		<div class="cnt">
-			<span class="view">조회수:{{c_view}}</span>
-			<span class="cnt_feed">내피드:{{c_cnt_feed}}</span>
-		</div>
+{{#each list}}
+<div class="box_list">
+	<div class="list_sub_wrap">
+		<ul class="sub_cnt_slide_wrap sub_cnt_slide01_wrap">
+			<li class="sub_cnt_list sub_cnt_list01">
+				<a href="read?id={{id}}">
+					<div class="pick_con_img">
+						<img src="../resources/course/{{tbl_code}}.jpg" width= 250 height= 155>
+					</div>	
+					<div class="main_cnt_txtbox">
+						<dl>
+							<dt class="view20Byte">{{title}}</dt>
+							<dd>
+								<p class="infor thin date_infor txt02">{{date_start}}~{{date_end}}</p>
+								<p class="infor2 thin txt03">
+									<span class="check_person thin">
+										<strong>{{c_cnt_member}}</strong>/{{c_tot_member}}
+									</span>
+									<span class="thin add_infor">{{c_local}}</span>
+								</p>
+							</dd>
+							<dd>
+								<p class="infor3">
+								<span class="heart_btn" id="heart_btn">
+									<span class="new-heart">&nbsp;&nbsp;&nbsp;{{c_cnt_feed}}</span>
+								</span>
+								<strong class="thin">
+									조회&nbsp; <span class="red thin">{{c_view}}</span>건
+								</strong>
+								</p>
+							</dd>
+						</dl>
+					</div>			
+				</a>
+			</li>
+		</ul>
 	</div>
-	{{/each }}
+</div>
+{{/each }}
+
 </script>
 
 <!-- 페이징 -->
@@ -486,6 +639,12 @@ input[type=radio] {
 		});
 	}
 
+	$("#pagination").on("click", "a", function(e){
+		e.preventDefault();
+		page=$(this).attr("href");
+		getList();
+	});
+	
 </script>
 	
     

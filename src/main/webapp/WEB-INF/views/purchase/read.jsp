@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
 <style>
+	#purchase_content{width:960px; margin:0 auto;}
 	.head:hover {cursor: pointer; background: lightgray;}
 		#query .content {display: none;}
 		.container {
@@ -17,38 +18,88 @@
 		}
 		.html {background-color: #04AA6D;}
 		#btn_member_end {background: lightgray;}
-</style>
-<h1>[상품조회]</h1>
-
-<hr/>
-<div style="overflow:hidden">
 		
-</div>
+		#home::before {
+    		content: '';
+    		background: url(https://pickcrawl.com/web/images/sub/home_icon.png) center no-repeat;
+    		background-size: contain;
+    		width: 15px;
+    		height: 15px;
+    		display: inline-block;
+    		margin-right: 5px;
+    		vertical-align: middle;
+    		line-height: 13px;
+    		margin-top: -4px;
+		}
+		<!-- 문의하기 CSS-->
+		.sub_inner_right {
+    		float: left;
+    		width: 100%;
+    		display: inline-block;
+    		box-sizing: border-box;
+    		margin-bottom: 20px;
+		}
+		.review_comment {
+    		border: 1px solid #e1e1e1;
+    		width: 420px;
+    		padding: 10px;
+    		margin-top: 20px;
+    		margin-left: 18px;
+		}
+		
+		.review_comment_head h3::before {
+    		content: '';
+    		background: url(https://pickcrawl.com/web/images/sub/review_icon.png)center no-repeat;
+    		background-size: contain;
+    		display: inline-block;
+    		width: 20px;
+    		height: 15px;
+    		margin-right: 25px;
+		}
+		.review_comment_head {
+    		border-bottom: 1px solid #e1e1e1;
+		}
+		.review_comment_head h3 {
+			text-align:left;
+    		font-size: 16px;
+    		color: #f43143;
+    		font-weight: 500;
+    	}
+		
+		<!-- 문의하기 CSS 끝-->
+		
+</style>
+
+<div  style="overflow:hidden">
 	<div id="purchase_content">
 	<form name="frm" enctype="multipart/form-data">
-		<div style="text-align: left; margin-bottom: 10px;"> 공동생할 > ${vo.p_category} </div>
+		<div id="home" style="text-align: left; margin-bottom: 10px;"> 공동구매 > ${vo.p_category} </div>
 		<div style="overflow : hidden;">
 			<div style="float: left; margin-right: 20px;">
-				<img id="image" src="display?fileName=${vo.p_image}" width=350/>
+				<img id="image" src="../resources/purchaseimg/${vo.p_image}" width=460 height= 350/>
 			</div>
 			<div style="float: left; width: 450px; text-align: left;">
 				<c:if test="${vo.p_writer!=user.u_id}">
-					<img id="myfeed_insert" style="float: right;" src="../resources/course/upload.png" width=20>
+					<img id="myfeed_insert" style="float: right;" src="https://pickcrawl.com/web/images/common/list_heart.png" width=20>
 				</c:if>
-				<h3>${vo.id}</h3>
+				<h3>상품번호:${vo.id}</h3>
 				<h3>${vo.title}</h3>
 				<h5>모임장소 : ${vo.p_local}</h5>
-				<h5>모임날짜: ${vo.date_start} - ${vo.date_end }</h5>
+				<h5>모집날짜: ${vo.date_start} - ${vo.date_end }</h5>
 				<h5>모집인원 : ${vo.p_cnt_member} / ${vo.p_tot_member}</h5>
 				<div>
-					<div class="container">
-		  				<div class="skills html" style="width: calc(${vo.p_cnt_member}/${vo.p_tot_member} * 400px) ">${vo.p_cnt_member}명 </div>
+					<div class="container" style="position:relative;">
+		  				<div class="skills html" style="width: calc(${vo.p_cnt_member}/${vo.p_tot_member} * 400px)"></div>
+						<p style="position:absolute;right:-60px;top:calc(0% - 19px);">
+                           <span style="color:#f43143;">${vo.p_cnt_member}</span>/ ${vo.p_tot_member}명
+                        </p>
 					</div>
 				</div>
-				<h5>신청인원 : ${vo.p_cnt_member}</h5>
+		
 			</div>
 		</div>
-		<div style ="overflow: hidden;">
+</div>
+		<div style ="overflow: hidden; width:960px; margin:0 auto;">
 			<div id="chk_user" style="float: left; width: 330px; text-align: left; margin-right: 20px;">
 				${vo.p_writer}
 				<c:if test="${vo.p_writer==user.u_id}">
@@ -70,23 +121,45 @@
 				</c:if>
 			</div>
 		</div>
-		</form>
+	</form>
 	</div>
-	<hr/>
-	<div style="text-align: left;">
+	<hr style="width:960px;"/>
+<div style ="overflow: hidden; width:960px; margin:0 auto;">	
+	<div style="text-align: left; width: 500px; float: left;">
 		<h2>세부사항</h2>
-		<h5>카테고리 : ${vo.p_category}</h5>
-		<h5>링크 : ${vo.p_link}</h5>
-		<h5>가격 : ${vo.p_salePrice}</h5>
-		<h5>모임장소 : ${vo.p_local}</h5>
+		<h5>▶ 카테고리 : ${vo.p_category}</h5>
+		<h5>▶링크 : ${vo.p_link}</h5>
+		<h5>▶가격 : ${vo.p_salePrice}</h5>
+		<h5>▶모임장소 : ${vo.p_local}</h5>
 		<div id="map" style="width:100%;height:350px;"></div>
 	</div>
-	<hr/>
-	<div style="text-align: left; width: 800px;">
-		<h2>문의사항 ${cnt_query}개</h2>
-		<span><a href="/purchase/query_insert?id=${vo.id}" style="float: right;">문의하기</a></span>
-		<div id="query" style="clear: both;"></div>
+	
+		
+	<div class="sub_inner_right sub_inner_right02" style="float: left;">	
+	<div class="inner_review">
+		<div class="review_comment" id="position03">
+			<div class="review_comment_head">
+				<h3>
+					문의(<span id="comment_num">${cnt_query}</span>)
+				</h3>
+			</div>
+			<div class="review_comment_con">
+				<div id="cfrm">
+					<br/>						
+					<div class="msg ac fs17 view_con_login">
+						<a href="/purchase/query_insert?id=${vo.id}">
+						문의사항을 입력하시려면 여기를 클릭하세요.							
+						</a>
+					</div>
+					<br/>
+					<div id="query" style="clear: both;"></div>
+				</div>
+			</div>
+		</div>
 	</div>
+	</div>	
+</div>	
+	
 	<script id="temp" type="text/x-handlebars-template">
 		{{#each .}}
 			<div class="list">
@@ -107,6 +180,7 @@
 			</div>
 		{{/each}}
 	</script>
+
 	<script>
 		Handlebars.registerHelper("printOpen", function(p_openable){
 			if(p_openable != "f"){
