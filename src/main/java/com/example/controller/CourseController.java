@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.domain.course.CourseVO;
 import com.example.mapper.CourseDAO;
 import com.example.mapper.MypageDAO;
+import com.example.mapper.NoticeDAO;
 import com.example.service.CourseService;
 import com.example.domain.Criteria;
 import com.example.domain.MyfeedVO;
+import com.example.domain.NoticeVO;
 import com.example.domain.PageMaker;
 import com.example.domain.UserVO;
 import com.example.domain.course.CQueryVO;
@@ -33,6 +35,9 @@ public class CourseController {
 	
 	@Autowired
 	MypageDAO mdao;
+	
+	@Autowired
+	NoticeDAO ndao;
 	
 	@Autowired
 	CourseService service;
@@ -114,8 +119,17 @@ public class CourseController {
 	}
 	
 	@RequestMapping(value="/query_insert", method=RequestMethod.POST)
-	public String course_query_insert(CQueryVO vo){
+	public String course_query_insert(CQueryVO vo, String c_writer, String title, String tbl_code){
+		NoticeVO nvo = new NoticeVO();
+		nvo.setTbl_code(tbl_code);
+		nvo.setTbl_id(vo.getC_id());
+		nvo.setSender("admin");
+		nvo.setContent("모집중인 공동생활 [" + title + "] 진행 건에 대한 문의글이 등록되었습니다.");
+		nvo.setReceiver(c_writer);
+		//System.out.println(nvo.toString());
+		
 		dao.insert_query(vo);
+		ndao.insert(nvo);
 		String url = "redirect:/course/read?id=" +vo.getC_id();
 		return url;
 	}
@@ -179,7 +193,6 @@ public class CourseController {
 		return map;
 	}
 	
-	
 	// course list 페이지
 	@RequestMapping("/course/list")
 	public String list(Model model) {
@@ -189,8 +202,8 @@ public class CourseController {
 	
 	@RequestMapping(value="/delete_course", method=RequestMethod.POST)
 	@ResponseBody
-	public void delete_course(int c_id){
-		service.course_delete(c_id);
+	public void delete_course(int c_id, String tbl_code){
+		service.course_delete(c_id, tbl_code);
 	}
 
 	
@@ -212,15 +225,29 @@ public class CourseController {
 	// course 수정
 	@RequestMapping(value="/course/update", method=RequestMethod.POST)
 	@ResponseBody
-	public String update_coursePost(CourseVO vo, String start, String end)throws Exception{
+	public void update_coursePost(CourseVO vo, String start, String end, String old_title)throws Exception{
 		System.out.println(vo.toString());
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date_start = sdf.parse(start);
 		vo.setDate_start(date_start);
 		Date date_end = sdf.parse(end);
 		vo.setDate_end(date_end);
+		
 		dao.update_course(vo);
-		return "redirect:/course/list";
+		
+		String content = "모집 신청하신 공동생활 [" + old_title + "] 진행 건이 작성자의 요청에 의해 수정되었습니다. 이용에 참고하시기 바랍니다.";
+		NoticeVO nvo = new NoticeVO();
+		List<HashMap<String, Object>> list = mdao.list_member(vo.getId(), vo.getTbl_code());
+			nvo.setTbl_code(vo.getTbl_code());
+			nvo.setTbl_id(vo.getId());
+			nvo.setSender("admin");
+			nvo.setContent(content);
+		for(int i = 0; i< list.size(); i++){
+			String member = (String)list.get(i).get("member");
+			nvo.setReceiver(member);
+			System.out.println(nvo.toString());
+			ndao.insert(nvo);
+		}
 	}
 	
 	// myfeed insert

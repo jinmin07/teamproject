@@ -24,7 +24,6 @@
 		font-size:16px;
 		margin-bottom:30px;
 	}
-	
 </style>
 
 <h1>내 피드</h1>
@@ -50,7 +49,6 @@
 					<img src="{{printSrc tbl_code}}/display?fileName={{image}}" width=250 style="display:{{printImg image}}"/>
 				</div>
 				<p style="width:660px;">{{content}}</p>
-				
 			</div>
 		</div>
  	{{/each}}

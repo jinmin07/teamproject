@@ -129,8 +129,11 @@ public class ProductDAOImpl  implements ProductDAO{
 	}
 
 	@Override
-	public void add_feed_cnt(int id) {
-		session.update(namespace + ".add_feed_cnt", id);
+	public void add_feed_cnt(int id, int value) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("value", value);
+		session.update(namespace + ".add_feed_cnt", map);
 	}
 
 	@Override

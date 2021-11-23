@@ -7,24 +7,24 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ProductVO {
 
-	private int id; // °øµ¿±¸¸Å ¹øÈ£
-	private String tbl_code; // Å×ÀÌºí ÄÚµå
-	private String title; // °øµ¿±¸¸Å Á¦¸ñ
-	private String p_writer; // ÀÛ¼ºÀÚ
-	private String p_local; // Áö¿ª
-	private String p_link; // ¸µÅ©
-	private int p_price; // Á¤°¡
-	private int p_salePrice; // ÇÒÀÎ °¡°Ý
-	private String p_image; // ÀÌ¹ÌÁö
-	private String p_category; // »óÇ° Ä«Å×°í¸®
-	private String date_start; // ¸ðÁý½ÃÀÛÀÏ
-	private String date_end; // ¸ðÁý¸¶°¨ÀÏ
-	private int p_cnt_member; // ¸ðÁýµÈ ÀÎ¿ø
-	private int p_tot_member; // ÃÑ ¸ðÁýÀÎ¿ø
-	private int p_cnt_feed; // ÇÇµå¼ö
-	private String p_content; // ¼¼ºÎ»çÇ×
+	private int id; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+	private String tbl_code; // ï¿½ï¿½ï¿½Ìºï¿½ ï¿½Úµï¿½
+	private String title; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	private String p_writer; // ï¿½Û¼ï¿½ï¿½ï¿½
+	private String p_local; // ï¿½ï¿½ï¿½ï¿½
+	private String p_link; // ï¿½ï¿½Å©
+	private int p_price; // ï¿½ï¿½ï¿½ï¿½
+	private int p_salePrice; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	private String p_image; // ï¿½Ì¹ï¿½ï¿½ï¿½
+	private String p_category; // ï¿½ï¿½Ç° Ä«ï¿½×°ï¿½
+	private Date date_start; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private Date date_end; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private int p_cnt_member; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î¿ï¿½
+	private int p_tot_member; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Î¿ï¿½
+	private int p_cnt_feed; // ï¿½Çµï¿½ï¿½
+	private String p_content; // ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½
 	@JsonFormat(pattern="yyyy-MM-dd",timezone="Asia/Seoul")
-	private Date p_date; //ÀÛ¼ºÀÏ
+	private Date p_date; //ï¿½Û¼ï¿½ï¿½ï¿½
 
 	public Date getP_date() {
 		return p_date;
@@ -122,19 +122,19 @@ public class ProductVO {
 		this.p_category = p_category;
 	}
 
-	public String getDate_start() {
+	public Date getDate_start() {
 		return date_start;
 	}
 
-	public void setDate_start(String date_start) {
+	public void setDate_start(Date date_start) {
 		this.date_start = date_start;
 	}
 
-	public String getDate_end() {
+	public Date getDate_end() {
 		return date_end;
 	}
 
-	public void setDate_end(String date_end) {
+	public void setDate_end(Date date_end) {
 		this.date_end = date_end;
 	}
 

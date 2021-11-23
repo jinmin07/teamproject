@@ -14,7 +14,12 @@ public interface BoardDAO {
 	public int totalCount(Criteria cri);
 	public void updateb_view(int id);
 	public void deleteReply(int b_id);
-	public void add_feed_cnt(int id);
+	public void add_feed_cnt(int id, int value);
+	public void add_cnt_reply(int id, int value);
+	public void add_cnt_rec(int id, int value);
+	public void insert_rec(int b_id, String user_id);
+	public void delete_rec(int b_id, String user_id);
+	public int chk_rec(int b_id, String user_id);
 	
 	public void addAttach(String fullName);
 	public List<String> getAttach(int id);
