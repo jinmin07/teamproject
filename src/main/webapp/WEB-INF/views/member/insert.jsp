@@ -108,7 +108,7 @@ input:focus {outline:none;}
 </style>
 </head>
 <body>
-	<span style="margin-left:360px;margin-bottom:5px; font-size: 20px; font-weight: 600;font-size:40px;">회원가입</span>
+	<span style="margin-left:360px;margin-bottom:5px; font-size: 20px; font-weight: 600;font-size:30px;">회원가입</span>
 	<form name="frm">
 		<h3 class="join_title" >아이디</h3> 
 		<div>

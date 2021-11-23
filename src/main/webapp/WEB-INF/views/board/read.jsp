@@ -82,7 +82,7 @@
 			</c:if>
 			<input type="button" value="피드" id="myfeed_insert"/>
 		</c:if>
-		<input type="button" value="목록" id="goList"/>
+		<input type="button" onClick="location.href='/board/list'" value="목록" id="goList"/>
 	</div>
 	<div id="b_reply">
 		<div id="insert" style="overflow: hidden;">

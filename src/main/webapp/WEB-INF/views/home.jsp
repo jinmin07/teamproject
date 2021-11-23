@@ -75,7 +75,11 @@
 							<i class="far fa-clipboard" style="margin-top:16px;font-size: 35px;"></i>
 						</a>
 						<a href="/notice" style="color:inherit; width:27px; margin-left:30px;">
-							<i class="far fa-bell" style="margin-top:16px;font-size: 35px;"><span id="count">${count}</span></i>
+							<i class="far fa-bell" style="margin-top:16px;font-size: 35px;">
+								<c:if test="${ user != null }">
+									<span id="count">${count}</span>
+								</c:if>
+							</i>
 						</a>
 					</div>
 				</div>
