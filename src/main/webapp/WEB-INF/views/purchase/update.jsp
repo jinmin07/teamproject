@@ -6,76 +6,119 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <style>
-form {
-	width: 930px;
+input[type=text], select, #p_content {
+	width: 580px;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: block;
+	border-radius: 4px;
+	box-sizing: border-box;
 }
 
-input[type=file] {
-	width: 100%;
-	margin-bottom: 10px;
+input[type=date]{
+	width: 580px;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: block;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+input[type=submit], input[type=reset] {
+	width: 100px;
+	color: white;
+	padding: 14px 20px;
+	margin: 0px auto;
 	border: none;
-	border-bottom: 1px solid gray;
-	margin-bottom: 10px;
-	font-size: 20px;
+	border-radius: 4px;
+	cursor: pointer;
 }
 
-#files img {
-	width: 150px;
-	margin: 5px;
+button{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	width: 100px;
+	color: white;
+	padding: 14px 20px;
+	margin: 0px auto;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.date{
+
+}
+
+.register{
+	width: 210px;
+	margin: 0px auto;
+}
+
+.row {
+	margin-top:10px;
+	margin: 0px auto;
+	width: 600px;
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	padding: 20px;
+}
+
+.image{
+	width:300px;
+	margin:0px auto;
 }
 </style>
 
 <h1>[상품 등록]</h1>
 
 <form name="frm" enctype="multipart/form-data">
-	<div>
-		<input type="hidden" name="p_image" value="${vo.p_image}"/>
-		<img id="image" src="display?fileName=${vo.p_image}" width=300 height="300"  onerror="this.src='http://placehold.it/300x300'"/>
-		<input type="file" name="file" style="display: none;" /><br />
-	</div>
-	<div>
-		<input type="hidden" name="id" value="${vo.id}" readonly/> 
-		<c:if test="${ user != null}">
-			<input type="text" name="p_writer" value="${user.u_id}"/>
-		</c:if>
-		<select id="p_category" name="p_category">
-			<option value="p_food">음식</option>
-			<option value="p_fashion">패션</option>
-			<option value="p_sport">운동</option>
-			<option value="p_digital">가전</option>
-			<option value="p_beauty">미용</option>
-		</select><br/>
-		<input type="hidden" name="old_title" value="${vo.title}"/>
-		<input type="text" name="title" placeholder="상품명" value="${vo.title}"/> <br/>
-		<input type="text" name="p_link" placeholder="링크주소" value="${vo.p_link}"/> <br/>
-		<input type="text" name="p_price" placeholder="상품 가격" value="${vo.p_price}"/> <br/>
-		<input type="text" name="p_salePrice" placeholder="세일 가격" value="${vo.p_salePrice}"/><br/>
-		<input type="text" name="p_tot_member" placeholder="최대모집인원" value="${vo.p_tot_member}"/><br/>
-		<div>
-			<input type="datetime-local" name="date_start" placeholder="모집시작기간" value="${vo.date_start}"/>
-			~
-			<input type="datetime-local" name="date_end" placeholder="모집마감기간" value="${vo.date_end}"/>
+	<div class="row">
+		<div class="image">
+			<input type="hidden" name="p_image" value="${vo.p_image}"/>
+			<img id="image" src="display?fileName=${vo.p_image}" width=300 height="300"  onerror="this.src='http://placehold.it/300x300'"/>
+			<input type="file" name="file" style="display: none;" /><br />
 		</div>
-		<div class="address_wrap">
-			<div class="address_name"></div>
-			<div class="address_input_1_wrap">
-				<div class="address_input_1_box">
-					<input type="hidden" class="address_input_1" name="addr1"/>
-				</div>	
-			</div>
-			<div class="address_input_2_wrap">
-				<div class="address_input_2_box">
-					<input class="address_input_2" name="p_local" placeholder="모집장소" value="${vo.p_local}"/>
-					
-					<div class="address_button" onclick="execution_daum_address()">
-						<button>주소찾기</button>
-					</div>
-				</div>
+		<div>
+			<input type="hidden" name="id" value="${vo.id}" readonly/> 
+			<h3>작성자</h3>
+			<c:if test="${ user != null}">
+				<input type="text" name="p_writer" value="${user.u_id}"/>
+			</c:if>
+			<h3>카테고리</h3>
+			<select id="p_category" name="p_category">
+				<option value="p_food">음식</option>
+				<option value="p_fashion">패션</option>
+				<option value="p_sport">운동</option>
+				<option value="p_digital">가전</option>
+				<option value="p_beauty">미용</option>
+			</select><br/>
+			<h3>상품명</h3>
+			<input type="text" name="title" placeholder="상품명" value="${vo.title}"/> <br/>
+			<h3>링크</h3>
+			<input type="text" name="p_link" placeholder="링크주소" value="${vo.p_link}"/> <br/>
+			<h3>상품가격</h3>
+			<input type="text" name="p_price" placeholder="상품 가격" value="${vo.p_price}"/> <br/>
+			<h3>할인가격</h3>
+			<input type="text" name="p_salePrice" placeholder="세일 가격" value="${vo.p_salePrice}"/><br/>
+			<h3>총 모집인원</h3>
+			<input type="text" name="p_tot_member" placeholder="최대모집인원" value="${vo.p_tot_member}"/><br/>
+			<div class="date">
+				<h3>모집시작기간</h3>
+		    	<input type="date"  name="start" value="${start}">
+		    	<h3>모집종료기간</h3>
+		    	<input type="date"  name="end" value="${end}">
+	    	</div>
+			<h3>모집장소</h3>
+			<input type="text" class="address_input_2" name="p_local" placeholder="모집장소" value="${vo.p_local}"/>
+			<div class="address_button" onclick="execution_daum_address()">
+					<button>주소찾기</button>
 			</div>
 		</div>
 	</div>	
 	<hr/>
-	<div>
+	<div class="register">
 		<input type="submit" value="수정하기" /> 
 		<input type="reset" value="등록취소" />
 	</div>
@@ -84,12 +127,12 @@ input[type=file] {
 </script>
 <script>
 
-	$("#p_category").val('${vo.p_category}').prop('selected', true);
+	var category = $("#p_category").val('${vo.p_category}').prop('selected', true);
 	
 	$("#image").on("click", function() {
 		$(frm.file).click();
 	});
-
+	
 	$(frm.file).on("change", function(e) {
 		var file = $(this)[0].files[0];
 		$("#image").attr("src", URL.createObjectURL(file));
@@ -100,13 +143,13 @@ input[type=file] {
 		var image = $(frm.p_image).val();
 		var id = $(frm.id).val();
 		var p_category = $(frm.p_category).val();
-		var p_title = $(frm.title).val();
+		var title = $(frm.title).val();
 		var p_link = $(frm.p_link).val();
 		var p_price = $(frm.p_price).val();
 		var p_salePrice = $(frm.p_salePrice).val();
 		var p_tot_member = $(frm.p_tot_member).val();
-		var date_start = $(frm.date_start).val();
-		var date_end = $(frm.date_end).val();
+		var date_start = $(frm.start).val();
+		var date_end = $(frm.end).val();
 		var p_local = $(frm.p_local).val();
 		var p_writer = $(frm.p_writer).val();
 		
@@ -114,7 +157,6 @@ input[type=file] {
 			alert("파일등록,상품가격과 상품페이지주소를 입력하세요.");
 			return;
 		}
-		alert(id);
 		if (!confirm("수정하시겠습니까?")) return;
 		sock_notice.send("admin");
 		
@@ -170,9 +212,7 @@ input[type=file] {
 	        	    $(".address_input_3").attr("readonly",false);
 	                $(".address_input_3").focus();
 	            
-	 
 	        }
 	    }).open();    
 	}
 </script>
-```
