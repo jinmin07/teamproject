@@ -6,10 +6,11 @@
 	<title>일맥상통</title>
 	<link rel="icon" type="image/png" sizes="128x128" href="/resources/favicon.png"/>
 	<link rel="stylesheet" href="/resources/home.css"/>
+	<link rel="stylesheet" href="/resources/notice.css"/>	
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" >
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script> 
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 </head>
 <body>
 	<div id="page">
@@ -70,20 +71,22 @@
 						<a href="/mypage/subpage" style="color:inherit;width:27px;margin-left:20px;">
 							<i class="far fa-user" style=" margin-top:16px;font-size: 35px;"></i>
 						</a>
-						<a href="/myfeed" style="color:inherit; width:27px;margin-left:30px;">
+						<a href="/myfeed/list" style="color:inherit; width:27px;margin-left:30px;">
 							<i class="far fa-clipboard" style="margin-top:16px;font-size: 35px;"></i>
 						</a>
-						<a href="/#" style="color:inherit; width:27px; margin-left:30px;">
-							<i class="far fa-bell" style="margin-top:16px;font-size: 35px;"></i>
+						<a href="/notice" style="color:inherit; width:27px; margin-left:30px;">
+							<i class="far fa-bell" style="margin-top:16px;font-size: 35px;">
+								<c:if test="${ user != null }">
+									<span id="count">${count}</span>
+								</c:if>
+							</i>
 						</a>
-						
 					</div>
 				</div>
 			</div>
 		</header>
 		<div id="content">
 			<jsp:include page="${pageName}"/>
-		</div>
 		</div>
 		<div id="footer">
 			<div class="footer_infor">
@@ -104,5 +107,48 @@
     			</ul>
     		</div>
 		</div>
+		<div id="notice" class="notice">
+ 			<div class="heading">
+ 				<span class="n_id" style="display:none;">{{n_id}}</span>
+ 				<b id="notice_date" style="font-size:13px;">{{regdate}}</b>
+				<a class="close" href="#">×</a>
+ 			</div>
+			<div id="notice_content" class="body home" style="text-align:left;">
+ 			 (    )님이 보낸 알림이 도착했습니다.
+			</div>
+ 		</div>
+	</div>
 </body>
+<script>
+	$("#notice").hide();
+	
+	//notice 소켓생성
+	var u_id="${user.u_id}";
+	var sock_notice;
+	if(u_id != ""){ //로그인되어있으면
+      sock_notice = new SockJS("http://localhost:8088/sock_notice");
+      sock_notice.onmessage = onNoticeMessage;
+	}
+	
+   //서버에서 메시지를 받은 경우
+   function onNoticeMessage(msg){
+	   var items= msg.data.split("|");
+	   if(items[0] != "delete"){
+		   var sender = items[0];
+		   var date = items[1];
+		   $("#notice_date").html(date);
+		   $("#notice_content").html(sender +"님이 보내신 알림이 도착했습니다.");
+		   $("#notice").show();
+	   }
+	   
+      $.ajax({
+    	  type: "get",
+    	  url : "/notice/unreadCount",
+    	  data: {"u_id": u_id},
+    	  success : function(data){
+    		  $("#count").html(data);
+    	  }
+      });
+   }
+</script>
 </html>

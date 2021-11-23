@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+		<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -47,7 +47,7 @@
 	getList();
 	
 	$("#tbl").on("click", ".btn_member_out", function(){
-		var c_member = $(this).parent().parent().find(".c_member").html();
+		var c_member = $(this).parent().parent().find(".u_name").html();
 		if(!confirm(c_member+"님을 거절하시겠습니까?")) return;
 		
 		$.ajax({
