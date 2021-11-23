@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <style>
 	#purchase_content{width:960px; margin:0 auto;}
 	.head:hover {cursor: pointer; background: lightgray;}
@@ -98,7 +103,7 @@
 		
 			</div>
 		</div>
-</div>
+	</div>
 		<div style ="overflow: hidden; width:960px; margin:0 auto;">
 			<div id="chk_user" style="float: left; width: 330px; text-align: left; margin-right: 20px;">
 				${vo.p_writer}
@@ -174,7 +179,7 @@
 					<span width=150 class="cnt_reply">{{p_reply_state}}</span>
 				</div>
 				<div class="content">
-					<div>Q. {{p_query_content}} <a class="query_del" href="{{p_query_id}}"></a></div>
+					<div>Q. {{p_query_content}} <a class="query_del" href="{{p_query_id}}" query_writer="{{p_query_writer}}"></a></div>
 					<div class="reply"></div>
 				</div>
 			</div>
@@ -286,6 +291,7 @@
 	$("#query").on("click", ".list .content a", function(e){
 		e.preventDefault();
 		var query_id = $(this).attr("href");
+		var query_writer = $(this).attr("query_writer");
 		if(!confirm("문의글을 삭제하시겠습니까?")) return;
 		
 		$.ajax({
@@ -293,8 +299,15 @@
 			url: "purchase/delete_query",
 			data: {"p_query_id": query_id},
 			success : function(){
-				alert("삭제가 완료되었습니다.");
-				getList();
+				$.ajax({
+					type: "post",
+					url: "/notice/insert",
+					data: {"tbl_code": tbl_code, "tbl_id":id,"sender": "admin", "receiver": p_writer, "content": n_content,  "n_state": 1},
+					success : function(){
+						alert("삭제가 완료되었습니다.");
+						getList();
+					}
+				});
 			}
 		});
 		

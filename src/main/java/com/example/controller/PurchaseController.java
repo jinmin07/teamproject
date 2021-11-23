@@ -3,6 +3,8 @@ package com.example.controller;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -72,6 +74,7 @@ public class PurchaseController {
 	//상품출력
 	@RequestMapping(value = "/list")
 	public String List(Model model) {
+		
 		model.addAttribute("pageName", "purchase/list.jsp");
 		logger.info("목록이 출력됩니다");
 		return "home";
@@ -108,6 +111,12 @@ public class PurchaseController {
 	@RequestMapping(value="/update",method = RequestMethod.GET)
 	public String updateGET(int id,Model model) {
 		ProductVO vo = pdao.list_purchase(id);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		String start = format.format(vo.getDate_start());
+        String end = format.format(vo.getDate_end());
+      
+		model.addAttribute("start", start);
+		model.addAttribute("end", end);
 
 		model.addAttribute("vo", vo);
 		model.addAttribute("pageName", "purchase/update.jsp");
@@ -117,7 +126,7 @@ public class PurchaseController {
 
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public void updatePOST(ProductVO vo, MultipartHttpServletRequest multi, String old_title) throws Exception {
+	public void updatePOST(ProductVO vo, MultipartHttpServletRequest multi,String start,String end, String old_title) throws Exception {
 		MultipartFile file = multi.getFile("file");
 		if(!file.isEmpty()){
 			new File(path + "purchaseimg/" + vo.getP_image()).delete();
@@ -125,6 +134,11 @@ public class PurchaseController {
 			file.transferTo(new File(path + "purchaseimg/" + image));
 			vo.setP_image(image);
 		}
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date_start = sdf.parse(start);
+		vo.setDate_start(date_start);
+		Date date_end = sdf.parse(end);
+		vo.setDate_end(date_end);
 		pdao.update(vo);
 		
 		String content = "모집 신청하신 공동구매 [" + old_title + "] 진행 건이 작성자의 요청에 의해 수정되었습니다. 이용에 참고하시기 바랍니다.";
@@ -140,7 +154,6 @@ public class PurchaseController {
 			ndao.insert(nvo);
 		}
 	}
-
 
 	// read page
 	@RequestMapping("/read")
@@ -173,11 +186,10 @@ public class PurchaseController {
 	}
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String insertPost(UserVO user, ProductVO vo, MultipartHttpServletRequest multi,HttpServletRequest request) throws Exception {
+	public String insertPost(UserVO user, ProductVO vo, MultipartHttpServletRequest multi,HttpServletRequest request,String start,String end) throws Exception {
 		System.out.println(vo.toString());
 		
 		UserVO lvo = udao.userLogin(user);
-		
 		
 		HttpSession session = request.getSession();
 		
@@ -188,6 +200,11 @@ public class PurchaseController {
 		// 대표 파일 업로드 하기
 		file.transferTo(new File(path + "purchaseimg/" + p_image));
 		// 데이터 입력
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date date_start = sdf.parse(start);
+		vo.setDate_start(date_start);
+		Date date_end = sdf.parse(end);
+		vo.setDate_end(date_end);
 		
 		pdao.insert(vo);
 		session.setAttribute("user", lvo);
@@ -216,7 +233,6 @@ public class PurchaseController {
 	public int insert_member(int p_id, String p_member) throws Exception{
 		int result = pdao.chk_member(p_id, p_member);
 		if(result==0){
-			System.out.println(p_id);
 			service.purchase_member_add(p_id, p_member);
 		}
 		return result;

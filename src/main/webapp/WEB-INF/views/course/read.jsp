@@ -176,7 +176,7 @@
 					<span width=150 class="cnt_reply">{{c_reply_state}}</span>
 				</div>
 				<div class="content">
-					<div>Q. {{c_query_content}} <a class="query_del" href="{{c_query_id}}"></a></div>
+					<div>Q. {{c_query_content}} <a class="query_del" query_writer="{{c_query_writer}}" href="{{c_query_id}}"></a></div>
 					<div class="reply"></div>
 				</div>
 			</div>
@@ -230,13 +230,12 @@
 			$.ajax({
 				type: "post",
 				url: "/notice/insert",
-				data: {"tbl_code": tbl_code, "tbl_id":id,"sender": "admin", "content": n_content, "n_state": 1},
+				data: {"tbl_code": tbl_code, "tbl_id":id,"sender": "admin" , "content": n_content, "n_state": 1},
 				success : function(){
-					alert("알림 전송이 완료되었습니다.");
-					getNoticeList();
+					alert("삭제가 완료되었습니다.");
+					location.href="/course/list";
 				}
 			});
-			location.href="/course/list";
 		}
 		});
 		
@@ -246,16 +245,26 @@
 	$("#query").on("click", ".list .content a", function(e){
 		e.preventDefault();
 		var query_id = $(this).attr("href");
+		var query_writer = $(this).attr("query_writer");
 		if(!confirm("문의글을 삭제하시겠습니까?")) return;
+		sock_notice.send("admin");
+		var n_content = query_writer + "님이 작성하신 공동생활 [" + title + "] 진행 건에 대한 문의글이 삭제되었습니다."; 
 		$.ajax({
 			type:"post",
 			url: "/delete_query",
 			data: {"c_query_id": query_id},
 			success : function(){
-				alert("삭제가 완료되었습니다.");
-				getLocation();
+				$.ajax({
+					type: "post",
+					url: "/notice/insert",
+					data: {"tbl_code": tbl_code, "tbl_id":id,"sender": "admin", "receiver": writer, "content": n_content,  "n_state": 1},
+					success : function(){
+						alert("삭제가 완료되었습니다.");
+						getLocation();
+					}
+				});
 			}
-		});
+		}); 
 	});
 	
 	// 문의글 세부내용 출력
