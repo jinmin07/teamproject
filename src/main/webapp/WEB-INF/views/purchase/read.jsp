@@ -65,13 +65,31 @@
     		color: #f43143;
     		font-weight: 500;
     	}
-		
 		<!-- 문의하기 CSS 끝-->
-		
+		.new_profile_wrap {
+    		margin: 0 auto;
+    		float: right;
+    		border: 1px solid #c7c7c7;
+    		box-sizing: border-box;
+		}
+		 button{
+			width:100px;
+			font-size:16px;
+			margin:0px;
+			padding: 5px 15px;
+			font-family:"맑은고딕";
+			font-weight: 600;
+			color: #fff;    	
+			background-color: #35c5f0;
+			margin-right:10px;
+		}
+		 button:hover{
+			background-color: #09addb;
+		}
 </style>
 
-<div  style="overflow:hidden">
-	<div id="purchase_content">
+<div style="overflow:hidden" >
+	<div id="purchase_content" >
 	<form name="frm" enctype="multipart/form-data">
 		<div id="home" style="text-align: left; margin-bottom: 10px;"> 공동구매 > ${vo.p_category} </div>
 		<div style="overflow : hidden;">
@@ -133,7 +151,6 @@
 		<h5>▶모임장소 : ${vo.p_local}</h5>
 		<div id="map" style="width:100%;height:350px;"></div>
 	</div>
-	
 		
 	<div class="sub_inner_right sub_inner_right02" style="float: left;">	
 	<div class="inner_review">

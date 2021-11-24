@@ -1,6 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<style>
+	input[type=submit], input[type=reset] {
+		width: 100px;
+		color: #fff;
+    	font-weight: 600;
+    	background-color: #35c5f0;
+		padding: 14px 20px;
+		margin: 8px 0;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+	}	
+	input[type=submit]:hover, input[type=reset]:hover{
+		border-color: #09addb;
+    	background-color: #09addb;
+	}
+	
+</style>		
+		 
 <h1>문의하기</h1>
+<div style="width: 700px; margin : 0px auto;">
 <div style="text-align: left; margin-bottom: 10px;"> 취미/스터디 > ${category.category} > ${category.subcategory} </div>
 <div id="course_info">
 	<h3>${vo.title}</h3>
@@ -11,14 +31,15 @@
 	<input type="hidden" name="c_id" value="${vo.id}">
 	<input type="hidden" name="c_query_writer" value="${user.u_id}">
 	
-	<textarea name="c_query_content" rows="10" cols="100"></textarea>
+	<textarea name="c_query_content" rows="10" cols="63"></textarea>
 	<hr/>
 	<div>
-		비공개 : <input type="checkbox" name="c_openable" value="f"/>
+		비공개 : <input type="checkbox" name="c_openable" value="f"/> &nbsp;&nbsp;
 		<input type="submit" value="등록"/>
 		<input type="reset" value="취소"/>
 	</div>
 </form>
+</div>
 <script>
 	$(frm).on("submit",function(e){
 		e.preventDefault();
