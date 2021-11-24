@@ -4,12 +4,12 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class CQueryVO {
+public class CQueryVO{
 	private int c_query_id;
 	private int c_id;
 	private String c_query_writer;
 	private String c_query_content;
-	@JsonFormat(pattern="yy-MM-dd", timezone="Asia/Seoul")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date c_query_date;
 	private String c_openable;
 	private String c_reply_state;

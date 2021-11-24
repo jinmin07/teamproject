@@ -54,7 +54,7 @@
 							<img src="/resources/logo.png" width=154 />
 						</a>
 					</div>
-					<nav class="navigation-primary__menu">
+					<nav id="nav_menu" class="navigation-primary__menu">
 						<a class="navigation-primary__menu__item" href="/purchase/list" >공동구매</a> 
 						<a class="navigation-primary__menu__item" href="/course/list">공동생활</a>
 						<a class="navigation-primary__menu__item" href="/support/list">지원정책</a>
@@ -111,16 +111,19 @@
  			<div class="heading">
  				<span class="n_id" style="display:none;">{{n_id}}</span>
  				<b id="notice_date" style="font-size:13px;">{{regdate}}</b>
-				<a class="close" href="#">×</a>
  			</div>
 			<div id="notice_content" class="body home" style="text-align:left;">
- 			 (    )님이 보낸 알림이 도착했습니다.
 			</div>
  		</div>
 	</div>
 </body>
 <script>
 	$("#notice").hide();
+	
+	var index="${index}";
+	if(index!=null || index!=""){
+		$("#nav_menu a:nth-child(" + index + ")").css('color', '#35c5f0');
+	}
 	
 	//notice 소켓생성
 	var u_id="${user.u_id}";

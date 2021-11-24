@@ -11,6 +11,7 @@ import javax.swing.plaf.synth.SynthSeparatorUI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +41,9 @@ public class MypageController {
 	
 	@Autowired
 	MypageService mservice;
+	
+	@Autowired
+	BCryptPasswordEncoder passEncoder;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
 	
@@ -175,19 +179,35 @@ public class MypageController {
 		return "mypage/passwordChange";
 	}
 	
+	@RequestMapping(value = "/newPassword",method = RequestMethod.POST)
+	@ResponseBody
+	public void newPasswordChangePost(UserVO vo) throws Exception {
+		logger.info("비밀번호 찾기 / 비밀번호 변경");
+		String password = passEncoder.encode(vo.getU_pass());
+		vo.setU_pass(password);
+
+		mservice.passwordChange(vo);
+	}
+	
 	@RequestMapping(value = "/passwordChange",method = RequestMethod.POST)
-	public String passwordChangePost(Model model,HttpServletRequest request,UserVO vo) throws Exception {
+	@ResponseBody
+	public int passwordChangePost(String old_pass, Model model,HttpServletRequest request,UserVO vo) throws Exception {
 		logger.info("비밀번호 변경");
 		HttpSession session = request.getSession();
 		
-		System.out.println(vo.getU_id());
-		System.out.println(vo.getU_pass());
+		int result = 0;
+		UserVO uvo = udao.userLogin(vo);
 		
-		mservice.passwordChange(vo);
-		session.invalidate();
+		if(passEncoder.matches(old_pass, uvo.getU_pass())){
+			result = 1;
+			String password = passEncoder.encode(vo.getU_pass());
+			vo.setU_pass(password);
+			
+			mservice.passwordChange(vo);
+			session.invalidate();
+		}
 		
-		return "redirect:/";
-		
+		return result;
 	}
 	
 	@RequestMapping(value = "/my_profile_update",method = RequestMethod.GET)

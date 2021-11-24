@@ -4,59 +4,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>내가 문의한 글</title>
+	<style>
+		.query_title {overflow: hidden;}
+		.query_id {float: left; margin-right: 30px; font-size: 13px;}
+		.query_date{float: right; margin-right: 30px; font-size: 13px; color: gray;}
+		.goList {float: right; margin-right: 30px; font-size: 13px;}
+		.query_cont {text-align: left;}
+		.goList a:hover{color:gray;}
+		.reply_state {border: 1px solid #35c5f0; padding: 5px; width: 90px; font-size: 14px;}
+		.query_title {margin-bottom: 10px;}
+	</style>
 </head>
 <body>
 	<table id="tbl"></table>
 	<script id="temp1" type="text/x-handlebars-template">
-	<tr class="title">
-		<td width="100">No.</td>
-		<td width="300">내용</td>
-		<td width="100">작성자</td>
-		<td width="200">작성일</td>
-		<td width="100">답변여부</td>
-	</tr>
 	{{#each .}}
-	<tr class = "row" onClick="location.href='/purchase/read?id={{p_id}}'">
-		<td width=100 class="p_query_id">{{p_query_id}}</td>
-      	<td width=300 class="p_query_content">{{p_query_content}}</td>
-      	<td width=100 class="p_query_writer">{{p_query_writer}}</td>
-		<td width=200 class="p_query_date">{{p_query_date}}</td>
-		<td width=100 class="p_query_state">{{p_reply_state}}</td>
+	<tr class = "row" height=100>
+		<td width =150 class="query_top" >
+			<div class="reply_state" style="{{printColorP p_reply_state}}">{{p_reply_state}}</div>
+		</td>
+		<td width=700 class="query_middle">
+			<div class="query_title">
+				<div class="query_id" width=100>{{p_query_id}}</div>
+				<div class="goList" width = 100><a href='/purchase/read?id={{p_id}}'>확인</a></div>
+				<div class="query_date" width = 250>{{p_query_date}}</div>
+			</div>
+			<div class="query_info">
+				<div class="query_cont">{{p_query_content}}</div>
+			</div>
+		</td>
 	</tr>
 	{{/each}}
 	</script>
+	<script>
+		Handlebars.registerHelper("printColorP", function(p_reply_state){
+			if(p_reply_state == "답변완료"){
+				return "background: #35c5f0 ;color : white;";
+			}else{
+				return "background: white ;color :#35c5f0;";
+			}
+		});
+	</script>
 	<script id="temp2" type="text/x-handlebars-template">
-	<tr class="title">
-		<td width="100">No.</td>
-		<td width="300">내용</td>
-		<td width="100">작성자</td>
-		<td width="200">작성일</td>
-		<td width="100">답변여부</td>
-	</tr>
 	{{#each .}}
-	<tr class = "row" onClick="location.href='/cou/read?id={{c_id}}'">
-		<td width=100 class="c_query_id">{{c_query_id}}</td>
-      	<td width=300 class="c_query_content">{{c_query_content}}</td>
-      	<td width=100 class="c_query_writer">{{c_query_writer}}</td>
-		<td width=200 class="c_query_date">{{c_query_date}}</td>
-		<td width=100 class="c_query_state">{{c_reply_state}}</td>
+	<tr class = "row" height=100>
+		<td width =150 class="query_top" >
+			<div class="reply_state" style="{{printColorC c_reply_state}}">{{c_reply_state}}</div>
+		</td>
+		<td width=700 class="query_middle">
+			<div class="query_title">
+				<div class="query_id" width=100>{{c_query_id}}</div>
+				<div class="goList" width = 100><a href='/course/read?id={{c_id}}'>확인</a></div>
+				<div class="query_date" width = 250>{{c_query_date}}</div>
+			</div>
+			<div class="query_info">
+				<div class="query_cont">{{c_query_content}}</div>
+			</div>
+		</td>
 	</tr>
 	{{/each}}
+	</script>
+		<script>
+		Handlebars.registerHelper("printColorC", function(c_reply_state){
+			if(c_reply_state == "답변완료"){
+				return "background: #35c5f0 ;color : white;";
+			}else{
+				return "background: white ;color :#35c5f0;";
+			}
+		});
 	</script>
 </body>
 <script>
-	getListPurchase();
-	getListCourse();
-	
 	var url = "${url}"
 	
 	if(url == "/my_query/purchase"){
-		getListPurchase;
+		getListPurchase();
 	}
 	if(url == "/my_query/course"){
-		getListCourse;
+		getListCourse();
 	}
 	
 	function getListPurchase() {

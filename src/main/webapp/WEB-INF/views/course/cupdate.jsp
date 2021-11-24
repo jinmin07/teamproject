@@ -134,7 +134,6 @@ input[type=submit]:hover, input[type=reset]:hover{
 
 
 <script>
-
 	//DB값 불러와서 radio 버튼 checked
 	window.onload = function(){
 		document.querySelector("#tbl_code input[value='${vo.tbl_code}']").setAttribute('checked', true);
@@ -173,6 +172,8 @@ input[type=submit]:hover, input[type=reset]:hover{
 		
 
 		if (!confirm("취미/스터디를 수정하실래요?")) return;
+		
+		
 		sock_notice.send("admin");
 		
 		frm.action = "/course/update";

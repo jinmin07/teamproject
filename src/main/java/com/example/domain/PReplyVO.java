@@ -10,7 +10,7 @@ public class PReplyVO {
 	private int p_query_id;
 	private String p_reply_writer;
 	private String p_reply_content;
-	@JsonFormat(pattern = "yy-MM-dd", timezone = "Asia/Seoul")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date c_reply_date;
 
 	public int getP_reply_id() {

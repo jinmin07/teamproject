@@ -56,6 +56,7 @@ public class BoardController {
 
 	@RequestMapping("/list")
 	public String login(Model model) {
+		model.addAttribute("index", 4);
 		model.addAttribute("pageName", "board/list.jsp");
 		return "home";
 	}
@@ -80,6 +81,7 @@ public class BoardController {
 		String maxCode = bdao.maxCode();
 		int id = Integer.parseInt(maxCode) + 1;
 		model.addAttribute("id", id);
+		model.addAttribute("index", 4);
 		model.addAttribute("pageName", "board/insert.jsp");
 		return "home";
 	}
@@ -119,6 +121,7 @@ public class BoardController {
 		UserVO uvo = (UserVO) session.getAttribute("user");
 		model.addAttribute("chk_rec", bdao.chk_rec(id, uvo.getU_id()));
 		model.addAttribute("attList", adao.list(id));
+		model.addAttribute("index", 4);
 		model.addAttribute("pageName", "board/read.jsp");
 		return "home";
 	}
@@ -127,6 +130,7 @@ public class BoardController {
 	public String update(int id, Model model) {
 		model.addAttribute("vo", bdao.read(id));
 		model.addAttribute("attList", adao.list(id));
+		model.addAttribute("index", 4);
 		model.addAttribute("pageName", "board/update.jsp");
 		return "home";
 	}

@@ -141,7 +141,7 @@ input:focus {outline:none;}
 				</div>	
 				<button type="button" class ="address_button" onclick="execution_daum_address()">주소찾기</button>
 			</div>
-		<div class="address_input_2_wrap" style="margin-top:20px;" >
+			<div class="address_input_2_wrap" style="margin-top:20px;" >
 				<div class="address_input_2_box">
 					<input class="address_input_2" name="addr2" placeholder="주소"/>
 				</div>

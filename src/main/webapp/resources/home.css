@@ -52,8 +52,6 @@
 	padding-left: 10px;
 }
 #menu h4 {float: left; margin-right: 20px;}
-#menu h4 a{color:#DBB4B4}
-#menu h4 a:HOVER{color:#5872A5;}
 h1 { text-align: center; color:gray;}
 
 #page{
@@ -71,11 +69,9 @@ h1 { text-align: center; color:gray;}
 #condition a:hover{ color: #5872A5;}
 
 table {border-collapse:collapse; margin: 0 auto;}
-td{border-bottom: solid 1px #7F8BA5; padding: 5px; text-align:center;}
+td{border-bottom: solid 1px lightgray; padding: 5px; text-align:center;}
 
 .row:hover{
-	background: lightgray;
-	color: white;
 	cursor: pointer;
 }
 
@@ -103,8 +99,12 @@ td{border-bottom: solid 1px #7F8BA5; padding: 5px; text-align:center;}
 
 a {
 	text-decoration: none;
+	color:#424242;
 }
 
+a:hover{
+	color:gray;
+}
 input , textarea, select{
 	font-family:"맑은고딕";
 	font-size: 15px;
@@ -225,7 +225,7 @@ li{
 }
 
 .navigation-search__input__text {
-       display: block !important;
+      display: block !important;
     width: 300px !important;
     height:40px !important;
     margin:0px !important;

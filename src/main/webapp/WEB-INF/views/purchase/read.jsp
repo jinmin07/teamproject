@@ -7,7 +7,6 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <style>
-	#purchase_content{width:960px; margin:0 auto;}
 	.head:hover {cursor: pointer; background: lightgray;}
 		#query .content {display: none;}
 		.container {
@@ -23,7 +22,7 @@
 		}
 		.html {background-color: #04AA6D;}
 		#btn_member_end {background: lightgray;}
-		
+
 		#home::before {
     		content: '';
     		background: url(https://pickcrawl.com/web/images/sub/home_icon.png) center no-repeat;
@@ -92,37 +91,37 @@
 			background-color: #09addb;
 		}
 </style>
+<h1>[상품조회]</h1>
 
-<div style="overflow:hidden" >
-	<div id="purchase_content" >
+<hr/>
+<div style="overflow:hidden">
+		
+</div>
+	<div id="purchase_content">
+
 	<form name="frm" enctype="multipart/form-data">
-		<div id="home" style="text-align: left; margin-bottom: 10px;"> 공동구매 > ${vo.p_category} </div>
+		<div style="text-align: left; margin-bottom: 10px;"> 공동생활 > ${vo.p_category} </div>
 		<div style="overflow : hidden;">
 			<div style="float: left; margin-right: 20px;">
-				<img id="image" src="../resources/purchaseimg/${vo.p_image}" width=460 height= 350/>
+				<img id="image" src="display?fileName=${vo.p_image}" width=350/>
 			</div>
 			<div style="float: left; width: 450px; text-align: left;">
 				<c:if test="${vo.p_writer!=user.u_id}">
-					<img id="myfeed_insert" style="float: right;" src="https://pickcrawl.com/web/images/common/list_heart.png" width=20>
+					<img id="myfeed_insert" style="float: right;" src="../resources/course/upload.png" width=20>
 				</c:if>
-				<h3>상품번호:${vo.id}</h3>
-				<h3>${vo.title}</h3>
+				<h3 id="title">${vo.title}</h3>
 				<h5>모임장소 : ${vo.p_local}</h5>
-				<h5>모집날짜: ${vo.date_start} - ${vo.date_end }</h5>
+				<h5>모임날짜:  <f:formatDate value="${vo.date_start}" pattern="yy-MM-dd"/> - <f:formatDate value="${vo.date_end}" pattern="yy-MM-dd"/></h5>
 				<h5>모집인원 : ${vo.p_cnt_member} / ${vo.p_tot_member}</h5>
 				<div>
-					<div class="container" style="position:relative;">
-		  				<div class="skills html" style="width: calc(${vo.p_cnt_member}/${vo.p_tot_member} * 400px)"></div>
-						<p style="position:absolute;right:-60px;top:calc(0% - 19px);">
-                           <span style="color:#f43143;">${vo.p_cnt_member}</span>/ ${vo.p_tot_member}명
-                        </p>
+					<div class="container">
+		  				<div class="skills html" style="width: calc(${vo.p_cnt_member}/${vo.p_tot_member} * 400px) ">${vo.p_cnt_member}명 </div>
 					</div>
 				</div>
-		
+				<h5>신청인원 : ${vo.p_cnt_member}</h5>
 			</div>
 		</div>
-	</div>
-		<div style ="overflow: hidden; width:960px; margin:0 auto;">
+		<div style ="overflow: hidden;">
 			<div id="chk_user" style="float: left; width: 330px; text-align: left; margin-right: 20px;">
 				${vo.p_writer}
 				<c:if test="${vo.p_writer==user.u_id}">
@@ -144,19 +143,19 @@
 				</c:if>
 			</div>
 		</div>
-	</form>
+		</form>
 	</div>
-	<hr style="width:960px;"/>
-<div style ="overflow: hidden; width:960px; margin:0 auto;">	
-	<div style="text-align: left; width: 500px; float: left;">
+	
+	<hr/>
+	<div style="text-align: left;">
 		<h2>세부사항</h2>
-		<h5>▶ 카테고리 : ${vo.p_category}</h5>
-		<h5>▶링크 : ${vo.p_link}</h5>
-		<h5>▶가격 : ${vo.p_salePrice}</h5>
-		<h5>▶모임장소 : ${vo.p_local}</h5>
+		<h5>카테고리 : ${vo.p_category}</h5>
+		<h5>링크 : ${vo.p_link}</h5>
+		<h5 id="price">가격 : ${vo.p_salePrice}</h5>
+		<h5>상세설명: ${p_content}</h5>
+		<h5>모임장소 : ${vo.p_local}</h5>
 		<div id="map" style="width:100%;height:350px;"></div>
 	</div>
-		
 	<div class="sub_inner_right sub_inner_right02" style="float: left;">	
 	<div class="inner_review">
 		<div class="review_comment" id="position03">
@@ -178,10 +177,12 @@
 				</div>
 			</div>
 		</div>
+	<hr/>
+	<div style="text-align: left; width: 800px;">
+		<h2>문의사항 ${cnt_query}개</h2>
+		<span><a href="/purchase/query_insert?id=${vo.id}" style="float: right;">문의하기</a></span>
+		<div id="query" style="clear: both;"></div>
 	</div>
-	</div>	
-</div>	
-	
 	<script id="temp" type="text/x-handlebars-template">
 		{{#each .}}
 			<div class="list">
@@ -196,13 +197,12 @@
 					<span width=150 class="cnt_reply">{{p_reply_state}}</span>
 				</div>
 				<div class="content">
-					<div>Q. {{p_query_content}} <a class="query_del" href="{{p_query_id}}" query_writer="{{p_query_writer}}"></a></div>
+					<div>Q. {{p_query_content}} <a class="query_del" href="{{p_query_id}}"></a></div>
 					<div class="reply"></div>
 				</div>
 			</div>
 		{{/each}}
 	</script>
-
 	<script>
 		Handlebars.registerHelper("printOpen", function(p_openable){
 			if(p_openable != "f"){
@@ -213,24 +213,29 @@
 	
 	<c:if test="${user.u_id == vo.p_writer && user.u_id != null}">
 		<div>
-			<input type="submit" value="상품수정"/>
+			<button id="btn_purchase_update">수정하기</button>
 			<input type="button"  value="글삭제" id="btnDelete"/>
 		</div>
 		</c:if>
 	<c:if test="${user.u_id != vo.p_writer || user.u_id == null}">
 		<div></div>
 	</c:if>
+	
+	<c:if test="${vo.p_cnt_member >= vo.p_tot_member}">
+	<div>
+		<button id="payment">결제하기</button>
+	</div>
+	</c:if>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cedbcd9eb728fa4063a08e6951fa6f47&libraries=services"></script>
 
 <script>
 
-	var id= "${vo.id}";
-	var p_writer = "${vo.p_writer}";
-	var login_id = "${user.u_id}";
-	var p_local = "${vo.p_local}";
-	var title = "${vo.title}";
-	getList();
+var id= "${vo.id}";
+var p_writer = "${vo.p_writer}";
+var login_id = "${user.u_id}";
+var p_local = "${vo.p_local}";
+getList();
 
 	//마이피드로 옮기기
 	$("#myfeed_insert").on("click", function(){
@@ -250,36 +255,6 @@
 			
 		});
 	});
-
-	$(frm).on("submit", function(e){
-		e.preventDefault();
-		var p_image=$(frm.p_image).val();
-		var title=$(frm.title).val();
-		var p_price=$(frm.p_salePrice).val();
-		var p_category=$(frm.p_category).val();
-		
-		if(title=="" || p_price=="" || p_category==""){
-			alert("모든 내용을 입력해 주세요!");
-			return;
-		}if (p_price == '' || p_price.replace(/[0-9]/g, '')) {
-			alert('가격을 숫자로 입력하세요.');
-			$(frm.p_price).focus();
-			return;
-		}
-		if(!confirm("상품정보를 수정하실래요?")) return;
-	    frm.action="/purchse/update";
-	    frm.method="post";
-	    frm.submit();
-	}); 
-	
-	 $("#image").on("click", function(){
-		$(frm.file).click();
-	});
-	
-	$(frm.file).on("change", function(e){
-		var file=$(this)[0].files[0];
-		$("#image").attr("src", URL.createObjectURL(file));
-	}); 
 
 	$("#btnDelete").on("click", function(){
 		if(!confirm(id + "게시글을 삭제하시겠습니까")) return;
@@ -304,6 +279,7 @@
 		});
 	});
 
+	
 	// 문의글 삭제 관련 버튼
 	$("#query").on("click", ".list .content a", function(e){
 		e.preventDefault();
@@ -327,10 +303,9 @@
 				});
 			}
 		});
-		
 	});
-
-
+ 
+	
  $("#chk_user").on("click", "span a", function(e){
 		e.preventDefault();
 		var url = "/purchase/purchase_member?id=" + id;
@@ -352,6 +327,52 @@
 		});
 	});
 	
+	$("#payment").on("click",function(){
+		iamport();
+	});
+
+	function iamport(){
+		
+		var title = $("#title").html();
+		
+		alert(title);
+		alert(price);
+		
+		//가맹점 식별코드
+		IMP.init('imp27765266');
+		IMP.request_pay({
+		    pg : 'kcp',
+		    pay_method : 'card',
+		    merchant_uid : 'merchant_' + new Date().getTime(),
+		    name : title , //결제창에서 보여질 이름
+		    amount : "${vo.p_salePrice}", //실제 결제되는 가격
+		    buyer_email : "${user.u_email}",
+		    buyer_name : "${user.u_name}",
+		    buyer_tel : '${user.u_phone}',
+		    buyer_addr : '${user.u_addr2}',
+		    buyer_postcode : '${user.u_addr1}'
+		}, function(rsp) {
+			console.log(rsp);
+		    if ( rsp.success ) {
+		    	var msg = '결제가 완료되었습니다.';
+		        msg += '고유ID : ' + rsp.imp_uid;
+		        msg += '상점 거래ID : ' + rsp.merchant_uid;
+		        msg += '결제 금액 : ' + rsp.paid_amount;
+		        msg += '카드 승인번호 : ' + rsp.apply_num;
+		    } else {
+		    	 var msg = '결제에 실패하였습니다.';
+		         msg += '에러내용 : ' + rsp.error_msg;
+		    }
+		    alert(msg);
+		});
+	}
+	
+	//수정 페이지로 이동
+	$("#btn_purchase_update").on("click", function(){
+		if(!confirm("글을 수정하시겠습니까?")) return;
+		location.href="/purchase/update?id=${vo.id}";
+	});
+	
  
  $("#reg_user").on("click","#btn_member_insert", function(){
 		if(p_writer == login_id ){
@@ -370,9 +391,12 @@
 					getLocation();
 				}else{
 					alert("이미 신청하신 컨텐츠입니다.");
+					getLocation();
 				}
 			}
 		});
+		
+		
 	});
  
  function getList(){
@@ -430,26 +454,16 @@
 	$("#query").on("click", ".list .content button", function(){
 		var query_id = $(this).parent().parent().parent().find(".p_query_id").html();
 		var reply_content = $(this).parent().find(".p_reply_content").val();
-		var query_writer = $(this).parent().parent().parent().find(".p_query_writer").html();
 		
 		if(!confirm("답글을 등록하시겠습니까?")) return;
-		sock_notice.send("admin");
-		var n_content = "문의하신 공동구매 [" + title + "] 진행 건에 대한 답변이 등록되었습니다."; 
+		
 		$.ajax({
 			type: "post",
 			url: "/purchase/reply_insert",
 			data: {"p_query_id":query_id, "p_reply_content" : reply_content, "p_reply_writer": p_writer},
 			success: function(){
-				$.ajax({
-					type: "post",
-					url: "/notice/insert",
-					data: {"tbl_code": "P", "tbl_id":id,"sender": "admin", "receiver": qeury_writer, "content": n_content},
-					success : function(){
-						alert("답글 등록이 완료되었습니다.");
-						getList();
-						location.href = "/purchase/list";
-					}
-				});
+				alert("답글 등록이 완료되었습니다.");
+				getList();
 			}
 		});
 	});

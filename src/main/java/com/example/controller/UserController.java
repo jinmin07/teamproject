@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +36,9 @@ public class UserController {
 	@Autowired
 	NoticeDAO ndao;
 
+	@Autowired
+	BCryptPasswordEncoder passEncoder;
+	
 	@Autowired
 	private JavaMailSender mailSender;
 
@@ -107,6 +111,8 @@ public class UserController {
 	@ResponseBody
 	public void insertPost(UserVO vo) {
 		try {
+			String password = passEncoder.encode(vo.getU_pass());
+			vo.setU_pass(password);
 			udao.insert(vo);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -162,20 +168,31 @@ public class UserController {
 		System.out.println("login 메서드 진입");
 		System.out.println("전달된 데이터 : " + user);
 
+		
+		
 		HttpSession session = request.getSession();
 		UserVO lvo = udao.userLogin(user);
 		
 		
 		if (lvo == null) { // 일치하지 않는 아이디, 비밀번호 입력 경우
-
 			int result = 0;
 			rttr.addFlashAttribute("result", result);
 			logger.info("로그인 실패");
 			return "redirect:/member/login";
 
 		}
+		
+		if(!passEncoder.matches(user.getU_pass(), lvo.getU_pass())){
+			int result = 0;
+			rttr.addFlashAttribute("result", result);
+			logger.info("로그인 실패");
+			return "redirect:/member/login";
+		}
+
 		System.out.println(lvo.getU_id());
 		session.setAttribute("user", lvo); // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
+		
+		
 		session.setAttribute("count", ndao.noticeUnreadCount(lvo.getU_id()));
 
 		logger.info("로그인 성공");

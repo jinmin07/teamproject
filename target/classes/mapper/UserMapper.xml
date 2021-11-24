@@ -15,7 +15,7 @@
   	</select>
   	
   	<select id="userLogin" resultType="com.example.domain.UserVO">
-  		select * from tbl_user where u_id = #{u_id} and u_pass=#{u_pass}
+  		select * from tbl_user where u_id = #{u_id}
   	</select>
   	
   	<select id="findId" resultType = "com.example.domain.UserVO">
