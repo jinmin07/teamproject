@@ -28,6 +28,8 @@
 <hr/>
 <form name="frm">	
 	<input type="hidden" name="p_id" value="${vo.id}">
+	<input type="hidden" name="title" value="${vo.title}">
+	<input type="hidden" name="p_writer" value="${vo.p_writer}">
 	<input type="hidden" name="p_query_writer" value="${user.u_id}">
 	
 	<textarea name="p_query_content" rows="10" cols="100"></textarea>
@@ -51,6 +53,7 @@
 		
 		if(!confirm("문의글을 등록하시겠습니까?")) return;
 		
+		sock_notice.send("admin");
 		frm.action = "/purchase/query_insert";
 		frm.method = "post";
 		frm.submit();

@@ -11,12 +11,16 @@ import com.example.domain.Criteria;
 import com.example.domain.PageMaker;
 import com.example.domain.ReplyVO;
 import com.example.mapper.ReplyDAO;
+import com.example.service.BoardService;
 
 @RestController
 @RequestMapping("/board")
 public class ReplyController {
 	@Autowired
 	ReplyDAO rdao;
+	
+	@Autowired
+	BoardService service;
 	
 	@RequestMapping(value="/reply/delete", method=RequestMethod.POST)
 	public void delete(int b_reply_id){
@@ -25,7 +29,7 @@ public class ReplyController {
 	
 	@RequestMapping(value="/reply/insert", method=RequestMethod.POST)
 	public void insert(ReplyVO vo){
-		rdao.insert(vo);
+		service.board_insert_reply(vo);
 	}
 	
 	@RequestMapping("/reply.json")

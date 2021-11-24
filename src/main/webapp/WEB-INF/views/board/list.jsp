@@ -20,7 +20,7 @@
 	.listoption{
 		margin:0 auto;
 		width:1200px;
-		margin-bottom: 70px;
+		margin-bottom: 30px;
 	    border-top: 1px solid #e5e5e5;
 	    border-bottom: 1px solid #e5e5e5;
 	    overflow: hidden;
@@ -168,10 +168,12 @@
 	}
 		
 <!-- 검색 CSS 끝-->	
+
 	.view {
 		width: 1024px;
 		margin: 0 auto;
 	}
+    
 	.view button{
 		width:80px;
 		font-size:16px;
@@ -182,6 +184,7 @@
 		color: #fff;    	
 		background-color: #35c5f0;
 	}
+
 	.view button:hover{
 		background-color: #09addb;
 	}
@@ -200,9 +203,6 @@
 		padding: 5px 10px;
 	}
 </style>
-
-<h1>[글목록]</h1>
-
 <!-- 리스트 검색 박스 시작 -->
 	<div class="listoption">
 		<div class="box box3" >

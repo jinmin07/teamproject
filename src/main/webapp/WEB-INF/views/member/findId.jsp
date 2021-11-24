@@ -5,17 +5,73 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+
+.ps_box,.mail_check_input_box {
+	display: block;
+	position: relative;
+	width: 460px;
+	height: 51px;
+	border: solid 1px #dadada;
+	padding: 10px 110px 10px 14px;
+	background: #fff;
+	box-sizing: border-box;
+	vertical-align: top;
+}
+
+.name_input,.mail_input, .mail_check_input{
+	display: block;
+	position: relative;
+	height: 29px;
+	line-height: 29px;
+	border: none;
+	background: #fff;
+	font-size: 15px;
+	box-sizing: border-box;
+	z-index: 10;
+	width: 327px;
+}
+
+input:focus {outline:none;}
+
+.mail_check_button, .mail_check_button_warn{
+    background-color: #fff;
+    border-color: #35c5f0;
+    color: #35c5f0;
+    font-size: 16px;
+    margin: 0px;
+    padding: 5px 10px;
+    font-family: "맑은고딕";
+    font-weight: 600;
+    height: 50px;
+    float:right;
+}
+
+button:hover{
+	background-color: #effbff;
+}
+
+</style>
 </head>
 <body>
-	<div>
-		<div>이름을 입력해주세요 : <input type="text" class="name_input" placeholder="이름을 입력해주세요"/></div>
-		<h3 class="join_title" style="margin-top:20px;">이메일</h3> 
+	<div style=" width:500px;margin-left:460px;margin-bottom:5px; font-size: 20px; font-weight: 600;font-size:30px;border-bottom:1px solid gray; "> 
+		<span>아이디 찾기</span>
+	</div>
+	<div style="width:450px;padding-top:10px; padding-bottom:40px; margin:0 auto;" >
+		<div>
+			<span class="ps_box box_right_space" style="display: inline-block; width:450px;" >
+				<input type="text" class="name_input" placeholder="이름을 입력해주세요."/>
+			</span>
+		</div>
+		
+		<h3 class="join_title" style="margin-top:20px; margin-bottom:10px;">이메일</h3> 
 		<div>
 			<span class="ps_box box_right_space" style="display: inline-block; width:357px;" >
 				<input type="text" name="email" class="mail_input" maxlength="100" placeholder="이메일"/>
 			</span>
 			<button  class="mail_check_button">번호발송</button>
 		</div>
+		
 		<div style="margin-top:20px;">
 			<span class="mail_check_input_box" id="mail_check_input_box_false" style="display: inline-block; width:357px;">
 				<input type="text"  name="mail_check_input" class="mail_check_input" placeholder="인증번호"/>

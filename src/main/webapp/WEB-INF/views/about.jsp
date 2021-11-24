@@ -97,7 +97,7 @@
     overflow: hidden;
     display: block;
     margin-left:215px;
-    height: 390px;
+    height: 360px;
     min-height: 1px;
 }
 
@@ -107,7 +107,7 @@
     position: relative;
     box-sizing: border-box;
     width: 240px;
-    height: 390px;
+    height: 360px;
     border-left: 1px solid #e6e6e8;
     border-bottom: 1px solid #e6e6e8;
     background: #ffffff;
@@ -117,7 +117,7 @@
     overflow: hidden;
     position: relative;
     width: 240px;
-    height: 240px;
+    height: 210px;
     margin: 0 0 0 -1px;
     border-bottom: 1px solid #e6e6e8;
 }
@@ -125,7 +125,7 @@
 
 .imgs img{
     width: 240px;
-    height: 240px;
+    height: 210px;
     transition: all .3s;}
     
     
@@ -137,7 +137,7 @@
     
 .info{
 	box-sizing: border-box;
-    height: 150px;
+    height: 90px;
     padding: 15px 29px 0;
 }
 

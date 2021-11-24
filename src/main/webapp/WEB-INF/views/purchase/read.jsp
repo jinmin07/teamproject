@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <style>
 	#purchase_content{width:960px; margin:0 auto;}
 	.head:hover {cursor: pointer; background: lightgray;}
@@ -116,7 +121,7 @@
 		
 			</div>
 		</div>
-</div>
+	</div>
 		<div style ="overflow: hidden; width:960px; margin:0 auto;">
 			<div id="chk_user" style="float: left; width: 330px; text-align: left; margin-right: 20px;">
 				${vo.p_writer}
@@ -191,7 +196,7 @@
 					<span width=150 class="cnt_reply">{{p_reply_state}}</span>
 				</div>
 				<div class="content">
-					<div>Q. {{p_query_content}} <a class="query_del" href="{{p_query_id}}"></a></div>
+					<div>Q. {{p_query_content}} <a class="query_del" href="{{p_query_id}}" query_writer="{{p_query_writer}}"></a></div>
 					<div class="reply"></div>
 				</div>
 			</div>
@@ -220,11 +225,12 @@
 
 <script>
 
-var id= "${vo.id}";
-var p_writer = "${vo.p_writer}";
-var login_id = "${user.u_id}";
-var p_local = "${vo.p_local}";
-getList();
+	var id= "${vo.id}";
+	var p_writer = "${vo.p_writer}";
+	var login_id = "${user.u_id}";
+	var p_local = "${vo.p_local}";
+	var title = "${vo.title}";
+	getList();
 
 	//마이피드로 옮기기
 	$("#myfeed_insert").on("click", function(){
@@ -245,89 +251,86 @@ getList();
 		});
 	});
 
-  //첨부파일 삭제
-$("#images").on("click", ".box a",function(e){
-	e.preventDefault();
-	if(!confirm("첨부 파일을 삭제하실래요?")) return;
-	var box=$(this).parent();
-	var p_image=$(this).attr("href");
-	$.ajax({
-		type: "post",
-		url: "/purchase/delete",
-		data: {"p_image": p_image},
-		success: function(){
-			alert("삭제성공!");
-			box.remove();
+	$(frm).on("submit", function(e){
+		e.preventDefault();
+		var p_image=$(frm.p_image).val();
+		var title=$(frm.title).val();
+		var p_price=$(frm.p_salePrice).val();
+		var p_category=$(frm.p_category).val();
+		
+		if(title=="" || p_price=="" || p_category==""){
+			alert("모든 내용을 입력해 주세요!");
+			return;
+		}if (p_price == '' || p_price.replace(/[0-9]/g, '')) {
+			alert('가격을 숫자로 입력하세요.');
+			$(frm.p_price).focus();
+			return;
 		}
-	});
-}); 
- 
- 
-
-$(frm).on("submit", function(e){
-	e.preventDefault();
-	var p_image=$(frm.p_image).val();
-	var title=$(frm.title).val();
-	var p_price=$(frm.p_salePrice).val();
-	var p_category=$(frm.p_category).val();
+		if(!confirm("상품정보를 수정하실래요?")) return;
+	    frm.action="/purchse/update";
+	    frm.method="post";
+	    frm.submit();
+	}); 
 	
-	if(title=="" || p_price=="" || p_category==""){
-		alert("모든 내용을 입력해 주세요!");
-		return;
-	}if (p_price == '' || p_price.replace(/[0-9]/g, '')) {
-		alert('가격을 숫자로 입력하세요.');
-		$(frm.p_price).focus();
-		return;
-	}
-	if(!confirm("상품정보를 수정하실래요?")) return;
-    frm.action="/purchse/update";
-    frm.method="post";
-    frm.submit();
-}); 
-
- $("#image").on("click", function(){
-	$(frm.file).click();
-});
-
-$(frm.file).on("change", function(e){
-	var file=$(this)[0].files[0];
-	$("#image").attr("src", URL.createObjectURL(file));
-}); 
-
-$("#btnDelete").on("click",function(){	
-	if(!confirm(id + "번의 게시물을 삭제하시겠습니까")) return;
-	$.ajax({
-		type : "post",
-		url : "/purchase/delete",
-		data : {"id":id},
-		success : function(){
-			alert("삭제되었습니다.");
-			location.href = "/purchase/list";
-		}
-	});
-});
-
-// 문의글 삭제 관련 버튼
-$("#query").on("click", ".list .content a", function(e){
-	e.preventDefault();
-	var query_id = $(this).attr("href");
-	if(!confirm("문의글을 삭제하시겠습니까?")) return;
-	
-	$.ajax({
-		type:"post",
-		url: "purchase/delete_query",
-		data: {"p_query_id": query_id},
-		success : function(){
-			alert("삭제가 완료되었습니다.");
-			getList();
-		}
+	 $("#image").on("click", function(){
+		$(frm.file).click();
 	});
 	
-});
+	$(frm.file).on("change", function(e){
+		var file=$(this)[0].files[0];
+		$("#image").attr("src", URL.createObjectURL(file));
+	}); 
+
+	$("#btnDelete").on("click", function(){
+		if(!confirm(id + "게시글을 삭제하시겠습니까")) return;
+		var n_content = "모집 신청하신 공동구매 [" + title + "] 진행 건이 작성자의 요청에 의해 삭제되었습니다. 이용에 참고하시기 바랍니다."; 
+		sock_notice.send("admin");
+		$.ajax({
+			type : "post",
+			url : "/purchase/delete",
+			data : {"id":id},
+			success : function(){
+				alert("삭제가 완료되었습니다.");
+				$.ajax({
+					type: "post",
+					url: "/notice/insert",
+					data: {"tbl_code": "P", "tbl_id":id,"sender": "admin", "content": n_content, "n_state": 1},
+					success : function(){
+						alert("알림 전송이 완료되었습니다.");
+						location.href = "/purchase/list";
+					}
+				});
+			}
+		});
+	});
+
+	// 문의글 삭제 관련 버튼
+	$("#query").on("click", ".list .content a", function(e){
+		e.preventDefault();
+		var query_id = $(this).attr("href");
+		var query_writer = $(this).attr("query_writer");
+		if(!confirm("문의글을 삭제하시겠습니까?")) return;
+		
+		$.ajax({
+			type:"post",
+			url: "purchase/delete_query",
+			data: {"p_query_id": query_id},
+			success : function(){
+				$.ajax({
+					type: "post",
+					url: "/notice/insert",
+					data: {"tbl_code": tbl_code, "tbl_id":id,"sender": "admin", "receiver": p_writer, "content": n_content,  "n_state": 1},
+					success : function(){
+						alert("삭제가 완료되었습니다.");
+						getList();
+					}
+				});
+			}
+		});
+		
+	});
 
 
-
- 
  $("#chk_user").on("click", "span a", function(e){
 		e.preventDefault();
 		var url = "/purchase/purchase_member?id=" + id;
@@ -370,8 +373,6 @@ $("#query").on("click", ".list .content a", function(e){
 				}
 			}
 		});
-		
-		
 	});
  
  function getList(){
@@ -429,16 +430,26 @@ $("#query").on("click", ".list .content a", function(e){
 	$("#query").on("click", ".list .content button", function(){
 		var query_id = $(this).parent().parent().parent().find(".p_query_id").html();
 		var reply_content = $(this).parent().find(".p_reply_content").val();
+		var query_writer = $(this).parent().parent().parent().find(".p_query_writer").html();
 		
 		if(!confirm("답글을 등록하시겠습니까?")) return;
-		
+		sock_notice.send("admin");
+		var n_content = "문의하신 공동구매 [" + title + "] 진행 건에 대한 답변이 등록되었습니다."; 
 		$.ajax({
 			type: "post",
 			url: "/purchase/reply_insert",
 			data: {"p_query_id":query_id, "p_reply_content" : reply_content, "p_reply_writer": p_writer},
 			success: function(){
-				alert("답글 등록이 완료되었습니다.");
-				getList();
+				$.ajax({
+					type: "post",
+					url: "/notice/insert",
+					data: {"tbl_code": "P", "tbl_id":id,"sender": "admin", "receiver": qeury_writer, "content": n_content},
+					success : function(){
+						alert("답글 등록이 완료되었습니다.");
+						getList();
+						location.href = "/purchase/list";
+					}
+				});
 			}
 		});
 	});

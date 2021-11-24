@@ -243,14 +243,14 @@ li{
 
 
 .navigation-search__input__icon {
-	margin-top:12px;
-    position: absolute;
-    top: 10px;
-    left: 130px;
-    width: 20px;
-    height: 20px;
-    color: #757575;
-    pointer-events: none;
+	margin-top:12px !important;
+    position: absolute !important;
+    top: 10px !important;
+    left: 130px !important;
+    width: 20px !important;
+    height: 20px !important;
+    color: #757575 !important;
+    pointer-events: none !important;
 }
 	
 

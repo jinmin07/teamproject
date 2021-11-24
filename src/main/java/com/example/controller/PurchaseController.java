@@ -3,6 +3,8 @@ package com.example.controller;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,6 +31,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.example.domain.Criteria;
 import com.example.domain.MyfeedVO;
+import com.example.domain.NoticeVO;
 import com.example.domain.PQueryVO;
 import com.example.domain.PReplyVO;
 import com.example.domain.PageMaker;
@@ -39,6 +42,7 @@ import com.example.domain.course.CReplyVO;
 import com.example.domain.course.CategoryVO;
 import com.example.domain.course.CourseVO;
 import com.example.mapper.MypageDAO;
+import com.example.mapper.NoticeDAO;
 import com.example.mapper.ProductDAO;
 import com.example.mapper.UserDAO;
 import com.example.service.PurchaseService;
@@ -62,11 +66,15 @@ public class PurchaseController {
 	UserDAO udao;
 	
 	@Autowired
+	NoticeDAO ndao;
+	
+	@Autowired
 	PurchaseService service;
 
 	//상품출력
 	@RequestMapping(value = "/list")
 	public String List(Model model) {
+		
 		model.addAttribute("pageName", "purchase/list.jsp");
 		logger.info("목록이 출력됩니다");
 		return "home";
@@ -103,6 +111,12 @@ public class PurchaseController {
 	@RequestMapping(value="/update",method = RequestMethod.GET)
 	public String updateGET(int id,Model model) {
 		ProductVO vo = pdao.list_purchase(id);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		String start = format.format(vo.getDate_start());
+        String end = format.format(vo.getDate_end());
+      
+		model.addAttribute("start", start);
+		model.addAttribute("end", end);
 
 		model.addAttribute("vo", vo);
 		model.addAttribute("pageName", "purchase/update.jsp");
@@ -112,7 +126,7 @@ public class PurchaseController {
 
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String updatePOST(ProductVO vo, MultipartHttpServletRequest multi) throws Exception {
+	public void updatePOST(ProductVO vo, MultipartHttpServletRequest multi,String start,String end, String old_title) throws Exception {
 		MultipartFile file = multi.getFile("file");
 		if(!file.isEmpty()){
 			new File(path + "purchaseimg/" + vo.getP_image()).delete();
@@ -120,10 +134,26 @@ public class PurchaseController {
 			file.transferTo(new File(path + "purchaseimg/" + image));
 			vo.setP_image(image);
 		}
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date date_start = sdf.parse(start);
+		vo.setDate_start(date_start);
+		Date date_end = sdf.parse(end);
+		vo.setDate_end(date_end);
 		pdao.update(vo);
-		return "redirect:/purchase/list";
+		
+		String content = "모집 신청하신 공동구매 [" + old_title + "] 진행 건이 작성자의 요청에 의해 수정되었습니다. 이용에 참고하시기 바랍니다.";
+		NoticeVO nvo = new NoticeVO();
+		List<HashMap<String, Object>> list = mdao.list_member(vo.getId(), vo.getTbl_code());
+			nvo.setTbl_code(vo.getTbl_code());
+			nvo.setTbl_id(vo.getId());
+			nvo.setSender("admin");
+			nvo.setContent(content);
+		for(int i = 0; i< list.size(); i++){
+			String member = (String)list.get(i).get("member");
+			nvo.setReceiver(member);
+			ndao.insert(nvo);
+		}
 	}
-
 
 	// read page
 	@RequestMapping("/read")
@@ -152,15 +182,14 @@ public class PurchaseController {
 	@RequestMapping(value = "/delete",method = RequestMethod.POST)
 	@ResponseBody
 	public void delete(int id) {
-		pdao.delete(id);
+		service.purchase_delete(id);
 	}
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String insertPost(UserVO user, ProductVO vo, MultipartHttpServletRequest multi,HttpServletRequest request) throws Exception {
+	public String insertPost(UserVO user, ProductVO vo, MultipartHttpServletRequest multi,HttpServletRequest request,String start,String end) throws Exception {
 		System.out.println(vo.toString());
 		
 		UserVO lvo = udao.userLogin(user);
-		
 		
 		HttpSession session = request.getSession();
 		
@@ -171,6 +200,11 @@ public class PurchaseController {
 		// 대표 파일 업로드 하기
 		file.transferTo(new File(path + "purchaseimg/" + p_image));
 		// 데이터 입력
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date date_start = sdf.parse(start);
+		vo.setDate_start(date_start);
+		Date date_end = sdf.parse(end);
+		vo.setDate_end(date_end);
 		
 		pdao.insert(vo);
 		session.setAttribute("user", lvo);
@@ -199,7 +233,6 @@ public class PurchaseController {
 	public int insert_member(int p_id, String p_member) throws Exception{
 		int result = pdao.chk_member(p_id, p_member);
 		if(result==0){
-			System.out.println(p_id);
 			service.purchase_member_add(p_id, p_member);
 		}
 		return result;
@@ -247,8 +280,17 @@ public class PurchaseController {
 	}
 	
 	@RequestMapping(value="/query_insert", method=RequestMethod.POST)
-	public String purchase_query_insert(PQueryVO vo){
+	public String purchase_query_insert(PQueryVO vo, String p_writer, String title){
+		NoticeVO nvo = new NoticeVO();
+		nvo.setTbl_code("P");
+		nvo.setTbl_id(vo.getP_id());
+		nvo.setSender("admin");
+		nvo.setContent("모집중인 공동구매 [" + title + "] 진행 건에 대한 문의글이 등록되었습니다.");
+		nvo.setReceiver(p_writer);
+		//System.out.println(nvo.toString());
 		pdao.insert_query(vo);
+		ndao.insert(nvo);
+		
 		String url = "redirect:/purchase/read?id=" +vo.getP_id();
 		return url;
 	}

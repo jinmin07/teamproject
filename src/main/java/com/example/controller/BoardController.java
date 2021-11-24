@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,7 @@ import com.example.domain.BoardVO;
 import com.example.domain.Criteria;
 import com.example.domain.MyfeedVO;
 import com.example.domain.PageMaker;
+import com.example.domain.UserVO;
 import com.example.mapper.AttachDAO;
 import com.example.mapper.BoardDAO;
 import com.example.mapper.MypageDAO;
@@ -109,8 +112,12 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/read")
-	public String read(int id, Model model) {
+	public String read(HttpServletRequest request, int id, Model model) {
 		model.addAttribute("vo", service.read(id));
+		// 로그인 정보의 신청 여부 확인
+		HttpSession session = request.getSession();
+		UserVO uvo = (UserVO) session.getAttribute("user");
+		model.addAttribute("chk_rec", bdao.chk_rec(id, uvo.getU_id()));
 		model.addAttribute("attList", adao.list(id));
 		model.addAttribute("pageName", "board/read.jsp");
 		return "home";
@@ -185,11 +192,24 @@ public class BoardController {
 	@RequestMapping(value="/feed_insert", method=RequestMethod.POST)
 	@ResponseBody
 	public int myfeed_insert(MyfeedVO vo){
-		System.out.println(vo.toString());
 		int result = mdao.chk_feed(vo);
 		if(result == 0){
 			service.board_insert_feed(vo);
 		}
 		return result;
+	}
+	
+	// board_recommand
+	@RequestMapping(value="/rec", method=RequestMethod.POST)
+	@ResponseBody
+	public void board_rec(int b_id, String user_id){
+		service.insert_rec(b_id, user_id);
+	}
+	
+	// board_recommand_del
+	@RequestMapping(value="/rec_del", method=RequestMethod.POST)
+	@ResponseBody
+	public void board_rec_Del(int b_id, String user_id){
+		service.delete_rec(b_id, user_id);
 	}
 }

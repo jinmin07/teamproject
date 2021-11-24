@@ -44,7 +44,7 @@
             </div>
          </div>
          <div class = "child" id="hover_attend">
-            <h3><a href="/mypage/my_attend">내가 참여한 글 보기</a></h3>
+            <h3>내가 참여한 글 보기</h3>
             <div id="attend" style="display:none;">
             	<h3><a href="/mypage/my_attend/purchase">공동구매</a></h3>
             	<h3><a href="/mypage/my_attend/course">공동생활</a></h3>

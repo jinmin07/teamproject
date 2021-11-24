@@ -45,9 +45,7 @@
 		color:#fff;
 		font-size:15px;
 		transition:all .35s;
-		
 	}
-	
 	
 	ul > li>a .img_box .center{
 		position: absolute;
@@ -98,9 +96,6 @@
 		opacity:1;
 	}
 	
-		
-	
-		
 	.listoption{
 		margin:0 auto;
 		width:1200px;
@@ -110,7 +105,6 @@
 	    overflow: hidden;
 	}
 	
-		
 	.box3{
 		height:242px;
 		width: 450px;
@@ -123,8 +117,6 @@
 	.list{
 		font-size: 14px;
 	}
-	
-	
 	
 	.box3 .list .title ,.box4 .list .title{
 		line-height: 32px;
@@ -314,7 +306,6 @@
 <title>지원정책</title>
 </head>
 <body>
-	<h1>[지원정책]</h1>
 	<div class="listoption">
 		<div class="box box3" >
 			<dl class="list">
@@ -341,7 +332,6 @@
 				</dd>
 			</dl>
 		</div>
-		
 		<div class="box box4">
 			<ul class="list">
 				<li class="age">
@@ -477,7 +467,6 @@
 		var page = 1;
 		getList();
 		
-		
 		//엔터키 클릭시 검색
 		$("#searchtxt").on("keypress",function(e){
 			if(e.keyCode==13){
@@ -497,7 +486,6 @@
 			var ageType=$(".checkbox2 input[type=radio]:checked").val();
 			var genderType=$(".checkbox3 input[type=radio]:checked").val();
 			var catType=$(".checkbox4 input[type=radio]:checked").val();
-	
 			
 			$.ajax({
 				type : "get",

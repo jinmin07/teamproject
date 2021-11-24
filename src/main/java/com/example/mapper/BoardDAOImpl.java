@@ -97,7 +97,50 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 	
 	@Override
-	public void add_feed_cnt(int id) {
-		session.update(namespace + ".add_feed_cnt", id);
+	public void add_feed_cnt(int id, int value) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("value", value);
+		session.update(namespace + ".add_feed_cnt", map);
+	}
+
+	@Override
+	public void add_cnt_reply(int id, int value) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("value", value);
+		session.update(namespace +".add_cnt_reply", map);
+	}
+
+	@Override
+	public void add_cnt_rec(int id, int value) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("value", value);
+		session.update(namespace + ".add_cnt_rec", map);
+	}
+
+	@Override
+	public void insert_rec(int b_id, String user_id) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("b_id", b_id);
+		map.put("user_id", user_id);
+		session.insert(namespace + ".insert_rec", map);
+	}
+
+	@Override
+	public void delete_rec(int b_id, String user_id) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("b_id", b_id);
+		map.put("user_id", user_id);
+		session.insert(namespace + ".delete_rec", map);
+	}
+
+	@Override
+	public int chk_rec(int b_id, String user_id) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("b_id", b_id);
+		map.put("user_id", user_id);
+		return session.selectOne(namespace + ".chk_rec", map);
 	}
 }

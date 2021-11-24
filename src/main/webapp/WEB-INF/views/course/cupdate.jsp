@@ -49,6 +49,7 @@ input[type=submit]:hover, input[type=reset]:hover{
 		<input type="hidden" name="id" value="${vo.id}"/> 
 		<input type="hidden" name="c_writer" value="${user.u_id}">
 		<h3>모임명</h3>
+		<input type="hidden" name="old_title" value="${vo.title}"/>
 		<input type="text" name="title" value="${vo.title}">
 		<div id="tbl_code">
 			<h3>모집 분야</h3>
@@ -172,12 +173,13 @@ input[type=submit]:hover, input[type=reset]:hover{
 		
 
 		if (!confirm("취미/스터디를 수정하실래요?")) return;
+		sock_notice.send("admin");
 		
 		frm.action = "/course/update";
 		frm.method = "post";
 		frm.submit();
 		alert("수정 성공하였습니다.");
-		
+		location.href = "/course/read?id="+id;
 
 	});
 
