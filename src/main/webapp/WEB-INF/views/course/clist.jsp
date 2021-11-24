@@ -14,20 +14,19 @@
 	width: 1024px;
 	margin: 0 auto;
 }
-.view button {
+.view button{
 	width:80px;
 	font-size:16px;
 	margin:0px;
 	padding: 5px 15px;
 	font-family:"맑은고딕";
 	font-weight: 600;
-	color: #fff;
-    background-color: #35c5f0;
+	color: #fff;    	
+	background-color: #35c5f0;
 }
 .view button:hover{
 	background-color: #09addb;
 }
-
 
 <!-- 리스트 search CSS -->
 .listoption {
@@ -75,12 +74,10 @@
 	-webkit-flex-wrap: wrap;
 	align-items: center;
 }
-
 p {
 	margin: 5px;
 	display: block
 }
-
 input[type=radio] {
 	border: 0;
 	clip: rect(0, 0, 0, 0);
@@ -91,7 +88,6 @@ input[type=radio] {
 	position: absolute;
 	width: 0;
 }
-
 .checkbox1 input+label {
 	position: relative;
 	display: block;
@@ -102,7 +98,6 @@ input[type=radio] {
 	text-align: center;
 	border: 1px solid #333;
 }
-
 .checkbox2 label, .checkbox3 label, .checkbox4 label {
 	cursor: pointer;
 	padding: 5px 8px;
@@ -112,14 +107,12 @@ input[type=radio] {
 	border: 1px solid #bdbdbd;
 	color: #bdbdbd;
 }
-
 .checkbox1 input:checked+label {
 	color: #fff;
 	font-weight: 600;
 	background-color: #6b6ce2;
 	border-color: #6b6ce2;
 }
-
 .checkbox2 input:checked+label, .checkbox3 input:checked+label,
 	.checkbox4 input:checked+label {
 	color: white;
@@ -197,11 +190,14 @@ input[type=radio] {
 	height: 42px;
 	color: #fff;
 	font-weight: 600;
-	background-color: #6b347c;
+	background-color: #35c5f0;
 	cursor: pointer;
 	padding: 0;
-	border: 0;
 	font-size: 16px;
+}
+.search button:hover{
+	border-color: #09addb;
+    background-color: #09addb;
 }
 <!-- 리스트 search CSS 끝-->
 
@@ -216,7 +212,7 @@ input[type=radio] {
     margin: 0 auto;
 }
 .sub_cnt_list {
-    width: 250px !important;
+    width: 260px !important;
     height: auto;
     margin: 11px 10px 10px;
     float: left;
@@ -259,8 +255,7 @@ input[type=radio] {
     text-overflow: ellipsis;
     border-bottom: 1px solid #ff2236;
 }
-
-div, span, a, strong, dl, dt, dd, ul, li {
+span, a, strong, dl, dt, dd, ul, li {
     margin: 0;
     padding: 0;
     border: 0;
@@ -341,25 +336,23 @@ a:-webkit-any-link {
     margin: 5px 0;
     margin-right:2px;
     background: #969696;
-    }	
+}	
 
-
-.heart_btn {
+.heart {
     display: inline-block;
     position: relative;
     z-index: 2;
 }
 
-.heart_btn > span.new-heart {
-    background: url(https://pickcrawl.com/web/images/common/list_heart.png) 50% 50% no-repeat;
+.heart> span.new-heart {
     -webkit-background-size: cover;
     background-size: cover;
     width: 12px;
     height: 12px;
     display: inline-block;
     vertical-align: baseline;
-    margin-left: 7px;
-    margin-top: 3px;
+    margin-left: 3px;
+    margin-top: -3px;
 }
 
 .infor3 strong {
@@ -378,9 +371,6 @@ a:-webkit-any-link {
 }
 
 <!-- 리스트 출력 CSS 끝 -->
-
-
-
 </style>
 
 <h3>[스터디/취미 목록]</h3>
@@ -541,10 +531,10 @@ a:-webkit-any-link {
 
 <div class="view">
 	<div style="text-align:left; margin-left:10px; padding-bottom:7px; border-bottom:1px dotted gray; margin-bottom:15px;">
-		<div style="display: inline-block;">
-			<h4 id="total" style="margin-bottom: 5px;"></h4>
+		<div style="display: inline-block; margin-left:-320px;">
+			<h4 id="total" style=" margin-bottom:5px; "></h4>
 		</div>
-		<div style="display: inline-block; float: right; margin-top: 15px; margin-right: 15px;">
+		<div style="display: inline-block; float: right; margin-top: 20px; margin-right: 15px;">
 			<button onClick="location.href='/course/insert'">등록</button>
 		</div>
 	</div>
@@ -559,7 +549,7 @@ a:-webkit-any-link {
 			<li class="sub_cnt_list sub_cnt_list01">
 				<a href="read?id={{id}}">
 					<div class="pick_con_img">
-						<img src="../resources/course/{{tbl_code}}.jpg" width= 250 height= 155>
+						<img src="../resources/course/{{tbl_code}}.jpg" width= 260 height= 155>
 					</div>	
 					<div class="main_cnt_txtbox">
 						<dl>
@@ -575,8 +565,9 @@ a:-webkit-any-link {
 							</dd>
 							<dd>
 								<p class="infor3">
-								<span class="heart_btn" id="heart_btn">
-									<span class="new-heart">&nbsp;&nbsp;&nbsp;{{c_cnt_feed}}</span>
+								<span class="heart" id="heart">
+									<img id="heart_img" src="../resources/course/icons_heart.png" width=12>
+									<span class="new-heart">{{c_cnt_feed}}</span>
 								</span>
 								<strong class="thin">
 									조회&nbsp; <span class="red thin">{{c_view}}</span>건
@@ -591,7 +582,6 @@ a:-webkit-any-link {
 	</div>
 </div>
 {{/each }}
-
 </script>
 
 <!-- 페이징 -->
@@ -605,6 +595,8 @@ a:-webkit-any-link {
 	var page = 1;
 	getList();
 
+	
+	
 //엔터키 클릭시 검색
 	$("#searchtxt").on("keypress",function(e){
 		if(e.keyCode==13){
@@ -636,6 +628,7 @@ a:-webkit-any-link {
 				$("#pagination").html(getPagination(data));
 				$("#total").html(data.pm.totalCount +"개의 게시글이 있습니다.");
 			}
+			
 		});
 	}
 

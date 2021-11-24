@@ -3,6 +3,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <style>
+form{
+	width: 700px;
+	margin : 0px auto;
+}
+
 input[type=text], select, #c_content {
 	width: 580px;
 	padding: 12px 20px;
@@ -14,15 +19,21 @@ input[type=text], select, #c_content {
 
 input[type=submit], input[type=reset] {
 	width: 100px;
-	color: white;
+	color: #fff;
+    font-weight: 600;
+    background-color: #35c5f0;
 	padding: 14px 20px;
 	margin: 8px 0;
 	border: none;
 	border-radius: 4px;
 	cursor: pointer;
+}	
+input[type=submit]:hover, input[type=reset]:hover{
+	border-color: #09addb;
+    background-color: #09addb;
 }
 
-.row {
+.sub {
 	width: 600px;
 	border-radius: 5px;
 	background-color: #f2f2f2;
@@ -30,23 +41,23 @@ input[type=submit], input[type=reset] {
 }
 </style>
 <form name="frm">
-	<div class="row">
+	<div class="sub">
 		<input type="hidden" name="c_writer" value="${user.u_id}">
 		<h3>모임명</h3>
 		<input type="text" name="title">
 		<div id="tbl_code">
 		<h3>모집 분야</h3>
-			<h4>스터디</h4>
+			<h3>스터디</h3>
 			<input type="radio" id="tbl_code" name="tbl_code" value="CSL">어학&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="radio" id="tbl_code" name="tbl_code" value="CSJ">취업 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="radio" id="tbl_code" name="tbl_code" value="CSI">재테크&nbsp;&nbsp;
 			<input type="radio" id="tbl_code" name="tbl_code" value="CSR">기타<br/>
-			<h4>클래스</h4>
+			<h3>클래스</h3>
 			<input type="radio" id="tbl_code" name="tbl_code" value="CCH">공예&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="radio" id="tbl_code" name="tbl_code" value="CCC">쿠킹&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="radio" id="tbl_code" name="tbl_code" value="CCE">운동&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="radio" id="tbl_code" name="tbl_code" value="CCR">기타<br/>
-			<h4>소모임</h4>
+			<h3>소모임</h3>
 			<input type="radio" id="tbl_code" name="tbl_code" value="CGA">공연예술&nbsp;
 			<input type="radio" id="tbl_code" name="tbl_code" value="CGF">맛집탐방&nbsp;
 			<input type="radio" id="tbl_code" name="tbl_code" value="CGT">여행&nbsp;
@@ -64,7 +75,7 @@ input[type=submit], input[type=reset] {
 		<input type="text" name="c_place">
 		<h3>모집 인원</h3>
 		<input type="text" name="c_tot_member" >
-		<h3>모임 기간</h3>
+		<h3>모임 일정</h3>
     	<input type="date"  name="start" value="2021-11-25">&nbsp; ~ &nbsp;
     	<input type="date"  name="end" value="2021-12-30">
 
@@ -108,7 +119,7 @@ input[type=submit], input[type=reset] {
 		
 		<h3>한줄 소개</h3>
 		<textarea id="c_content" name="c_content" style="height: 200px"></textarea>
-		<div>	
+		<div style="text-align: center;">	
 			<input type="submit" value="등록">
 			<input type="reset" value="취소">	
 		</div>
@@ -133,7 +144,7 @@ input[type=submit], input[type=reset] {
 		var c_age_max = $("select[name=c_age_max]").val();
 		var c_gender = $("select[name=c_gender]").val();
 		var c_content = $(frm.c_content).val();	
-		
+		<!--
 			if(title== "" ){
 			  alert("title");
 			}if(tbl_code==""){
@@ -162,7 +173,7 @@ input[type=submit], input[type=reset] {
 				alert("c_content");  	
 			return;
 		}
-		
+		-->
 		if(!confirm("취미/스터디를 등록하실래요?")) return;
 	    frm.action="/course/insert";
 	    frm.method="post";

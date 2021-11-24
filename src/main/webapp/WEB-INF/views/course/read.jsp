@@ -48,10 +48,10 @@
 		}
 		.review_comment {
     		border: 1px solid #e1e1e1;
-    		width: 420px;
+    		width: 470px;
     		padding: 10px;
     		margin-top: 20px;
-    		margin-left: 18px;
+    		margin-left: 10px;
 		}
 		
 		.review_comment_head h3::before {
@@ -72,8 +72,27 @@
     		color: #f43143;
     		font-weight: 500;
     	}
-
 		<!-- 문의하기 CSS 끝-->
+		.new_profile_wrap {
+    		margin: 0 auto;
+    		float: right;
+    		border: 1px solid #c7c7c7;
+    		box-sizing: border-box;
+		}
+		 button{
+			width:100px;
+			font-size:16px;
+			margin:0px;
+			padding: 5px 15px;
+			font-family:"맑은고딕";
+			font-weight: 600;
+			color: #fff;    	
+			background-color: #35c5f0;
+			margin-right:10px;
+		}
+		 button:hover{
+			background-color: #09addb;
+		}
 		
 	</style>
 </head>
@@ -86,7 +105,7 @@
 			</div>
 			<div style="float: left; width: 450px; text-align: left;">
 				<c:if test="${vo.c_writer!=user.u_id}">
-					<img id="myfeed_insert" style="float: right;" src="https://pickcrawl.com/web/images/common/list_heart.png" width=20>
+					<img id="myfeed_insert" style="float: right;" src="../resources/course/icons_heart.png" width=20>
 				</c:if>
 				<h3>${vo.title}</h3>
 				<h5>모임장소 : ${vo.c_place}</h5>
@@ -94,42 +113,19 @@
 				<h5>모임시간 : ${vo.c_time}</h5>
 				<h5>모집인원 : ${vo.c_cnt_member} / ${vo.c_tot_member}</h5>
 				<div>
-					<div class="container">
-		  				<div class="skills html" style="width: calc(${vo.c_cnt_member}/${vo.c_tot_member} * 400px)">${vo.c_cnt_member}명 </div>
+					<div class="container" style="position:relative;">
+		  				<div class="skills html" style="width: calc(${vo.c_cnt_member}/${vo.c_tot_member} * 400px)"></div>
+						<p style="position:absolute;right:-60px;top:calc(0% - 19px);">
+                           <span style="color:#f43143;">${vo.c_cnt_member}</span>/ ${vo.c_tot_member}명
+                        </p>
 					</div>
-				</div>
-				<h5>신청인원 : ${vo.c_cnt_member}</h5>
+				</div>	
 			</div>
-		</div>
-		<div style ="overflow: hidden;">
-			<div id="chk_user" style="float: left; width: 330px; text-align: left; margin-right: 20px;">
-				${vo.c_writer}
-				<c:if test="${vo.c_writer==user.u_id}">
-					<span><a href="#" style="float: right;">신청멤버 확인</a></span>
-				</c:if>
 			</div>
-			<div id="reg_user" style="float: left; width: 400px;">
-				<c:if test="${vo.c_cnt_member != vo.c_tot_member}">
-					<button id="btn_member_insert" style="width: 150px;">신청하기</button>
-				</c:if>
-				<c:if test="${vo.c_cnt_member == vo.c_tot_member}">
-					<button id="btn_member_end" style="width: 150px;" disabled="disabled">신청하기</button>
-				</c:if>
-				<c:if test="${chk_member==1}">
-					<button id="btn_member_delete" style="width: 150px;">취소하기</button>
-				</c:if>
-				<c:if test="${vo.c_writer==user.u_id}">
-					<button id="btn_course_delete" style="width: 150px;">삭제하기</button>
-				</c:if>
-				<c:if test="${vo.c_writer==user.u_id}">
-					<button id="btn_course_update" style="width: 150px;">수정하기</button>
-				</c:if>
-			</div>
-		</div>
-	</div>
+		</div>	
 	<hr/>
 	<div style ="overflow: hidden;">	
-		<div style="text-align: left; width: 470px; float: left;">
+		<div style="text-align: left; width: 430px; float: left;">
 			<h2>세부사항</h2>
 			<h5>▶모집분야 : ${category.category} - ${category.subcategory}</h5>
 			<h5>▶모집성별 : ${vo.c_gender}</h5>
@@ -137,6 +133,35 @@
 			<h5>▶모임시간 : ${vo.c_time}</h5>
 			<h5>▶비용 : ${vo.c_fee}</h5>
 			<h5>▶세부내용<br/>${vo.c_content}</h5>
+		</div>
+	
+	<div class="review_comment" style ="float: left; width:470px; ">
+			<div id="chk_user" style="float: left; width: 470px; text-align: left;">
+				<div class="new_profile_wrap" style="position:relative;">
+					<img src="../resources/course/person.jpg" width="90">
+					<p style="position:absolute;right:300px;top:calc(20%);">${vo.c_writer}님</p>
+				
+				<c:if test="${vo.c_writer==user.u_id}">
+					<span><a href="#" style="float: right; padding:5px;">신청멤버 확인</a></span>
+				</c:if>
+				</div>
+			</div>
+			<div id="reg_user" style="float: left; width: 450px;">
+				<c:if test="${vo.c_cnt_member != vo.c_tot_member}">
+					<button id="btn_member_insert">신청하기</button>
+				</c:if>
+				<c:if test="${vo.c_cnt_member == vo.c_tot_member}">
+					<button id="btn_member_end" disabled="disabled">신청하기</button>
+				</c:if>
+				<c:if test="${chk_member==1}">
+					<button id="btn_member_delete">취소하기</button>
+				</c:if>
+				<c:if test="${vo.c_writer==user.u_id}">
+					<button id="btn_course_update">수정하기</button>
+					<button id="btn_course_delete" >삭제하기</button>
+				</c:if>
+				
+			</div>
 		</div>
 	
 	<div class="sub_inner_right sub_inner_right02" style="float: left;">	
@@ -175,9 +200,9 @@
 					<input type="hidden" class="open" value="{{c_openable}}"/>
 					<span width=150 class="cnt_reply">{{c_reply_state}}</span>
 				</div>
-				<div class="content">
-					<div>Q. {{c_query_content}} <a class="query_del" query_writer="{{c_query_writer}}" href="{{c_query_id}}"></a></div>
-					<div class="reply"></div>
+				<div class="content" style="margin-top:7px; margin-bottom:7px;">
+					<div style="color:#35c5f0; margin-left:12px;margin-bottom:5px;">Q. {{c_query_content}} <a class="query_del" href="{{c_query_id}}"></a></div>
+					<div class="reply" style="margin-left:12px;"></div>
 				</div>
 			</div>
 		{{/each}}
@@ -208,8 +233,10 @@
 			success: function(data){
 				if(data == 0 ){
 					alert("내 피드로 옮겨졌습니다.");
+					$("#myfeed_insert").attr('src','../resources/course/red_heart.png');
 				}else{
 					alert("이미 내 피드에 있는 글입니다.");
+					$("#myfeed_insert").attr('src','../resources/course/red_heart.png');
 				}
 			}
 		});
@@ -289,7 +316,7 @@
 				success: function(data){
 					if(data == null || data ==""){
 						if(writer == login_id){
-							var str = "<textarea class='c_reply_content' rows='5' cols='100'></textarea>"
+							var str = "<textarea class='c_reply_content' rows='5' cols='63'></textarea>"
 							str += "<button class='btnReply'>등록</button>"
 							reply.html(str);
 						}

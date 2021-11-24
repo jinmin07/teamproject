@@ -273,7 +273,7 @@
 	    height: 42px;
 	    color: #fff;
 	    font-weight: 600;
-	    background-color: #35c5f0;;
+	    background-color: #35c5f0;
 	    cursor: pointer;
 	    padding: 0;
 	    font-size: 16px;

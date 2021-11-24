@@ -3,6 +3,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <style>
+form{
+	width: 700px;
+	margin : 0px auto;
+}
+
 input[type=text], select, #c_content {
 	width: 580px;
 	padding: 12px 20px;
@@ -14,15 +19,22 @@ input[type=text], select, #c_content {
 
 input[type=submit], input[type=reset] {
 	width: 100px;
-	color: white;
+	color: #fff;
+    font-weight: 600;
+    background-color: #35c5f0;
 	padding: 14px 20px;
 	margin: 8px 0;
 	border: none;
 	border-radius: 4px;
 	cursor: pointer;
+}	
+input[type=submit]:hover, input[type=reset]:hover{
+	border-color: #09addb;
+    background-color: #09addb;
 }
 
-.row {
+
+.sub {
 	width: 600px;
 	border-radius: 5px;
 	background-color: #f2f2f2;
@@ -33,7 +45,7 @@ input[type=submit], input[type=reset] {
 
 
 <form name="frm">
-	<div class="row">
+	<div class="sub">
 		<input type="hidden" name="id" value="${vo.id}"/> 
 		<input type="hidden" name="c_writer" value="${user.u_id}">
 		<h3>모임명</h3>
@@ -67,17 +79,16 @@ input[type=submit], input[type=reset] {
 		</select>
 
 		<h3>모임 장소</h3>
-		<input type="text" name="c_place" value="${vo.c_place}">
+			<input type="text" name="c_place" value="${vo.c_place}">
 		<h3>모집 인원</h3>
-		<input type="text" name="c_tot_member" value="${vo.c_tot_member}">
-		<h3>모임 기간</h3>
-		<input type="date" name="start" value="${start}">&nbsp; ~
-		&nbsp; <input type="date" name="end" value="${end}">
-
+			<input type="text" name="c_tot_member" value="${vo.c_tot_member}">
+		<h3>모임 일정</h3>
+			<input type="date" name="start" value="${start}">&nbsp; ~ &nbsp; 
+			<input type="date" name="end" value="${end}">
 		<h3>모임 시간</h3>
-		<input type="text" name="c_time" value="${vo.c_time}">
+			<input type="text" name="c_time" value="${vo.c_time}">
 		<h3>모임 회비</h3>
-		<input type="text" name="c_fee" value="${vo.c_fee}">
+			<input type="text" name="c_fee" value="${vo.c_fee}">
 		<h3>모집 연령</h3>
 		<select id="c_age_min" name="c_age_min">
 			<option value="10">10</option>
@@ -90,7 +101,8 @@ input[type=submit], input[type=reset] {
 			<option value="80">80</option>
 			<option value="90">90</option>
 			<option value="100">100</option>
-		</select> &nbsp; ~ &nbsp; <select id="c_age_max" name="c_age_max">
+		</select> &nbsp; ~ &nbsp; 
+		<select id="c_age_max" name="c_age_max">
 			<option value="19">19</option>
 			<option value="29">29</option>
 			<option value="39">39</option>
@@ -112,8 +124,9 @@ input[type=submit], input[type=reset] {
 
 		<h3>한줄 소개</h3>
 		<textarea id="c_content" name="c_content" style="height: 200px">${vo.c_content}</textarea>
-		<div>
-			<input type="submit" value="수정"> <input type="reset" value="취소">
+		<div style="text-align: center;">
+			<input type="submit" value="수정"> 
+			<input type="reset" value="취소">
 		</div>
 	</div>
 </form>

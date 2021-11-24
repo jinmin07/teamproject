@@ -28,7 +28,7 @@
 }
 
 
-<!-- 리스트 검색 박스 CSS 시작 -->
+<!-- 리스트 검색 CSS 시작 -->
    .listoption{
       margin:0 auto;
       width:1200px;
@@ -189,20 +189,23 @@
       width:100%;height: 100%; display: block; border: 1px solid #999;
    }
    
-   .search button{
-      margin-left: 10px;
-       width: 95px;
-       height: 42px;
-       color: #fff;
-       font-weight: 600;
-       background-color: #6b347c;
-       cursor: pointer;
-       padding: 0;
-       border:0;
-       font-size: 16px;
-   }
+   .search button {
+		margin-left: 10px;
+		width: 95px;
+		height: 42px;
+		color: #fff;
+		font-weight: 600;
+		background-color: #35c5f0;
+		cursor: pointer;
+		padding: 0;
+		font-size: 16px;
+	}
+	.search button:hover{
+		border-color: #09addb;
+    	background-color: #09addb;
+	}
 
-<!-- 리스트 검색 박스 CSS 끝-->
+<!-- 리스트 검색 CSS 끝-->
 
 <!-- 리스트 출력 CSS -->
 .box_list {
@@ -477,10 +480,10 @@ a:-webkit-any-link {
 
 <div class="view">
 	<div style="text-align:left; margin-left:10px; padding-bottom:7px; border-bottom:1px dotted gray; margin-bottom:15px;">
-		<div style="display: inline-block;">
+		<div style="display: inline-block; margin-left:-320px;">
 			<h4 id="total" style="margin-bottom: 5px;"></h4>
 		</div>
-		<div style="display: inline-block; float: right; margin-top: 15px; margin-right: 15px;">
+		<div style="display: inline-block; float: right; margin-top: 20px; margin-right: 15px;">
 			<button onClick="location.href='/purchase/insert'">등록</button>
 		</div>
 	</div>

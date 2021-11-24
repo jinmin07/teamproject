@@ -1,6 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<style>
+	input[type=submit], input[type=reset] {
+		width: 100px;
+		color: #fff;
+    	font-weight: 600;
+    	background-color: #35c5f0;
+		padding: 14px 20px;
+		margin: 8px 0;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+	}	
+	input[type=submit]:hover, input[type=reset]:hover{
+		border-color: #09addb;
+    	background-color: #09addb;
+	}
+	
+</style>		
+    
 <h1>문의하기</h1>
+<div style="width: 700px; margin : 0px auto;">
 <div id="purchase_info">
 	<h3>${vo.title}</h3>
 	<h4>작성자 : ${vo.p_writer}</h4>
@@ -20,6 +40,8 @@
 		<input type="reset" value="취소"/>
 	</div>
 </form>
+</div>
+
 <script>
 	$(frm).on("submit",function(e){
 		e.preventDefault();

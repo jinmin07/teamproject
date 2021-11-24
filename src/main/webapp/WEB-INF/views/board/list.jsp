@@ -14,8 +14,9 @@
 	#condition button:hover{
 		background: #dbb4b4;
 	}
-</style>	
-<style>
+	</style>
+	<style>
+<!-- 검색 CSS -->
 	.listoption{
 		margin:0 auto;
 		width:1200px;
@@ -27,11 +28,12 @@
 	
 	.box3{
 		height:101px;
-		width: 600px;
+		width: 500px;
     	border-bottom: 1px solid #e5e5e5;
     	justify-content: flex-end;
    	 	background-color: #F0FFFF;
    	 	float:left;
+   	 	margin-left:120px;
 	}
 	
 	.list{
@@ -105,27 +107,20 @@
 		font-weight: 600;
 		background-color: black;
 	}
-	
-	
 	.box4{
 		height:100px;
-		width:50%;
+		width:47%;
 		background-color: #f7f8fa;
 		display:-webkit-flex;
 	}
 	
 	.box4 .list 	{
-		width:750px;
-   	 
+		width:650px;
 	}
-	
 	.box .box4 .list li{
 		display: flex;
 		display: -webkit-flex;
 	}
-	
-		
-	
 	.box .list{
 		margin:5px 0px;
 		padding: 5px 5px 5px 10px;
@@ -155,31 +150,30 @@
 	
 	.txt{
 		width:100%; height:100%; display: block; border: 1px solid #999;
-		
 	}
-	
-	.search button{
+	.search button {
 		margin-left: 10px;
-	    width: 95px;
-	    height: 42px;
-	    color: #fff;
-	    font-weight: 600;
-	    background-color: #35c5f0;;
-	    cursor: pointer;
-	    padding: 0;
-	    font-size: 16px;
+		width: 95px;
+		height: 42px;
+		color: #fff;
+		font-weight: 600;
+		background-color: #35c5f0;
+		cursor: pointer;
+		padding: 0;
+		font-size: 16px;
 	}
-	
 	.search button:hover{
 		border-color: #09addb;
     	background-color: #09addb;
 	}
-	
+		
+<!-- 검색 CSS 끝-->	
+
 	.view {
 		width: 1024px;
 		margin: 0 auto;
 	}
-	
+    
 	.view button{
 		width:80px;
 		font-size:16px;
@@ -187,10 +181,10 @@
 		padding: 5px 15px;
 		font-family:"맑은고딕";
 		font-weight: 600;
-		color: #fff;
-    	background-color: #35c5f0;
+		color: #fff;    	
+		background-color: #35c5f0;
 	}
-	
+
 	.view button:hover{
 		background-color: #09addb;
 	}
@@ -251,16 +245,19 @@
 	</div>
 
 <!-- 리스트 검색 박스  끝-->
+
 <div class="view">
-	<div style="text-align: left; margin-left: 10px; padding-bottom: 7px; border-bottom: 1px dotted gray; margin-bottom:15px;">
-		<div style="display: inline-block;">
-			<h4 id="total" style="margin-bottom: 5px;"></h4>
+	<div style="width: 1024px; text-align:left; margin-left:200px; padding-bottom:7px; border-bottom:1px dotted gray; margin-bottom:15px;">
+		<div style="display: inline-block; margin-left:-410px;">
+			<h4 id="total" style=" margin-bottom:5px; "></h4>
 		</div>
-		<div style="display: inline-block; float: right; margin-top:20px; margin-right:15px;">
+		<div style="display: inline-block; float: right; margin-top: 20px; margin-right: 15px;">
 			<button onClick="location.href='/board/insert'">등록</button>
 		</div>
 	</div>
 </div>
+
+
 <table id="tbl"></table>
 <script id="temp" type="text/x-handlebars-template">
 	{{#each list}}
