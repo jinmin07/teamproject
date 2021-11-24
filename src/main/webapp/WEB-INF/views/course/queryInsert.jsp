@@ -34,9 +34,9 @@
 	<input type="hidden" name="c_writer" value="${vo.c_writer}">
 	<input type="hidden" name="c_query_writer" value="${user.u_id}">
 	
-	<textarea name="c_query_content" rows="10" cols="63"></textarea>
+	<textarea name="c_query_content" rows="10" cols="96" style="resize: none;"></textarea>
 	<hr/>
-	<div>
+	<div style="text-align: center;">
 		비공개 : <input type="checkbox" name="c_openable" value="f"/> &nbsp;&nbsp;
 		<input type="submit" value="등록"/>
 		<input type="reset" value="취소"/>

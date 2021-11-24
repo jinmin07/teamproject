@@ -129,7 +129,7 @@ public class CourseDAOImpl implements CourseDAO {
 
 	@Override
 	public void update_course(CourseVO vo) {
-		session.update(namespace + ".update", vo);
+		session.update(namespace + ".update_course", vo);
 	}
 
 	@Override

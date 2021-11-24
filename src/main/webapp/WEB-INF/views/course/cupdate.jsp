@@ -179,8 +179,6 @@ input[type=submit]:hover, input[type=reset]:hover{
 		frm.action = "/course/update";
 		frm.method = "post";
 		frm.submit();
-		alert("수정 성공하였습니다.");
-		location.href = "/course/read?id="+id;
 
 	});
 

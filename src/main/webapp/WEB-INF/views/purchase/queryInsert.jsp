@@ -32,9 +32,9 @@
 	<input type="hidden" name="p_writer" value="${vo.p_writer}">
 	<input type="hidden" name="p_query_writer" value="${user.u_id}">
 	
-	<textarea name="p_query_content" rows="10" cols="100"></textarea>
+	<textarea name="p_query_content" rows="10" cols="96" style="resize: none;"></textarea>
 	<hr/>
-	<div>
+	<div style="text-align: center;">
 		비공개 : <input type="checkbox" name="p_openable" value="f"/>
 		<input type="submit" value="등록"/>
 		<input type="reset" value="취소"/>

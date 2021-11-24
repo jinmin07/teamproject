@@ -45,14 +45,14 @@
 }
 
 .m_title{
-	overflow: hidden;
+   overflow: hidden;
     width: 1440px;
     margin-left:215px;
     position: relative;
 }
 
 .m_title span{
-	font-size: 24px;
+   font-size: 24px;
     color: #373737;
     font-weight: 500;
     float: left;
@@ -60,7 +60,7 @@
 }
 
 .m_title strong{
-	color:#35c5f0;
+   color:#35c5f0;
 }
 
 .best_more{
@@ -76,16 +76,16 @@
 }
 
 .best_more:hover{
-	border-bottom:1px solid black;
+   border-bottom:1px solid black;
 }
 
 .main_floor{
-	width:100%;
-	margin-top:20px;
+   width:100%;
+   margin-top:20px;
 }
 
 .slick-track {
-	margin-top:10px;
+   margin-top:10px;
     display: block;
     position: relative;
     top: 0;
@@ -132,18 +132,18 @@
 
     
 .imgs img:hover{
-	 transform: scale(1.05);
+    transform: scale(1.05);
 }
     
 .info{
-	box-sizing: border-box;
+   box-sizing: border-box;
     height: 90px;
     padding: 15px 29px 0;
 }
 
 .tit{
 
-	overflow: hidden;
+   overflow: hidden;
     height: 56px;
     margin: 0 0 18px;
     font-weight: 700;
@@ -157,7 +157,7 @@
     word-wrap: break-word;}
     
 .txt{
-	overflow: hidden;
+   overflow: hidden;
     height: 72px;
     margin: 0 0 38px;
     font-size: 14px;
@@ -183,7 +183,7 @@
                  <a href="/support/read?id=75" ><img src="/resources/banner.jpg" width=960 height=250/></a>             
              </div>
              <div style="width:980px; margin:0 auto; ">
-                  <a href="/support/read?id=75" ><img src="/resources/banner2.jpg" width=960 height=250/></a>             
+                  <a href="/support/read?id=94" ><img src="/resources/banner2.jpg" width=960 height=250/></a>             
              </div>
              <div style="width:980px; margin:0 auto; ">
                   <a href="https://familyseoul.or.kr/" ><img src="/resources/banner3.png" width=960 height=250/></a>             
@@ -202,136 +202,133 @@
 
 
 <section class="main_floor">
-	<div class="m_title">
-		<span>소모임/스터디 <strong>추천</strong></span> 
-		<a href="/course/list" class="best_more">전체보기</a>
-		</div>
-		<div class="slick-track">
-			<li class="slick-item">
-				<a href="/course/read?id=16" class="sbox">
-					<div class="imgs">
-						<img src="../resources/course/CGF.jpg">
-					</div>
-					<div class="info">
-						<div class="tit">
-							성수동 베이커리 투어
-						</div>
-						<div class="txt">
-							소모임 - 맛집탐방
-						</div>
-					</div>
-				</a>
-				<a href="/course/read?id=15" class="sbox">
-					<div class="imgs">
-						<img src="../resources/course/CCC.jpg">
-					</div>
-					<div class="info">
-						<div class="tit">
-							천연 효모 발효빵 클래스
-						</div>
-						<div class="txt">
-							클래스 - 쿠킹
-						</div>
-					</div>
-				</a>
-				<a href="/course/read?id=14" class="sbox">
-					<div class="imgs">
-						<img src="../resources/course/CSL.jpg">
-					</div>
-					<div class="info">
-						<div class="tit">
-							프랑스어 스터디
-						</div>
-						<div class="txt">
-							스터디 - 어학
-						</div>
-					</div>
-				</a>
-				<a href="/course/read?id=13" class="sbox" style="border-right:1px solid #e6e6e8;">
-					<div class="imgs">
-						<img src="../resources/course/CSR.jpg">
-					</div>
-					<div class="info">
-						<div class="tit">
-							파이썬 데이터분석
-						</div>
-						<div class="txt">
-							스터디 - 기타
-						</div>
-					</div>
-				</a>
-			</li>
-		</div>
-		
-	</section>
+   <div class="m_title">
+      <span>소모임/스터디 <strong>추천</strong></span> 
+      <a href="/course/list" class="best_more">전체보기</a>
+      </div>
+      <div class="slick-track">
+         <li class="slick-item">
+            <a href="/course/read?id=19" class="sbox">
+               <div class="imgs">
+                  <img src="../resources/course/CSL.jpg">
+               </div>
+               <div class="info">
+                  <div class="tit">
+                     토익 스터디
+                  </div>
+                  <div class="txt">
+                     스터디 - 어학
+                  </div>
+               </div>
+            </a>
+            <a href="/course/read?id=20" class="sbox">
+               <div class="imgs">
+                  <img src="../resources/course/CGF.jpg">
+               </div>
+               <div class="info">
+                  <div class="tit">
+                     송도 맛집탐방
+                  </div>
+                  <div class="txt">
+                     소모임 - 맛집탐방
+                  </div>
+               </div>
+            </a>
+            <a href="/course/read?id=22" class="sbox">
+               <div class="imgs">
+                  <img src="../resources/course/CCC.jpg">
+               </div>
+               <div class="info">
+                  <div class="tit">
+                     쌀 쿠키 클래스
+                  </div>
+                  <div class="txt">
+                     클래스 - 쿠킹
+                  </div>
+               </div>
+            </a>
+            <a href="/course/read?id=23" class="sbox" style="border-right:1px solid #e6e6e8;">
+               <div class="imgs">
+                  <img src="../resources/course/CSR.jpg">
+               </div>
+               <div class="info">
+                  <div class="tit">
+                     R언어 프로그래밍
+                  </div>
+                  <div class="txt">
+                     스터디 - 기타
+                  </div>
+               </div>
+            </a>
+         </li>
+      </div>
+      
+   </section>
 
 
 
 <section class="main_floor">
-	<div class="m_title">
-		<span>지원정책 <strong>추천</strong></span>
-		<a href="/support/list" class="best_more">전체보기</a>
-	</div>
-	<div class="slick-track">
-			<li class="slick-item">
-				<a href="/support/read?id=98" class="sbox">
-					<div class="imgs">
-						<img src="/support/display?fileName=1636524884582_14296_16350_2356.png">
-					</div>
-					<div class="info">
-						<div class="tit">
-							취창업 재직 청년 월세 지원사업	
-						</div>
-						<div class="txt">
-							월세 지원받으세요!!
-						</div>
-					</div>
-				</a>
-				<a href="support/read?id=106" class="sbox">
-					<div class="imgs">
-						<img src="/support/display?fileName=1636525215427_인천안전.jpg">
-					</div>
-					<div class="info">
-						<div class="tit">
-							인천 안심in
-						</div>
-						<div class="txt">
-							지금 어플을 다운받으세요.
-						</div>
-					</div>
-				</a>
-				<a href="/support/read?id=110" class="sbox">
-					<div class="imgs">
-						<img src="/support/display?fileName=1636525484931_금연.jpg">
-					</div>
-					<div class="info">
-						<div class="tit">
-							[강남구] 슬기로운 금연생활
-						</div>
-						<div class="txt">
-							금연을 응원합니다.
-						</div>
-					</div>
-				</a>
-				<a href="/support/read?id=96" class="sbox" style="border-right:1px solid #e6e6e8;">
-					<div class="imgs">
-						<img src="/support/display?fileName=1636524813685_9f390460-773c-42ef-ae9b-085f9a207d1d.jpg">
-					</div>
-					<div class="info">
-						<div class="tit">
-							[마포구] 1인가구 안전도어지킴이 설치지원
-						</div>
-						<div class="txt">
-							안전 도어지킴이를 지원받으세요.
-						</div>
-					</div>
-				</a>
-			</li>
-		</div>
+   <div class="m_title">
+      <span>지원정책 <strong>추천</strong></span>
+      <a href="/support/list" class="best_more">전체보기</a>
+   </div>
+   <div class="slick-track">
+         <li class="slick-item">
+            <a href="/support/read?id=98" class="sbox">
+               <div class="imgs">
+                  <img src="/support/display?fileName=1636524884582_14296_16350_2356.png">
+               </div>
+               <div class="info">
+                  <div class="tit">
+                     취창업 재직 청년 월세 지원사업   
+                  </div>
+                  <div class="txt">
+                     월세 지원받으세요!!
+                  </div>
+               </div>
+            </a>
+            <a href="support/read?id=106" class="sbox">
+               <div class="imgs">
+                  <img src="/support/display?fileName=1636525215427_인천안전.jpg">
+               </div>
+               <div class="info">
+                  <div class="tit">
+                     인천 안심in
+                  </div>
+                  <div class="txt">
+                     지금 어플을 다운받으세요.
+                  </div>
+               </div>
+            </a>
+            <a href="/support/read?id=110" class="sbox">
+               <div class="imgs">
+                  <img src="/support/display?fileName=1636525484931_금연.jpg">
+               </div>
+               <div class="info">
+                  <div class="tit">
+                     [강남구] 슬기로운 금연생활
+                  </div>
+                  <div class="txt">
+                     금연을 응원합니다.
+                  </div>
+               </div>
+            </a>
+            <a href="/support/read?id=96" class="sbox" style="border-right:1px solid #e6e6e8;">
+               <div class="imgs">
+                  <img src="/support/display?fileName=1636524813685_9f390460-773c-42ef-ae9b-085f9a207d1d.jpg">
+               </div>
+               <div class="info">
+                  <div class="tit">
+                     [마포구] 1인가구 안전도어지킴이 설치지원
+                  </div>
+                  <div class="txt">
+                     안전 도어지킴이를 지원받으세요.
+                  </div>
+               </div>
+            </a>
+         </li>
+      </div>
 </section>
-
-
-
 <script>
    $(function(){
       $('#slider-div').slick({
@@ -353,7 +350,4 @@
             
         });
       })
-      
-
-
 </script>

@@ -2,26 +2,26 @@
 
 #content { padding: 10px;}
 
-#header {  	padding: 10px 60px;
-		    height: 80px;
-		    max-width: 1256px;
-		    display: flex;
-		    height: 50px;
-		    box-sizing: border-box;
-		    padding: 0 8px;
-		    margin: 0 auto;}
+#header {     padding: 10px 60px;
+          height: 80px;
+          max-width: 1256px;
+          display: flex;
+          height: 50px;
+          box-sizing: border-box;
+          padding: 0 8px;
+          margin: 0 auto;}
 
 #footer {
-	border-top:1px solid #ededed;
-	margin:0 auto;
-	width:1440px;
-	text-align: left;
-	color: gray;
+   border-top:1px solid #ededed;
+   margin:0 auto;
+   width:1440px;
+   text-align: left;
+   color: gray;
 }
 
 
 .footer_infor {
-	margin-right:40px;
+   margin-right:40px;
     width: 100%;
     max-width: 1300px;
     overflow: hidden;
@@ -44,25 +44,25 @@
     font-weight: 300;
 }
 #body{
-	margin-top:0px;
+   margin-top:0px;
 }
 #menu {
-	overflow: hidden;
-	border-bottom: 1px dotted gray;
-	padding-left: 10px;
+   overflow: hidden;
+   border-bottom: 1px dotted gray;
+   padding-left: 10px;
 }
 #menu h4 {float: left; margin-right: 20px;}
 h1 { text-align: center; color:gray;}
 
 #page{
-	width:1440px;
-	margin: 0 auto;
+   width:1440px;
+   margin: 0 auto;
 }
 
 #condition{
-	margin: 10px auto;
-	width: 840px;
-	text-align: left;
+   margin: 10px auto;
+   width: 840px;
+   text-align: left;
 }
 
 #condition a{ color: gray;}
@@ -72,42 +72,42 @@ table {border-collapse:collapse; margin: 0 auto;}
 td{border-bottom: solid 1px lightgray; padding: 5px; text-align:center;}
 
 .row:hover{
-	cursor: pointer;
+   cursor: pointer;
 }
 
 .pagination {
-	text-align: center;
-	margin-top: 10px;
-	display: inline-block;
+   text-align: center;
+   margin-top: 10px;
+   display: inline-block;
 }
 
 .pagination a {
-	color: black;
-	float: left;
-	padding: 8px 16px;
-	text-decoration: none;
+   color: black;
+   float: left;
+   padding: 8px 16px;
+   text-decoration: none;
 }
 
 .pagination a.active {
-	background-color: #1E90FF;
-	color: white;
+   background-color: #1E90FF;
+   color: white;
 }
 
 .pagination a:hover:not (.active ) {
-	background-color: #ddd;
+   background-color: #ddd;
 }
 
 a {
-	text-decoration: none;
-	color:#424242;
+   text-decoration: none;
+   color:#424242;
 }
 
 a:hover{
-	color:gray;
+   color:gray;
 }
 input , textarea, select{
-	font-family:"맑은고딕";
-	font-size: 15px;
+   font-family:"맑은고딕";
+   font-size: 15px;
 }
 
 input[type=submit], input[type=reset], input[type=button], button{
@@ -121,7 +121,7 @@ input[type=submit], input[type=reset], input[type=button], button{
 }
 
 header{
-	box-sizing: border-box;
+   box-sizing: border-box;
     position: relative;
     display: block;
     border-bottom:1px solid #ededed;
@@ -129,14 +129,14 @@ header{
 }
 
 li{
-	list-style-type:none; 
+   list-style-type:none; 
 }
 
 .navigation-primary {
-	margin-left:100px;
-	width:1200px;
-	margin:0 auto;
-	margin-bottom:5px;
+   margin-left:100px;
+   width:1200px;
+   margin:0 auto;
+   margin-bottom:5px;
     transition: top .1s;
     background-color: #fff;
     z-index: 502;
@@ -151,8 +151,8 @@ li{
 
 @media (min-width:1024px)
 .navigation-primary__content {
-	padding:10px 60px;
-	}
+   padding:10px 60px;
+   }
 
 .navigation-primary__content {
     display: flex;
@@ -176,7 +176,7 @@ li{
 }
 
 .navigation-primary__menu {
-	margin-top:12px;
+   margin-top:12px;
     display: block;
     -webkit-box-flex: 0;
     flex: 0 0 auto;
@@ -198,9 +198,9 @@ li{
 
 
 .navigation-primary__right{
-	margin-top:16px;
-	-webkit-box-flex: 1;
-	flex: 1 0 auto;
+   margin-top:16px;
+   -webkit-box-flex: 1;
+   flex: 1 0 auto;
     position: static;
     display: flex;
     -webkit-box-align: start;
@@ -213,9 +213,9 @@ li{
 }
 
 .navigation-bar-search{
-	width:300px;
-	display: block;
-	margin: 13px 10px 7px 120px;
+   width:300px;
+   display: block;
+   margin: 13px 10px 7px 120px;
     min-width: 0;
 }
 
@@ -243,7 +243,7 @@ li{
 
 
 .navigation-search__input__icon {
-	margin-top:12px !important;
+   margin-top:12px !important;
     position: absolute !important;
     top: 10px !important;
     left: 130px !important;
@@ -252,29 +252,33 @@ li{
     color: #757575 !important;
     pointer-events: none !important;
 }
-	
+   
 
 .topnav .active{
-	margin:0;
-	margin-top:3px;
-	padding:0;
+   margin:0;
+   margin-top:3px;
+   padding:0;
 }   
 
 .topnav a {
-	color:inherit;
-	float: right;
-	text-align: center;
-	padding: 0px 12px;
-	text-decoration: none;
-	font-size: 13px;
-	color: "#999999";
+   color:inherit;
+   float: right;
+   text-align: center;
+   padding: 0px 12px;
+   text-decoration: none;
+   font-size: 13px;
+   color: "#999999";
 }
 
+
+.topnav a strong{
+   font-weight: bold !important;   
+}
 .topnav a:hover{
-	text-decoration: underline;
+   text-decoration: underline;
 }
 .navigation-primary__menu__item:hover{
-	color:#35c5f0;
+   color:#35c5f0;
 }
 
 
