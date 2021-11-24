@@ -229,8 +229,7 @@ public class CourseController {
 	
 	// course ¼öÁ¤
 	@RequestMapping(value="/course/update", method=RequestMethod.POST)
-	@ResponseBody
-	public void update_coursePost(CourseVO vo, String start, String end, String old_title)throws Exception{
+	public String update_coursePost(CourseVO vo, String start, String end, String old_title)throws Exception{
 		System.out.println(vo.toString());
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date_start = sdf.parse(start);
@@ -253,6 +252,8 @@ public class CourseController {
 			System.out.println(nvo.toString());
 			ndao.insert(nvo);
 		}
+		String url = "redirect:/course/read?id=" +vo.getId();
+		return url;
 	}
 	
 	// myfeed insert

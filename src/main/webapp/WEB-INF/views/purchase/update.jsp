@@ -81,7 +81,8 @@ button{
 			<input type="file" name="file" style="display: none;" /><br />
 		</div>
 		<div>
-			<input type="hidden" name="id" value="${vo.id}" readonly/> 
+			<input type="hidden" name="tbl_code" value="${vo.tbl_code}"/> 
+			<input type="hidden" name="id" value="${vo.id}"/> 
 			<h3>작성자</h3>
 			<c:if test="${ user != null}">
 				<input type="text" name="p_writer" value="${user.u_id}"/>
@@ -163,8 +164,6 @@ button{
 		frm.action = "/purchase/update";
 		frm.method = "post";
 		frm.submit();
-		alert("수정 성공하였습니다.");
-		location.href="/purchase/read?id=" + id;
 	
 	});
 	

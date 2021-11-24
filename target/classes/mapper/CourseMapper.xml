@@ -282,8 +282,8 @@
 	<!-- 스터디/취미 글 수정 -->
 	<update id="update_course">
 		update tbl_course set title=#{title}, tbl_code=#{tbl_code}, c_local=#{c_local}, c_place=#{c_place}, 
-		c_tot_member={c_tot_member},date_start=#{date_start}, date_end=#{date_end},c_time=#{c_time}, c_fee=#{c_fee}, 
-		c_age_min=#{c_age_min},c_age_max=#{c_age_max}, c_gender=#{c_gender}, c_content=#{c_content}
+		c_tot_member=#{c_tot_member}, date_start=#{date_start}, date_end=#{date_end}, c_time=#{c_time}, c_fee=#{c_fee}, 
+		c_age_min=#{c_age_min}, c_age_max=#{c_age_max}, c_gender=#{c_gender}, c_content=#{c_content}
 		where id=#{id}
 	</update>
 </mapper>

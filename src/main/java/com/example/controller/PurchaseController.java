@@ -127,7 +127,7 @@ public class PurchaseController {
 
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public void updatePOST(ProductVO vo, MultipartHttpServletRequest multi,String start,String end, String old_title) throws Exception {
+	public String updatePOST(ProductVO vo, MultipartHttpServletRequest multi,String start,String end, String old_title) throws Exception {
 		MultipartFile file = multi.getFile("file");
 		if(!file.isEmpty()){
 			new File(path + "purchaseimg/" + vo.getP_image()).delete();
@@ -140,6 +140,7 @@ public class PurchaseController {
 		vo.setDate_start(date_start);
 		Date date_end = sdf.parse(end);
 		vo.setDate_end(date_end);
+		System.out.println(vo.toString());
 		pdao.update(vo);
 		
 		String content = "모집 신청하신 공동구매 [" + old_title + "] 진행 건이 작성자의 요청에 의해 수정되었습니다. 이용에 참고하시기 바랍니다.";
@@ -153,7 +154,10 @@ public class PurchaseController {
 			String member = (String)list.get(i).get("member");
 			nvo.setReceiver(member);
 			ndao.insert(nvo);
-		}
+		}	
+		
+		String url = "redirect:/purchase/read?id=" +vo.getId();
+		return url;
 	}
 
 	// read page
