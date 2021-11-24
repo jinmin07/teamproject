@@ -58,9 +58,9 @@
          <mapping path="/member/login"/>
          <beans:ref bean="AuthInterceptor"/>
       </interceptor>
-      <interceptor>
+<!--       <interceptor>
       	<mapping path="/mypage/password_check"/>
       	<beans:ref bean="PasswordInterceptor"/>
-      </interceptor>
+      </interceptor> -->
    </interceptors> 
 </beans:beans>
