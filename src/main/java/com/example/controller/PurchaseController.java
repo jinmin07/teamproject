@@ -74,7 +74,7 @@ public class PurchaseController {
 	//상품출력
 	@RequestMapping(value = "/list")
 	public String List(Model model) {
-		
+		model.addAttribute("index", 1);
 		model.addAttribute("pageName", "purchase/list.jsp");
 		logger.info("목록이 출력됩니다");
 		return "home";
@@ -119,6 +119,7 @@ public class PurchaseController {
 		model.addAttribute("end", end);
 
 		model.addAttribute("vo", vo);
+		model.addAttribute("index", 1);
 		model.addAttribute("pageName", "purchase/update.jsp");
 		
 		return "home";
@@ -168,13 +169,14 @@ public class PurchaseController {
 		UserVO uvo = (UserVO) session.getAttribute("user");
 		model.addAttribute("user", uvo);
 		model.addAttribute("chk_member", pdao.chk_member(id, uvo.getU_id()));
-		
+		model.addAttribute("index", 1);
 		model.addAttribute("pageName", "purchase/read.jsp");
 		return "home";
 	}
 
 	@RequestMapping(value = "/insert")
 	public String insert(Model model) {
+		model.addAttribute("index", 1);
 		model.addAttribute("pageName", "purchase/insert.jsp");
 		return "home";
 	}
@@ -255,6 +257,7 @@ public class PurchaseController {
 	public String purchase_reply(int id,Model model) {
 		ProductVO vo = pdao.read(id);
 		model.addAttribute("vo", vo);
+		model.addAttribute("index", 1);
 		model.addAttribute("pageName", "purchase/queryInsert.jsp");
 		
 		return "home";
@@ -275,6 +278,7 @@ public class PurchaseController {
 	public String purchase_query(int id, Model model){
 		ProductVO pvo = pdao.read(id);
 		model.addAttribute("vo", pvo);
+		model.addAttribute("index", 1);
 		model.addAttribute("pageName", "purchase/queryInsert.jsp");
 		return "home";
 	}

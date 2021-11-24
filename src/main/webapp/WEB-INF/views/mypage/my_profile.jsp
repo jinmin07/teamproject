@@ -4,60 +4,116 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style>
+input[type=text], select, #p_content {
+	width: 580px;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: block;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+input[type=date]{
+	width: 580px;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: block;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+input[type=button], input[type=reset] {
+	width: 100px;
+	padding: 14px 20px;
+	margin: 0px auto;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	text-align:center;
+}
+
+button{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	width: 100px;
+	padding: 14px 20px;
+	margin: 0px auto;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+#addr1 {
+	width: 470px;
+	float: left;
+	margin-right: 10px;
+}
+
+#passwordChange {
+	width: 580px;
+	background: #35c5f0;
+}
+
+#chan_add {
+	width: 100px;
+	margin: 8px 0;
+	background-color: #fff;
+    border: 2px solid #35c5f0;
+    color: #35c5f0;
+}
+
+#update, #reset {
+	background: #35c5f0;
+	width: 285px;
+}
+
+.register{
+	width: 580px;
+	margin-top: 20px;
+	text-align: center;
+}
+
+.sub {
+	margin-top:10px;
+	margin: 0px auto;
+	width: 600px;
+	border-radius: 5px;
+	padding: 20px;
+}
+</style>
 <title>Insert title here</title>
 </head>
 <body>
-		<table>
-			<tr>
-				<td>아이디</td>
-				<td><input id="u_id" type="text" value="${user.u_id}" readonly/></td>
-			</tr>
-			<tr>
-				<td>비밀번호</td>
-				<td><button id="passwordChange">비밀번호변경</button></td>
-			</tr>
-			<tr>
-				<td>이름</td>
-				<td><input id="u_name" type="text" value="${user.u_name}"/></td>
-			</tr>
-			<tr>
-				<td>성별</td>
-				<td><input id="u_gender" type="text" value="${user.u_gender}"/></td>
-			</tr>
-			<tr>
-				<td>이메일</td>
-				<td><input id="u_email" type="text" value="${user.u_email}"/></td>
-			</tr>
-			<tr>
-				<td>전화번호</td>
-				<td><input id="u_phone" type="text" value="${user.u_phone}"/></td>
-			</tr>
-		</table>
-		<div class="address_wrap">
-			<div class="address_name">주소</div>
-			<div class="address_input_1_wrap">
-				<div class="address_input_1_box">
-					<input type="hidden" id="u_addr1" class="address_input_2" name="addr1" value="${user.u_addr1}"/>
+		<div class="sub">
+			<h3>아이디</h3>
+			<input type="text" id="u_id" value="${user.u_id}" readonly/>
+			<h3>비밀번호</h3>
+			<input type="button" id="passwordChange" value="비밀번호변경"/>
+			<h3>이름</h3>
+			<input type="text" id="u_name" value="${user.u_name}" placeholder="이름 입력란입니다."/>
+			<h3>성별</h3>
+			<select id="u_gender">
+				<option value="남자">남자</option>
+				<option value="여자">여자</option>
+			</select>
+			<h3>이메일</h3>
+			<input type="text" id="u_email" value="${user.u_email}" placeholder="이메일 입력란입니다."/>
+			<h3>핸드폰 번호</h3>
+			<input type="text" id="u_phone" value="${user.u_phone}" placeholder="전화번호 입력란입니다."/>
+			<h3>주소</h3>
+			<div class="address_wrap" >
+				<div class="address_wrap1" style="overflow: hidden;" >
+					<input type="text" class="address_input_1" id="addr1" name="addr1" value="${user.u_addr1}" />
+					<button type="button" id="chan_add" onclick="execution_daum_address()">주소변경</button>
 				</div>
+				<input type="text" class="address_input_2" name="addr2" value="${user.u_addr2}"/>
+				<input type="text" class="address_input_3" name="addr3" value="${user.u_addr3}"/>
 			</div>
-			<div class="address_input_2_wrap">
-				<div class="address_input_2_box">
-					<input  id="u_addr2" class="address_input_2" name="addr2" value="${user.u_addr2}"/>
-				</div>
+			<div class="register">
+				<input type="button" id="update" value="정보수정"/>
+				<input type="reset" id="reset" value="수정취소"/>
 			</div>
-			<div class="address_input_3_wrap">
-				<div class="address_input_3_box">
-					<input id="u_addr3" class="address_input_3" name="addr3" value="${user.u_addr3 }"/>
-				</div>
-			</div>
-			<div class="address_button" onclick="execution_daum_address()">
-				<button>주소찾기</button>
-			</div>
-		</div>
-		<div>
-			<input type="button" id="update" value="회원정보수정"/>
-			<input type="reset" id="reset" value="수정취소"/>
-		</div>
+		</div>	
 </body>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>

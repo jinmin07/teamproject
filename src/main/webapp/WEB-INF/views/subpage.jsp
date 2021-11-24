@@ -26,11 +26,14 @@
          width : 950px;
          margin-left: 50px;
       }
+      a:hover{
+		color:#35c5f0;
+	  }
    </style>
 </head>
 <body>
    <div class="wrap">
-      <h1>마이페이지</h1>
+   <h1></h1>
       <div class="parent">
          <div class = "child">
             <h3><a href="/mypage/my_profile">내 프로필</a></h3>

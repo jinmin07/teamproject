@@ -1,23 +1,25 @@
 @CHARSET "UTF-8";
 
 #bell {
-	display: inline-block;
-	position: absolute;
-	background-repeat: no-repeat;	
-	cursor: pointer;
+   display: inline-block;
+   position: absolute;
+   background-repeat: no-repeat;   
+   cursor: pointer;
 }
 
 #count {
-	display: inline-block;
-	position: relative;
-	z-index: 3;
-	width: 15px;
-	height: 15px;
-	background: blue;
-	border-radius: 15px;
-	text-align: center;
-	font-size: 10px;
-	color: white;
+   display: inline-block;
+   position: relative;
+   z-index: 3;
+   width: 15px;
+   height: 15px;
+   background: red;
+   border-radius: 15px;
+   text-align: center;
+   font-size: 14px;
+   color: white;
+   left:12;
+   bottom:37;
 }
 
 .notice {
@@ -27,7 +29,7 @@
 	right: 5%; 
 }
 
-.box { 
+.packing { 
 	width:960px; 
 	margin: 10px auto; 
 	font-size: 13px;

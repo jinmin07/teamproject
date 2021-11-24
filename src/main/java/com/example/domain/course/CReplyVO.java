@@ -9,7 +9,7 @@ public class CReplyVO extends CQueryVO {
 	private int c_query_id;
 	private String c_reply_writer;
 	private String c_reply_content;
-	@JsonFormat(pattern="yy-MM-dd", timezone="Asia/Seoul")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Asia/Seoul")
 	private Date c_reply_date;
 	public int getC_reply_id() {
 		return c_reply_id;

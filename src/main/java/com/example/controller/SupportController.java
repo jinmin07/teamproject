@@ -50,6 +50,7 @@ public class SupportController {
 	@RequestMapping("/update")
 	public String supdate(int id,Model model){
 		model.addAttribute("vo",service.read(id));
+		model.addAttribute("index", 3);
 		model.addAttribute("pageName","support/update.jsp");
 		return "home";
 	}
@@ -77,6 +78,7 @@ public class SupportController {
 	@RequestMapping("/read")
 	public String sread(int id,Model model){
 		model.addAttribute("vo",service.read(id));
+		model.addAttribute("index", 3);
 		model.addAttribute("pageName","support/read.jsp");
 		return "home";
 	}
@@ -84,6 +86,7 @@ public class SupportController {
 	
 	@RequestMapping("/list")
 	public String list(Model model){
+		model.addAttribute("index", 3);
 		model.addAttribute("pageName", "support/list.jsp");
 		return "home";
 	}
@@ -95,6 +98,7 @@ public class SupportController {
 		int maxCode=sdao.maxCode();
 		int id=maxCode+1;
 		model.addAttribute("id",id);
+		model.addAttribute("index", 3);
 		model.addAttribute("pageName","support/insert.jsp");
 		return "home";
 	}

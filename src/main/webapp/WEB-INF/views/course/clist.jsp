@@ -289,7 +289,7 @@ a:hover, a:active, a:focus, a {
 }
 
 a:-webkit-any-link {
-    color: -webkit-link;
+    /* color: -webkit-link; */
     cursor: pointer;
 }
 
@@ -372,161 +372,159 @@ a:-webkit-any-link {
 
 <!-- 리스트 출력 CSS 끝 -->
 </style>
-
-<h3>[스터디/취미 목록]</h3>
-	<div class="listoption">
-		<div class="box box3" >
-			<dl class="list">
-				<dt><h3 class="title">모집분야별</h3></dt>
-				<dd>
-					<div class="checkbox1" id="searchType" >
-						<p>
-								<input type="radio" id="allCate"  name="cate" value="allCate" checked />
-								<label for="allCate">전체</label>
-							</p>
-							<p>
-								<input type="radio" id="ca1" name="cate" value="ca1" />
-								<label for="ca1">스터디</label>
-							</p>
-							<p>
-								<input type="radio" id="ca2" name="cate" value="ca2" />
-								<label for="ca2">클래스</label>
-							</p>
-							<p>
-								<input type="radio" id="ca3" name="cate" value="ca3" />
-								<label for="ca3">소모임</label>
-							</p>
-							<br/>
-							<p>
-								<input type="radio" id="sub1" name="cate" value="sub1" />
-								<label for="sub1">스터디><br/>어학</label>
-							</p>
-							<p>
-								<input type="radio" id="sub2" name="cate" value="sub2"/>
-								<label for="sub2">스터디><br/>취업</label>
-							</p>
-							<p>
-								<input type="radio" id="sub3" name="cate" value="sub3"/>
-								<label for="sub3">스터디><br/>재테크</label>
-							</p>
-							<p>
-								<input type="radio" id="sub4" name="cate" value="sub4"/>
-								<label for="sub4">스터디><br/>기타</label>
-							</p>
-							<br/>
-							<p>
-								<input type="radio" id="sub5" name="cate" value="sub5"/>
-								<label for="sub5">클래스><br/>공예</label>
-							</p>
-							<p>
-								<input type="radio" id="sub6" name="cate" value="sub6"/>
-								<label for="sub6">클래스><br/>쿠킹</label>
-							</p>
-							<p>
-								<input type="radio" id="sub7" name="cate" value="sub7"/>
-								<label for="sub7">클래스><br/>운동</label>
-							</p>
-							<p>
-								<input type="radio" id="sub8" name="cate" value="sub8"/>
-								<label for="sub8">클래스><br/>기타</label>
-							</p>
-							<br/>
-							<p>
-								<input type="radio" id="sub9" name="cate" value="sub9"/>
-								<label for="sub9">소모임><br/>공연예술</label>
-							</p>
-							<p>
-								<input type="radio" id="sub10" name="cate" value="sub10"/>
-								<label for="sub10">소모임><br/>맛집탐방</label>
-							</p>
-							<p>
-								<input type="radio" id="sub11" name="cate" value="sub11"/>
-								<label for="sub11">소모임><br/>여행</label>
-							</p>
-							<p>
-								<input type="radio" id="sub12" name="cate" value="sub12"/>
-								<label for="sub12">소모임><br/>기타</label>
-							</p>
-					</div>
-				</dd>
-			</dl>
-		</div>
-		
-		<div class="box box4">
-			<ul class="list">
-				<li class="age">
-					<h3 class="title">연령별</h3>
-					<div class="checkbox2" id="searchType">
-						<p>
-							<input type="radio" id="allAge" name="age" value="allAge"  checked/>
-							<label for="allAge">전체</label>
+<div class="listoption">
+	<div class="box box3" >
+		<dl class="list">
+			<dt><h3 class="title">모집분야별</h3></dt>
+			<dd>
+				<div class="checkbox1" id="searchType" >
+					<p>
+							<input type="radio" id="allCate"  name="cate" value="allCate" checked />
+							<label for="allCate">전체</label>
 						</p>
 						<p>
-							<input type="radio" id="age1" name="age" value="age1"/>
-							<label for="age1">20대 이하</label>
+							<input type="radio" id="ca1" name="cate" value="ca1" />
+							<label for="ca1">스터디</label>
 						</p>
 						<p>
-							<input type="radio" id="age2" name="age" value="age2"/>
-							<label for="age2">20대~30대</label>
+							<input type="radio" id="ca2" name="cate" value="ca2" />
+							<label for="ca2">클래스</label>
 						</p>
 						<p>
-							<input type="radio" id="age3" name="age" value="age3"/>
-							<label for="age3">40대~50대</label>
+							<input type="radio" id="ca3" name="cate" value="ca3" />
+							<label for="ca3">소모임</label>
+						</p>
+						<br/>
+						<p>
+							<input type="radio" id="sub1" name="cate" value="sub1" />
+							<label for="sub1">스터디><br/>어학</label>
 						</p>
 						<p>
-							<input type="radio" id="age4" name="age" value="age4"/>
-							<label for="age4">60대 이상</label>
-						</p>
-					</div>
-				</li> 
-				
-				<li class="gender">
-					<h3 class="title">성별</h3>
-					<div class="checkbox3" id="searchType">
-						<p>
-							<input type="radio" id="allGender" name="gender" value="allGender" checked/>
-							<label for="allGender">전체</label>
+							<input type="radio" id="sub2" name="cate" value="sub2"/>
+							<label for="sub2">스터디><br/>취업</label>
 						</p>
 						<p>
-							<input type="radio" id="man" name="gender" value="m"/>
-							<label for="man">남성</label>
+							<input type="radio" id="sub3" name="cate" value="sub3"/>
+							<label for="sub3">스터디><br/>재테크</label>
 						</p>
 						<p>
-							<input type="radio" id="woman" name="gender" value="w"/>
-							<label for="woman">여성</label>
+							<input type="radio" id="sub4" name="cate" value="sub4"/>
+							<label for="sub4">스터디><br/>기타</label>
 						</p>
-					</div>
-				</li>
-				<li class="local" >
-					<h3 class="title">지역별</h3>
-						<div class="checkbox4" id="searchType">
-							<p>
-								<input type="radio" id="allCheck"  name="local" value="all"  checked />
-								<label for="allCheck">전국</label>
-							</p>
-							<p>
-								<input type="radio" id="seoul" name="local" value="seoul"/>
-								<label for="seoul">서울시</label>
-							</p>
-							<p>
-								<input type="radio" id="incheon" name="local" value="incheon"/>
-								<label for="incheon">인천시</label>
-							</p>
-							<p>
-								<input type="radio" id="gyeonggi" name="local" value="gyeonggi"/>
-								<label for="gyeonggi">경기도</label>
-							</p>
-						</div>
-				</li>
-				<li class="search">
-					<div class="insearch" id="searchType">
-						<input type="text" class="txt" id="searchtxt" name="searchtxt" placeholder="제목 검색"/>
-					</div>
-					<button type="button" id="searchbtn" style="">조회</button>				
-				</li>
-			</ul>
-		</div>
+						<br/>
+						<p>
+							<input type="radio" id="sub5" name="cate" value="sub5"/>
+							<label for="sub5">클래스><br/>공예</label>
+						</p>
+						<p>
+							<input type="radio" id="sub6" name="cate" value="sub6"/>
+							<label for="sub6">클래스><br/>쿠킹</label>
+						</p>
+						<p>
+							<input type="radio" id="sub7" name="cate" value="sub7"/>
+							<label for="sub7">클래스><br/>운동</label>
+						</p>
+						<p>
+							<input type="radio" id="sub8" name="cate" value="sub8"/>
+							<label for="sub8">클래스><br/>기타</label>
+						</p>
+						<br/>
+						<p>
+							<input type="radio" id="sub9" name="cate" value="sub9"/>
+							<label for="sub9">소모임><br/>공연예술</label>
+						</p>
+						<p>
+							<input type="radio" id="sub10" name="cate" value="sub10"/>
+							<label for="sub10">소모임><br/>맛집탐방</label>
+						</p>
+						<p>
+							<input type="radio" id="sub11" name="cate" value="sub11"/>
+							<label for="sub11">소모임><br/>여행</label>
+						</p>
+						<p>
+							<input type="radio" id="sub12" name="cate" value="sub12"/>
+							<label for="sub12">소모임><br/>기타</label>
+						</p>
+				</div>
+			</dd>
+		</dl>
 	</div>
+	
+	<div class="box box4">
+		<ul class="list">
+			<li class="age">
+				<h3 class="title">연령별</h3>
+				<div class="checkbox2" id="searchType">
+					<p>
+						<input type="radio" id="allAge" name="age" value="allAge"  checked/>
+						<label for="allAge">전체</label>
+					</p>
+					<p>
+						<input type="radio" id="age1" name="age" value="age1"/>
+						<label for="age1">20대 이하</label>
+					</p>
+					<p>
+						<input type="radio" id="age2" name="age" value="age2"/>
+						<label for="age2">20대~30대</label>
+					</p>
+					<p>
+						<input type="radio" id="age3" name="age" value="age3"/>
+						<label for="age3">40대~50대</label>
+					</p>
+					<p>
+						<input type="radio" id="age4" name="age" value="age4"/>
+						<label for="age4">60대 이상</label>
+					</p>
+				</div>
+			</li> 
+			
+			<li class="gender">
+				<h3 class="title">성별</h3>
+				<div class="checkbox3" id="searchType">
+					<p>
+						<input type="radio" id="allGender" name="gender" value="allGender" checked/>
+						<label for="allGender">전체</label>
+					</p>
+					<p>
+						<input type="radio" id="man" name="gender" value="m"/>
+						<label for="man">남성</label>
+					</p>
+					<p>
+						<input type="radio" id="woman" name="gender" value="w"/>
+						<label for="woman">여성</label>
+					</p>
+				</div>
+			</li>
+			<li class="local" >
+				<h3 class="title">지역별</h3>
+					<div class="checkbox4" id="searchType">
+						<p>
+							<input type="radio" id="allCheck"  name="local" value="all"  checked />
+							<label for="allCheck">전국</label>
+						</p>
+						<p>
+							<input type="radio" id="seoul" name="local" value="seoul"/>
+							<label for="seoul">서울시</label>
+						</p>
+						<p>
+							<input type="radio" id="incheon" name="local" value="incheon"/>
+							<label for="incheon">인천시</label>
+						</p>
+						<p>
+							<input type="radio" id="gyeonggi" name="local" value="gyeonggi"/>
+							<label for="gyeonggi">경기도</label>
+						</p>
+					</div>
+			</li>
+			<li class="search">
+				<div class="insearch" id="searchType">
+					<input type="text" class="txt" id="searchtxt" name="searchtxt" placeholder="제목 검색"/>
+				</div>
+				<button type="button" id="searchbtn" style="">조회</button>				
+			</li>
+		</ul>
+	</div>
+</div>
 
 
 <div class="view">
@@ -555,7 +553,7 @@ a:-webkit-any-link {
 						<dl>
 							<dt class="view20Byte">{{title}}</dt>
 							<dd>
-								<p class="infor thin date_infor txt02">{{date_start}}~{{date_end}}</p>
+								<p class="infor thin date_infor txt02">{{date_start}} ~ {{date_end}}</p>
 								<p class="infor2 thin txt03">
 									<span class="check_person thin">
 										<strong>{{c_cnt_member}}</strong>/{{c_tot_member}}

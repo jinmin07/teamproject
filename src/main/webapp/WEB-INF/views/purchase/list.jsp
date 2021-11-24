@@ -36,7 +36,6 @@
       border-top: 1px solid #e5e5e5;
       border-bottom: 1px solid #e5e5e5;
       overflow: hidden;
-       
    }
    
    .box3{
@@ -268,7 +267,7 @@ div, span, a, strong, dl, dt, dd, ul, li {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
-}
+} 
 
 #infor, #infor2, #infor3 {
     display: block;
@@ -295,7 +294,7 @@ a:hover, a:active, a:focus, a {
 }
 
 a:-webkit-any-link {
-    color: -webkit-link;
+	/* color: -webkit-link; */
     cursor: pointer;
 }
 
@@ -382,8 +381,6 @@ a:-webkit-any-link {
 
 
 </style>
-<h1>[상품 목록]</h1>
-
 <!-- 리스트 검색 박스 시작-->
 	<div class="listoption">
 		<div class="box box3" >
@@ -510,13 +507,13 @@ a:-webkit-any-link {
 								</p>
 								<p class="infor thin date_infor txt02">
 									{{p_salePrice}} <br/>
-									{{date_start}}~{{date_end}}
+									{{date_start}} ~ {{date_end}}
 								</p>
 								<p class="infor2 thin txt03">
 									<span class="check_person thin">
 										<strong>{{p_cnt_member}}</strong>/{{p_tot_member}}
 									</span>
-									<span class="thin add_infor">{{p_local}}</span>
+									<span class="thin add_infor">{{printOpen p_local}}</span>
 								</p>
 							</dd>
 							<dd>

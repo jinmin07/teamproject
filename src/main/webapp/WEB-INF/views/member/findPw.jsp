@@ -7,29 +7,29 @@
 <title>Insert title here</title>
 <style>
 	.ps_box,.mail_check_input_box {
-	display: block;
-	position: relative;
-	width: 460px;
-	height: 51px;
-	border: solid 1px #dadada;
-	padding: 10px 110px 10px 14px;
-	background: #fff;
-	box-sizing: border-box;
-	vertical-align: top;
-}
+		display: block;
+		position: relative;
+		width: 460px;
+		height: 51px;
+		border: solid 1px #dadada;
+		padding: 10px 110px 10px 14px;
+		background: #fff;
+		box-sizing: border-box;
+		vertical-align: top;
+		}
 
-.id_input,.mail_input, .mail_check_input{
-	display: block;
-	position: relative;
-	height: 29px;
-	line-height: 29px;
-	border: none;
-	background: #fff;
-	font-size: 15px;
-	box-sizing: border-box;
-	z-index: 10;
-	width: 327px;
-}
+	.id_input,.mail_input, .mail_check_input{
+		display: block;
+		position: relative;
+		height: 29px;
+		line-height: 29px;
+		border: none;
+		background: #fff;
+		font-size: 15px;
+		box-sizing: border-box;
+		z-index: 10;
+		width: 327px;
+	}
 
 input:focus {outline:none;}
 
@@ -46,6 +46,22 @@ input:focus {outline:none;}
     float:right;
 }
 
+#findId {
+	background-color: #fff;
+    border-color: #35c5f0;
+    color: #35c5f0;
+    font-size: 16px;
+    font-family: "맑은고딕";
+    font-weight: 600;
+    height: 50px;
+  	width: 200px;
+}
+
+.findIdDIV {
+	margin-top: 20px;
+	text-align: center;
+}
+
 button:hover{
 	background-color: #effbff;
 }
@@ -58,6 +74,7 @@ button:hover{
 	</div>
 	
 	<div style="width:450px;padding-top:10px; padding-bottom:40px; margin:0 auto;">
+		<h3 class="join_title" style="margin-top:20px;">아이디</h3> 
 		<div>
 			<span class="ps_box box_right_space" style="display: inline-block; width:450px;" >
 				 <input type="text" class="id_input" placeholder="아이디를 입력해주세요."/>
@@ -68,7 +85,7 @@ button:hover{
 		<h3 class="join_title" style="margin-top:20px;">이메일</h3> 
 		<div>
 			<span class="ps_box box_right_space" style="display: inline-block; width:357px;" >
-				<input type="text" name="email" class="mail_input" maxlength="100" placeholder="이메일"/>
+				<input type="text" name="email" class="mail_input" maxlength="100" placeholder="이메일을 입력해주세요."/>
 			</span>
 			<button  class="mail_check_button">번호발송</button>
 		</div>
@@ -78,8 +95,10 @@ button:hover{
 			</span>
 			<button class="mail_check_button_warn">번호확인</button>
 		</div>
+		<div class = "findIdDIV" style="display: none;" >
+			<button id="findId">비밀번호재설정</button>
+		</div>
 	</div>
-	<div class = "findIdDIV" style="display:none;"><button id="findId">비밀번호 찾기</button></div>
 </body>
 <script>
 var code = "";
@@ -101,11 +120,8 @@ $(".mail_check_button").click(function(){
             code = data;
             alert("인증번호가 발송되었습니다.");
             $(".mail_check_input").focus();
-            
         }
-                
     });
-    
 });
 
 /* 인증번호 비교 */

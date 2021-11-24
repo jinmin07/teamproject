@@ -4,7 +4,7 @@
 	<div id="divNotice" style="margin: 20px 50px 0px 50px;"></div>
 	<script id="temp" type="text/x-handlebars-template">
  	{{#each .}}
- 		<div class="box">
+ 		<div class="packing">
  			<div class="heading">
  				<span class="n_id" style="display:none;">{{n_id}}</span>
  				<b style="font-size:13px;">{{regdate}}</b>
