@@ -47,6 +47,8 @@
 
 .close, .body a { float: right; margin-right: 10px; color: gray;}
 
+.heading a {float: right; margin-right: 30px; color: gray;}
+
 .body {
 	background: white;
 	border: 1px solid lightgray; 

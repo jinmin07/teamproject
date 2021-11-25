@@ -16,7 +16,7 @@
    box-sizing: border-box;
    vertical-align: top;}
 
-.ps_box {
+.ps_box ,#u_gender{
          display: block;
          position: relative;
          width: 580px;
@@ -40,7 +40,6 @@
 
 input[type=text]{
    display: block;
-   position: relative;
    height: 29px;
    line-height: 29px;
    border: none;
@@ -80,7 +79,7 @@ button{
    border-radius: 4px;
    cursor: pointer;
 }
-#addr1 {
+#u_addr1 {
    width: 410px;
 }
 
@@ -129,6 +128,8 @@ button{
    padding: 20px;
 }
 
+input:focus, select:focus {outline:none;}
+
 </style>
 <title>Insert title here</title>
 </head>
@@ -162,23 +163,23 @@ button{
          <h3>핸드폰 번호</h3>
          <div>
             <span class="ps_box box_right_space" style="display: inline-block; " >
-               <input type="text" id="u_phone" value="${user.u_phone}" placeholder="전화번호 입력란입니다."/>
+               <input type="text" id="u_phone" name="u_phone" value="${user.u_phone}" placeholder="전화번호 입력란입니다." maxlength="13"/>
             </span>
          </div>
          <h3>주소</h3>
          <div class="address_wrap" >
             <div class="address_wrap1" style="overflow: hidden;" >
                <div class="address_input_1_box" style=" width:475px; display:inline-block;">
-                  <input  type="text" class="address_input_1" id="addr1" name="addr1" value="${user.u_addr1}" />
+                  <input  type="text" class="address_input_1" id="u_addr1" name="addr1" value="${user.u_addr1}" />
                </div>
                <button style="display:inline;" type="button" id="chan_add" onclick="execution_daum_address()">주소변경</button>
             </div>
             
             <div class="address_input_1_box" style="margin-top:10px;">
-               <input type="text" class="address_input_2" name="addr2" value="${user.u_addr2}"/>
+               <input type="text" class="address_input_2" name="u_addr2" value="${user.u_addr2}"/>
             </div>
             <div class="address_input_1_box" style="margin-top:10px;">
-               <input type="text" class="address_input_3" name="addr3" value="${user.u_addr3}"/>
+               <input type="text" class="address_input_3" name="u_addr3" value="${user.u_addr3}"/>
             </div>
          </div>
          
@@ -293,5 +294,43 @@ button{
          }
       }).open();
    }
+   
+   
+   
+ //핸드폰번호 자동 하이픈
+   function autoHypenPhone(str){
+           str = str.replace(/[^0-9]/g, '');
+           var tmp = '';
+           if( str.length < 4){
+               return str;
+           }else if(str.length < 7){
+               tmp += str.substr(0, 3);
+               tmp += '-';
+               tmp += str.substr(3);
+               return tmp;
+           }else if(str.length < 11){
+               tmp += str.substr(0, 3);
+               tmp += '-';
+               tmp += str.substr(3, 3);
+               tmp += '-';
+               tmp += str.substr(6);
+               return tmp;
+           }else{              
+               tmp += str.substr(0, 3);
+               tmp += '-';
+               tmp += str.substr(3, 4);
+               tmp += '-';
+               tmp += str.substr(7);
+               return tmp;
+           }
+           return str;
+       }
+
+      var cellPhone = document.getElementById('u_phone');
+      cellPhone.onkeyup = function(event){
+              event = event || window.event;
+              var _val = this.value.trim();
+              this.value = autoHypenPhone(_val) ;
+      }
 </script>
 </html>

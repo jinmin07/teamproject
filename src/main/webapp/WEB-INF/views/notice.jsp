@@ -9,10 +9,10 @@
  				<span class="n_id" style="display:none;">{{n_id}}</span>
  				<b style="font-size:13px;">{{regdate}}</b>
 				<a class="close" href="#">×</a>
+				<a style="display:{{printOpen n_state}};" href="{{printCode tbl_code}}/read?id={{tbl_id}}">확인하기</a>
  			</div>
 			<div class="body" style="text-align:left;">
  			 ( <b style="font-size:13px;">{{sender}}</b> ) &nbsp; {{content}}
-				<a style="display:{{printOpen n_state}};" href="{{tbl_id}}">확인하기</a>
 			</div>
  		</div>
  	{{/each}}
@@ -21,6 +21,15 @@
 		Handlebars.registerHelper("printOpen", function(n_state){
 			if(n_state == 1){
 				return "none";
+			}
+		});
+	</script>
+		 <script>
+		Handlebars.registerHelper("printCode", function(tbl_code){
+			if(tbl_code == "P"){
+				return "/purchase";
+			}else {
+				return "/course";
 			}
 		});
 	</script>

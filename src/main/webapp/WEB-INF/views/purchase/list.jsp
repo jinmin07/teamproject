@@ -3,28 +3,28 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
 #products {
-	margin : 0px auto;
-	width: 1000px;
-	height:1080px;
-	overflow: hidden;
+   margin : 0px auto;
+   width: 1000px;
+   height:1080px;
+   overflow: hidden;
 }
 
 .view {
-	width: 1024px;
-	margin: 0 auto;
+   width: 1024px;
+   margin: 0 auto;
 }
 .view button {
-	width:80px;
-	font-size:16px;
-	margin:0px;
-	padding: 5px 15px;
-	font-family:"맑은고딕";
-	font-weight: 600;
-	color: #fff;
+   width:80px;
+   font-size:16px;
+   margin:0px;
+   padding: 5px 15px;
+   font-family:"맑은고딕";
+   font-weight: 600;
+   color: #fff;
     background-color: #35c5f0;
 }
 .view button:hover{
-	background-color: #09addb;
+   background-color: #09addb;
 }
 
 
@@ -41,6 +41,7 @@
    .box3{
       height:200px;
       width: 420px;
+      border-top: 1px solid #e5e5e5;
       border-bottom: 1px solid #e5e5e5;
       justify-content: flex-end;
       background-color: #F0FFFF;
@@ -131,6 +132,8 @@
       width:53%;
       background-color: #f7f8fa;
       display:-webkit-flex;
+      border-top: 1px solid #e5e5e5;
+      border-bottom: 1px solid #e5e5e5;
    }
    
    .box4 .list    {
@@ -189,28 +192,28 @@
    }
    
    .search button {
-		margin-left: 10px;
-		width: 95px;
-		height: 42px;
-		color: #fff;
-		font-weight: 600;
-		background-color: #35c5f0;
-		cursor: pointer;
-		padding: 0;
-		font-size: 16px;
-	}
-	.search button:hover{
-		border-color: #09addb;
-    	background-color: #09addb;
-	}
+      margin-left: 10px;
+      width: 95px;
+      height: 42px;
+      color: #fff;
+      font-weight: 600;
+      background-color: #35c5f0;
+      cursor: pointer;
+      padding: 0;
+      font-size: 16px;
+   }
+   .search button:hover{
+      border-color: #09addb;
+       background-color: #09addb;
+   }
 
 <!-- 리스트 검색 CSS 끝-->
 
 <!-- 리스트 출력 CSS -->
 .box_list {
-	max-width: 1299px;
+   max-width: 1299px;
     margin-top: 40px;
-}	
+}   
 .sub_cnt_slide_wrap {
     width: 90%;
     margin: 0 auto;
@@ -225,7 +228,7 @@
     position: relative;
 }
 .sub_cnt_list:hover{
-	transform: scale(1.05);	
+   transform: scale(1.05);   
 }
 
 .pick_con_img {
@@ -236,7 +239,7 @@
 }
 
 .main_cnt_txtbox {
-	padding: 8px;
+   padding: 8px;
     text-align: center;
     color: #333;
     background: #fff;
@@ -294,7 +297,7 @@ a:hover, a:active, a:focus, a {
 }
 
 a:-webkit-any-link {
-	/* color: -webkit-link; */
+   /* color: -webkit-link; */
     cursor: pointer;
 }
 
@@ -331,7 +334,7 @@ a:-webkit-any-link {
 }
 
 .infor3{
-	margin-top:5px;
+   margin-top:5px;
 }
 .infor3::before {
     content: "";
@@ -341,7 +344,7 @@ a:-webkit-any-link {
     margin: 5px 0;
     margin-right:2px;
     background: #969696;
-    }	
+    }   
 
 
 .heart_btn {
@@ -382,108 +385,108 @@ a:-webkit-any-link {
 
 </style>
 <!-- 리스트 검색 박스 시작-->
-	<div class="listoption">
-		<div class="box box3" >
-			<dl class="list">
-				<dt><h3 class="title">지역별</h3></dt>
-				<dd>
-					<div class="checkbox1" id="searchType" >
-							<p>
-								<input type="radio" id="allLocal"  name="local" value="allLocal" checked />
-								<label for="allLocal">전체</label>
-							</p>
-							<p>
-								<input type="radio" id="seoul" name="local" value="seoul" />
-								<label for="seoul">서울</label>
-							</p>
-							<p>
-								<input type="radio" id="gyeonggi" name="local" value="gyeonggi" />
-								<label for="gyeonggi">경기</label>
-							</p>
-							<br/>
-							<p>
-								<input type="radio" id="incheon" name="local" value="incheon" />
-								<label for="incheon">인천</label>
-							</p>
-							<p>
-								<input type="radio" id="daejeon" name="local" value="daejeon" />
-								<label for="daejeon">대전</label>
-							</p>
-							<p>
-								<input type="radio" id="gwangju" name="local" value="gwangju"/>
-								<label for="gwangju">광주</label>
-							</p>
-							<br/>
-							<p>
-								<input type="radio" id="ulsan" name="local" value="ulsan"/>
-								<label for="ulsan">울산</label>
-							</p>
-							<br/>
-							<p>
-								<input type="radio" id="busan" name="local" value="busan"/>
-								<label for="busan">부산</label>
-							</p>
-							<p>
-								<input type="radio" id="jeju" name="local" value="jeju"/>
-								<label for="jeju">제주</label>
-							</p>
-					</div>
-				</dd>
-			</dl>
-		</div>
-		
-		<div class="box box4">
-			<ul class="list">
-				<li class="age">
-					<h3 class="title">카테고리별</h3>
-					<div class="checkbox2" id="searchType">
-						<p>
-							<input type="radio" id="allCate" name="cate" value="allCate"  checked/>
-							<label for="allCate">전체</label>
-						</p>
-						<p>
-							<input type="radio" id="ca1" name="cate" value="ca1"/>
-							<label for="ca1">음식</label>
-						</p>
-						<p>
-							<input type="radio" id="ca2" name="cate" value="ca2"/>
-							<label for="ca2">스포츠용품</label>
-						</p>
-						<p>
-							<input type="radio" id="ca3" name="cate" value="ca3"/>
-							<label for="ca3">뷰티용품</label>
-						</p>
-						<p>
-							<input type="radio" id="ca4" name="cate" value="ca4"/>
-							<label for="ca4">패션</label>
-						</p>
-						<p>
-							<input type="radio" id="ca5" name="cate" value="ca5"/>
-							<label for="ca5">가전제품</label>
-						</p>
-					</div>
-				</li> 
-				
-				<li class="search">
-					<div class="insearch" id="searchType">
-						<input type="text" class="txt" id="searchtxt" name="searchtxt" placeholder="검색"/>
-					</div>
-					<button type="button" id="searchbtn" style="">조회</button>				
-				</li>
-			</ul>
-		</div>
-	</div>
+   <div class="listoption">
+      <div class="box box3" >
+         <dl class="list">
+            <dt><h3 class="title">지역별</h3></dt>
+            <dd>
+               <div class="checkbox1" id="searchType" >
+                     <p>
+                        <input type="radio" id="allLocal"  name="local" value="allLocal" checked />
+                        <label for="allLocal">전체</label>
+                     </p>
+                     <p>
+                        <input type="radio" id="seoul" name="local" value="seoul" />
+                        <label for="seoul">서울</label>
+                     </p>
+                     <p>
+                        <input type="radio" id="gyeonggi" name="local" value="gyeonggi" />
+                        <label for="gyeonggi">경기</label>
+                     </p>
+                     <br/>
+                     <p>
+                        <input type="radio" id="incheon" name="local" value="incheon" />
+                        <label for="incheon">인천</label>
+                     </p>
+                     <p>
+                        <input type="radio" id="daejeon" name="local" value="daejeon" />
+                        <label for="daejeon">대전</label>
+                     </p>
+                     <p>
+                        <input type="radio" id="gwangju" name="local" value="gwangju"/>
+                        <label for="gwangju">광주</label>
+                     </p>
+                     <br/>
+                     <p>
+                        <input type="radio" id="ulsan" name="local" value="ulsan"/>
+                        <label for="ulsan">울산</label>
+                     </p>
+                     <br/>
+                     <p>
+                        <input type="radio" id="busan" name="local" value="busan"/>
+                        <label for="busan">부산</label>
+                     </p>
+                     <p>
+                        <input type="radio" id="jeju" name="local" value="jeju"/>
+                        <label for="jeju">제주</label>
+                     </p>
+               </div>
+            </dd>
+         </dl>
+      </div>
+      
+      <div class="box box4">
+         <ul class="list">
+            <li class="age">
+               <h3 class="title">카테고리별</h3>
+               <div class="checkbox2" id="searchType">
+                  <p>
+                     <input type="radio" id="allCate" name="cate" value="allCate"  checked/>
+                     <label for="allCate">전체</label>
+                  </p>
+                  <p>
+                     <input type="radio" id="ca1" name="cate" value="ca1"/>
+                     <label for="ca1">음식</label>
+                  </p>
+                  <p>
+                     <input type="radio" id="ca2" name="cate" value="ca2"/>
+                     <label for="ca2">스포츠용품</label>
+                  </p>
+                  <p>
+                     <input type="radio" id="ca3" name="cate" value="ca3"/>
+                     <label for="ca3">뷰티용품</label>
+                  </p>
+                  <p>
+                     <input type="radio" id="ca4" name="cate" value="ca4"/>
+                     <label for="ca4">패션</label>
+                  </p>
+                  <p>
+                     <input type="radio" id="ca5" name="cate" value="ca5"/>
+                     <label for="ca5">가전제품</label>
+                  </p>
+               </div>
+            </li> 
+            
+            <li class="search">
+               <div class="insearch" id="searchType">
+                  <input type="text" class="txt" id="searchtxt" name="searchtxt" placeholder="검색"/>
+               </div>
+               <button type="button" id="searchbtn" style="">조회</button>            
+            </li>
+         </ul>
+      </div>
+   </div>
 <!-- 리스트 검색 박스  끝 -->
 
 <div class="view">
-	<div style="text-align:left; margin-left:10px; padding-bottom:7px; border-bottom:1px dotted gray; margin-bottom:15px;">
-		<div style="display: inline-block; margin-left:-320px;">
-			<h4 id="total" style="margin-bottom: 5px;"></h4>
-		</div>
-		<div style="display: inline-block; float: right; margin-top: 20px; margin-right: 15px;">
-			<button onClick="location.href='/purchase/insert'">등록</button>
-		</div>
-	</div>
+   <div style="text-align:left; margin-left:10px; padding-bottom:7px; border-bottom:1px dotted gray; margin-bottom:15px;">
+      <div style="display: inline-block; ">
+         <h4 id="total" style="margin-bottom: 5px;"></h4>
+      </div>
+      <div style="display: inline-block; float: right; margin-top: 20px; margin-right: 15px;">
+         <button onClick="location.href='/purchase/insert'">등록</button>
+      </div>
+   </div>
 </div>
 
 
@@ -491,101 +494,101 @@ a:-webkit-any-link {
 <script id="temp" type="text/x-handlebars-template">
 {{#each list}}
 <div class="box_list">
-	<div class="list_sub_wrap">
-		<ul class="sub_cnt_slide_wrap sub_cnt_slide01_wrap">
-			<li class="sub_cnt_list sub_cnt_list01">
-				<a href="read?id={{id}}">
-					<div class="pick_con_img">
-						<img src="../resources/purchaseimg/{{p_image}}" width= 250 height= 155>
-					</div>	
-					<div class="main_cnt_txtbox">
-						<dl>
-							<dt class="view20Byte">{{title}}</dt>
-							<dd>
-								<p class="infor txt01">
-									<span class="red cate_infor">{{p_category}}</span>
-								</p>
-								<p class="infor thin date_infor txt02">
-									{{p_salePrice}} <br/>
-									{{date_start}} ~ {{date_end}}
-								</p>
-								<p class="infor2 thin txt03">
-									<span class="check_person thin">
-										<strong>{{p_cnt_member}}</strong>/{{p_tot_member}}
-									</span>
-									<span class="thin add_infor">{{printOpen p_local}}</span>
-								</p>
-							</dd>
-							<dd>
-								<p class="infor3">
-								<span class="heart_btn">
-									<span class="new-heart">&nbsp;&nbsp;&nbsp;{{p_cnt_feed}}</span>
-								</span>
-								</p>
-							</dd>
-						</dl>
-					</div>			
-				</a>
-			</li>
-		</ul>
-	</div>
+   <div class="list_sub_wrap">
+      <ul class="sub_cnt_slide_wrap sub_cnt_slide01_wrap">
+         <li class="sub_cnt_list sub_cnt_list01">
+            <a href="read?id={{id}}">
+               <div class="pick_con_img">
+                  <img src="../resources/purchaseimg/{{p_image}}" width= 250 height= 155>
+               </div>   
+               <div class="main_cnt_txtbox">
+                  <dl>
+                     <dt class="view20Byte">{{title}}</dt>
+                     <dd>
+                        <p class="infor txt01">
+                           <span class="red cate_infor">{{p_category}}</span>
+                        </p>
+                        <p class="infor thin date_infor txt02">
+                           {{p_salePrice}} <br/>
+                           {{date_start}} ~ {{date_end}}
+                        </p>
+                        <p class="infor2 thin txt03">
+                           <span class="check_person thin">
+                              <strong>{{p_cnt_member}}</strong>/{{p_tot_member}}
+                           </span>
+                           <span class="thin add_infor">{{printOpen p_local}}</span>
+                        </p>
+                     </dd>
+                     <dd>
+                        <p class="infor3">
+                        <span class="heart_btn">
+                           <span class="new-heart">&nbsp;&nbsp;&nbsp;{{p_cnt_feed}}</span>
+                        </span>
+                        </p>
+                     </dd>
+                  </dl>
+               </div>         
+            </a>
+         </li>
+      </ul>
+   </div>
 </div>
 {{/each}}
 
 </script>
 <script>
-		Handlebars.registerHelper("printOpen", function(p_local){
-			var str = p_local;
-			var arr = str.split(" ");
-			var addr = arr[0] + " " + arr[1];
-			return addr;
-		});
+      Handlebars.registerHelper("printOpen", function(p_local){
+         var str = p_local;
+         var arr = str.split(" ");
+         var addr = arr[0] + " " + arr[1];
+         return addr;
+      });
 </script>
 
 <div style="text-align: center; margin-bottom:10px;">
-	<div id="pagination" class="pagination"></div>
+   <div id="pagination" class="pagination"></div>
 </div>
 <script src="/resources/pagination.js"></script>
 
 
 <script>
-	var page = 1;
-	getList();
-	
-	//엔터키 클릭시 검색
-	$("#searchtxt").on("keypress",function(e){
-		if(e.keyCode==13){
-			page=1;
-			getList();
-		}
-	});
+   var page = 1;
+   getList();
+   
+   //엔터키 클릭시 검색
+   $("#searchtxt").on("keypress",function(e){
+      if(e.keyCode==13){
+         page=1;
+         getList();
+      }
+   });
 
-	$("#searchbtn").on("click",function(){
-		page=1;
-		getList();
-	});
-	
-	function getList(){
-		var keyword=$("#searchtxt").val();
-		var catType = $(".checkbox2 input[type = radio]:checked").val();
-		var searchType = $(".checkbox1 input[type = radio]:checked").val();
-		$.ajax({
-			type:"get",
-			url:"/purchase/list.json",
-			dataType:"json",
-			data:{"page":page,"keyword":keyword,"searchType":searchType,"catType":catType},
-			success:function(data){
-				var temp = Handlebars.compile($("#temp").html());
-				$("#products").html(temp(data));
-				$("#pagination").html(getPagination(data));
-				$("#total").html(data.pm.totalCount+"개의 게시물이 있습니다.");
-			}
-		});
-	}
-	
-	$("#pagination").on("click","a",function(e){
-		e.preventDefault();
-		page=$(this).attr("href");
-		getList();
-	});
+   $("#searchbtn").on("click",function(){
+      page=1;
+      getList();
+   });
+   
+   function getList(){
+      var keyword=$("#searchtxt").val();
+      var catType = $(".checkbox2 input[type = radio]:checked").val();
+      var searchType = $(".checkbox1 input[type = radio]:checked").val();
+      $.ajax({
+         type:"get",
+         url:"/purchase/list.json",
+         dataType:"json",
+         data:{"page":page,"keyword":keyword,"searchType":searchType,"catType":catType},
+         success:function(data){
+            var temp = Handlebars.compile($("#temp").html());
+            $("#products").html(temp(data));
+            $("#pagination").html(getPagination(data));
+            $("#total").html(data.pm.totalCount+"개의 게시물이 있습니다.");
+         }
+      });
+   }
+   
+   $("#pagination").on("click","a",function(e){
+      e.preventDefault();
+      page=$(this).attr("href");
+      getList();
+   });
 </script>
