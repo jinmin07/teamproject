@@ -53,4 +53,24 @@ public class UserDAOImpl implements UserDAO{
 		return session.selectOne(namespace + ".pick_up_u_pass",vo);
 	}
 
+
+
+	@Override
+	public void plus_point(String u_id, int u_point) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("u_id", u_id);
+		map.put("u_point", u_point);
+		session.update(namespace + ".plus_point", map);
+		
+	}
+
+	@Override
+	public void minus_point(String u_id, int u_point) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("u_id", u_id);
+		map.put("u_point", u_point);
+		session.update(namespace + ".minus_point", map);
+		
+	}
+
 }

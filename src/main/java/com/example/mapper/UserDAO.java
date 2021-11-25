@@ -19,4 +19,8 @@ public List<UserVO> list();
 	public UserVO findPw(UserVO vo) throws Exception;
 	
 	public UserVO pick_up_u_pass(UserVO vo) throws Exception;
+	
+	public void plus_point(String u_id, int u_point);
+	
+	public void minus_point(String u_id, int u_point);
 }

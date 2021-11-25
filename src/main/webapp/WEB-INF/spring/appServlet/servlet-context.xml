@@ -46,11 +46,15 @@
 <beans:bean id="LoginInterceptor" class="com.example.interceptor.LoginInterceptor"></beans:bean>
    <beans:bean id="AuthInterceptor" class="com.example.interceptor.AuthInterceptor"></beans:bean>
    <interceptors>
-      <interceptor>
-         <mapping path="/purchase/list"/>
-         <mapping path="/course/list"/>
-         <mapping path="/support/list"/>
-         <mapping path="/board/list"/>
+ 	<interceptor>
+         <mapping path="/*/read"/>
+         <mapping path="/purchase/insert"/>
+         <mapping path="/course/insert"/>
+         <mapping path="/board/insert"/>
+         <mapping path="/*/update"/>
+         <mapping path="/mypage/*"/>
+         <mapping path="/myfeed/*"/>
+         <mapping path="/notice/*"/>
          <beans:ref bean="LoginInterceptor"/>
       </interceptor>
       

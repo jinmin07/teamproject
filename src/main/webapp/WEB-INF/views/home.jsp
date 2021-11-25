@@ -55,8 +55,8 @@
 						</a>
 					</div>
 					<nav id="nav_menu" class="navigation-primary__menu">
-						<a class="navigation-primary__menu__item" href="/purchase/list" >공동구매</a> 
 						<a class="navigation-primary__menu__item" href="/course/list">공동생활</a>
+						<a class="navigation-primary__menu__item" href="/purchase/list" >공동구매</a> 
 						<a class="navigation-primary__menu__item" href="/support/list">지원정책</a>
 						<a class="navigation-primary__menu__item" href="/board/list	">커뮤니티</a>
 					</nav>
