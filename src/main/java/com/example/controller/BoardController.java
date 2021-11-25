@@ -90,10 +90,11 @@ public class BoardController {
 	public String insertPost(BoardVO vo, MultipartHttpServletRequest multi) throws Exception {
 		// 대표이미지 업로드
 		MultipartFile file = multi.getFile("file");
-		String b_image = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-		file.transferTo(new File(path + "/boardimg/" + b_image));
-		vo.setB_image(b_image);
-		
+		if(file != null){
+			String b_image = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+			file.transferTo(new File(path + "/boardimg/" + b_image));
+			vo.setB_image(b_image);
+		}
 		// 데이터입력
 		service.insert(vo);
 		return "redirect:/board/list";

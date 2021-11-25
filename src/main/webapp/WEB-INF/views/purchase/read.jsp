@@ -153,29 +153,26 @@
             </div>   
          </div>
          <div id="reg_user" style="float: left; width: 450px;">
-            <c:if test="${vo.p_cnt_member != vo.p_tot_member} ">
+            <c:if test="${vo.p_cnt_member != vo.p_tot_member || vo.p_cnt_member == 0}">
                <button id="btn_member_insert">신청하기</button>
             </c:if>
-            <c:if test="${vo.p_cnt_member == vo.p_tot_member || vo.date_end == now}">
+            <c:if test="${vo.p_cnt_member == vo.p_tot_member}">
                <button id="btn_member_end" disabled="disabled">신청하기</button>
             </c:if>
             <c:if test="${chk_member==1}">
                <button id="btn_member_delete">취소하기</button>
             </c:if>
-         <c:if test="${user.u_id == vo.p_writer && user.u_id != null}">
+            <c:if test="${user.u_id == vo.p_writer && user.u_id != null}">
                <button id="btn_purchase_update">수정하기</button>
                <button id="btnDelete">글삭제</button>
             </c:if>
-            <c:if test="${user.u_id != vo.p_writer || user.u_id == null}">
-               <div></div>
-            </c:if>
-            <c:if test="${vo.p_cnt_member >= vo.p_tot_member || vo.p_writer == user.u_id}">
+            <div id ="purchase_module" style="display:none;">
             	<div>
             		<input id="point" type="text" placeholder="포인트 사용하기"/>
             		<button id="usePoint">전액 사용하기</button>
             	</div>
               	<button id="payment">결제하기</button>
-            </c:if>
+            <div>
          </div>   
    </div>
    
@@ -242,9 +239,20 @@ var id= "${vo.id}";
 var p_writer = "${vo.p_writer}";
 var login_id = "${user.u_id}";
 var p_local = "${vo.p_local}";
+var p_cnt_member = "${vo.p_cnt_member}";
+var p_tot_member = "${vo.p_tot_member}";
+var date_end = "${end}";
+var now = "${now}";
 
 var p_price = parseInt("${vo.p_price}");
 getList();
+	
+	if(p_cnt_member == p_tot_member || date_end == now){
+		$("#purchase_module").show();
+	}
+	else{
+		$("#purchase_module").hide();
+	}
 
 	$("#usePoint").on("click",function(e){
 		e.preventDefault();
@@ -361,6 +369,7 @@ getList();
 	  var point = $("#point").val();
       var title = $("#title").html();
       var login_id = "${user.u_id}";
+      var p_writer = "${vo.p_writer}";
       
       alert(title);
       alert(price);
@@ -381,6 +390,9 @@ getList();
       }, function(rsp) {
          console.log(rsp);
           if ( rsp.success ) {
+        	 var point = $("#point").val();
+        	 var login_id = "${user.u_id}";
+             var p_writer = "${vo.p_writer}";
              var msg = '결제가 완료되었습니다.';
               msg += '고유ID : ' + rsp.imp_uid;
               msg += '상점 거래ID : ' + rsp.merchant_uid;
@@ -389,19 +401,22 @@ getList();
               $.ajax({
             	  type:"post",
             	  url: "/purchase/minus_point",
-            	  data: {"u_id":login_id,"u_point":point},
+            	  data: {"u_id":login_id,"point":point},
             	  success : function(){
             		  alert("보유 포인트를 써서 결제가 완료되었습니다.");
             	  }
               })
-               $.ajax({
+              if(login_id == p_writer){
+                $.ajax({
             	  type : "post",
             	  url : "/purchase/plus_point",
-            	  data : {"u_id":login_id,"u_point":p_price * 0.05},
+            	  data : {"u_id":p_writer,"point":p_price * 0.05},
             	  success : function(){
             		  alert("포인트가"+p_price * 0.05+"지급되었습니다.");
             	  }
               }); 
+          }
+                
           } else {
               var msg = '결제에 실패하였습니다.';
                msg += '에러내용 : ' + rsp.error_msg;

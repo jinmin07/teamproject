@@ -134,7 +134,7 @@
       var id = $(this).parent().parent().parent().parent().find(".id").html();
       var tbl_code = $(this).parent().parent().parent().parent().attr("tbl_code");
       var url = "/mypage/members?tbl_code="+tbl_code+"&id=" + id;
-      window.open(url,"", "width=400, height=400, top=200, left=900, location=no");
+      window.open(url,"", "width=500, height=400, top=200, left=900, location=no");
    });
    
    function getListPurchase() {

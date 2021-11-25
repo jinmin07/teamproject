@@ -56,21 +56,29 @@ public class UserDAOImpl implements UserDAO{
 
 
 	@Override
-	public void plus_point(String u_id, int u_point) {
+	public void plus_point(String u_id, int point) {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("u_id", u_id);
-		map.put("u_point", u_point);
+		map.put("point", point);
 		session.update(namespace + ".plus_point", map);
 		
 	}
 
 	@Override
-	public void minus_point(String u_id, int u_point) {
+	public void minus_point(String u_id, int point) {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("u_id", u_id);
-		map.put("u_point", u_point);
+		map.put("point", point);
 		session.update(namespace + ".minus_point", map);
 		
+	}
+
+	@Override
+	public void eval_member(String u_id, int value) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("u_id", u_id);
+		map.put("value", value);
+		session.update(namespace +".eval_member", map);
 	}
 
 }

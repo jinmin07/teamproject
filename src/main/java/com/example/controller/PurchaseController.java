@@ -76,7 +76,7 @@ public class PurchaseController {
    //상품출력
    @RequestMapping(value = "/list")
    public String List(Model model) {
-      model.addAttribute("index", 1);
+      model.addAttribute("index", 2);
       model.addAttribute("pageName", "purchase/list.jsp");
       logger.info("목록이 출력됩니다");
       return "home";
@@ -121,7 +121,7 @@ public class PurchaseController {
       model.addAttribute("end", end);
 
       model.addAttribute("vo", vo);
-      model.addAttribute("index", 1);
+      model.addAttribute("index", 2);
       model.addAttribute("pageName", "purchase/update.jsp");
       
       return "home";
@@ -138,7 +138,7 @@ public class PurchaseController {
          vo.setP_image(image);
       }
       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date date_start = sdf.parse(start);
+      Date date_start = sdf.parse(start);
       vo.setDate_start(date_start);
       Date date_end = sdf.parse(end);
       vo.setDate_end(date_end);
@@ -164,26 +164,34 @@ public class PurchaseController {
    
    @RequestMapping(value = "/plus_point",method = {RequestMethod.GET,RequestMethod.POST})
    @ResponseBody
-   public void plus_point(Model model,HttpServletRequest request) {
+   public void plus_point(Model model,HttpServletRequest request,String u_id,int point) {
 	   logger.info("포인트 부여 하는 메소드 입니다.");
 	   
 	   HttpSession session = request.getSession();
 	   UserVO uvo = (UserVO) session.getAttribute("user");
 	   
 	   System.out.println(uvo.getU_point());
+	   System.out.println(uvo.getU_id());
+	   System.out.println(u_id);
+	   System.out.println(point);
 	   
-	   udao.plus_point(uvo.getU_id(), uvo.getU_point());
+	   udao.plus_point(u_id, point);
    }
    @RequestMapping(value = "/minus_point",method = {RequestMethod.GET,RequestMethod.POST})
    @ResponseBody
-   public void minus_point(Model model,HttpServletRequest request) {
+   public void minus_point(Model model,HttpServletRequest request,String u_id,int point) {
 	   logger.info("포인트 차감 하는 메소드 입니다.");
 	   HttpSession session = request.getSession();
 	   UserVO uvo = (UserVO) session.getAttribute("user");
 
 	   System.out.println(uvo.getU_point());
+	   System.out.println(uvo.getU_id());
+	   System.out.println(u_id);
+	   System.out.println(point);
 	   
-	   udao.minus_point(uvo.getU_id(), uvo.getU_point());
+	   udao.minus_point(u_id, point);
+	   
+	   //uvo.setU_point(uvo.getU_point() - point);
    }
 
    // read page
@@ -192,11 +200,12 @@ public class PurchaseController {
       logger.info("read페이지로 진입합니다");
       
       
+     
       
       model.addAttribute("vo", pdao.read(id));
       model.addAttribute("cnt_query",pdao.cnt_query(id));
       
-      DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+      DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
       //System.out.println("yyyy/MM/dd HH:mm:ss-> "+dtf.format(LocalDateTime.now()));
 
       
@@ -249,9 +258,8 @@ public class PurchaseController {
       
       pdao.insert(vo);
       session.setAttribute("user", lvo);
-      session.setMaxInactiveInterval(10000000);
       // new
-      return "redirect:/";
+      return "redirect:/purchase/list";
    }
 
    // 이미지파일 브라우저에 출력

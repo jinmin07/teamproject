@@ -209,14 +209,6 @@ input:focus, select:focus {outline:none;}
             var u_gender = $(frm.gender).val();
             var u_email = $(frm.email).val();
             var u_phone = $(frm.phone).val();
-            
-
-            if (u_id == "" || u_pass == "" || u_name == "" || u_age == ""
-                  || u_addr1 == "" || u_addr2 == "" || u_gender == "" || u_email == ""
-                  || u_phone == "") {
-               alert("내용을 모두 입력하세요");
-               return;
-            }
 
             $.ajax({
                type : "post",

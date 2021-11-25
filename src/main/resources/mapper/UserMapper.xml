@@ -29,4 +29,8 @@
   	<select id="pick_up_u_pass" resultType = "com.example.domain.UserVO">
   		select * from tbl_user where u_id = #{u_id}
   	</select>
+  	<update id="eval_member">
+  		update tbl_user set u_score = u_score + #{value}
+		where u_id = #{u_id}
+  	</update>
 </mapper>

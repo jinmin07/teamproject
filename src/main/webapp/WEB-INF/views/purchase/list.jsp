@@ -454,7 +454,7 @@ a:-webkit-any-link {
                   </p>
                   <p>
                      <input type="radio" id="ca3" name="cate" value="ca3"/>
-                     <label for="ca3">뷰티용품</label>
+                     <label for="ca3">미용용품</label>
                   </p>
                   <p>
                      <input type="radio" id="ca4" name="cate" value="ca4"/>

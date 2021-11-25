@@ -39,7 +39,7 @@
 						<a href="/member/logout">로그아웃</a>
 					</div>
 					<div class="active">
-						<a href="/mypage/subpage"><strong style="color:black; ">${user.u_name}</strong>님</a>
+						<a href="/mypage/my_profile"><strong style="color:black; ">${user.u_name}</strong>님</a>
 					</div>
 				</c:if>
 		</div>
@@ -68,7 +68,7 @@
 							<path d="M22 22l-5-5"></path>
 							<circle cx="11" cy="11" r="8"></circle></svg>
 						</div>
-						<a href="/mypage/subpage" style="color:inherit;width:27px;margin-left:20px;">
+						<a href="/mypage/my_profile" style="color:inherit;width:27px;margin-left:20px;">
 							<i class="far fa-user" style=" margin-top:16px;font-size: 35px;"></i>
 						</a>
 						<a href="/myfeed/list" style="color:inherit; width:27px;margin-left:30px;">
@@ -141,7 +141,7 @@
 		   var date = items[1];
 		   $("#notice_date").html(date);
 		   $("#notice_content").html(sender +"님이 보내신 알림이 도착했습니다.");
-		   $("#notice").show();
+		   //$("#notice").show();
 	   }
 	   
       $.ajax({
