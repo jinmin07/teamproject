@@ -384,7 +384,7 @@
 	$("#chk_user").on("click", "span a", function(e){
 		e.preventDefault();
 		var url = "/course_member?id=" + id;
-		window.open(url,"", "width=400, height=400, top=200, left=900, location=no");
+		window.open(url,"", "width=500, height=400, top=200, left=900, location=no");
 	});
 	
 	// 신청 취소하기 버튼

@@ -228,6 +228,12 @@ public class MypageController {
 		
 	}
 	
+	@RequestMapping(value = "/evaluate_member",method = RequestMethod.POST)
+	@ResponseBody
+	public void evaluate_memberPost(String member, int value) throws Exception {
+		udao.eval_member(member, value);		
+	}
+	
 	@RequestMapping("/my_profile.json")
 	@ResponseBody
 	public UserVO my_profile_JSON(String u_id){

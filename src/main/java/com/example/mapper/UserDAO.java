@@ -20,7 +20,9 @@ public List<UserVO> list();
 	
 	public UserVO pick_up_u_pass(UserVO vo) throws Exception;
 	
-	public void plus_point(String u_id, int u_point);
+	public void plus_point(String u_id, int point);
 	
-	public void minus_point(String u_id, int u_point);
+	public void minus_point(String u_id, int point);
+
+	public void eval_member(String u_id, int value);
 }

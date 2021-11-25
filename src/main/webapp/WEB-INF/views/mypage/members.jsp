@@ -22,17 +22,25 @@
 	<tr class="title">
 		<td width=100>아이디</td>
 		<td width=100>이름</td>
-		<td width=100>성별</td>
-		<td width=100>호감지수</td>
-		<td width=100>수정</td>
+		<td width=80>성별</td>
+		<td width=80>호감지수</td>
+		<td width=250>평가</td>
 	</tr>
 	{{#each .}}
-		<tr class="row">
+		<tr class="sub">
 			<td class="member">{{member}}</td>
 			<td class="u_name">{{u_name}}</td>
 			<td class="u_gender">{{u_gender}}</td>
 			<td class="u_score">{{u_score}}</td>
-			<td><button class="btn_member_out">평가</button></td>
+			<td class="eval">
+				<select class = "score_eval">
+					<option value="1">다음에도 같이할래요</option>
+					<option value="0">한번으로 좋았어요</option>
+					<option value="-1">다음엔 같이 안할래요</option>
+					<option value="-10">No-Show 멤버예요</option>
+				</select>
+				<button class="btn_member_eval">평가</button>
+			</td>
 		</tr>
 	{{/each}}
 	</script>
@@ -44,20 +52,21 @@
 <script>
 	var tbl_code="${tbl_code}";
 	var id= "${id}";
+	
 	getList();
 	
-	$("#tbl").on("click", ".btn_member_out", function(){
-		var c_member = $(this).parent().parent().find(".u_name").html();
-		if(!confirm(c_member+"님을 거절하시겠습니까?")) return;
-		
+	$("#tbl").on("click", ".btn_member_eval", function(){
+		var name = $(this).parent().parent().find(".u_name").html();
+		var member = $(this).parent().parent().find(".member").html();
+		var value = $(this).parent().find(".score_eval").val();
+		if(!confirm(name+"님의 평가를 저장하시겠습니까?")) return;
 		$.ajax({
 			type:"post",
-			url: "/delete_member",
-			data: {"c_id": c_id, "c_member" : c_member},
+			url: "/mypage/evaluate_member",
+			data: {"value": value, "member" : member},
 			success : function(){
-				alert("거절이 완료되었습니다.");
-				getList();
-				$(opener.location).attr("href", "javascript:getLocation();");
+				alert("평가가 완료되었습니다.");
+				window.close();
 			}
 		});
 	});
