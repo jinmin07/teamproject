@@ -220,11 +220,11 @@ public class MypageController {
 	public String my_profile_updatePost(Model model,HttpServletRequest request,UserVO vo) throws Exception {
 		logger.info("내 정보 변경 POST");
 		HttpSession session = request.getSession();
+		System.out.println(vo.toString());
 		
 		mservice.my_profile_update(vo);
-		session.invalidate();
 		
-		return "redirect:/";
+		return "redirect:/mypage/my_profile";
 		
 	}
 	

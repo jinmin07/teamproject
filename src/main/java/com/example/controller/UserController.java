@@ -113,6 +113,8 @@ public class UserController {
 		try {
 			String password = passEncoder.encode(vo.getU_pass());
 			vo.setU_pass(password);
+			
+			System.out.println(vo.toString());
 			udao.insert(vo);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

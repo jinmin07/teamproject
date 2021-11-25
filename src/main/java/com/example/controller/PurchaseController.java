@@ -208,14 +208,14 @@ public class PurchaseController {
       model.addAttribute("now", dtf.format(LocalDateTime.now()));
       model.addAttribute("user", uvo);
       model.addAttribute("chk_member", pdao.chk_member(id, uvo.getU_id()));
-      model.addAttribute("index", 1);
+      model.addAttribute("index", 2);
       model.addAttribute("pageName", "purchase/read.jsp");
       return "home";
    }
 
    @RequestMapping(value = "/insert")
    public String insert(Model model) {
-      model.addAttribute("index", 1);
+      model.addAttribute("index", 2);
       model.addAttribute("pageName", "purchase/insert.jsp");
       return "home";
    }
@@ -296,7 +296,7 @@ public class PurchaseController {
    public String purchase_reply(int id,Model model) {
       ProductVO vo = pdao.read(id);
       model.addAttribute("vo", vo);
-      model.addAttribute("index", 1);
+      model.addAttribute("index", 2);
       model.addAttribute("pageName", "purchase/queryInsert.jsp");
       
       return "home";
@@ -317,7 +317,7 @@ public class PurchaseController {
    public String purchase_query(int id, Model model){
       ProductVO pvo = pdao.read(id);
       model.addAttribute("vo", pvo);
-      model.addAttribute("index", 1);
+      model.addAttribute("index", 2);
       model.addAttribute("pageName", "purchase/queryInsert.jsp");
       return "home";
    }

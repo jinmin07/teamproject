@@ -2,201 +2,204 @@
     pageEncoding="UTF-8"%>
 <style>
 #content {
-	text-align: center;
+   text-align: center;
 }
 
 #course {
-	width: 960px;
-	margin: 0 auto;
-	display: inline-block;
+   width: 960px;
+   margin: 0 auto;
+   display: inline-block;
 }
 .view {
-	width: 1024px;
-	margin: 0 auto;
+   width: 1024px;
+   margin: 0 auto;
 }
 .view button{
-	width:80px;
-	font-size:16px;
-	margin:0px;
-	padding: 5px 15px;
-	font-family:"맑은고딕";
-	font-weight: 600;
-	color: #fff;    	
-	background-color: #35c5f0;
+   width:80px;
+   font-size:16px;
+   margin:0px;
+   padding: 5px 15px;
+   font-family:"맑은고딕";
+   font-weight: 600;
+   color: #fff;       
+   background-color: #35c5f0;
 }
 .view button:hover{
-	background-color: #09addb;
+   background-color: #09addb;
 }
 
 <!-- 리스트 search CSS -->
 .listoption {
-	margin: 0 auto;
-	width: 1200px;
-	margin-bottom: 20px;
-	border-top: 1px solid #e5e5e5;
-	border-bottom: 1px solid #e5e5e5;
-	overflow: hidden;
+   margin: 0 auto;
+   width: 1200px;
+   margin-bottom: 20px;
+   border-top: 1px solid #e5e5e5;
+   border-bottom: 1px solid #e5e5e5;
+   overflow: hidden;
 }
 
 .box3 {
-	height: 320px;
-	width: 420px;
-	border-bottom: 1px solid #e5e5e5;
-	justify-content: flex-end;
-	background-color: #F0FFFF;
-	float: left;
-	margin-left:110px;
+   height: 320px;
+   width: 420px;
+   border-top: 1px solid #e5e5e5;
+   border-bottom: 1px solid #e5e5e5;
+   justify-content: flex-end;
+   background-color: #F0FFFF;
+   float: left;
+   margin-left:110px;
 }
 
 .list {
-	font-size: 14px;
+   font-size: 14px;
 }
 
 .box3 .list .title, .box4 .list .title {
-	line-height: 32px;
-	margin: 5px 0px;
-	font-weight: 600;
+   line-height: 32px;
+   margin: 5px 0px;
+   font-weight: 600;
 }
 
 .box4 .list .title {
-	margin: 5px 0;
-	width: auto;
-	line-height: 28px;
+   margin: 5px 0;
+   width: auto;
+   line-height: 28px;
 }
 
 .box3 .list .checkbox1, .box4 .list .checkbox2, .box4 .gender .checkbox3,
-	.box4 .local .checkbox4 {
-	margin-left: 10px;
-	position: relative;
-	display: flex;
-	display: -webkit-flex;
-	flex-wrap: wrap;
-	-webkit-flex-wrap: wrap;
-	align-items: center;
+   .box4 .local .checkbox4 {
+   margin-left: 10px;
+   position: relative;
+   display: flex;
+   display: -webkit-flex;
+   flex-wrap: wrap;
+   -webkit-flex-wrap: wrap;
+   align-items: center;
 }
 p {
-	margin: 5px;
-	display: block
+   margin: 5px;
+   display: block
 }
 input[type=radio] {
-	border: 0;
-	clip: rect(0, 0, 0, 0);
-	height: 1px;
-	margin: -1px;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	width: 0;
+   border: 0;
+   clip: rect(0, 0, 0, 0);
+   height: 1px;
+   margin: -1px;
+   overflow: hidden;
+   padding: 0;
+   position: absolute;
+   width: 0;
 }
 .checkbox1 input+label {
-	position: relative;
-	display: block;
-	cursor: pointer;
-	font-size: 15px;
-	width: 72px;
-	line-height: 30px;
-	text-align: center;
-	border: 1px solid #333;
+   position: relative;
+   display: block;
+   cursor: pointer;
+   font-size: 15px;
+   width: 72px;
+   line-height: 30px;
+   text-align: center;
+   border: 1px solid #333;
 }
 .checkbox2 label, .checkbox3 label, .checkbox4 label {
-	cursor: pointer;
-	padding: 5px 8px;
-	width: 56px;
-	line-height: 26px;
-	text-align: center;
-	border: 1px solid #bdbdbd;
-	color: #bdbdbd;
+   cursor: pointer;
+   padding: 5px 8px;
+   width: 56px;
+   line-height: 26px;
+   text-align: center;
+   border: 1px solid #bdbdbd;
+   color: #bdbdbd;
 }
 .checkbox1 input:checked+label {
-	color: #fff;
-	font-weight: 600;
-	background-color: #6b6ce2;
-	border-color: #6b6ce2;
+   color: #fff;
+   font-weight: 600;
+   background-color: #6b6ce2;
+   border-color: #6b6ce2;
 }
 .checkbox2 input:checked+label, .checkbox3 input:checked+label,
-	.checkbox4 input:checked+label {
-	color: white;
-	border: 1px solid black;
-	font-weight: 600;
-	background-color: black;
+   .checkbox4 input:checked+label {
+   color: white;
+   border: 1px solid black;
+   font-weight: 600;
+   background-color: black;
 }
 
 .box4 {
-	height: 320px;
-	width: 53%;
-	background-color: #f7f8fa;
-	display: -webkit-flex;
+   height: 320px;
+   width: 53%;
+   background-color: #f7f8fa;
+   display: -webkit-flex;
+   border-top: 1px solid #e5e5e5;
+   border-bottom: 1px solid #e5e5e5;
 }
 
 .box4 .list {
-	width: 720px;
+   width: 720px;
 }
 
 .box .box4 .list li {
-	display: flex;
-	display: -webkit-flex;
+   display: flex;
+   display: -webkit-flex;
 }
 
 .box4 .list .age {
-	padding-bottom: 10px;
-	width: 470px;
-	border-bottom: 1px solid #dbdbdb;
-	border-right: 1px solid #dbdbdb;
-	display: block;
+   padding-bottom: 10px;
+   width: 470px;
+   border-bottom: 1px solid #dbdbdb;
+   border-right: 1px solid #dbdbdb;
+   display: block;
 }
 
 .box4 .list .gender {
-	padding-bottom: 10px;
-	padding-left: 15px;
-	width: 200px;
-	border-bottom: 1px solid #dbdbdb;
+   padding-bottom: 10px;
+   padding-left: 15px;
+   width: 200px;
+   border-bottom: 1px solid #dbdbdb;
 }
 
 .box .list {
-	margin: 5px 0px;
-	padding: 5px 5px 5px 10px;
-	display: flex;
-	display: -webkit-flex;
-	flex-wrap: wrap;
-	-webkit-flex-wrap: wrap;
+   margin: 5px 0px;
+   padding: 5px 5px 5px 10px;
+   display: flex;
+   display: -webkit-flex;
+   flex-wrap: wrap;
+   -webkit-flex-wrap: wrap;
 }
 .local {
-	padding: 10px 0;
-	width: 100%;
+   padding: 10px 0;
+   width: 100%;
 }
 .search {
-	width: 100%;
-	flex-wrap: wrap;
-	-webkit-flex-wrap: wrap;
+   width: 100%;
+   flex-wrap: wrap;
+   -webkit-flex-wrap: wrap;
 }
 .search .insearch {
-	display: inline-block;
-	width: calc(100% - 125px);
-	height: 42px;
+   display: inline-block;
+   width: calc(100% - 125px);
+   height: 42px;
 }
 .insearch input {
-	padding: 0 10px;
-	background-color: transparent;
+   padding: 0 10px;
+   background-color: transparent;
 }
 .txt {
-	width: 100%;
-	height: 100%;
-	display: block;
-	border: 1px solid #999;
+   width: 100%;
+   height: 100%;
+   display: block;
+   border: 1px solid #999;
 }
 .search button {
-	margin-left: 10px;
-	width: 95px;
-	height: 42px;
-	color: #fff;
-	font-weight: 600;
-	background-color: #35c5f0;
-	cursor: pointer;
-	padding: 0;
-	font-size: 16px;
+   margin-left: 10px;
+   width: 95px;
+   height: 42px;
+   color: #fff;
+   font-weight: 600;
+   background-color: #35c5f0;
+   cursor: pointer;
+   padding: 0;
+   font-size: 16px;
 }
 .search button:hover{
-	border-color: #09addb;
+   border-color: #09addb;
     background-color: #09addb;
 }
 <!-- 리스트 search CSS 끝-->
@@ -204,9 +207,9 @@ input[type=radio] {
 
 <!--리스트 출력 CSS -->
 .box_list {
-	max-width: 1299px;
+   max-width: 1299px;
     margin-top: 40px;
-}	
+}   
 .sub_cnt_slide_wrap {
     width: 90%;
     margin: 0 auto;
@@ -221,7 +224,7 @@ input[type=radio] {
     position: relative;
 }
 .sub_cnt_list:hover{
-	transform: scale(1.05);	
+   transform: scale(1.05);   
 }
 
 .pick_con_img {
@@ -232,7 +235,7 @@ input[type=radio] {
 }
 
 .main_cnt_txtbox {
-	padding: 8px;
+   padding: 8px;
     text-align: center;
     color: #333;
     background: #fff;
@@ -326,7 +329,7 @@ a:-webkit-any-link {
 }
 
 .infor3{
-	margin-top:5px;
+   margin-top:5px;
 }
 .infor3::before {
     content: "";
@@ -336,7 +339,7 @@ a:-webkit-any-link {
     margin: 5px 0;
     margin-right:2px;
     background: #969696;
-}	
+}   
 
 .heart {
     display: inline-block;
@@ -373,269 +376,269 @@ a:-webkit-any-link {
 <!-- 리스트 출력 CSS 끝 -->
 </style>
 <div class="listoption">
-	<div class="box box3" >
-		<dl class="list">
-			<dt><h3 class="title">모집분야별</h3></dt>
-			<dd>
-				<div class="checkbox1" id="searchType" >
-					<p>
-							<input type="radio" id="allCate"  name="cate" value="allCate" checked />
-							<label for="allCate">전체</label>
-						</p>
-						<p>
-							<input type="radio" id="ca1" name="cate" value="ca1" />
-							<label for="ca1">스터디</label>
-						</p>
-						<p>
-							<input type="radio" id="ca2" name="cate" value="ca2" />
-							<label for="ca2">클래스</label>
-						</p>
-						<p>
-							<input type="radio" id="ca3" name="cate" value="ca3" />
-							<label for="ca3">소모임</label>
-						</p>
-						<br/>
-						<p>
-							<input type="radio" id="sub1" name="cate" value="sub1" />
-							<label for="sub1">스터디><br/>어학</label>
-						</p>
-						<p>
-							<input type="radio" id="sub2" name="cate" value="sub2"/>
-							<label for="sub2">스터디><br/>취업</label>
-						</p>
-						<p>
-							<input type="radio" id="sub3" name="cate" value="sub3"/>
-							<label for="sub3">스터디><br/>재테크</label>
-						</p>
-						<p>
-							<input type="radio" id="sub4" name="cate" value="sub4"/>
-							<label for="sub4">스터디><br/>기타</label>
-						</p>
-						<br/>
-						<p>
-							<input type="radio" id="sub5" name="cate" value="sub5"/>
-							<label for="sub5">클래스><br/>공예</label>
-						</p>
-						<p>
-							<input type="radio" id="sub6" name="cate" value="sub6"/>
-							<label for="sub6">클래스><br/>쿠킹</label>
-						</p>
-						<p>
-							<input type="radio" id="sub7" name="cate" value="sub7"/>
-							<label for="sub7">클래스><br/>운동</label>
-						</p>
-						<p>
-							<input type="radio" id="sub8" name="cate" value="sub8"/>
-							<label for="sub8">클래스><br/>기타</label>
-						</p>
-						<br/>
-						<p>
-							<input type="radio" id="sub9" name="cate" value="sub9"/>
-							<label for="sub9">소모임><br/>공연예술</label>
-						</p>
-						<p>
-							<input type="radio" id="sub10" name="cate" value="sub10"/>
-							<label for="sub10">소모임><br/>맛집탐방</label>
-						</p>
-						<p>
-							<input type="radio" id="sub11" name="cate" value="sub11"/>
-							<label for="sub11">소모임><br/>여행</label>
-						</p>
-						<p>
-							<input type="radio" id="sub12" name="cate" value="sub12"/>
-							<label for="sub12">소모임><br/>기타</label>
-						</p>
-				</div>
-			</dd>
-		</dl>
-	</div>
-	
-	<div class="box box4">
-		<ul class="list">
-			<li class="age">
-				<h3 class="title">연령별</h3>
-				<div class="checkbox2" id="searchType">
-					<p>
-						<input type="radio" id="allAge" name="age" value="allAge"  checked/>
-						<label for="allAge">전체</label>
-					</p>
-					<p>
-						<input type="radio" id="age1" name="age" value="age1"/>
-						<label for="age1">20대 이하</label>
-					</p>
-					<p>
-						<input type="radio" id="age2" name="age" value="age2"/>
-						<label for="age2">20대~30대</label>
-					</p>
-					<p>
-						<input type="radio" id="age3" name="age" value="age3"/>
-						<label for="age3">40대~50대</label>
-					</p>
-					<p>
-						<input type="radio" id="age4" name="age" value="age4"/>
-						<label for="age4">60대 이상</label>
-					</p>
-				</div>
-			</li> 
-			
-			<li class="gender">
-				<h3 class="title">성별</h3>
-				<div class="checkbox3" id="searchType">
-					<p>
-						<input type="radio" id="allGender" name="gender" value="allGender" checked/>
-						<label for="allGender">전체</label>
-					</p>
-					<p>
-						<input type="radio" id="man" name="gender" value="m"/>
-						<label for="man">남성</label>
-					</p>
-					<p>
-						<input type="radio" id="woman" name="gender" value="w"/>
-						<label for="woman">여성</label>
-					</p>
-				</div>
-			</li>
-			<li class="local" >
-				<h3 class="title">지역별</h3>
-					<div class="checkbox4" id="searchType">
-						<p>
-							<input type="radio" id="allCheck"  name="local" value="all"  checked />
-							<label for="allCheck">전국</label>
-						</p>
-						<p>
-							<input type="radio" id="seoul" name="local" value="seoul"/>
-							<label for="seoul">서울시</label>
-						</p>
-						<p>
-							<input type="radio" id="incheon" name="local" value="incheon"/>
-							<label for="incheon">인천시</label>
-						</p>
-						<p>
-							<input type="radio" id="gyeonggi" name="local" value="gyeonggi"/>
-							<label for="gyeonggi">경기도</label>
-						</p>
-					</div>
-			</li>
-			<li class="search">
-				<div class="insearch" id="searchType">
-					<input type="text" class="txt" id="searchtxt" name="searchtxt" placeholder="제목 검색"/>
-				</div>
-				<button type="button" id="searchbtn" style="">조회</button>				
-			</li>
-		</ul>
-	</div>
+   <div class="box box3" >
+      <dl class="list">
+         <dt><h3 class="title">모집분야별</h3></dt>
+         <dd>
+            <div class="checkbox1" id="searchType" >
+               <p>
+                     <input type="radio" id="allCate"  name="cate" value="allCate" checked />
+                     <label for="allCate">전체</label>
+                  </p>
+                  <p>
+                     <input type="radio" id="ca1" name="cate" value="ca1" />
+                     <label for="ca1">스터디</label>
+                  </p>
+                  <p>
+                     <input type="radio" id="ca2" name="cate" value="ca2" />
+                     <label for="ca2">클래스</label>
+                  </p>
+                  <p>
+                     <input type="radio" id="ca3" name="cate" value="ca3" />
+                     <label for="ca3">소모임</label>
+                  </p>
+                  <br/>
+                  <p>
+                     <input type="radio" id="sub1" name="cate" value="sub1" />
+                     <label for="sub1">스터디><br/>어학</label>
+                  </p>
+                  <p>
+                     <input type="radio" id="sub2" name="cate" value="sub2"/>
+                     <label for="sub2">스터디><br/>취업</label>
+                  </p>
+                  <p>
+                     <input type="radio" id="sub3" name="cate" value="sub3"/>
+                     <label for="sub3">스터디><br/>재테크</label>
+                  </p>
+                  <p>
+                     <input type="radio" id="sub4" name="cate" value="sub4"/>
+                     <label for="sub4">스터디><br/>기타</label>
+                  </p>
+                  <br/>
+                  <p>
+                     <input type="radio" id="sub5" name="cate" value="sub5"/>
+                     <label for="sub5">클래스><br/>공예</label>
+                  </p>
+                  <p>
+                     <input type="radio" id="sub6" name="cate" value="sub6"/>
+                     <label for="sub6">클래스><br/>쿠킹</label>
+                  </p>
+                  <p>
+                     <input type="radio" id="sub7" name="cate" value="sub7"/>
+                     <label for="sub7">클래스><br/>운동</label>
+                  </p>
+                  <p>
+                     <input type="radio" id="sub8" name="cate" value="sub8"/>
+                     <label for="sub8">클래스><br/>기타</label>
+                  </p>
+                  <br/>
+                  <p>
+                     <input type="radio" id="sub9" name="cate" value="sub9"/>
+                     <label for="sub9">소모임><br/>공연예술</label>
+                  </p>
+                  <p>
+                     <input type="radio" id="sub10" name="cate" value="sub10"/>
+                     <label for="sub10">소모임><br/>맛집탐방</label>
+                  </p>
+                  <p>
+                     <input type="radio" id="sub11" name="cate" value="sub11"/>
+                     <label for="sub11">소모임><br/>여행</label>
+                  </p>
+                  <p>
+                     <input type="radio" id="sub12" name="cate" value="sub12"/>
+                     <label for="sub12">소모임><br/>기타</label>
+                  </p>
+            </div>
+         </dd>
+      </dl>
+   </div>
+   
+   <div class="box box4">
+      <ul class="list">
+         <li class="age">
+            <h3 class="title" style="margin-right:420px;">연령별</h3>
+            <div class="checkbox2" id="searchType">
+               <p>
+                  <input type="radio" id="allAge" name="age" value="allAge"  checked/>
+                  <label for="allAge">전체</label>
+               </p>
+               <p>
+                  <input type="radio" id="age1" name="age" value="age1"/>
+                  <label for="age1">20대 이하</label>
+               </p>
+               <p>
+                  <input type="radio" id="age2" name="age" value="age2"/>
+                  <label for="age2">20대~30대</label>
+               </p>
+               <p>
+                  <input type="radio" id="age3" name="age" value="age3"/>
+                  <label for="age3">40대~50대</label>
+               </p>
+               <p>
+                  <input type="radio" id="age4" name="age" value="age4"/>
+                  <label for="age4">60대 이상</label>
+               </p>
+            </div>
+         </li> 
+         
+         <li class="gender">
+            <h3 class="title" style="margin-right:165px;">성별</h3>
+            <div class="checkbox3" id="searchType">
+               <p>
+                  <input type="radio" id="allGender" name="gender" value="allGender" checked/>
+                  <label for="allGender">전체</label>
+               </p>
+               <p>
+                  <input type="radio" id="man" name="gender" value="m"/>
+                  <label for="man">남성</label>
+               </p>
+               <p>
+                  <input type="radio" id="woman" name="gender" value="w"/>
+                  <label for="woman">여성</label>
+               </p>
+            </div>
+         </li>
+         <li class="local" >
+            <h3 class="title" style="margin-right:670px;">지역별</h3>
+               <div class="checkbox4" id="searchType">
+                  <p>
+                     <input type="radio" id="allCheck"  name="local" value="all"  checked />
+                     <label for="allCheck">전국</label>
+                  </p>
+                  <p>
+                     <input type="radio" id="seoul" name="local" value="seoul"/>
+                     <label for="seoul">서울시</label>
+                  </p>
+                  <p>
+                     <input type="radio" id="incheon" name="local" value="incheon"/>
+                     <label for="incheon">인천시</label>
+                  </p>
+                  <p>
+                     <input type="radio" id="gyeonggi" name="local" value="gyeonggi"/>
+                     <label for="gyeonggi">경기도</label>
+                  </p>
+               </div>
+         </li>
+         <li class="search">
+            <div class="insearch" id="searchType">
+               <input type="text" class="txt" id="searchtxt" name="searchtxt" placeholder="제목 검색"/>
+            </div>
+            <button type="button" id="searchbtn" style="">조회</button>            
+         </li>
+      </ul>
+   </div>
 </div>
 
 
 <div class="view">
-	<div style="text-align:left; margin-left:10px; padding-bottom:7px; border-bottom:1px dotted gray; margin-bottom:15px;">
-		<div style="display: inline-block; margin-left:-320px;">
-			<h4 id="total" style=" margin-bottom:5px; "></h4>
-		</div>
-		<div style="display: inline-block; float: right; margin-top: 20px; margin-right: 15px;">
-			<button onClick="location.href='/course/insert'">등록</button>
-		</div>
-	</div>
+   <div style="text-align:left; margin-left:10px; padding-bottom:7px; border-bottom:1px dotted gray; margin-bottom:15px;">
+      <div style="display: inline-block;">
+         <h4 id="total" style=" margin-bottom:5px; "></h4>
+      </div>
+      <div style="display: inline-block; float: right; margin-top: 20px; margin-right: 15px;">
+         <button onClick="location.href='/course/insert'">등록</button>
+      </div>
+   </div>
 </div>
 
 <div id="course"></div>
-<script id="temp" type="text/x-handlebars-template">	
+<script id="temp" type="text/x-handlebars-template">   
 {{#each list}}
 <div class="box_list">
-	<div class="list_sub_wrap">
-		<ul class="sub_cnt_slide_wrap sub_cnt_slide01_wrap">
-			<li class="sub_cnt_list sub_cnt_list01">
-				<a href="read?id={{id}}">
-					<div class="pick_con_img">
-						<img src="../resources/course/{{tbl_code}}.jpg" width= 260 height= 155>
-					</div>	
-					<div class="main_cnt_txtbox">
-						<dl>
-							<dt class="view20Byte">{{title}}</dt>
-							<dd>
-								<p class="infor thin date_infor txt02">{{date_start}} ~ {{date_end}}</p>
-								<p class="infor2 thin txt03">
-									<span class="check_person thin">
-										<strong>{{c_cnt_member}}</strong>/{{c_tot_member}}
-									</span>
-									<span class="thin add_infor">{{c_local}}</span>
-								</p>
-							</dd>
-							<dd>
-								<p class="infor3">
-								<span class="heart" id="heart">
-									<img id="heart_img" src="../resources/course/icons_heart.png" width=12>
-									<span class="new-heart">{{c_cnt_feed}}</span>
-								</span>
-								<strong class="thin">
-									조회&nbsp; <span class="red thin">{{c_view}}</span>건
-								</strong>
-								</p>
-							</dd>
-						</dl>
-					</div>			
-				</a>
-			</li>
-		</ul>
-	</div>
+   <div class="list_sub_wrap">
+      <ul class="sub_cnt_slide_wrap sub_cnt_slide01_wrap">
+         <li class="sub_cnt_list sub_cnt_list01">
+            <a href="read?id={{id}}">
+               <div class="pick_con_img">
+                  <img src="../resources/course/{{tbl_code}}.jpg" width= 260 height= 155>
+               </div>   
+               <div class="main_cnt_txtbox">
+                  <dl>
+                     <dt class="view20Byte">{{title}}</dt>
+                     <dd>
+                        <p class="infor thin date_infor txt02">{{date_start}} ~ {{date_end}}</p>
+                        <p class="infor2 thin txt03">
+                           <span class="check_person thin">
+                              <strong>{{c_cnt_member}}</strong>/{{c_tot_member}}
+                           </span>
+                           <span class="thin add_infor">{{c_local}}</span>
+                        </p>
+                     </dd>
+                     <dd>
+                        <p class="infor3">
+                        <span class="heart" id="heart">
+                           <img id="heart_img" src="../resources/course/icons_heart.png" width=12>
+                           <span class="new-heart">{{c_cnt_feed}}</span>
+                        </span>
+                        <strong class="thin">
+                           조회&nbsp; <span class="red thin">{{c_view}}</span>건
+                        </strong>
+                        </p>
+                     </dd>
+                  </dl>
+               </div>         
+            </a>
+         </li>
+      </ul>
+   </div>
 </div>
 {{/each }}
 </script>
 
 <!-- 페이징 -->
 <div style="text-align: center; margin-bottom:10px;">
-	<div id="pagination" class="pagination"></div>
+   <div id="pagination" class="pagination"></div>
 </div>
 <script src="/resources/pagination.js"></script>
 
 
 <script>
-	var page = 1;
-	getList();
+   var page = 1;
+   getList();
 
-	
-	
+   
+   
 //엔터키 클릭시 검색
-	$("#searchtxt").on("keypress",function(e){
-		if(e.keyCode==13){
-			page=1;
-			getList();
-		}
-	});
+   $("#searchtxt").on("keypress",function(e){
+      if(e.keyCode==13){
+         page=1;
+         getList();
+      }
+   });
 
-	$("#searchbtn").on("click",function(){
-		page=1;
-		getList();
-	});
+   $("#searchbtn").on("click",function(){
+      page=1;
+      getList();
+   });
 
-	function getList(){
-		var keyword=$("#searchtxt").val();
-		var catType=$(".checkbox1 input[type=radio]:checked").val();
-		var ageType=$(".checkbox2 input[type=radio]:checked").val();
-		var genderType=$(".checkbox3 input[type=radio]:checked").val();
-		var searchType=$(".checkbox4 input[type=radio]:checked").val();
-		
-		$.ajax({
-			type: "get",
-			url: "/course/list.json",
-			dataType: "json",
-			data : {"page" : page,"keyword":keyword,"catType":catType,"ageType":ageType,"genderType":genderType,"searchType":searchType},
-			success: function(data){
-				var temp=Handlebars.compile($("#temp").html());
-				$("#course").html(temp(data));
-				$("#pagination").html(getPagination(data));
-				$("#total").html(data.pm.totalCount +"개의 게시글이 있습니다.");
-			}
-			
-		});
-	}
+   function getList(){
+      var keyword=$("#searchtxt").val();
+      var catType=$(".checkbox1 input[type=radio]:checked").val();
+      var ageType=$(".checkbox2 input[type=radio]:checked").val();
+      var genderType=$(".checkbox3 input[type=radio]:checked").val();
+      var searchType=$(".checkbox4 input[type=radio]:checked").val();
+      
+      $.ajax({
+         type: "get",
+         url: "/course/list.json",
+         dataType: "json",
+         data : {"page" : page,"keyword":keyword,"catType":catType,"ageType":ageType,"genderType":genderType,"searchType":searchType},
+         success: function(data){
+            var temp=Handlebars.compile($("#temp").html());
+            $("#course").html(temp(data));
+            $("#pagination").html(getPagination(data));
+            $("#total").html(data.pm.totalCount +"개의 게시글이 있습니다.");
+         }
+         
+      });
+   }
 
-	$("#pagination").on("click", "a", function(e){
-		e.preventDefault();
-		page=$(this).attr("href");
-		getList();
-	});
-	
+   $("#pagination").on("click", "a", function(e){
+      e.preventDefault();
+      page=$(this).attr("href");
+      getList();
+   });
+   
 </script>
-	
+   
     

@@ -32,7 +32,7 @@
 		<input type = "text" name = "b_writer" value="${user.u_id}" hidden/>
 		<select name = "b_category">
 			<option value="정보제공">정보제공</option>
-			<option value="맛집추전">맛집추천</option>
+			<option value="맛집추천">맛집추천</option>
 			<option value="후기">후기</option>
 		</select>
 		<input type = "text" name = "title" placeholder = "제목을 입력하세요"/>

@@ -58,7 +58,7 @@ public class CourseController {
 		HttpSession session = request.getSession();
 		UserVO uvo = (UserVO) session.getAttribute("user");
 		model.addAttribute("chk_member", dao.chk_member(id, uvo.getU_id()));
-		model.addAttribute("index", 2);
+		model.addAttribute("index", 1);
 		model.addAttribute("pageName", "course/read.jsp" );
 		return "home";
 	}
@@ -115,7 +115,7 @@ public class CourseController {
 		CategoryVO category = dao.list_category(cvo.getTbl_code());
 		model.addAttribute("vo", cvo);
 		model.addAttribute("category", category);
-		model.addAttribute("index", 2);
+		model.addAttribute("index", 1);
 		model.addAttribute("pageName", "course/queryInsert.jsp");
 		return "home";
 	}
@@ -175,7 +175,7 @@ public class CourseController {
 	//course insert 페이지
 	@RequestMapping("/course/insert")
 	public String insert(Model model){
-		model.addAttribute("index", 2);
+		model.addAttribute("index", 1);
 		model.addAttribute("pageName", "course/cinsert.jsp");
 		return "home";
 	}
@@ -199,7 +199,7 @@ public class CourseController {
 	// course list 페이지
 	@RequestMapping("/course/list")
 	public String list(Model model) {
-		model.addAttribute("index", 2);
+		model.addAttribute("index", 1);
 		model.addAttribute("pageName", "course/clist.jsp");
 		return "home";
 	}
@@ -222,7 +222,7 @@ public class CourseController {
 		model.addAttribute("start", start);
 		model.addAttribute("end", end);
 		model.addAttribute("vo",dao.list_course(id));
-		model.addAttribute("index", 2);
+		model.addAttribute("index", 1);
 		model.addAttribute("pageName", "course/cupdate.jsp");
 		return "home";
 	}
