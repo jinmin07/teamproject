@@ -237,7 +237,7 @@ public class CourseController {
 		Date date_end = sdf.parse(end);
 		vo.setDate_end(date_end);
 		
-		dao.update_course(vo);
+		//dao.update_course(vo);
 		
 		String content = "모집 신청하신 공동생활 [" + old_title + "] 진행 건이 작성자의 요청에 의해 수정되었습니다. 이용에 참고하시기 바랍니다.";
 		NoticeVO nvo = new NoticeVO();
@@ -246,6 +246,7 @@ public class CourseController {
 			nvo.setTbl_id(vo.getId());
 			nvo.setSender("admin");
 			nvo.setContent(content);
+			System.out.println(nvo.toString());
 		for(int i = 0; i< list.size(); i++){
 			String member = (String)list.get(i).get("member");
 			nvo.setReceiver(member);

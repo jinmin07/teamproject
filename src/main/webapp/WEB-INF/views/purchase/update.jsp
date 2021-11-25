@@ -81,21 +81,22 @@ button{
 			<input type="file" name="file" style="display: none;" /><br />
 		</div>
 		<div>
-			<input type="hidden" name="tbl_code" value="${vo.tbl_code}"/> 
-			<input type="hidden" name="id" value="${vo.id}"/> 
+			<input type="hidden" name="id" value="${vo.id}" readonly/> 
+			<input type="hidden" name="tbl_code" value="${vo.tbl_code}" readonly/> 
 			<h3>작성자</h3>
 			<c:if test="${ user != null}">
 				<input type="text" name="p_writer" value="${user.u_id}"/>
 			</c:if>
 			<h3>카테고리</h3>
-			<select id="p_category" name="p_category">
-				<option value="p_food">음식</option>
-				<option value="p_fashion">패션</option>
-				<option value="p_sport">운동</option>
-				<option value="p_digital">가전</option>
-				<option value="p_beauty">미용</option>
-			</select><br/>
+		<select name="p_category">
+			<option value="음식">음식</option>
+			<option value="패션용품">패션용품</option>
+			<option value="운동용품">운동용품</option>
+			<option value="가전제품">가전제품</option>
+			<option value="미용용품">미용용품</option>
+		</select><br/>
 			<h3>상품명</h3>
+			<input type="hidden" name="old_title" placeholder="상품명" value="${vo.title}"/> <br/>
 			<input type="text" name="title" placeholder="상품명" value="${vo.title}"/> <br/>
 			<h3>링크</h3>
 			<input type="text" name="p_link" placeholder="링크주소" value="${vo.p_link}"/> <br/>

@@ -100,7 +100,7 @@
 
 	<select id="totCount" resultType="int">
 		select count(*) from
-		tbl_purchase
+		tbl_purchase where p_state = 0;
 	</select>
 	
 	<update id="update">

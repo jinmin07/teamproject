@@ -5,7 +5,7 @@
 #products {
 	margin : 0px auto;
 	width: 1000px;
-	height:1000px;
+	height:1080px;
 	overflow: hidden;
 }
 
@@ -217,7 +217,7 @@
 }
 .sub_cnt_list {
     width: 250px !important;
-    height: auto;
+    height: 340px;
     margin: 11px 10px 10px;
     float: left;
     box-shadow: 2px 2px 2px rgb(0 0 0 / 10%);

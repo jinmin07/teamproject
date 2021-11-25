@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -77,7 +76,7 @@ button{
 <form name="frm" enctype="multipart/form-data">
 	<div class="sub">
 	<div class="image">
-		<img id="image" src="http://placehold.it/300x300" /> 
+		<img name="p_image" id="image" src="http://placehold.it/300x300" width=350 height=350/>
 		<input type="file" name="file" style="display: none" />
 	</div>
 
@@ -87,11 +86,11 @@ button{
 			<input type="text" name="p_writer" value="${user.u_id}"/>
 		</c:if>
 		<select name="p_category">
-			<option value="p_food">음식</option>
-			<option value="p_fashion">패션</option>
-			<option value="p_sport">운동</option>
-			<option value="p_digital">가전</option>
-			<option value="p_beauty">미용</option>
+			<option value="음식">음식</option>
+			<option value="패션용품">패션용품</option>
+			<option value="운동용품">운동용품</option>
+			<option value="가전제품">가전제품</option>
+			<option value="미용용품">미용용품</option>
 		</select><br/>
 		<input type="text" name="title" placeholder="상품명" /> <br/>
 		<input type="text" name="p_link" placeholder="링크주소" /> <br/>
