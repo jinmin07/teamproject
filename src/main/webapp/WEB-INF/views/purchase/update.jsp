@@ -70,9 +70,6 @@ button{
 	margin:0px auto;
 }
 </style>
-
-<h1>[상품 등록]</h1>
-
 <form name="frm" enctype="multipart/form-data">
 	<div class="row">
 		<div class="image">
@@ -102,8 +99,6 @@ button{
 			<input type="text" name="p_link" placeholder="링크주소" value="${vo.p_link}"/> <br/>
 			<h3>상품가격</h3>
 			<input type="text" name="p_price" placeholder="상품 가격" value="${vo.p_price}"/> <br/>
-			<h3>할인가격</h3>
-			<input type="text" name="p_salePrice" placeholder="세일 가격" value="${vo.p_salePrice}"/><br/>
 			<h3>총 모집인원</h3>
 			<input type="text" name="p_tot_member" placeholder="최대모집인원" value="${vo.p_tot_member}"/><br/>
 			<div class="date">
@@ -117,6 +112,8 @@ button{
 			<div class="address_button" onclick="execution_daum_address()">
 					<button>주소찾기</button>
 			</div>
+			<h3>한줄 소개</h3>
+			<textarea id="p_content" name="p_content" style="height: 200px;width: 600px;resize:none;" placeholder="상품에 대한 설명을 써주세요">${vo.p_content}</textarea>
 		</div>
 	</div>	
 	<hr/>

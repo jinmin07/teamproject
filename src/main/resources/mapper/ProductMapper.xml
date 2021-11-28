@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.ProductMapper">
+	<!-- 결제 완료 -->
+	<update id="pay_state">
+		update tbl_purchase_member set pay_state = 1
+		where p_id = #{p_id} and p_member = #{p_member}
+	</update>
+	<!-- 거래 완료 -->
+	<update id="deal_state">
+		update tbl_purchase_member set deal_state = 1
+		where p_id = #{p_id} and p_member = #{p_member}
+	</update>
+	<select id="chk_pay" resultType="int">
+		select pay_state from tbl_purchase_member
+		where p_id = #{p_id} and p_member = #{p_member}
+	</select>
+	<select id="chk_deal" resultType="int">
+		select deal_state from tbl_purchase_member
+		where p_id = #{p_id} and p_member = #{p_member}
+	</select>
+	<select id="cnt_pay_rest" resultType="int">
+		select count(*) from tbl_purchase_member
+		where p_id = #{p_id} and pay_state = 0
+	</select>
+	<select id="cnt_deal_rest" resultType="int">
+		select count(*) from tbl_purchase_member
+		where p_id = #{p_id} and deal_state = 0
+	</select>
 	<!-- 피드수 증가 -->
 	<update id="add_feed_cnt">
 		update tbl_purchase set p_cnt_feed = p_cnt_feed + #{value}
@@ -105,7 +131,7 @@
 	
 	<update id="update">
 		update tbl_purchase set title=#{title},p_link = #{p_link},p_salePrice = #{p_salePrice},p_tot_member = #{p_tot_member},date_start = #{date_start},date_end = #{date_end},
-		p_price=#{p_price}, p_image=#{p_image}, p_category=#{p_category},p_local = #{p_local}
+		p_price=#{p_price}, p_image=#{p_image}, p_category=#{p_category},p_local = #{p_local}, p_content = #{p_content}
 		where id = #{id}
 	</update>
 

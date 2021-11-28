@@ -19,7 +19,7 @@ form {
    padding-left: 100px;
 }
 
-button {
+button, input[type=button] {
    background-color: #fff;
     border-color: #35c5f0;
     color: #35c5f0;
@@ -40,13 +40,17 @@ button {
    font-weight: 600;
 }
 
-button:hover{
+input[type=button]:hover{
    background-color: #effbff;
 }
 
 input[type=submit]:hover{
-   border-color: #09addb;
+	border-color: #09addb;
     background-color: #09addb;
+}
+
+button:hover {
+	background-color: #effbff;
 }
 
 input:focus, select:focus {outline:none;}
@@ -83,7 +87,7 @@ input:focus, select:focus {outline:none;}
    width: 327px;
 }
 
-.id_check,.address_button,.mail_check_button,.mail_check_button_warn{
+.id_check,#address_button,#mail_check_button,#mail_check_button_warn{
    float: right;
    margin-right: 140px;
    height: 50px;
@@ -139,7 +143,7 @@ input:focus, select:focus {outline:none;}
             <div class="address_input_1_box" style=" width:357px; display:inline-block;">
                <input class="address_input_1" name="addr1" placeholder="우편번호" />
             </div>   
-            <button type="button" class ="address_button" onclick="execution_daum_address()">주소찾기</button>
+            <button type="button" id ="address_button" onclick="execution_daum_address()">주소찾기</button>
          </div>
          <div class="address_input_2_wrap" style="margin-top:20px;" >
             <div class="address_input_2_box">
@@ -165,7 +169,7 @@ input:focus, select:focus {outline:none;}
          <span class="ps_box box_right_space" style="display: inline-block; width:357px;" >
             <input type="text" name="email" class="mail_input" maxlength="100" placeholder="이메일"/>
          </span>
-         <button  class="mail_check_button">번호발송</button>
+         <input type="button" id="mail_check_button" value="번호발송"/>
       </div>
       
       
@@ -174,7 +178,7 @@ input:focus, select:focus {outline:none;}
          <span class="mail_check_input_box" id="mail_check_input_box_false" style="display: inline-block; width:357px;">
             <input type="text"  name="mail_check_input" class="mail_check_input" placeholder="인증번호"/>
          </span>
-         <button class="mail_check_button_warn">번호확인</button>
+         <input type="button" id="mail_check_button_warn" value="번호확인"/>
       </div>
       
       <!-- <span id="mail_check_input_box_warn">인증</span><br/>-->
@@ -209,7 +213,16 @@ input:focus, select:focus {outline:none;}
             var u_gender = $(frm.gender).val();
             var u_email = $(frm.email).val();
             var u_phone = $(frm.phone).val();
-
+            
+            if (u_id == "" || u_pass == "" || u_name == "" || u_age == ""
+				|| u_addr1 == "" || u_addr2 == "" || u_gender == "" || u_email == ""
+				|| u_phone == "") {
+					alert("내용을 모두 입력하세요");
+					return;
+			}
+            
+            if (!confirm("등록하시겠습니까?")) return;
+            
             $.ajax({
                type : "post",
                url : "/member/insert",
@@ -226,19 +239,22 @@ input:focus, select:focus {outline:none;}
                   "u_phone" : u_phone
                },
                success : function() {
-                  if (!confirm("등록하시겠습니까?")) return;
-                  frm.submit();
-                  location.href = "/";
+                 location.href = "/";
                }
             });
          });
    
    /* 인증번호 이메일 전송 */
-   $(".mail_check_button").click(function(){
+   $("#mail_check_button").click(function(){
        
        var email = $(".mail_input").val();            // 입력한 이메일
        var checkBox = $(".mail_check_input");        // 인증번호 입력란
        var boxWrap = $(".mail_check_input_box");    // 인증번호 입력란 박스
+       
+       if(email==""){
+    	   alert("이메일 주소를 입력해주세요."); 
+    	   return;
+       }
        
        $.ajax({
            
@@ -260,7 +276,7 @@ input:focus, select:focus {outline:none;}
    });
    
    /* 인증번호 비교 */
-   $(".mail_check_button_warn").click(function(){
+   $("#mail_check_button_warn").click(function(){
        
        var inputCode = $(".mail_check_input").val();        // 입력코드    
        var checkResult = $("#mail_check_input_box_warn");    // 비교 결과     
@@ -328,7 +344,10 @@ input:focus, select:focus {outline:none;}
    $('.id_check').on("click", function(){
 
       var u_id = $('.id_input').val();         // .id_input에 입력되는 값
-      
+  	  if(u_id == ""){
+  		  alert("아이디를 입력하세요.");
+  		  return;
+  	  }  
       $.ajax({
          type : "post",
          url : "/member/memberIdChk",

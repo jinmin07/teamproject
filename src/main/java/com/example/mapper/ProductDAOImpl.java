@@ -140,4 +140,46 @@ public class ProductDAOImpl  implements ProductDAO{
 	public ProductVO list_purchase(int id) {
 		return session.selectOne(namespace + ".list_purchase",id);
 	}
+
+	@Override
+	public void pay_state(int p_id, String p_member) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("p_id", p_id);
+		map.put("p_member", p_member);
+		session.update(namespace + ".pay_state", map);
+	}
+
+	@Override
+	public void deal_state(int p_id, String p_member) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("p_id", p_id);
+		map.put("p_member", p_member);
+		session.update(namespace + ".deal_state", map);
+	}
+
+	@Override
+	public int cnt_pay_rest(int p_id) {
+		return session.selectOne(namespace + ".cnt_pay_rest", p_id);
+	}
+
+	@Override
+	public int cnt_deal_rest(int p_id) {
+		return session.selectOne(namespace + ".cnt_deal_rest", p_id);
+	}
+
+	@Override
+	public int chk_pay(int p_id, String p_member) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("p_id", p_id);
+		map.put("p_member", p_member);
+		return session.selectOne(namespace+".chk_pay", map);
+	}
+
+	@Override
+	public int chk_deal(int p_id, String p_member) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("p_id", p_id);
+		map.put("p_member", p_member);
+		return session.selectOne(namespace+".chk_deal", map);
+	}
 }

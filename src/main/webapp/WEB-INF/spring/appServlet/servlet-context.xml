@@ -48,10 +48,10 @@
    <interceptors>
  	<interceptor>
          <mapping path="/*/read"/>
+         <mapping path="/*/update"/>
          <mapping path="/purchase/insert"/>
          <mapping path="/course/insert"/>
          <mapping path="/board/insert"/>
-         <mapping path="/*/update"/>
          <mapping path="/mypage/*"/>
          <mapping path="/myfeed/*"/>
          <mapping path="/notice/*"/>

@@ -12,20 +12,33 @@
 		border-bottom: 1px solid gray;
 		font-size: 20px;
 	}
-	input[type=submit],input[type=reset]{
+	input[type=submit]{
+		background-color: #35c5f0;
+	    border-color: #35c5f0;
+	    color: #fff;
 		font-size:16px;
 		margin:0px;
 		padding: 5px 15px;
 		font-family:"맑은고딕";
 		font-weight: 600;
 	}
-	input[type=submit]:hover,input[type=reset]:hover{
-		background: #dbb4b4;
+	input[type=reset]{
+		background-color: #fff;
+	    border-color: #35c5f0;
+	    color: #35c5f0;
+		font-size:16px;
+		margin:0px;
+		padding: 5px 15px;
+		font-family:"맑은고딕";
+		font-weight: 600;
+	}
+	input[type=submit]:hover{
+		border-color: #09addb;
+	    background-color: #09addb;
 	}
 	.box {float: left; width: 190; text-align: center;}
 </style>
-<h1>[글수정]</h1>
-<form name = "frm" method = "post" enctype="multipart/form-data" style="overflow : hidden; margin:50px auto;">
+<form name = "frm" method = "post" enctype="multipart/form-data" style="overflow : hidden; margin:80px auto;">
 	<div style = "float : left; margin-top: 5px; margin-bottom: 20px;">
 		<img id="b_image" src = "/board/display?fileName=${vo.b_image}" width=350 height=350/>
 	</div>
@@ -38,7 +51,7 @@
 		</select>
 		<input type = "text" name = "title" value = "${vo.title}"/>
 		<input type = "hidden" name = "id" value = "${vo.id}"/><br/>
-		<textarea rows="15" cols="76" name="b_content" style="resize: none;">${vo.b_content}</textarea>
+		<textarea rows="15" cols="78" name="b_content" style="resize: none;">${vo.b_content}</textarea>
 		<input type = "file" name = "file" style="display : none;"/><br/>
 	</div>	
 	<div style="margin: 20px; clear:both;">

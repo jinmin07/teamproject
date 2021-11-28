@@ -128,7 +128,12 @@
 			<button type="button" class="btn_gray" id="delete" title="삭제"  >삭제</button>
 		</c:if>
 		<c:if test="${user!=null and user.u_id != 'admin' }">
-			<button type="button" id ="myfeed_insert" class="btn_gray"  title="내 피드"  >내 피드</button>
+		<c:if test="${chk_feed  == 0}">
+			<button type="button" id ="myfeed_insert" class="btn_gray"  title="내 피드"  >피드♡</button>
+		</c:if>
+		<c:if test="${chk_feed  != 0}">
+			<button type="button" id ="myfeed_del" class="btn_gray"  title="내 피드"  >피드♥</button>
+		</c:if>
 		</c:if>
 		<button type="button" onClick="location.href='/support/list'"  class="btn_list" title="목록">목록</button>
 	</div>
@@ -145,13 +150,22 @@
 			type: "post",
 			url: "/support/feed_insert",
 			data: {"user_id": login_id, "tbl_code": tbl_code, "primary_id": id},
-			success: function(data){
-				if(data == 0 ){
-					alert("내 피드로 옮겨졌습니다.");
-				}else{
-					alert("이미 내 피드에 있는 글입니다.");
-				}
-				
+			success: function(){
+				location.href="/support/read?id="+id;
+			}
+		});
+	});
+	
+	//마이피드에서 지우기
+	$("#myfeed_del").on("click", function(){
+		var tbl_code = "${vo.tbl_code}";
+		if(!confirm("내 피드에서 삭제하시겠습니까?")) return;
+		$.ajax({
+			type: "post",
+			url: "/support/feed_del",
+			data: {"user_id": login_id, "tbl_code": tbl_code, "primary_id": id},
+			success: function(){
+				location.href="/support/read?id="+id;
 			}
 		});
 	});

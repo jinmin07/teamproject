@@ -39,7 +39,7 @@
 	getNoticeList();
 
 	// 알림 삭제
-	$("#divNotice").on("click", ".box .heading a", function(e){
+	$("#divNotice").on("click", ".packing .heading .close", function(e){
 		e.preventDefault();
 		var n_id=$(this).parent().find(".n_id").html();
 		if(!confirm("알림을 삭제하실래요?")) return;
@@ -50,17 +50,9 @@
 			data: {"n_id":n_id},
 			success : function(){
 				alert("알림 삭제가 완료되었습니다.");
-				sock_notice.send("delete|" + id);
 				getNoticeList();
 			}
 		});
-	});
-
-	// 세부 정보로 이동
-	$("#divNotice").on("click", ".box .body a", function(e){
-		e.preventDefault();
-		alert("이동하실래요?");
-	
 	});
 	
 	// 알림목록

@@ -154,6 +154,13 @@ input:focus, select:focus {outline:none;}
             <option value="남자">남자</option>
             <option value="여자">여자</option>
          </select>
+         
+         <h3>보유 포인트</h3>
+         <div>
+            <span class="ps_box box_right_space" style="display: inline-block; " >
+               <input type="text" id="u_point" value="${user.u_point}" readonly/>
+            </span>
+         </div>
          <h3>이메일</h3>
          <div>
             <span class="ps_box box_right_space" style="display: inline-block; " >
@@ -176,10 +183,10 @@ input:focus, select:focus {outline:none;}
             </div>
             
             <div class="address_input_1_box" style="margin-top:10px;">
-               <input type="text" class="address_input_2" name="u_addr2" value="${user.u_addr2}"/>
+               <input type="text" class="address_input_2" id="u_addr2" name="u_addr2" value="${user.u_addr2}"/>
             </div>
             <div class="address_input_1_box" style="margin-top:10px;">
-               <input type="text" class="address_input_3" name="u_addr3" value="${user.u_addr3}"/>
+               <input type="text" class="address_input_3" id="u_addr3" name="u_addr3" value="${user.u_addr3}"/>
             </div>
          </div>
          
@@ -197,6 +204,10 @@ input:focus, select:focus {outline:none;}
 <script>
    var u_id = "${user.u_id}";
    var u_pass = "${user.u_pass}";
+   
+ //DB값 불러와서 지역 selected
+	$("#u_gender").val('${user.u_gender}').prop('selected', true);
+   
    
    $("#update").on("click",function(e){
       e.preventDefault();

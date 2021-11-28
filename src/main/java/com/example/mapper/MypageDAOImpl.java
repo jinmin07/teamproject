@@ -121,4 +121,12 @@ public class MypageDAOImpl implements MypageDAO {
 		return session.selectList(namespace + ".my_attend_course",c_writer);
 	}
 
+	@Override
+	public List<String> list_atte_member(int id, String tbl_code) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("tbl_code", tbl_code);
+		map.put("id", id);
+		return session.selectList(namespace +".list_atte_member", map);
+	}
+
 }

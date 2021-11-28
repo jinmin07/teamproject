@@ -4,7 +4,7 @@
 	<!-- 신청명단 출력 -->
 	<select id="list_member" resultType="hashmap">
 		<if test='tbl_code=="P"'>
-			select p_id id, p_member member, u_name, u_gender, u_score from tbl_purchase_member m, tbl_user
+			select p_id id, p_member member, u_name, u_gender, u_score, pay_state, deal_state from tbl_purchase_member m, tbl_user
 			where p_member = u_id and p_id = #{id}
 		</if>
 		<if test='tbl_code=="C"'>
@@ -12,6 +12,19 @@
 			where c_member = u_id and c_id = #{id}
 		</if> 
 	</select>
+	
+	<!-- 신청멤버 아이디만 출력 -->
+	<select id="list_atte_member" resultType="String">
+		<if test='tbl_code=="P"'>
+			select p_member member from tbl_purchase_member
+			where p_id = #{id}
+		</if>
+		<if test='tbl_code=="C"'>
+			select c_member member from tbl_course_member
+			where c_id = #{id}
+		</if> 
+	</select>
+	
 	<select id="myfeedlist" resultType="com.example.domain.MyfeedVO">
 		select * from tbl_feed
 		where user_id = #{user_id}
@@ -94,7 +107,7 @@
 		where u_id = #{u_id}
 	</update>
 	<select id="my_attend_purchase" resultType="com.example.domain.ProductVO">
-		select p.p_writer,u.u_id,p.tbl_code,p.id,p.title,m.p_id from tbl_purchase as p,tbl_purchase_member as m,tbl_user as u
+		select p.p_writer,p.p_price,u.u_id,p.tbl_code,p.id,p.title,m.p_id from tbl_purchase as p,tbl_purchase_member as m,tbl_user as u
 		where p.id = m.p_id and p.p_writer = u.u_id and m.p_member = #{p_writer} and p.p_state = 0;
 	</select>
 	<select id="my_attend_course" resultType="com.example.domain.course.CourseVO">

@@ -129,19 +129,20 @@
 	var u_id="${user.u_id}";
 	var sock_notice;
 	if(u_id != ""){ //로그인되어있으면
-      sock_notice = new SockJS("http://localhost:8088/sock_notice");
+      sock_notice = new SockJS("http://192.168.1.185:8088/sock_notice");
       sock_notice.onmessage = onNoticeMessage;
 	}
 	
    //서버에서 메시지를 받은 경우
    function onNoticeMessage(msg){
 	   var items= msg.data.split("|");
-	   if(items[0] != "delete"){
-		   var sender = items[0];
-		   var date = items[1];
+	   if(items[0] == u_id){
+		   var receiver = items[0];
+		   var content = items[1];
+		   var date = items[2];
 		   $("#notice_date").html(date);
-		   $("#notice_content").html(sender +"님이 보내신 알림이 도착했습니다.");
-		   //$("#notice").show();
+		   $("#notice_content").html(receiver +"님께 알림이 도착했습니다.");
+		   $("#notice").show();
 	   }
 	   
       $.ajax({

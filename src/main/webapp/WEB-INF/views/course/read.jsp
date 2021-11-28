@@ -105,7 +105,12 @@
 			</div>
 			<div style="float: left; width: 450px; text-align: left;">
 				<c:if test="${vo.c_writer!=user.u_id}">
-					<img id="myfeed_insert" style="float: right;" src="../resources/course/icons_heart.png" width=20>
+					<c:if test="${chk_feed  == 0}">
+						<img id="myfeed_insert" style="float: right;" src="../resources/course/icons_heart.png" width=20>
+					</c:if>
+					<c:if test="${chk_feed  != 0}">
+						<img id="myfeed_del" style="float: right;" src="../resources/course/red_heart.png" width=20>
+					</c:if>
 				</c:if>
 				<h3>${vo.title}</h3>
 				<h5>모임장소 : ${vo.c_place}</h5>
@@ -147,10 +152,10 @@
 				</div>
 			</div>
 			<div id="reg_user" style="float: left; width: 450px;">
-				<c:if test="${vo.c_cnt_member != vo.c_tot_member}">
+				<c:if test="${vo.c_cnt_member != vo.c_tot_member && vo.c_writer!=user.u_id && chk_member!=1}">
 					<button id="btn_member_insert">신청하기</button>
 				</c:if>
-				<c:if test="${vo.c_cnt_member == vo.c_tot_member}">
+				<c:if test="${vo.c_cnt_member == vo.c_tot_member || chk_member==1}">
 					<button id="btn_member_end" disabled="disabled">신청하기</button>
 				</c:if>
 				<c:if test="${chk_member==1}">
@@ -230,14 +235,23 @@
 			type: "post",
 			url: "/course/feed_insert",
 			data: {"user_id": login_id, "tbl_code": tbl_code, "primary_id": id},
-			success: function(data){
-				if(data == 0 ){
-					alert("내 피드로 옮겨졌습니다.");
-					$("#myfeed_insert").attr('src','../resources/course/red_heart.png');
-				}else{
-					alert("이미 내 피드에 있는 글입니다.");
-					$("#myfeed_insert").attr('src','../resources/course/red_heart.png');
-				}
+			success: function(){
+				alert("내 피드로 옮겨졌습니다.");
+				getLocation();
+			}
+		});
+	});
+	
+	// 마이피드에서 지우기
+	$("#myfeed_del").on("click", function(){
+		if(!confirm("내 피드에서 삭제하시겠습니까?")) return;
+		$.ajax({
+			type: "post",
+			url: "/course/feed_del",
+			data: {"user_id": login_id, "tbl_code": tbl_code, "primary_id": id},
+			success: function(){
+				alert("내 피드에서 삭제되었습니다.");
+				getLocation();
 			}
 		});
 	});
@@ -272,10 +286,9 @@
 	$("#query").on("click", ".list .content a", function(e){
 		e.preventDefault();
 		var query_id = $(this).attr("href");
-		var query_writer = $(this).attr("query_writer");
 		if(!confirm("문의글을 삭제하시겠습니까?")) return;
 		sock_notice.send("admin");
-		var n_content = query_writer + "님이 작성하신 공동생활 [" + title + "] 진행 건에 대한 문의글이 삭제되었습니다."; 
+		var n_content = login_id + "님이 작성하신 공동생활 [" + title + "] 진행 건에 대한 문의글이 삭제되었습니다."; 
 		$.ajax({
 			type:"post",
 			url: "/delete_query",

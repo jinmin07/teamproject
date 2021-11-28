@@ -33,4 +33,12 @@
   		update tbl_user set u_score = u_score + #{value}
 		where u_id = #{u_id}
   	</update>
+  	<update id="minus_point">
+  		update tbl_user set u_point = u_point - #{point}
+		where u_id = #{u_id}
+  	</update>
+  	  	<update id="plus_point">
+  		update tbl_user set u_point = u_point + #{point}
+		where u_id = #{u_id}
+  	</update>
 </mapper>

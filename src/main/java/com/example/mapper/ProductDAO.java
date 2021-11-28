@@ -50,4 +50,12 @@ public interface ProductDAO {
 	public void delete_query(int p_query_id);
 	
 	public void query_state(int p_id);
+	
+	public void pay_state(int p_id,String p_member);
+	public void deal_state(int p_id,String p_member);
+	public int cnt_pay_rest(int p_id);
+	public int cnt_deal_rest(int p_id);
+	public int chk_pay(int p_id,String p_member);
+	public int chk_deal(int p_id,String p_member);
+	
 }

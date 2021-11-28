@@ -47,6 +47,7 @@ import com.example.mapper.MypageDAO;
 import com.example.mapper.NoticeDAO;
 import com.example.mapper.ProductDAO;
 import com.example.mapper.UserDAO;
+import com.example.service.MypageService;
 import com.example.service.PurchaseService;
 
 @Controller
@@ -72,6 +73,9 @@ public class PurchaseController {
    
    @Autowired
    PurchaseService service;
+   
+	@Autowired
+	MypageService mservice;
 
    //상품출력
    @RequestMapping(value = "/list")
@@ -162,6 +166,22 @@ public class PurchaseController {
       return url;
    }
    
+   @RequestMapping(value = "/pay_state",method = RequestMethod.POST)
+   @ResponseBody
+   public int pay_statePost(String p_writer, String p_member, int p_id) {
+	   int cnt_pay_rest = service.purchase_pay_state(p_member, p_id);
+	   if(cnt_pay_rest == 0){
+		   NoticeVO nvo = new NoticeVO();
+		   nvo.setTbl_code("P");
+		   nvo.setTbl_id(p_id);
+		   nvo.setSender("admin");
+		   nvo.setReceiver(p_writer);
+		   nvo.setContent("진행중인 공동 구매건 결제가 완료되었습니다. 구매를 진행해주세요.");
+		   ndao.insert(nvo);
+	   }
+	   return cnt_pay_rest;
+   }
+   
    @RequestMapping(value = "/plus_point",method = {RequestMethod.GET,RequestMethod.POST})
    @ResponseBody
    public void plus_point(Model model,HttpServletRequest request,String u_id,int point) {
@@ -199,24 +219,31 @@ public class PurchaseController {
    public String read(Model model, int id,HttpServletRequest request) throws Exception {
       logger.info("read페이지로 진입합니다");
       
-      
-     
-      
       model.addAttribute("vo", pdao.read(id));
       model.addAttribute("cnt_query",pdao.cnt_query(id));
-      
+      model.addAttribute("attMember", mdao.list_atte_member(id, "P"));
       DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
       //System.out.println("yyyy/MM/dd HH:mm:ss-> "+dtf.format(LocalDateTime.now()));
-
       
       HttpSession session = request.getSession();
       UserVO uvo = (UserVO) session.getAttribute("user");
-      UserVO uuvo = new UserVO();
-      ProductVO vo = new ProductVO();
       
+	   // 피드여부 확인 
+ 		MyfeedVO fvo = new MyfeedVO();
+ 		fvo.setPrimary_id(id);
+ 		fvo.setTbl_code("P");
+ 		fvo.setUser_id(uvo.getU_id());
+ 		int chk_pay=0;
+ 		int chk_member = pdao.chk_member(id, uvo.getU_id());
+ 		if(chk_member != 0){
+ 			chk_pay = pdao.chk_pay(id, uvo.getU_id());
+ 		}
+      
+ 	  model.addAttribute("chk_feed", mdao.chk_feed(fvo));
       model.addAttribute("now", dtf.format(LocalDateTime.now()));
       model.addAttribute("user", uvo);
-      model.addAttribute("chk_member", pdao.chk_member(id, uvo.getU_id()));
+      model.addAttribute("chk_member", chk_member);
+      model.addAttribute("chk_pay", chk_pay);
       model.addAttribute("index", 2);
       model.addAttribute("pageName", "purchase/read.jsp");
       return "home";
@@ -236,12 +263,8 @@ public class PurchaseController {
    }
 
    @RequestMapping(value = "/insert", method = RequestMethod.POST)
-   public String insertPost(UserVO user, ProductVO vo, MultipartHttpServletRequest multi,HttpServletRequest request,String start,String end) throws Exception {
+   public String insertPost(UserVO user, ProductVO vo, MultipartHttpServletRequest multi,String start,String end) throws Exception {
       System.out.println(vo.toString());
-      
-      UserVO lvo = udao.userLogin(user);
-      
-      HttpSession session = request.getSession();
       
       MultipartFile file = multi.getFile("file"); // 업로드한 파일 지정
       // 파일 이름 유니크하게
@@ -257,7 +280,6 @@ public class PurchaseController {
       vo.setDate_end(date_end);
       
       pdao.insert(vo);
-      session.setAttribute("user", lvo);
       // new
       return "redirect:/purchase/list";
    }
@@ -353,6 +375,28 @@ public class PurchaseController {
       
    }
    
+   @RequestMapping(value="/deal_state", method=RequestMethod.POST)
+   @ResponseBody
+   public int deal_state(int p_price, String p_writer, int p_id, String p_member){	   
+	   int chk_deal=pdao.chk_deal(p_id, p_member);
+	   int cnt_deal_rest = service.purchase_deal_state(p_id, p_member);
+	   if(cnt_deal_rest == 0){
+		   NoticeVO nvo = new NoticeVO();
+		   nvo.setTbl_code("P");
+		   nvo.setTbl_id(p_id);
+		   nvo.setSender("admin");
+		   nvo.setReceiver(p_writer);
+		   nvo.setContent("진행중인 공동 구매건 거래 종료되어 포인트 정산 되었습니다.");
+		   ndao.insert(nvo);
+		   
+		   List<String> list = mdao.list_atte_member(p_id, "P");
+		   int cnt = list.size();
+		   int point = (int)(cnt * p_price * 1.05);
+		   udao.plus_point(p_writer, point);
+	   }
+	   return chk_deal;
+   }
+   
    @RequestMapping(value="/reply_insert", method=RequestMethod.POST)
    @ResponseBody
    public void purchase_reply_insert(PReplyVO vo){
@@ -362,11 +406,14 @@ public class PurchaseController {
    // myfeed insert
    @RequestMapping(value="/feed_insert", method=RequestMethod.POST)
    @ResponseBody
-   public int myfeed_insert(MyfeedVO vo){
-      int result = mdao.chk_feed(vo);
-      if(result == 0){
+   public void myfeed_insert(MyfeedVO vo){
          service.purchase_insert_feed(vo);
-      }
-      return result;
    }
+   
+   // myfeed del
+	@RequestMapping(value="/feed_del", method=RequestMethod.POST)
+	@ResponseBody
+	public void myfeed_del(MyfeedVO vo){
+		mservice.myfeed_delete(vo);
+	}
 }

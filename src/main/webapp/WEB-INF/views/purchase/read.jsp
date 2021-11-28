@@ -16,6 +16,8 @@
         background-color: #ddd;
       }
       
+      #p_link:hover{cursor: pointer;}
+      
       .skills {
         text-align: right;
         padding-top: 10px;
@@ -23,7 +25,7 @@
         color: white;
       }
       .html {background-color: #04AA6D;}
-      #btn_member_end {background: lightgray;}
+      #btn_member_end, #payment_end, #usePoint_end {background: lightgray;}
       
       #home::before {
           content: '';
@@ -107,9 +109,12 @@
             <img id="image" src="../resources/purchaseimg/${vo.p_image}" width=460 height= 350/>
          </div>
          <div style="float: left; width: 450px; text-align: left;">
-            <c:if test="${vo.p_writer!=user.u_id}">
-               <img id="myfeed_insert" style="float: right;" src="../resources/course/icons_heart.png" width=20>
-            </c:if>
+            <c:if test="${chk_feed  == 0}">
+				<img id="myfeed_insert" style="float: right;" src="../resources/course/icons_heart.png" width=20>
+			</c:if>
+			<c:if test="${chk_feed  != 0}">
+				<img id="myfeed_del" style="float: right;" src="../resources/course/red_heart.png" width=20>
+			</c:if>
             <h3>[상품번호:${vo.id}]</h3>
             <h3 id="title">${vo.title}</h3>
             <h5>모임장소 : ${vo.p_local}</h5>
@@ -134,13 +139,12 @@
    <div style="text-align: left; width: 430px; float: left;">
       <h2>▶세부사항</h2>
       <h5>▶카테고리 : ${vo.p_category}</h5>
-      <a id="p_link">▶링크 : ${vo.p_link}</a>
+      <div style="width:430;"><a id="p_link">▶링크 : ${vo.p_link}</a></div>
       <h5 id="price">▶가격 : ${vo.p_price}</h5>
-      <h5>▶상세설명: ${p_content}</h5>
+      <h5>▶상세설명: ${vo.p_content}</h5>
       <h5>▶모임장소 : ${vo.p_local}</h5>
       <div id="map" style="width:100%;height:350px;"></div>
    </div>
-   
       <div class="review_comment" style ="float: left; width:470px; ">
       <div id="chk_user" style="float: left; width: 470px; text-align: left;">
          <div class="new_profile_wrap" style="position:relative;">
@@ -153,11 +157,13 @@
             </div>   
          </div>
          <div id="reg_user" style="float: left; width: 450px;">
-            <c:if test="${vo.p_cnt_member != vo.p_tot_member || vo.p_cnt_member == 0}">
+            <c:if test="${vo.p_cnt_member != vo.p_tot_member && vo.p_writer!=user.u_id && chk_member!=1 }">
                <button id="btn_member_insert">신청하기</button>
             </c:if>
-            <c:if test="${vo.p_cnt_member == vo.p_tot_member}">
-               <button id="btn_member_end" disabled="disabled">신청하기</button>
+            <c:if test="${vo.p_cnt_member == vo.p_tot_member || chk_member==1}">
+               <c:if test="${vo.p_writer!=user.u_id}">
+              	 <button id="btn_member_end" disabled="disabled">신청하기</button>
+               </c:if>
             </c:if>
             <c:if test="${chk_member==1}">
                <button id="btn_member_delete">취소하기</button>
@@ -166,17 +172,32 @@
                <button id="btn_purchase_update">수정하기</button>
                <button id="btnDelete">글삭제</button>
             </c:if>
-            <div id ="purchase_module" style="display:none;">
-            	<div>
-            		<input id="point" type="text" placeholder="포인트 사용하기"/>
-            		<button id="usePoint">전액 사용하기</button>
-            	</div>
-              	<button id="payment">결제하기</button>
-            <div>
+            <div id ="purchase_module" style="display:none; margin-top: 20px;">
+            <c:forEach items="${attMember}" var="p_member">
+				<c:if test="${user.u_id == p_member}">
+					<c:if test="${chk_pay == 0}">
+						<div style="float:left; width:75%">
+		                  <input id="point" type="text" placeholder="포인트 사용하기"/>
+		                  <button id="usePoint" style="width:135px;">전액 사용하기</button>
+		               </div>
+		               <div >
+		                 	<button id="payment">결제하기</button>
+		                </div>
+	                </c:if>
+	                <c:if test="${chk_pay != 0}">
+		                <div style="float:left; width:75%">
+		                  <input id="point" type="text" placeholder="포인트 사용하기" readonly/>
+		                  <button id="usePoint_end" style="width:135px;" disabled="disabled">전액 사용하기</button>
+		               </div>
+		               <div>
+		              	 <button id="payment_end" disabled="disabled">결제하기</button>
+		                </div>
+	                  </c:if>
+				</c:if>
+			</c:forEach>
+            </div>
          </div>   
    </div>
-   
-
       <div class="sub_inner_right sub_inner_right02" style="float: left;">   
       <div class="inner_review">
          <div class="review_comment" id="position03">
@@ -243,6 +264,7 @@ var p_cnt_member = "${vo.p_cnt_member}";
 var p_tot_member = "${vo.p_tot_member}";
 var date_end = "${end}";
 var now = "${now}";
+var title = "${vo.title}";
 
 var p_price = parseInt("${vo.p_price}");
 getList();
@@ -257,28 +279,34 @@ getList();
 	$("#usePoint").on("click",function(e){
 		e.preventDefault();
 		$("#point").val("${user.u_point}");
-		alert("${now}")
-		
 	})
 
    //마이피드로 옮기기
    $("#myfeed_insert").on("click", function(){
-      var tbl_code = "${vo.tbl_code}";
       if(!confirm("내 피드로 옮기시겠습니까?")) return;
       $.ajax({
          type: "post",
          url: "/purchase/feed_insert",
-         data: {"user_id": login_id, "tbl_code": tbl_code, "primary_id": id},
-         success: function(data){
-            if(data == 0 ){
+         data: {"user_id": login_id, "tbl_code": "P", "primary_id": id},
+         success: function(){
                alert("내 피드로 옮겨졌습니다.");
-            }else{
-               alert("이미 내 피드에 있는 글입니다.");
-            }
+               getLocation();
          }
-         
       });
    });
+	
+	$("#myfeed_del").on("click", function(){
+		if(!confirm("내 피드에서 삭제하시겠습니까?")) return;
+		$.ajax({
+			type: "post",
+			url: "/course/feed_del",
+			data: {"user_id": login_id, "tbl_code": "P", "primary_id": id},
+			success: function(){
+				alert("내 피드에서 삭제되었습니다.");
+				getLocation();
+			}
+		});
+	});
    
    $("#p_link").on("click",function(e){
 	    e.preventDefault();
@@ -320,10 +348,11 @@ getList();
       var query_id = $(this).attr("href");
       var query_writer = $(this).attr("query_writer");
       if(!confirm("문의글을 삭제하시겠습니까?")) return;
-      
+      sock_notice.send("admin");
+		var n_content = login_id + "님이 작성하신 공동구매 [" + title + "] 진행 건에 대한 문의글이 삭제되었습니다."; 
       $.ajax({
          type:"post",
-         url: "purchase/delete_query",
+         url: "/purchase/delete_query",
          data: {"p_query_id": query_id},
          success : function(){
             $.ajax({
@@ -371,9 +400,6 @@ getList();
       var login_id = "${user.u_id}";
       var p_writer = "${vo.p_writer}";
       
-      alert(title);
-      alert(price);
-      
       //가맹점 식별코드
       IMP.init('imp27765266');
       IMP.request_pay({
@@ -403,25 +429,26 @@ getList();
             	  url: "/purchase/minus_point",
             	  data: {"u_id":login_id,"point":point},
             	  success : function(){
-            		  alert("보유 포인트를 써서 결제가 완료되었습니다.");
+            		  alert("보유 포인트를 사용하였습니다.");
             	  }
-              })
-              if(login_id == p_writer){
-                $.ajax({
-            	  type : "post",
-            	  url : "/purchase/plus_point",
-            	  data : {"u_id":p_writer,"point":p_price * 0.05},
-            	  success : function(){
-            		  alert("포인트가"+p_price * 0.05+"지급되었습니다.");
-            	  }
-              }); 
-          }
+              });
                 
           } else {
               var msg = '결제에 실패하였습니다.';
                msg += '에러내용 : ' + rsp.error_msg;
+               alert(msg);
           }
-          alert(msg);
+          $.ajax({
+        	  type : "post",
+        	  url : "/purchase/pay_state",
+        	  data : {"p_writer":p_writer, "p_member":login_id,"p_id":id},
+        	  success : function(data){
+        		  alert("결제가 완료되었습니다.");
+        		  if(data == 0){
+        			  sock_notice.send(p_writer+"|진행중인 공동 구매건 결제가 완료되었습니다. 구매를 진행해주세요.");
+        		  }
+        	  }
+          }); 
       });
    }
    
@@ -520,7 +547,7 @@ getList();
          data: {"p_query_id":query_id, "p_reply_content" : reply_content, "p_reply_writer": p_writer},
          success: function(){
             alert("답글 등록이 완료되었습니다.");
-            getList();
+            getLocation();
          }
       });
    });
