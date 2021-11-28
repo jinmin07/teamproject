@@ -58,5 +58,18 @@ public class PurchaseServiceImpl implements PurchaseService {
 		dao.add_feed_cnt(vo.getPrimary_id(), 1);
 		
 	}
+
+	@Transactional
+	@Override
+	public int purchase_pay_state(String p_member, int p_id) {
+		dao.pay_state(p_id, p_member);
+		return dao.cnt_pay_rest(p_id);
+	}
+
+	@Override
+	public int purchase_deal_state(int p_id, String p_member) {
+		dao.deal_state(p_id, p_member);
+		return dao.cnt_deal_rest(p_id);
+	}
 	
 }

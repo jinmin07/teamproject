@@ -29,11 +29,13 @@ import com.example.domain.BoardVO;
 import com.example.domain.Criteria;
 import com.example.domain.MyfeedVO;
 import com.example.domain.PageMaker;
+import com.example.domain.ProductVO;
 import com.example.domain.UserVO;
 import com.example.mapper.AttachDAO;
 import com.example.mapper.BoardDAO;
 import com.example.mapper.MypageDAO;
 import com.example.service.BoardService;
+import com.example.service.MypageService;
 
 @Controller
 @RequestMapping("/board")
@@ -53,6 +55,9 @@ public class BoardController {
 
 	@Autowired
 	BoardService service;
+	
+	@Autowired
+	MypageService mservice;
 
 	@RequestMapping("/list")
 	public String login(Model model) {
@@ -90,12 +95,15 @@ public class BoardController {
 	public String insertPost(BoardVO vo, MultipartHttpServletRequest multi) throws Exception {
 		// 대표이미지 업로드
 		MultipartFile file = multi.getFile("file");
-		if(file != null){
+		
+		if(!file.isEmpty()){
 			String b_image = System.currentTimeMillis() + "_" + file.getOriginalFilename();
 			file.transferTo(new File(path + "/boardimg/" + b_image));
 			vo.setB_image(b_image);
 		}
 		// 데이터입력
+		
+		System.out.println(vo.toString());
 		service.insert(vo);
 		return "redirect:/board/list";
 	}
@@ -120,6 +128,14 @@ public class BoardController {
 		// 로그인 정보의 신청 여부 확인
 		HttpSession session = request.getSession();
 		UserVO uvo = (UserVO) session.getAttribute("user");
+		
+		// 피드여부 확인 
+		MyfeedVO fvo = new MyfeedVO();
+		fvo.setPrimary_id(id);
+		fvo.setTbl_code("B");
+		fvo.setUser_id(uvo.getU_id());
+		
+		model.addAttribute("chk_feed", mdao.chk_feed(fvo));
 		model.addAttribute("chk_rec", bdao.chk_rec(id, uvo.getU_id()));
 		model.addAttribute("attList", adao.list(id));
 		model.addAttribute("index", 4);
@@ -152,7 +168,7 @@ public class BoardController {
 	}
 	
 	// 첨부파일 추가
-	@RequestMapping(value = "/attInsert", method = RequestMethod.POST)
+	@RequestMapping(value = "/attInsert", method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String attInsert(int id, String user_id, MultipartFile file) throws Exception {
 		// 첨부파일 업로드
@@ -196,12 +212,15 @@ public class BoardController {
 	// myfeed insert
 	@RequestMapping(value="/feed_insert", method=RequestMethod.POST)
 	@ResponseBody
-	public int myfeed_insert(MyfeedVO vo){
-		int result = mdao.chk_feed(vo);
-		if(result == 0){
-			service.board_insert_feed(vo);
-		}
-		return result;
+	public void myfeed_insert(MyfeedVO vo){
+		service.board_insert_feed(vo);
+	}
+	
+	// myfeed del
+	@RequestMapping(value="/feed_del", method=RequestMethod.POST)
+	@ResponseBody
+	public void myfeed_del(MyfeedVO vo){
+		mservice.myfeed_delete(vo);
 	}
 	
 	// board_recommand

@@ -76,14 +76,14 @@ button{
 <form name="frm" enctype="multipart/form-data">
 	<div class="sub">
 	<div class="image">
-		<img name="p_image" id="image" src="http://placehold.it/300x300" width=350 height=350/>
+		<img id="image" src="http://placehold.it/300x300" width=350 height=350/> 
 		<input type="file" name="file" style="display: none" />
 	</div>
 
 	
 		<input type="hidden" name="p_id" value="${id}" readonly/> 
 		<c:if test="${ user != null}">
-			<input type="text" name="p_writer" value="${user.u_id}"/>
+			<input type="text" name="p_writer" value="${user.u_id}" readonly/>
 		</c:if>
 		<select name="p_category">
 			<option value="음식">음식</option>
@@ -93,7 +93,7 @@ button{
 			<option value="미용용품">미용용품</option>
 		</select><br/>
 		<input type="text" name="title" placeholder="상품명" /> <br/>
-		<input type="text" name="p_link" placeholder="링크주소" /> <br/>
+		<input type="text" id="p_link" name="p_link" placeholder="링크주소" /> <br/>
 		<input type="text" name="p_price" placeholder="상품 가격" /> <br/>
 		<input type="text" name="p_tot_member" placeholder="최대모집인원"/>
 		<div class="date">
@@ -108,6 +108,8 @@ button{
 		<div class="address_button" onclick="execution_daum_address()">
 			 	<button>주소찾기</button>
 		</div>
+		<h3>한줄 소개</h3>
+		<textarea id="p_content" name="p_content" style="height: 200px;width: 600px;resize: none;" placeholder="상품에 대한 설명을 써주세요"></textarea>
 	</div>	
 	<hr/>
 	<div class="register">
@@ -118,6 +120,10 @@ button{
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js">
 </script>
 <script>
+	
+	
+
+	
 	//이미지 박스 클릭
 	$("#image").on("click", function() {
 		$(frm.file).click();
@@ -131,7 +137,7 @@ button{
 
 	$(frm).on("submit", function(e) {
 		e.preventDefault();
-		var p_image = $(frm.file).val();
+		var p_image = $(frm.file)[0].files[0];
 		var p_category = $(frm.p_category).val();
 		var p_title = $(frm.title).val();
 		var p_link = $(frm.p_link).val();
@@ -142,6 +148,7 @@ button{
 		var date_end = $(frm.date_end).val();
 		var p_local = $(frm.p_local).val();
 		var p_writer = $(frm.p_writer).val();
+		var p_content = $(frm.p_content).val();
 		
 		if (p_price == "" || p_link == "" || p_image == "") {
 			alert("파일등록,상품가격과 상품페이지주소를 입력하세요.");
@@ -151,30 +158,6 @@ button{
 		frm.action = "/purchase/insert";
 		frm.method = "post";
 		frm.submit();
-		
-		 /* $.ajax({
-			type : "post",
-			url : "/purchase/insert",
-			data : {
-				"p_category":p_category,
-				"p_title":p_title,
-				"p_link":p_link,
-				"p_price":p_price,
-				"p_salePrice":p_salePrice,
-				"p_tot_member":p_tot_member,
-				"date_start":date_start,
-				"date_end" : date_end,
-				"p_local" : p_local,
-				"p_image" : p_image
-			},
-			success : function() {
-				if (!confirm("등록하시겠습니까?")) return;
-				frm.submit();
-				location.href = "/purchase/list";
-			}
-		}); */
-		 
-	
 	});
 	
 	/* 다음 주소 연동*/

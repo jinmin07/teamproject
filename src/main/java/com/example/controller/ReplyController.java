@@ -23,8 +23,8 @@ public class ReplyController {
 	BoardService service;
 	
 	@RequestMapping(value="/reply/delete", method=RequestMethod.POST)
-	public void delete(int b_reply_id){
-		rdao.delete(b_reply_id);
+	public void delete(ReplyVO vo){
+		service.board_delete_reply(vo);
 	}
 	
 	@RequestMapping(value="/reply/insert", method=RequestMethod.POST)

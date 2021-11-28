@@ -180,7 +180,7 @@
 <div style="padding:10px 5px 20px 5px; height:250px; width:1000px; margin:0 auto;">
           <div id="slider-div"  >
              <div style="width:980px; margin:0 auto; ">
-                 <a href="/support/read?id=75" ><img src="/resources/banner.jpg" width=960 height=250/></a>             
+                 <a href="/support/read?id=96" ><img src="/resources/banner.jpg" width=960 height=250/></a>             
              </div>
              <div style="width:980px; margin:0 auto; ">
                   <a href="/support/read?id=94" ><img src="/resources/banner2.jpg" width=960 height=250/></a>             
@@ -269,60 +269,60 @@
 
 <section class="main_floor">
    <div class="m_title">
-      <span>지원정책 <strong>추천</strong></span>
-      <a href="/support/list" class="best_more">전체보기</a>
+      <span>공동구매 <strong>추천</strong></span>
+      <a href="/purchase/list" class="best_more">전체보기</a>
    </div>
    <div class="slick-track">
          <li class="slick-item">
-            <a href="/support/read?id=98" class="sbox">
+            <a href="/purchase/read?id=48" class="sbox">
                <div class="imgs">
-                  <img src="/support/display?fileName=1636524884582_14296_16350_2356.png">
+                  <img src="/resources/purchaseimg/1637816683579_공동구매1.jpg">
                </div>
                <div class="info">
                   <div class="tit">
-                     취창업 재직 청년 월세 지원사업   
+               매콤 순살 소갈비찜
                   </div>
                   <div class="txt">
-                     월세 지원받으세요!!
+                       맛있는 갈비찜을 공동구매로 저렴하게!!               
                   </div>
                </div>
             </a>
-            <a href="support/read?id=106" class="sbox">
+            <a href="/purchase/read?id=69" class="sbox">
                <div class="imgs">
-                  <img src="/support/display?fileName=1636525215427_인천안전.jpg">
+                  <img src="/resources/purchaseimg/1637818992774_공동구매9.jpg">
                </div>
                <div class="info">
                   <div class="tit">
-                     인천 안심in
+                       무로 스퀴즈 슈트
                   </div>
                   <div class="txt">
-                     지금 어플을 다운받으세요.
+                                                 공동구매하고 운동하세요!                    
                   </div>
                </div>
             </a>
-            <a href="/support/read?id=110" class="sbox">
+            <a href="/purchase/read?id=57" class="sbox">
                <div class="imgs">
-                  <img src="/support/display?fileName=1636525484931_금연.jpg">
+                  <img src="/resources/purchaseimg/1637818337856_공동구매5.jpg">
                </div>
                <div class="info">
                   <div class="tit">
-                     [강남구] 슬기로운 금연생활
+                        무로 스탠다드 블루라이트 필터안경
                   </div>
                   <div class="txt">
-                     금연을 응원합니다.
+                          공동구매로 싸게! 
                   </div>
                </div>
             </a>
-            <a href="/support/read?id=96" class="sbox" style="border-right:1px solid #e6e6e8;">
+            <a href="/purchase/read?id=59" class="sbox" style="border-right:1px solid #e6e6e8;">
                <div class="imgs">
-                  <img src="/support/display?fileName=1636524813685_9f390460-773c-42ef-ae9b-085f9a207d1d.jpg">
+                  <img src="/resources/purchaseimg/1637818495862_공동구매6.jpg">
                </div>
                <div class="info">
                   <div class="tit">
-                     [마포구] 1인가구 안전도어지킴이 설치지원
+                       슈맥스 와플메이커
                   </div>
                   <div class="txt">
-                     안전 도어지킴이를 지원받으세요.
+                                                 집에서 와플을 간단히
                   </div>
                </div>
             </a>

@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -26,8 +28,10 @@ import com.example.domain.Criteria;
 import com.example.domain.MyfeedVO;
 import com.example.domain.PageMaker;
 import com.example.domain.SupportVO;
+import com.example.domain.UserVO;
 import com.example.mapper.MypageDAO;
 import com.example.mapper.SupportDAO;
+import com.example.service.MypageService;
 import com.example.service.SupportService;
 
 @Controller
@@ -45,7 +49,8 @@ public class SupportController {
 	@Autowired
 	SupportService service;
 	
-	
+	@Autowired
+	MypageService mservice;
 	
 	@RequestMapping("/update")
 	public String supdate(int id,Model model){
@@ -76,7 +81,18 @@ public class SupportController {
 	
 	
 	@RequestMapping("/read")
-	public String sread(int id,Model model){
+	public String sread(HttpServletRequest request, int id,Model model){
+		
+		HttpSession session = request.getSession();
+		UserVO uvo = (UserVO) session.getAttribute("user");
+		
+		// 피드여부 확인 
+		MyfeedVO fvo = new MyfeedVO();
+		fvo.setPrimary_id(id);
+		fvo.setTbl_code("S");
+		fvo.setUser_id(uvo.getU_id());
+		
+		model.addAttribute("chk_feed", mdao.chk_feed(fvo));
 		model.addAttribute("vo",service.read(id));
 		model.addAttribute("index", 3);
 		model.addAttribute("pageName","support/read.jsp");
@@ -169,11 +185,14 @@ public class SupportController {
 	// myfeed insert
 	@RequestMapping(value="/feed_insert", method=RequestMethod.POST)
 	@ResponseBody
-	public int myfeed_insert(MyfeedVO vo){
-		int result = mdao.chk_feed(vo);
-		if(result == 0){
-			service.support_insert_feed(vo);
-		}
-		return result;
+	public void myfeed_insert(MyfeedVO vo){
+		service.support_insert_feed(vo);
+	}
+	
+	// myfeed del
+	@RequestMapping(value="/feed_del", method=RequestMethod.POST)
+	@ResponseBody
+	public void myfeed_del(MyfeedVO vo){
+		mservice.myfeed_delete(vo);
 	}
 }

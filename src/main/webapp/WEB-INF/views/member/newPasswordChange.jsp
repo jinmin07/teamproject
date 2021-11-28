@@ -89,7 +89,7 @@
 				data : {"u_id":id,"u_pass":newPassword},
 				success : function(){
 					alert("비밀번호가 변경되었습니다.");
-					location.href = "/member/login";
+					location.href = "/";
 				}
 			});
 		}else if(newPassword != newPasswordCheck){

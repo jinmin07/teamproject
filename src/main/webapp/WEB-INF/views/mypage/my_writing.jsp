@@ -9,11 +9,13 @@
       .b_cnt_feed, .b_rec, .b_cnt_reply{float: right; margin-right: 30px; font-size: 13px; color: gray;}
       .c_view, .c_cnt_feed, .c_member{float: right; margin-right: 30px; font-size: 13px; color: gray;}
       .p_cnt_feed, .p_member{float: right; margin-right: 30px; font-size: 13px; color: gray;}
-      .p_member_chat, .p_member_eval{float: right; margin-right: 30px; font-size: 13px;}
+      .p_member_chat, .p_member_eval{float: right; margin-right: 5px; font-size: 13px;}
       .c_title, .p_title, .b_title {float: left; text-align: left;}
       .p_member_eval:hover{color:gray;}
       .b_date, .c_date, .p_date {border: 1px solid #35c5f0; padding: 5px; width: 90px; font-size: 14px;}
       .writing_title {margin-bottom: 10px;}
+      button{background: #35c5f0; border:none;}
+      button:hover{border-color: #09addb; background-color: #09addb;}
       
    </style>
 
@@ -28,13 +30,12 @@
       <td width=700 class="writing_middle">
          <div class="writing_title">
             <div class="id" width=100>{{id}}</div>
-            <div class="goList" width = 100><a href='/purchase/read?id={{id}}'>확인</a></div>
             <div class="p_member" width = 200>모집멤버 : {{p_cnt_member}}/{{p_tot_member}}</div>
             <div class="p_cnt_feed" width = 200>피드수 : {{p_cnt_feed}}</div>
          </div>
          <div class="writing_info">
             <div class="p_title" width=460>{{title}}</div>
-            <div class="p_member_chat" width = 130><button>알림전송</button></div>
+           <div class="goList" width = 100><button onClick="location.href='/purchase/read?id={{id}}'">확인</button></div>
             <div class="p_member_eval" width = 130><button>멤버평가</button></div>            
          </div>
       </td>
@@ -62,14 +63,13 @@
          <div class="writing_title">
             <div class="id" width=100>{{id}}</div>
             <div class="c_category" width=200>{{category}} > {{subcategory}}</div>
-            <div class="goList" width = 100><a href='/course/read?id={{id}}'>확인</a></div>
             <div class="c_member" width = 200>모집멤버 : {{c_cnt_member}}/{{c_tot_member}}</div>
             <div class="c_cnt_feed" width = 200>피드수 : {{c_cnt_feed}}</div>
             <div class="c_view" width = 200>조회수 : {{c_view}}</div>
          </div>
          <div class="writing_info">
             <div class="c_title" width=460>{{title}}</div>
-            <div class="p_member_chat" width = 130><button>알림전송</button></div>
+         <div class="goList" width = 100><button onClick="location.href='/course/read?id={{id}}'">확인</button></div>
             <div class="p_member_eval" width = 130><button>멤버평가</button></div>
             
          </div>
@@ -95,12 +95,12 @@
       <td width=700 class="writing_middle">
          <div class="writing_title">
             <div class="id" width=100>{{id}}</div>
-            <div class="goList" width = 100><a href='/board/read?id={{id}}'>확인</a></div>
             <div class="b_cnt_feed" width = 200>피드수 : {{b_cnt_feed}}</div>
             <div class="b_rec" width = 200>추천수 : {{b_rec}}</div>
             <div class="b_cnt_reply" width = 200>댓글수 : {{b_cnt_reply}}</div>
          </div>
          <div class="writing_info">
+         <div class="goList" width = 100><button onClick="location.href='/board/read?id={{id}}'">확인</button></div>
             <div class="b_title">{{title}}</div>
          </div>
       </td>
@@ -134,7 +134,7 @@
       var id = $(this).parent().parent().parent().parent().find(".id").html();
       var tbl_code = $(this).parent().parent().parent().parent().attr("tbl_code");
       var url = "/mypage/members?tbl_code="+tbl_code+"&id=" + id;
-      window.open(url,"", "width=500, height=400, top=200, left=900, location=no");
+      window.open(url,"", "width=590, height=400, top=200, left=900, location=no");
    });
    
    function getListPurchase() {

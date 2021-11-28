@@ -11,20 +11,33 @@
 		border-bottom: 1px solid gray;
 		font-size: 20px;
 	}
-	input[type=submit],input[type=reset]{
+	input[type=submit]{
+		background-color: #35c5f0;
+	    border-color: #35c5f0;
+	    color: #fff;
 		font-size:16px;
 		margin:0px;
 		padding: 5px 15px;
 		font-family:"맑은고딕";
 		font-weight: 600;
 	}
-	input[type=submit]:hover,input[type=reset]:hover{
-		background: #dbb4b4;
+	input[type=reset]{
+		background-color: #fff;
+	    border-color: #35c5f0;
+	    color: #35c5f0;
+		font-size:16px;
+		margin:0px;
+		padding: 5px 15px;
+		font-family:"맑은고딕";
+		font-weight: 600;
+	}
+	input[type=submit]:hover{
+		border-color: #09addb;
+	    background-color: #09addb;
 	}
 	.box {float: left; width: 190; text-align: center;}
 </style>
-<h1>[게시글쓰기]</h1>
-<form name = "frm" method = "post" enctype="multipart/form-data" style="overflow : hidden; margin:50px auto;">
+<form name = "frm" method = "post" enctype="multipart/form-data" accept-charset="UTF-8" style="overflow : hidden; margin:80px auto;">
 	<div style = "float : left; margin-top: 5px; margin-bottom: 20px;">
 		<img id="b_image" src = "http://placehold.it/350x350" width=350 height=350/>
 	</div>
@@ -43,7 +56,7 @@
 		첨부파일추가 <input id="image_name" type="file" name="attFile" />
 	</div>
 	<div id="b_images" style="overflow: hidden;"></div>
-	<div style="text-align: center; margin-top: 20px;">
+	<div style="text-align: center;">
 		<input type="submit" value="등록"/>
 		<input type="reset" value="취소"/>
 	</div>
@@ -86,7 +99,6 @@
 		var file = $(frm.attFile)[0].files[0];
 		if (file == null) return;
 		var image_name = $("#image_name").val();
-		
 		var formData = new FormData();
 		formData.append("file", file);
 		formData.append("user_id",user_id );
@@ -99,10 +111,9 @@
 			processData : false,
 			contentType : false,
 			success : function(data) {
-				//alert(data);
 				var str = '<div class = "box">';
 				str += '<img src = ' +URL.createObjectURL(file) + ' width= 185/>';
-				str += '<input type="text" name="b_images" value=' + data +' style="display : none;"/>';
+				str += '<input type="text" name="b_images" value=' + data +' style="display:none;"/>';
 				str += '<a href = "' + data + '"> 삭제 </a>';
 				str += '</div>';
 				$("#b_images").append(str);

@@ -509,7 +509,7 @@ a:-webkit-any-link {
                            <span class="red cate_infor">{{p_category}}</span>
                         </p>
                         <p class="infor thin date_infor txt02">
-                           {{p_salePrice}} <br/>
+                           {{p_price}} 원 <br/>
                            {{date_start}} ~ {{date_end}}
                         </p>
                         <p class="infor2 thin txt03">

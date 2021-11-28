@@ -174,11 +174,11 @@ input[type=submit]:hover, input[type=reset]:hover{
 			return;
 		}
 		-->
-		if(!confirm("취미/스터디를 등록하실래요?")) return;
+		if(!confirm("공동생활 모임을 등록하실래요?")) return;
 	    frm.action="/course/insert";
 	    frm.method="post";
 	    frm.submit();
-	    alert("등록 성공!!!");
+	    alert("등록되었습니다.");
 	    
 	});
 

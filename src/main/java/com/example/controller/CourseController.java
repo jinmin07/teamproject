@@ -19,6 +19,7 @@ import com.example.mapper.CourseDAO;
 import com.example.mapper.MypageDAO;
 import com.example.mapper.NoticeDAO;
 import com.example.service.CourseService;
+import com.example.service.MypageService;
 import com.example.domain.Criteria;
 import com.example.domain.MyfeedVO;
 import com.example.domain.NoticeVO;
@@ -42,6 +43,9 @@ public class CourseController {
 	@Autowired
 	CourseService service;
 	
+	@Autowired
+	MypageService mservice;
+	
 	@RequestMapping(value = "/course/read")
 	public String course_read(HttpServletRequest request, Model model, int id) {
 		CourseVO cvo = dao.list_course(id);
@@ -57,6 +61,14 @@ public class CourseController {
 		//신청여부 확인
 		HttpSession session = request.getSession();
 		UserVO uvo = (UserVO) session.getAttribute("user");
+		
+		// 피드여부 확인
+		MyfeedVO fvo = new MyfeedVO();
+		fvo.setPrimary_id(id);
+		fvo.setTbl_code(cvo.getTbl_code());
+		fvo.setUser_id(uvo.getU_id());
+		
+		model.addAttribute("chk_feed", mdao.chk_feed(fvo));
 		model.addAttribute("chk_member", dao.chk_member(id, uvo.getU_id()));
 		model.addAttribute("index", 1);
 		model.addAttribute("pageName", "course/read.jsp" );
@@ -161,7 +173,6 @@ public class CourseController {
 	
 	//course insert
 	@RequestMapping(value="/course/insert", method = RequestMethod.POST)
-	@ResponseBody
 	public String insertPost(CourseVO vo, String start, String end)throws Exception{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date_start = sdf.parse(start);
@@ -230,14 +241,14 @@ public class CourseController {
 	// course 수정
 	@RequestMapping(value="/course/update", method=RequestMethod.POST)
 	public String update_coursePost(CourseVO vo, String start, String end, String old_title)throws Exception{
-		System.out.println(vo.toString());
+		//System.out.println(vo.toString());
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date_start = sdf.parse(start);
 		vo.setDate_start(date_start);
 		Date date_end = sdf.parse(end);
 		vo.setDate_end(date_end);
 		
-		//dao.update_course(vo);
+		dao.update_course(vo);
 		
 		String content = "모집 신청하신 공동생활 [" + old_title + "] 진행 건이 작성자의 요청에 의해 수정되었습니다. 이용에 참고하시기 바랍니다.";
 		NoticeVO nvo = new NoticeVO();
@@ -246,11 +257,11 @@ public class CourseController {
 			nvo.setTbl_id(vo.getId());
 			nvo.setSender("admin");
 			nvo.setContent(content);
-			System.out.println(nvo.toString());
+			//System.out.println(nvo.toString());
 		for(int i = 0; i< list.size(); i++){
 			String member = (String)list.get(i).get("member");
 			nvo.setReceiver(member);
-			System.out.println(nvo.toString());
+			//System.out.println(nvo.toString());
 			ndao.insert(nvo);
 		}
 		String url = "redirect:/course/read?id=" +vo.getId();
@@ -260,11 +271,15 @@ public class CourseController {
 	// myfeed insert
 	@RequestMapping(value="/course/feed_insert", method=RequestMethod.POST)
 	@ResponseBody
-	public int myfeed_insert(MyfeedVO vo){
-		int result = mdao.chk_feed(vo);
-		if(result == 0){
-			service.course_insert_feed(vo);
-		}
-		return result;
+	public void myfeed_insert(MyfeedVO vo){
+		service.course_insert_feed(vo);
 	}
+	
+	// myfeed del
+	@RequestMapping(value="/course/feed_del", method=RequestMethod.POST)
+	@ResponseBody
+	public void myfeed_del(MyfeedVO vo){
+		mservice.myfeed_delete(vo);
+	}
+	
 }
